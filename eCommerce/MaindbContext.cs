@@ -13,6 +13,10 @@ namespace eCommerce
                 //Database.SetInitializer(new DbInitialize());
             }
 
+        public System.Data.Entity.DbSet<eCommerce.EntityFramework.Category> Categories { get; set; }
+
+        public System.Data.Entity.DbSet<eCommerce.EntityFramework.ProductType> ProductTypes { get; set; }
+
         //    public System.Data.Entity.DbSet<eCommerce.EntityFramework.Category> Categories { get; set; }
 
         //    public DbSet<Article> Articles { get; set; }

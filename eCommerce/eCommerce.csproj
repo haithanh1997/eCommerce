@@ -194,9 +194,23 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductTypesController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="EntityFramework\AdPackage.cs" />
+    <Compile Include="EntityFramework\Cart.cs" />
+    <Compile Include="EntityFramework\Category.cs" />
+    <Compile Include="EntityFramework\DeliveryMethod.cs" />
+    <Compile Include="EntityFramework\Invoice.cs" />
+    <Compile Include="EntityFramework\InvoiceDetail.cs" />
+    <Compile Include="EntityFramework\MerchantStore.cs" />
+    <Compile Include="EntityFramework\Package.cs" />
+    <Compile Include="EntityFramework\PaymentMethod.cs" />
+    <Compile Include="EntityFramework\Product.cs" />
+    <Compile Include="EntityFramework\ProductType.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -221,6 +235,19 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductTypes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductTypes\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductTypes\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductTypes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductTypes\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -269,7 +296,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="EntityFramework\" />
+    <Folder Include="Areas\Admin\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
