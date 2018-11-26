@@ -1,0 +1,166 @@
+﻿
+@{
+	ViewBag.Title = "UserInfo";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb" class="section">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+			<div class="col-md-12">
+				<h3 class="breadcrumb-header">Checkout</h3>
+				<ul class="breadcrumb-tree">
+					<li><a href="#">Home</a></li>
+					<li class="active">Checkout</li>
+				</ul>
+			</div>
+		</div>
+		<!-- /row -->
+	</div>
+	<!-- /container -->
+</div>
+<!-- /BREADCRUMB -->
+<!-- SECTION -->
+<div class="section">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+
+			<div class="col-md-7">
+				
+				<!-- Shiping Details -->
+				<div class="shiping-details">
+					<div class="section-title">
+						<h3 class="title">Địa chỉ nhận hàng</h3>
+					</div>
+					<div class="input-checkbox">
+						<input type="checkbox" id="shiping-address">
+						<label for="shiping-address">
+							<span></span>
+							Thay đổi đến địa chỉ nhận hàng khác.
+						</label>
+						<div class="caption">
+							<div class="form-group">
+								<input class="input" type="text" name="first-name" placeholder="First Name">
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" name="last-name" placeholder="Last Name">
+							</div>
+							
+							<div class="form-group">
+								<input class="input" type="text" name="address" placeholder="Address">
+							</div>
+							<div class="form-group">
+								<input class="input" type="tel" name="tel" placeholder="Telephone">
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Shiping Details -->
+				<!-- Order notes -->
+				<div class="order-notes">
+					<textarea class="input" placeholder="Ghi chú"></textarea>
+				</div>
+				<!-- /Order notes -->
+			</div>
+			
+			<!-- Order Details -->
+			<div class="col-md-5 order-details">
+				<div class="section-title text-center">
+					<h3 class="title">Đơn Hàng</h3>
+				</div>
+				<div class="order-summary">
+					<div class="order-col">
+						<div><strong>Địa chỉ</strong></div>
+						<div><strong></strong></div>
+					</div>
+					<div class="order-products">
+						<div class="order-col">
+							<div>Họ Tên</div>
+							<div></div>
+						</div>
+						<div class="order-col">
+							<div>Địa chỉ</div>
+							<div></div>   <!--ko dc xóa-->
+						</div>
+						<div class="order-col">
+							<div>Số điện thoại</div>
+							<div></div>
+						</div>
+					</div>
+					<div class="order-col">
+						<div><strong>Phí Ship</strong></div>
+						<div>Giá ship</div>
+					</div>
+					<div class="order-col">
+						<div><strong>VAT</strong></div>
+						<div>Phí VAT</div>
+					</div>
+					<div class="order-col">
+						<div><strong>Tổng tiền</strong></div>
+						<div><strong class="order-total" style="font-size:14px;">130000000000 VND</strong></div>
+					</div>
+					<div class="order-col">
+						<div><strong>Thành tiền</strong></div>
+						<div><strong class="order-total" style="font-size:14px;">Tiền cuối cùng</strong></div>
+					</div>
+				</div>
+				<div class="payment-method">
+					<div class="input-radio">
+						<input type="radio" name="payment" id="payment-1">
+						<label for="payment-1">
+							<span></span>
+							Thay đổi Email theo dõi đơn hàng 
+						</label>
+						<div class="caption">
+							<div class="form-group">
+								<input class="input" type="text" name="Email" placeholder="Email">
+							</div>
+						</div>
+
+					</div>
+					
+					<div class="input-radio">
+						<input type="radio" name="payment" id="payment-2">
+						<label for="payment-2">
+							<span></span>
+							Thanh toán qua 123Pay
+						</label>
+						<div class="caption">
+							<div class="form-group">
+								<a>link qua 123Pay</a>
+							</div>
+						</div>
+
+					</div>
+					<div class="input-radio">
+						<input type="radio" name="payment" id="payment-3">
+						<label for="payment-3">
+							<span></span>
+							Thanh toán khi nhận hàng
+						</label>
+
+					</div>
+
+				</div>
+				<div class="input-checkbox">
+					<input type="checkbox" id="terms">
+					<label for="terms">
+						<span></span>
+						Tôi đã đọc và đồng ý với <a href="#">chính sách & điều khoản</a>
+					</label>
+				</div>
+				<a href="#" class="primary-btn order-submit">Thanh Toán</a>
+			</div>
+			<!-- /Order Details -->
+		</div>
+		<!-- /row -->
+	</div>
+	<!-- /container -->
+</div>
+<!-- /SECTION -->
