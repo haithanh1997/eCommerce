@@ -23,6 +23,7 @@ namespace eCommerce.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            //DbInitializeUser.Seed();
         }
 
         public static ApplicationDbContext Create()
