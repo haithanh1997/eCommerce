@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -6,11 +7,10 @@ using System.Web;
 
 namespace eCommerce
 {
-    public class MainDbContext : DbContext
+    public class MainDbContext : IdentityDbContext
     {
             public MainDbContext() : base("name=DefaultConnection")
             {
-                //Database.SetInitializer(new DbInitialize());
             }
 
         public System.Data.Entity.DbSet<eCommerce.EntityFramework.Category> Categories { get; set; }
