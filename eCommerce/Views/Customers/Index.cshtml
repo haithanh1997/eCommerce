@@ -1,8 +1,377 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+	.nav-pills > li.active > a, .nav-pills > li.active > a:focus {
+		color: #fff;
+		background-color: #d10024;
+	}
 
+		.nav-pills > li.active > a:hover {
+			background-color: #808080;
+			color: #d10024;
+		}
+</style>
 
+<!-- BREADCRUMB -->
+<div id="breadcrumb" class="section">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+			<div class="col-md-12">
+				<h3 class="breadcrumb-header">Checkout</h3>
+				<ul class="breadcrumb-tree">
+					<li><a href="#">Home</a></li>
+					<li class="active">Checkout</li>
+				</ul>
+			</div>
+		</div>
+		<!-- /row -->
+	</div>
+	<!-- /container -->
+</div>
+<!-- /BREADCRUMB -->
+<div class="section">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+			<div id="content">
 
+				<div class="row bar">
+
+					<div class="col-lg-3 mt-4 mt-lg-0">
+						<!-- CUSTOMER MENU -->
+						<div class="panel panel-default sidebar-menu">
+							<div class="panel-body">
+								<ul class="nav nav-pills  nav-stacked">
+									<li class="nav-item active"><a href="#customer-account" data-toggle="tab" class="nav-link"><i class="fa fa-user"></i> Thông tin tài khoản</a></li>
+									<li class="nav-item"><a href="#customer-orders" data-toggle="tab" class="nav-link"><i class="fa fa-list"></i> Lích sử mua hàng</a></li>
+									<li class="nav-item"><a href="#customer-wishlist" data-toggle="tab" class="nav-link"><i class="fa fa-heart"></i> Danh sách ưa thích</a></li>
+									<li class="nav-item"><a href="#customer-remove" data-toggle="tab" class="nav-link"><i class="fa fa-user"></i> Đơn hàng hủy</a></li>
+									<li class="nav-item"><a href="@Url.Action("Index","Home")" id="customer-logout-tab" data-toggle="tab" role="tab" class="nav-link" aria-controls="customer-logout" aria-selected="false"><i class="fa fa-sign-out"></i> Đăng xuất</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="tab-content">
+						<!--Tab1-->
+						<div class="tab-pane fade in active" id="customer-account" role="tabpanel">
+							<div class="container">
+								<div class="row bar">
+									<div id="customer-account" class="col-lg-9 clearfix">
+
+										<div class="box mt-5">
+											<div class="col-md-6 order-details">
+												<div class="section-title text-center">
+													<h3 class="title">Thông tin</h3>
+												</div>
+												<div class="order-summary">
+													<div>
+														<div>Họ Tên:</div></br>
+													</div>
+													<div>
+														<div>Giới tính:</div></br>
+													</div>
+													<div>
+														<div><strong>Ngày sinh:</strong></div></br>
+													</div>
+
+												</div>
+												<div class="input-checkbox ">
+													<input type="checkbox" id="shiping-address0">
+													<label for="shiping-address0">
+														<span></span>
+														Thay đổi thông tin mặc định
+													</label>
+													<div class="caption">
+														<div class="form-group">
+															<input class="input" type="text" name="name" placeholder="Tên">
+														</div>
+														<div class="form-group">
+															<input class="input" type="text" name="Gender" placeholder="Giới Tính">
+														</div>
+
+														<div class="form-group">
+															<input class="input" type="password" name="birthday" placeholder="Ngày sinh">
+														</div>
+														<a href="@Url.Action("Index")" class="primary-btn order-submit">Xác nhận</a>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6 order-details">
+												<div class="section-title text-center">
+													<h3 class="title">Địa chỉ đặt hàng</h3>
+												</div>
+												<div class="order-summary">
+
+													<div>
+														<div>Email:</div></br>
+													</div>
+													<div>
+														<div><strong>Địa chỉ:</strong></div></br>
+													</div>
+													<div>
+														<div><strong>Số điện thoại:</strong></div></br>
+													</div>
+												</div>
+												<div class="input-checkbox ">
+													<input type="checkbox" id="shiping-address">
+													<label for="shiping-address">
+														<span></span>
+														Thay đổi thông tin mặc định
+													</label>
+													<div class="caption">
+														<div class="form-group">
+															<input class="input" type="text" name="email" placeholder="Email">
+														</div>
+														<div class="form-group">
+															<input class="input" type="text" name="address" placeholder="Địa chỉ">
+														</div>
+														<div class="form-group">
+															<input class="input" type="tel" name="tel" placeholder="Số điện thoại">
+														</div>
+														<div class="form-group">
+															<input class="input" type="password" name="passwork" placeholder="Mặt khẩu">
+														</div>
+														<a href="@Url.Action("Index")" class="primary-btn order-submit">Xác nhận</a>
+													</div>
+												</div>
+											</div>
+										</div>
+
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<!--End Tab1-->
+						<!--Tab2-->
+						<div class="tab-pane fade " id="customer-orders">
+							<!-- container -->
+							<div class="container">
+								<!-- row -->
+								<div class="row">
+									<div class="section-title text-center">
+										<h3 class="title">Đơn hàng</h3>
+									</div>
+									<div class="col-md-8">
+										<div class="order-summary clearfix">
+
+											<table class="shopping-cart-table table">
+
+												<tbody>
+													<tr>
+														<td class="thumb"><img src="~/Assets/img/new_1.jpg" alt=""></td>
+														<td class="details">
+															<a href="#">Product Name Goes Here</a>
+															<ul>
+																<li><span>Size: XL</span></li>
+																<li><span>Color: Camelot</span></li>
+															</ul>
+														</td>
+														<td class="price text-center"><strong>$32.50</strong><br><del class="font-weak"><small>$40.00</small></del></td>
+														<td class="qty text-center">1</td>
+														<td class="total text-center"><strong class="primary-color">$32.50</strong></td>
+														<td class="text-right"><button type="button" class="btn btn-danger"><i class=" fa fa-trash"></i></button></td>
+													</tr>
+													<tr>
+														<td class="thumb"><img src="~/Assets/img/new_1.jpg" alt=""></td>
+														<td class="details">
+															<a href="#">Product Name Goes Here</a>
+															<ul>
+																<li><span>Size: XL</span></li>
+																<li><span>Color: Camelot</span></li>
+															</ul>
+														</td>
+														<td class="price text-center"><strong>$32.50</strong><br><del class="font-weak"><small>$40.00</small></del></td>
+														<td class="qty text-center">1</td>
+														<td class="total text-center"><strong class="primary-color">$32.50</strong></td>
+														<td class="text-right"><button type="button" class="btn btn-danger"><i class=" fa fa-trash"></i></button></td>
+													</tr>
+													<tr>
+														<td class="thumb"><img src="~/Assets/img/new_1.jpg" alt=""></td>
+														<td class="details">
+															<a href="#">Product Name Goes Here</a>
+															<ul>
+																<li><span>Size: XL</span></li>
+																<li><span>Color: Camelot</span></li>
+															</ul>
+														</td>
+														<td class="price text-center"><strong>$32.50</strong><br><del class="font-weak"><small>$40.00</small></del></td>
+														<td class="qty text-center">1</td>
+														<td class="total text-center"><strong class="primary-color">$32.50</strong></td>
+														<td class="text-right"><button type="button" class="btn btn-danger"><i class=" fa fa-trash"></i></button></td>
+													</tr>
+												</tbody>
+
+											</table>
+
+										</div>
+
+									</div>
+
+								</div>
+								<!-- /row -->
+							</div>
+
+							<!-- /container -->
+						</div>
+						<!--End Tab2-->
+
+						<!--Tab3-->
+						<div class="tab-pane fade" id="customer-wishlist" role="tabpanel">
+							<!-- container -->
+							<div class="container">
+								<!-- row -->
+								<div class="row">
+									<div class="section-title text-center">
+										<h3 class="title">Danh sách ưa thích</h3>
+									</div>
+									<div class="col-md-8">
+										<div class="order-summary clearfix">
+
+											<table class="shopping-cart-table table">
+
+												<tbody>
+													<tr>
+														<td class="thumb"><img src="~/Assets/img/new_1.jpg" alt=""></td>
+														<td class="details">
+															<a href="#">Product Name Goes Here</a>
+															<ul>
+																<li><span>Size: XL</span></li>
+																<li><span>Color: Camelot</span></li>
+															</ul>
+														</td>
+														<td class="price text-center"><strong>$32.50</strong><br><del class="font-weak"><small>$40.00</small></del></td>
+														<td class="qty text-center">1</td>
+														<td class="total text-center"><strong class="primary-color">$32.50</strong></td>
+														<td class="text-right"><button type="button" class="btn btn-danger"><i class=" fa fa-trash"></i></button></td>
+													</tr>
+													<tr>
+														<td class="thumb"><img src="~/Assets/img/new_1.jpg" alt=""></td>
+														<td class="details">
+															<a href="#">Product Name Goes Here</a>
+															<ul>
+																<li><span>Size: XL</span></li>
+																<li><span>Color: Camelot</span></li>
+															</ul>
+														</td>
+														<td class="price text-center"><strong>$32.50</strong><br><del class="font-weak"><small>$40.00</small></del></td>
+														<td class="qty text-center">1</td>
+														<td class="total text-center"><strong class="primary-color">$32.50</strong></td>
+														<td class="text-right"><button type="button" class="btn btn-danger"><i class=" fa fa-trash"></i></button></td>
+													</tr>
+													<tr>
+														<td class="thumb"><img src="~/Assets/img/new_1.jpg" alt=""></td>
+														<td class="details">
+															<a href="#">Product Name Goes Here</a>
+															<ul>
+																<li><span>Size: XL</span></li>
+																<li><span>Color: Camelot</span></li>
+															</ul>
+														</td>
+														<td class="price text-center"><strong>$32.50</strong><br><del class="font-weak"><small>$40.00</small></del></td>
+														<td class="qty text-center">1</td>
+														<td class="total text-center"><strong class="primary-color">$32.50</strong></td>
+														<td class="text-right"><button type="button" class="btn btn-danger"><i class=" fa fa-trash"></i></button></td>
+													</tr>
+												</tbody>
+
+											</table>
+
+										</div>
+
+									</div>
+
+								</div>
+								<!-- /row -->
+							</div>
+							<!-- /container -->
+						</div>
+						<!-- End Tab3-->
+
+						<!--Tab4-->
+						<div class="tab-pane fade" id="customer-remove" role="tabpanel">
+							<div class="container">
+								<!-- row -->
+								<div class="row">
+									<div class="section-title text-center">
+										<h3 class="title">Đơn hàng đã hủy</h3>
+									</div>
+									<div class="col-md-8">
+										<div class="order-summary clearfix">
+
+											<table class="shopping-cart-table table">
+
+												<tbody>
+													<tr>
+														<td class="thumb"><img src="~/Assets/img/new_1.jpg" alt=""></td>
+														<td class="details">
+															<a href="#">Product Name Goes Here</a>
+															<ul>
+																<li><span>Size: XL</span></li>
+																<li><span>Color: Camelot</span></li>
+															</ul>
+														</td>
+														<td class="price text-center"><strong>$32.50</strong><br><del class="font-weak"><small>$40.00</small></del></td>
+														<td class="qty text-center">1</td>
+														<td class="total text-center"><strong class="primary-color">$32.50</strong></td>
+														<td class="text-right"><button type="button" class="btn btn-danger"><i class=" fa fa-trash"></i></button></td>
+													</tr>
+													<tr>
+														<td class="thumb"><img src="~/Assets/img/new_1.jpg" alt=""></td>
+														<td class="details">
+															<a href="#">Product Name Goes Here</a>
+															<ul>
+																<li><span>Size: XL</span></li>
+																<li><span>Color: Camelot</span></li>
+															</ul>
+														</td>
+														<td class="price text-center"><strong>$32.50</strong><br><del class="font-weak"><small>$40.00</small></del></td>
+														<td class="qty text-center">1</td>
+														<td class="total text-center"><strong class="primary-color">$32.50</strong></td>
+														<td class="text-right"><button type="button" class="btn btn-danger"><i class=" fa fa-trash"></i></button></td>
+													</tr>
+													<tr>
+														<td class="thumb"><img src="~/Assets/img/new_1.jpg" alt=""></td>
+														<td class="details">
+															<a href="#">Product Name Goes Here</a>
+															<ul>
+																<li><span>Size: XL</span></li>
+																<li><span>Color: Camelot</span></li>
+															</ul>
+														</td>
+														<td class="price text-center"><strong>$32.50</strong><br><del class="font-weak"><small>$40.00</small></del></td>
+														<td class="qty text-center">1</td>
+														<td class="total text-center"><strong class="primary-color">$32.50</strong></td>
+														<td class="text-right"><button type="button" class="btn btn-danger"><i class=" fa fa-trash"></i></button></td>
+													</tr>
+												</tbody>
+
+											</table>
+
+										</div>
+
+									</div>
+
+								</div>
+								<!-- /row -->
+							</div>
+						</div>
+						<!--End Tab4-->
+						<!--Tab5-->
+						<div class="tab-pane fade" id="customer-logout" role="tabpanel">...</div>
+						<!--End Tab5-->
+					</div>
+				</div>
+			
+			</div>
+
+		</div>
+
+	</div>
+</div>
