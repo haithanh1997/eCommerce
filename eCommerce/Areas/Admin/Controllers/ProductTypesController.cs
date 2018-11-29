@@ -11,6 +11,7 @@ using eCommerce.EntityFramework;
 
 namespace eCommerce.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Moderator")]
     public class ProductTypesController : Controller
     {
         private MainDbContext db = new MainDbContext();
@@ -36,6 +37,7 @@ namespace eCommerce.Areas.Admin.Controllers
             return View(productType);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Admin/ProductTypes/Create
         public ActionResult Create()
         {
@@ -47,6 +49,7 @@ namespace eCommerce.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "Id,Name")] ProductType productType)
         {
             if (ModelState.IsValid)
@@ -59,6 +62,7 @@ namespace eCommerce.Areas.Admin.Controllers
             return View(productType);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Admin/ProductTypes/Edit/5
         public ActionResult Edit(long? id)
         {
@@ -74,6 +78,7 @@ namespace eCommerce.Areas.Admin.Controllers
             return View(productType);
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: Admin/ProductTypes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -90,6 +95,7 @@ namespace eCommerce.Areas.Admin.Controllers
             return View(productType);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Admin/ProductTypes/Delete/5
         public ActionResult Delete(long? id)
         {
@@ -105,6 +111,7 @@ namespace eCommerce.Areas.Admin.Controllers
             return View(productType);
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: Admin/ProductTypes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

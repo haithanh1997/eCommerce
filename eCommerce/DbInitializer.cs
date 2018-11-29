@@ -112,14 +112,6 @@ namespace eCommerce
                 UserManager.AddToRole(defaultMod.Id, "Moderator");
             }
 
-            //creating Creating User role
-            if (!roleManager.RoleExists("User"))
-            {
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "User";
-                roleManager.Create(role);
-            }
-
             // creating Creating Merchant role    
             if (!roleManager.RoleExists("Merchant"))
             {
@@ -139,7 +131,6 @@ namespace eCommerce
                 if (chkMerchant.Succeeded)
                 {
                     UserManager.AddToRole(user.Id, "Merchant");
-                    UserManager.AddToRole(user.Id, "User");
                 }
             }
             context.SaveChanges();
