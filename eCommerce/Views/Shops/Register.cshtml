@@ -1,0 +1,156 @@
+﻿
+@{
+	ViewBag.Title = "Register";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb" class="section">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+			<div class="col-md-12">
+				<h3 class="breadcrumb-header">Đăng Ký Bán Hàng</h3>
+				<ul class="breadcrumb-tree">
+					<li><a href="#">Home</a></li>
+					<li class="active">Register</li>
+				</ul>
+			</div>
+		</div>
+		<!-- /row -->
+	</div>
+	<!-- /container -->
+</div>
+<!-- /BREADCRUMB -->
+<!-- SECTION -->
+<div class="section">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row ">
+
+			<div class="col-md-6">
+				<!-- Billing Details -->
+
+				<div class="billing-details">
+					<div class="section-title">
+						<h3 class="title">Tài khoản</h3>
+					</div>
+					<div class="form-group">
+						<input class="input" type="email" name="email" placeholder="Email">
+					</div>
+					<div class="form-group">
+						<input class="input" type="text" name="last-name" placeholder="Mặt khẩu">
+					</div>
+
+					
+					<div class="form-group text-left">
+						<div class="input-checkbox">
+							<input type="checkbox" id="create-account">
+							<label for="create-account">
+								<span></span>
+								Tôi đồng ý và chấp nhận các điều khoản & quy tắc
+							</label>
+
+						</div>
+					</div>
+				</div>
+				<!-- /Billing Details -->
+			</div>
+			<div class="col-md-6">
+				<!-- Billing Details -->
+				<div class="billing-details">
+					<div class="section-title">
+						<h3 class="title ">Thông tin Doanh Nghiệp</h3>
+					</div>
+					<div class="form-group">
+						<input class="input" type="text" name="first-name" placeholder="Họ Tên Người Đại Diện">
+					</div>
+					<div class="form-group">
+						<input class="input" type="text" name="shop-name" placeholder="Tên Doanh Nghiệp">
+					</div>
+					<div class="form-group">
+						<input class="input" type="text" name="address" placeholder="Địa chỉ">
+					</div>
+					<div class="form-group">
+						<input class="input" type="text" name="code-register" placeholder="Mã số đăng ký kinh doanh">
+					</div>
+
+
+					<div class="form-group">
+						<input class="input" type="text" name="tax" placeholder="Mã số thuế">
+					</div>
+
+					<div class="form-group">
+						<input class="input" type="text" name="number-car" placeholder="Tài khoản ngân hàng công ty (số thẻ)">
+					</div>
+
+
+					<div class="form-group">
+						<input class="input" type="text" name="name-bank" placeholder="Tên Ngân Hàng">
+					</div>
+
+					<div class="form-group">
+						<input class="input" type="text" name="number-account" placeholder="số tài khoản">
+					</div>
+
+					<div class="form-group">
+						<input class="input" type="tel" name="tel" placeholder="Số điện thoại">
+					</div>
+
+					<div class="form-group">
+						<select class="input" id="sel1">
+							<option value="1">Đên Kho Lấy Hàng</option>
+							<option value="2">Nhà Bán Đem Hàng Đến</option>
+							<option value="3">Nhà Bán Tự Vận Hành</option>
+
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="photo">Ảnh Cửa Hàng</label>
+						<div class="col-md-8">
+							<input class="input" id="photo" name="photo" type="file" placeholder="Ảnh Cửa Hàng">
+						</div>
+					</div>
+
+					<div class="form-group ">
+						<label class="col-md-4 control-label" for="identify">CMND Mặt Trước</label>
+						<div class="col-md-8">
+							<input id="identify" name="identify1" type="file" placeholder="Ảnh Chứng Minh Nhân Dân Mặt Trước" class="input">
+						</div>
+					</div>
+
+					<div class="form-group ">
+						<label class="col-md-4 control-label" for="identify">CMND Mặt sau</label>
+						<div class="col-md-8">
+							<input id="identify" name="identify2" type="file" placeholder="Ảnh Chứng Minh Nhân Dân Mặt Sau" class="input">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="certifiate">Giấy Phép Mặt Trước</label>
+						<div class="col-md-8">
+							<input id="identify" name="certificate1" type="file" placeholder="Ảnh Giấy Phép Kinh Doanh Mặt Trước" class="input">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="certifiate">Giấy Phép Mặt Sau</label>
+						<div class="col-md-8">
+							<input id="identify" name="certificate2" type="file" placeholder="Ảnh Giấy Phép Kinh Doanh Mặt Sau" class="input">
+						</div>
+					</div>
+				</div>
+				<!-- /Billing Details -->
+			</div>
+			
+		</div>
+		<!-- /row -->
+		<div class="text-center"><a href="@Url.Action("UserInfo")" class="primary-btn order-submit ">ĐĂNG KÝ</a></div>
+		
+	</div>
+	<!-- /container -->
+</div>
+<!-- /SECTION -->

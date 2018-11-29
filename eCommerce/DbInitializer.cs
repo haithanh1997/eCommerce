@@ -72,23 +72,6 @@ namespace eCommerce
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
                 role.Name = "Admin";
                 roleManager.Create(role);
-
-                //Here we create a Admin super user who will maintain the website                  
-
-                var user = new ApplicationUser();
-                user.UserName = "admin@gmail.com";
-                user.Email = "admin@gmail.com";
-
-                string userPWD = "123456";
-
-                var chkUser = UserManager.Create(user, userPWD);
-
-                //Add default User to Role Admin   
-                if (chkUser.Succeeded)
-                {
-                    var result1 = UserManager.AddToRole(user.Id, "Admin");
-
-                }
             }
 
             // creating Creating Moderator role    
@@ -97,22 +80,36 @@ namespace eCommerce
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
                 role.Name = "Moderator";
                 roleManager.Create(role);
+            }
+            //Here we create a Admin super user who will maintain the website                  
 
-                var user = new ApplicationUser();
-                user.UserName = "nguyenthientam317@gmail.com";
-                user.Email = "nguyenthientam317@gmail.com";
+            var admin = new ApplicationUser();
+            admin.UserName = "admin@gmail.com";
+            admin.Email = "admin@gmail.com";
 
-                string userPWD = "Mod1@3456";
+            string adminPWD = "123456";
 
-                var chkUser = UserManager.Create(user, userPWD);
+            var chkUser = UserManager.Create(admin, adminPWD);
 
-                //Add default User to Role Admin   
-                if (chkUser.Succeeded)
-                {
-                    var result1 = UserManager.AddToRole(user.Id, "Moderator");
+            //Add default User to Role Admin   
+            if (chkUser.Succeeded)
+            {
+                UserManager.AddToRole(admin.Id, "Admin");
+                UserManager.AddToRole(admin.Id, "Moderator");
+            }
 
-                }
+            var defaultMod = new ApplicationUser();
+            defaultMod.UserName = "nguyenthientam317@gmail.com";
+            defaultMod.Email = "nguyenthientam317@gmail.com";
 
+            string modPWD = "Mod1@3456";
+
+            var chkMod = UserManager.Create(defaultMod, modPWD);
+
+            //Add default User to Role   
+            if (chkUser.Succeeded)
+            {
+                UserManager.AddToRole(defaultMod.Id, "Moderator");
             }
 
             // creating Creating Merchant role    
@@ -128,22 +125,13 @@ namespace eCommerce
 
                 string userPWD = "Merchant1@3456";
 
-                var chkUser = UserManager.Create(user, userPWD);
+                var chkMerchant = UserManager.Create(user, userPWD);
 
-                //Add default User to Role Admin   
-                if (chkUser.Succeeded)
+                //Add default User to Role  
+                if (chkMerchant.Succeeded)
                 {
-                    var result1 = UserManager.AddToRole(user.Id, "Moderator");
-
+                    UserManager.AddToRole(user.Id, "Merchant");
                 }
-            }
-
-            //creating Creating User role
-            if (!roleManager.RoleExists("User"))
-            {
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "User";
-                roleManager.Create(role);
             }
             context.SaveChanges();
         }
