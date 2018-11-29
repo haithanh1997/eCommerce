@@ -11,6 +11,7 @@ using eCommerce.EntityFramework;
 
 namespace eCommerce.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Moderator")]
     public class CategoriesController : Controller
     {
         private MainDbContext db = new MainDbContext();
@@ -36,12 +37,14 @@ namespace eCommerce.Areas.Admin.Controllers
             return View(category);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Admin/Categories/Create
         public ActionResult Create()
         {
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: Admin/Categories/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -59,6 +62,7 @@ namespace eCommerce.Areas.Admin.Controllers
             return View(category);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Admin/Categories/Edit/5
         public ActionResult Edit(long? id)
         {
@@ -74,6 +78,7 @@ namespace eCommerce.Areas.Admin.Controllers
             return View(category);
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: Admin/Categories/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -90,6 +95,7 @@ namespace eCommerce.Areas.Admin.Controllers
             return View(category);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Admin/Categories/Delete/5
         public ActionResult Delete(long? id)
         {
@@ -105,6 +111,7 @@ namespace eCommerce.Areas.Admin.Controllers
             return View(category);
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: Admin/Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
