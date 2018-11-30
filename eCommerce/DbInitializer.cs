@@ -91,7 +91,7 @@ namespace eCommerce
 
             var chkUser = UserManager.Create(admin, adminPWD);
 
-            //Add default User to Role Admin   
+            //Add default User to Role Admin haha 
             if (chkUser.Succeeded)
             {
                 UserManager.AddToRole(admin.Id, "Admin");
