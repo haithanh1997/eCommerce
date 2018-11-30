@@ -19,5 +19,6 @@ namespace eCommerce.EntityFramework
         public string Description { get; set; }
         public DateTime createdDate { get; set; }
         public string Status { get; set; }
+        public bool isDisabled { get; set; }
     }
 }

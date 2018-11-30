@@ -15,6 +15,6 @@ namespace eCommerce.EntityFramework
         public string Name { get; set; }
         public int Price { get; set; }
         public DateTime ExpiredDate { get; set; }
-
+        public bool isDisabled { get; set; }
     }
 }

@@ -16,5 +16,6 @@ namespace eCommerce.EntityFramework
         public int Quantity { get; set; }
        // public string Provider { get; set; }
        // public int Price { get; set; }
+       public bool isDisabled { get; set; }
     }
 }

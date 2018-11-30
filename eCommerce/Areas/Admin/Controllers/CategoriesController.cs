@@ -64,6 +64,7 @@ namespace eCommerce.Areas.Admin.Controllers
 
         [Authorize(Roles = "Admin")]
         // GET: Admin/Categories/Edit/5
+        //check box bugged
         public ActionResult Edit(long? id)
         {
             if (id == null)
