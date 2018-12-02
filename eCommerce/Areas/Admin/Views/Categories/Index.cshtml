@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Index";
 }
-<link rel="stylesheet" href="~/Areas/Admin/Assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -25,7 +25,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-                <table id="table-nhacungcap" class="table table-bordered table-striped">
+                <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>@Html.DisplayNameFor(model => model.Id)</th>
@@ -66,14 +66,6 @@
     <!-- /.content -->
 </div>
 
-<!-- Datatable-->
-<script src="~/Areas/Admin/Assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="~/Areas/Admin/Assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 
-<script>
-  $(function () {
-    $('#table-nhacungcap').DataTable({
-    'info' :true
-    })
-  })
-</script>
+
+
