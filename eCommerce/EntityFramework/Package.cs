@@ -11,10 +11,10 @@ namespace eCommerce.EntityFramework
     {
         [Key]
         public long Id { get; set; }
-        public virtual IdentityUser User { get; set; }
         public string Name { get; set; }
         public int Price { get; set; }
         public int Times { get; set; }
+        public int Days { get; set; }
         public bool isDisabled { get; set; }
     }
 }

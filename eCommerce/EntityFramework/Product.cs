@@ -11,11 +11,12 @@ namespace eCommerce.EntityFramework
     {
         [Key]
         public long Id { get; set; }
-        public IdentityUser User { get; set; }
+        public MerchantStore Store { get; set; }
         public string Name { get; set; }
         public string Price { get; set; }
         public int Quantity { get; set; }
         public string brandName { get; set; }
+        public virtual Category Category { get; set; }
         public virtual ProductType Type { get; set; }
         public int discountValue { get; set; }
         //public string Provider { get; set; }
