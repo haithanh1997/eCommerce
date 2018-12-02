@@ -649,9 +649,20 @@
 	<script src="~/Areas/Admin/Assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 	<script src="~/Areas/Admin/Assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 	<script>
-  $(function () {
-    $('#example1').DataTable()
-  })
+		$(function () {
+			$('#example1').DataTable()
+		})
 	</script>
+	<!--Push notification-->
+	<!--<link rel="manifest" href="/manifest.json" />
+	<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+	<script>
+		var OneSignal = window.OneSignal || [];
+		OneSignal.push(function () {
+			OneSignal.init({
+				appId: "e973ec3e-c5ba-4098-a75c-3fb24aff377d",
+			});
+		});
+	</script>-->
 </body>
 </html>
