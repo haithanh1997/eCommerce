@@ -47,91 +47,16 @@
                                     @Html.LabelFor(model => model.isDisabled, htmlAttributes: new { @class = "control-label col-md-2" })
 
                                     <div class="col-sm-10">
-                                        @Html.CheckBoxFor(model => model.isDisabled, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.isDisabled, "", new { @class = "text-danger" })
+                                        @Html.EditorFor(model => model.isDisabled, new { htmlAttributes = new { @class = "form-control" } })
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Email</label>
-
-                                    <div class="col-sm-10">
-                                        <input class="form-control" placeholder="Email">
-                                    </div>
-
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Địa chỉ</label>
-
-                                    <div class="col-sm-10">
-                                        <input class="form-control" placeholder="Địa chỉ">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Số điện thoại</label>
-
-                                    <div class="col-sm-10">
-                                        <input class="form-control" placeholder="Số điện thoại">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Giới thiệu</label>
-
-                                    <div class="col-sm-10">
-                                        <div class="box">
-                                            <div class="box-header">
-                                                <h3 class="box-title">
-                                                    Giới thiệu nhà cung cấp
-                                                </h3>
-                                                <!-- tools box -->
-                                                <div class="pull-right box-tools">
-                                                    <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip"
-                                                            title="">
-                                                        <i class="fa fa-minus"></i>
-                                                    </button>
-                                                </div>
-                                                <!-- /. tools -->
-                                            </div>
-                                            <!-- /.box-header -->
-                                            <div class="box-body pad">
-                                                <form>
-                                                    <textarea class="textarea" placeholder="Nhập mô tả ở đây"
-                                                              style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">
-                                        Ảnh đại diện
-                                    </label>
-                                    <div class="col-sm-10">
-                                        <div class="col-sm-12">
-                                            <img src="../../dist/img/default-50x50.gif">
-                                        </div>
-                                        <div class="col-sm-12" style="padding-top: 10px">
-                                            <div class="btn btn-success btn-file">
-                                                Chọn ảnh
-                                                <input type="file" name="attachment">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Trạng thái kích hoạt</label>
-
-                                    <div class="col-sm-10" style="padding-top: 7px">
-                                        <input type="checkbox" class="minimal">
-                                    </div>
-                                </div>
-
-                            </div>
                             <!-- /.box-body -->
-                            <div class="box-footer">
-                                <div class="form-group">
-                                    <a href="@Url.Action("Index","Categories")" class="btn btn-default"><i class="fa fa-reply"></i> Hủy</a>
-                                    <button type="submit" class="btn btn-default bg-blue pull-right"><i class="fa fa-save"></i> Lưu</button>
+
+                                <div class="box-footer">
+                                    <div class="form-group">
+                                        <a href="@Url.Action("Index","Categories")" class="btn btn-default"><i class="fa fa-reply"></i> Hủy</a>
+                                        <button type="submit" class="btn btn-default bg-blue pull-right"><i class="fa fa-save"></i> Lưu</button>
+                                    </div>
                                 </div>
                             </div>
                             <!-- /.box-footer -->

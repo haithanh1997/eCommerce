@@ -24,6 +24,7 @@ namespace eCommerce
             defaultCategories.Add(new Category() { Name = "DELL", isDisabled = false });
             defaultCategories.Add(new Category() { Name = "HP", isDisabled = false });
             defaultCategories.Add(new Category() { Name = "LENOVO", isDisabled = false });
+            defaultCategories.Add(new Category() { Name = "DUMMY", isDisabled = true });
 
             context.Categories.AddRange(defaultCategories);
             context.SaveChanges();
@@ -62,6 +63,16 @@ namespace eCommerce
             defaultTypes.Add(new ProductType() { Name = "Doanh nhân", Category = context.Categories.FirstOrDefault(x => x.Id == 6), isDisabled = false });
 
             context.ProductTypes.AddRange(defaultTypes);
+            context.SaveChanges();
+
+            //Seed for Packages
+            IList<Package> defaultPackages = new List<Package>();
+
+            defaultPackages.Add(new Package() { Name = "Cơ bản" , Price = 299000 , Times = 10 , Days = 7 , isDisabled = false });
+            defaultPackages.Add(new Package() { Name = "Doanh nghiệp" , Price = 999000 , Times = 40 , Days = 7 , isDisabled = false });
+            defaultPackages.Add(new Package() { Name = "Tiêu chuẩn" , Price = 599000 , Times = 25 , Days = 7 , isDisabled = false });
+
+            context.Packages.AddRange(defaultPackages);
             context.SaveChanges();
 
             // In Startup iam creating first Admin Role and creating a default Admin User    

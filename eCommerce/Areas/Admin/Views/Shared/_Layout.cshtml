@@ -41,7 +41,7 @@
     <div class="wrapper">
         <header class="main-header">
             <!-- Logo -->
-            <a href="index2.html" class="logo">
+            <a href="@Url.Action("Index","AdminHome")" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b style="font-size: 10px">TechLap</b></span>
                 <!-- logo for regular state and mobile devices -->
@@ -342,7 +342,7 @@
                                 <!-- sidebar menu: : style can be found in sidebar.less -->
                                 <ul class="sidebar-menu" data-widget="tree">
                                     <li class="active treeview">
-                                        <a href="#">
+                                        <a href="@Url.Action("Index","AdminHome")">
                                             <i class="fa fa-dashboard"></i> <span>Quản lí chung</span>
                                         </a>
                                     </li>
@@ -357,7 +357,8 @@
                                         <ul class="treeview-menu">
                                             <li><a href="@Url.Action("Index","Products")"><i class="fa fa-circle-o"></i> Sản phẩm</a></li>
                                             <li><a href="@Url.Action("Index","ProductTypes")"><i class="fa fa-circle-o"></i> Loại sản phẩm</a></li>
-                                            <li><a href="@Url.Action("Index","Categories")"><i class="fa fa-circle-o"></i> Nhà cung cấp</a></li>
+                                            <li><a href="@Url.Action("Index","Categories")"><i class="fa fa-circle-o"></i> Thương hiệu</a></li>
+                                            <li><a href="@Url.Action("Index","Stores")"><i class="fa fa-circle-o"></i> Nhà cung cấp</a></li>
                                         </ul>
                                     </li>
                                     <li class="treeview">

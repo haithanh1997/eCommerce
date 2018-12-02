@@ -1,0 +1,83 @@
+﻿@model eCommerce.EntityFramework.Invoice
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Invoice</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentMethod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaymentMethod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryMethod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryMethod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createdDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createdDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isDisabled)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isDisabled)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

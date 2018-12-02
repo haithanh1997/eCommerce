@@ -17,27 +17,18 @@ namespace eCommerce
 
         public System.Data.Entity.DbSet<eCommerce.EntityFramework.ProductType> ProductTypes { get; set; }
 
-        //    public System.Data.Entity.DbSet<eCommerce.EntityFramework.Category> Categories { get; set; }
+        public System.Data.Entity.DbSet<eCommerce.EntityFramework.Package> Packages { get; set; }
 
-        //    public DbSet<Article> Articles { get; set; }
+        public System.Data.Entity.DbSet<eCommerce.EntityFramework.Product> Products { get; set; }
 
-        //    public DbSet<Invoice> Invoices { get; set; }
+        public System.Data.Entity.DbSet<eCommerce.EntityFramework.Invoice> Invoices { get; set; }
 
-        //    public DbSet<AdPackage> AdPackages { get; set; }
+        public System.Data.Entity.DbSet<eCommerce.EntityFramework.InvoiceDetail> InvoiceDetails { get; set; }
 
-        //    public DbSet<Cart> Carts { get; set; }
+        public System.Data.Entity.DbSet<eCommerce.EntityFramework.AdPackage> AdPackages { get; set; }
 
-        //    public DbSet<InvoiceDetail> InvoiceDetails { get; set; }
+        public System.Data.Entity.DbSet<eCommerce.EntityFramework.MerchantStore> MerchantStores { get; set; }
 
-        //    public DbSet<Product> Products { get; set; }
-
-        //    public DbSet<ProductType> ProductTypes { get; set; }
-        //    protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //    {
-        //        modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-        //        modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
-        //        modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);
-        //        modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
-        //    }
+        public System.Data.Entity.DbSet<eCommerce.EntityFramework.Cart> Carts { get; set; }
     }
 }

@@ -198,9 +198,16 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminHomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdPackagesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CartsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\InvoiceDetailsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\InvoicesController.cs" />
     <Compile Include="Areas\Admin\Controllers\MerchantsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PackagesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductTypesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StoresController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -219,6 +226,7 @@
     <Compile Include="EntityFramework\Package.cs" />
     <Compile Include="EntityFramework\PaymentMethod.cs" />
     <Compile Include="EntityFramework\Product.cs" />
+    <Compile Include="EntityFramework\ProductStatus.cs" />
     <Compile Include="EntityFramework\ProductType.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -9082,6 +9090,41 @@
     <Content Include="Areas\Admin\Assets\dist\css\adminlte.min.css.map" />
     <Content Include="Areas\Admin\Assets\plugins\input-mask\phone-codes\phone-be.json" />
     <Content Include="Areas\Admin\Assets\plugins\input-mask\phone-codes\phone-codes.json" />
+    <Content Include="Areas\Admin\Views\Packages\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Packages\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Packages\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Packages\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Packages\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Invoices\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Invoices\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Invoices\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Invoices\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Invoices\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\InvoiceDetails\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\InvoiceDetails\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\InvoiceDetails\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\InvoiceDetails\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\InvoiceDetails\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AdPackages\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\AdPackages\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\AdPackages\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\AdPackages\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\AdPackages\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Stores\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Stores\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Stores\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Stores\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Stores\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Carts\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Carts\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Carts\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Carts\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Carts\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -9143,7 +9186,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\Members\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
