@@ -203,6 +203,7 @@
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\InvoiceDetailsController.cs" />
     <Compile Include="Areas\Admin\Controllers\InvoicesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MerchantsAccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\MerchantsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PackagesController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminProductsController.cs" />
@@ -9126,6 +9127,7 @@
     <Content Include="Areas\Admin\Views\Carts\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Carts\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Carts\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\MerchantsAccount\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

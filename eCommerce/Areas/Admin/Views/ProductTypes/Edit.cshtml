@@ -1,42 +1,66 @@
-﻿@model eCommerce.EntityFramework.ProductType
+﻿@model eCommerce.Areas.Admin.Models.ProductTypeModel
 
 @{
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
-
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>ProductType</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header clear-fix">
+            <h1>
+                Chỉnh sửa loại sản phẩm
+            </h1>
+        </section>
+        <!-- Main content -->
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Thông tin loại</h3>
+                            <hr />
+                        </div>
+                        <!-- /.box-header -->
+                        <!-- form start -->
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.Id)
+                        <form class="form-horizontal">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                                    <div class="col-sm-10">
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.CategorySelectedId, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                                <div class="col-sm-10">
+                                    @Html.DropDownListFor(model => Model.CategorySelectedId, Model.Categories, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.CategorySelectedId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <a href="@Url.Action("Index","ProductTypes")"><button type="button" class="btn btn-default"><i class="fa fa-reply"></i> Hủy</button></a>
+                                <button type="submit" class="btn btn-default bg-blue pull-right"><i class="fa fa-save"></i> Lưu</button>
+                            </div>
+                            <!-- /.box-footer -->
+                        </form>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
+        <!-- /.content -->
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+<!-- /.content-wrapper -->

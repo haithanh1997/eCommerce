@@ -56,7 +56,7 @@ namespace eCommerce.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Create([Bind(Include = "Id,Name")] ProductTypeModel productType)
+        public ActionResult Create(ProductTypeModel productType)
         {
             if (ModelState.IsValid)
             {
@@ -64,12 +64,17 @@ namespace eCommerce.Areas.Admin.Controllers
                 {
                     Name = productType.Name,
                     isDisabled = productType.isDisabled,
-                    Category = db.Categories.FirstOrDefault(x => x.Id == productType.Id)
+                    Category = db.Categories.FirstOrDefault(x => x.Id == productType.CategorySelectedId)
                 };
                 db.ProductTypes.Add(entity);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            productType.Categories = db.Categories.Select(x => new SelectListItem()
+            {
+                Text = x.Name,
+                Value = x.Id.ToString()
+            }).ToList();
 
             return View(productType);
         }
@@ -82,7 +87,18 @@ namespace eCommerce.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProductType productType = db.ProductTypes.Find(id);
+            var entity = db.ProductTypes.Find(id);
+            ProductTypeModel productType = new ProductTypeModel()
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                CategorySelectedId = entity.Category.Id,
+                Categories = db.Categories.Select(x => new SelectListItem()
+                {
+                    Text = x.Name,
+                    Value = x.Id.ToString()
+                }).ToList()
+            };
             if (productType == null)
             {
                 return HttpNotFound();
@@ -96,14 +112,23 @@ namespace eCommerce.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name")] ProductType productType)
+        public ActionResult Edit(ProductTypeModel productType)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(productType).State = EntityState.Modified;
+                var entity = db.ProductTypes.FirstOrDefault(x => x.Id == productType.Id);
+                entity.Name = productType.Name;
+                entity.isDisabled = productType.isDisabled;
+                entity.Category = db.Categories.FirstOrDefault(x => x.Id == productType.CategorySelectedId);
+                db.Entry(entity).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            productType.Categories = db.Categories.Select(x => new SelectListItem()
+            {
+                Text = x.Name,
+                Value = x.Id.ToString()
+            }).ToList();
             return View(productType);
         }
 
