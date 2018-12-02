@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<link rel="stylesheet" href="~/Areas/Admin/Assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -22,7 +22,7 @@
                 <p>
                     @Html.ActionLink("Tạo mới", "Create")
                 </p>
-            </div>           
+            </div>
             <!-- /.box-header -->
             <div class="box-body">
                 <table id="table-nhacungcap" class="table table-bordered table-striped">
@@ -37,25 +37,25 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Id)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Name)
-                            </td>     
-                            <td>
-                                @Html.DisplayFor(modelItem => item.isDisabled)
-                            </td>
-                            <td>
-                                <div class="btn-group">
-                                    @Html.ActionLink("Sửa", "Edit", new { id = item.Id }) |
-                                    @Html.ActionLink("Xóa", "Delete", new { id = item.Id })
-                                </div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.isDisabled)
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        @Html.ActionLink("Sửa", "Edit", new { id = item.Id }) |
+                                        @Html.ActionLink("Xóa", "Delete", new { id = item.Id })
+                                    </div>
+                                </td>
+                            </tr>
                         }
-                        
+
                     </tbody>
 
                 </table>
@@ -65,16 +65,15 @@
     </section>
     <!-- /.content -->
 </div>
+
+<!-- Datatable-->
+<script src="~/Areas/Admin/Assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="~/Areas/Admin/Assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
 <script>
   $(function () {
     $('#table-nhacungcap').DataTable({
-      'paging'      : true,
-      'lengthChange': true,
-      'searching'   : true,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : true,
-
+    'info' :true
     })
   })
 </script>

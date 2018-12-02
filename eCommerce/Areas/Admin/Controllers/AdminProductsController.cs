@@ -11,7 +11,7 @@ using eCommerce.EntityFramework;
 
 namespace eCommerce.Areas.Admin.Controllers
 {
-    public class ProductsController : Controller
+    public class AdminProductsController : Controller
     {
         private MainDbContext db = new MainDbContext();
 

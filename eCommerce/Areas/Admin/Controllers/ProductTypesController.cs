@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using eCommerce;
+using eCommerce.Areas.Admin.Models;
 using eCommerce.EntityFramework;
 
 namespace eCommerce.Areas.Admin.Controllers
@@ -41,7 +42,12 @@ namespace eCommerce.Areas.Admin.Controllers
         // GET: Admin/ProductTypes/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new ProductTypeModel() {
+                Categories = db.Categories.Select(x => new SelectListItem() {
+                    Text = x.Name,
+                    Value = x.Id.ToString()
+                }).ToList()
+            });
         }
 
         // POST: Admin/ProductTypes/Create
@@ -50,11 +56,17 @@ namespace eCommerce.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Create([Bind(Include = "Id,Name")] ProductType productType)
+        public ActionResult Create([Bind(Include = "Id,Name")] ProductTypeModel productType)
         {
             if (ModelState.IsValid)
             {
-                db.ProductTypes.Add(productType);
+                var entity = new ProductType()
+                {
+                    Name = productType.Name,
+                    isDisabled = productType.isDisabled,
+                    Category = db.Categories.FirstOrDefault(x => x.Id == productType.Id)
+                };
+                db.ProductTypes.Add(entity);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
