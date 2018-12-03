@@ -9129,6 +9129,7 @@
     <Content Include="Areas\Admin\Views\Carts\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Carts\Index.cshtml" />
     <Content Include="Areas\Admin\Views\MerchantsAccount\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\MerchantsAccount\Detail.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

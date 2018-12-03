@@ -649,10 +649,18 @@
 	<script src="~/Areas/Admin/Assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 	<script src="~/Areas/Admin/Assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 	<script>
-		$(function () {
-			$('#example1').DataTable()
+	$(function () {
+		$('#example1').DataTable({
+			'language': {
+				"url": '//cdn.datatables.net/plug-ins/1.10.19/i18n/Vietnamese.json'
+			}
 		})
+
+	})
 	</script>
+
+
+
 	<!--Push notification-->
 	<!--<link rel="manifest" href="/manifest.json" />
 	<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
