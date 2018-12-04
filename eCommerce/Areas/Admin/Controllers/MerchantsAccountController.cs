@@ -13,6 +13,10 @@ namespace eCommerce.Areas.Admin.Controllers
 		private MainDbContext db = new MainDbContext();
 		// GET: Admin/MerchantsAccount
 		public ActionResult Index()
+		{
+			return View(db.MerchantStores.ToList());
+		}
+		public ActionResult Confirmation()
         {
 			return View(db.MerchantStores.ToList());
         }
@@ -20,5 +24,7 @@ namespace eCommerce.Areas.Admin.Controllers
 		{
 			return View();
 		}
-    }
+		
+
+	}
 }

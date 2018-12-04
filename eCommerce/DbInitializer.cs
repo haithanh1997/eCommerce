@@ -13,8 +13,12 @@ namespace eCommerce
 {
     public static class DbInitializer
     {
-        public static void Seed(MainDbContext context, RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> UserManager)
-        {
+		public static void Seed(MainDbContext context, RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> UserManager)
+		{
+			
+			
+
+
             //Seed for Category
             IList<Category> defaultCategories = new List<Category>();
 
@@ -144,7 +148,10 @@ namespace eCommerce
                     UserManager.AddToRole(user.Id, "Merchant");
                 }
             }
+
             context.SaveChanges();
-        }
+			
+			
+		}
     }
 }

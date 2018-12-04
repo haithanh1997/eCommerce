@@ -1,139 +1,255 @@
 ﻿@model eCommerce.EntityFramework.MerchantStore
 
 @{
-    ViewBag.Title = "Detail";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+				/**/
+
+				/**/
+
+				ViewBag.Title = "Detail";
+				Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Detail</h2>
 
-<div>
-    <h4>MerchantStore</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+	<section class="content-header">
+		<h1>
+			Chi Tiết
+			
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li><a href="#">Quản lí khách hàng</a></li>
+			<li class="active">Chi tiết </li>
+		</ol>
+	</section>
 
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
+	<!-- Main content -->
+	<section class="invoice">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BusinessRegistrationCode)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.BusinessRegistrationCode)
-        </dd>
+	
+		<!-- title row -->
+		<div class="row">
+			<div class="col-xs-12">
+				<h2 class="page-header">
+					<i class="fa fa-globe"></i> Thông tin cửa hàng đăng ký
+					
+				</h2>
+			</div>
+			<!-- /.col -->
+		</div>
+		<!-- info row -->
+		<!-- /.row -->
+		<!-- Table row -->
+		<div class="row">
+			<div class="col-md-12 table-responsive">
+				<table class="table table-striped">
+					<thead>
+						<tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TaxRegistrationCode)
-        </dt>
+							<th>Thông tin</th>
+							<th>Chi Tiết</th>
 
-        <dd>
-            @Html.DisplayFor(model => model.TaxRegistrationCode)
-        </dd>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td style="width:300px">@Html.DisplayNameFor(model => model.Id)</td>
+							<td>@Html.DisplayFor(model => model.Id)</td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CreditCardNumber)
-        </dt>
+						</tr>
+						<tr>
+							<td>@Html.DisplayNameFor(model => model.User)</td>
+							<td>@Html.DisplayFor(model => model.User)</td>
 
-        <dd>
-            @Html.DisplayFor(model => model.CreditCardNumber)
-        </dd>
+						</tr>
+						<tr>
+							<td>@Html.DisplayNameFor(model => model.Name)</td>
+							<td>@Html.DisplayFor(model => model.Name)</td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CardTradeNumber)
-        </dt>
+						</tr>
+						<tr>
+							<td>@Html.DisplayNameFor(model => model.Address)</td>
+							<td>@Html.DisplayFor(model => model.Address)</td>
 
-        <dd>
-            @Html.DisplayFor(model => model.CardTradeNumber)
-        </dd>
+						</tr>
+						<tr>
+							<td>@Html.DisplayNameFor(model => model.PhoneNumber)</td>
+							<td>@Html.DisplayFor(model => model.PhoneNumber)</td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
+						</tr>
+						<tr>
+							<td>@Html.DisplayNameFor(model => model.BusinessRegistrationCode)</td>
+							<td>@Html.DisplayFor(model => model.BusinessRegistrationCode)</td>
 
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
+						</tr>
+						<tr>
+							<td>@Html.DisplayNameFor(model => model.TaxRegistrationCode)</td>
+							<td>@Html.DisplayFor(model => model.TaxRegistrationCode)</td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DeliveryMethod)
-        </dt>
+						</tr>
+						<tr>
+							<td>@Html.DisplayNameFor(model => model.CardTradeNumber)</td>
+							<td>@Html.DisplayFor(model => model.CardTradeNumber)</td>
 
-        <dd>
-            @Html.DisplayFor(model => model.DeliveryMethod)
-        </dd>
+						<tr>
+							<td>@Html.DisplayNameFor(model => model.CreditCardNumber)</td>
+							<td>@Html.DisplayFor(model => model.CreditCardNumber)</td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.createdDate)
-        </dt>
+						</tr>
+						<tr>
+							<td>@Html.DisplayNameFor(model => model.BankName)</td>
+							<td>@Html.DisplayFor(model => model.BankName)</td>
 
-        <dd>
-            @Html.DisplayFor(model => model.createdDate)
-        </dd>
+						</tr>
+						<tr>
+							<td>@Html.DisplayNameFor(model => model.createdDate)</td>
+							<td>@Html.DisplayFor(model => model.createdDate)</td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BankName)
-        </dt>
+						</tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.BankName)
-        </dd>
+						</tr>
+						<tr>
+							<td>@Html.DisplayNameFor(model => model.DeliveryMethod)</td>
+							<td>@Html.DisplayFor(model => model.DeliveryMethod)</td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Image1)
-        </dt>
+						</tr>
+						<tr>
+							<td>@Html.DisplayNameFor(model => model.Image1)</td>
+							<td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal1">Xem </button></td>
 
-        <dd>
-            @Html.DisplayFor(model => model.Image1)
-        </dd>
+						</tr>
+						<tr>
+							<td>@Html.DisplayNameFor(model => model.Image2)</td>
+							<td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">Xem </button></td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Image2)
-        </dt>
+						</tr>
+						<tr>
+							<td>@Html.DisplayNameFor(model => model.Image3)</td>
+							<td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal3">Xem </button></td>
 
-        <dd>
-            @Html.DisplayFor(model => model.Image2)
-        </dd>
+						</tr>
+						<tr>
+							<td>@Html.DisplayNameFor(model => model.Image4)</td>
+							<td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal4">Xem </button></td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Image3)
-        </dt>
+						</tr>
+						<tr>
+							<td>@Html.DisplayNameFor(model => model.Image5)</td>
+							<td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal5">Xem </button></td>
 
-        <dd>
-            @Html.DisplayFor(model => model.Image3)
-        </dd>
+						</tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Image4)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Image4)
-        </dd>
+					</tbody>
+				</table>
+			</div>
+			<!-- /.col -->
+		</div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Image5)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Image5)
-        </dd>
-
-    </dl>
+		<!-- this row will not appear when printing -->
+		<div class="row no-print">
+			<div class="col-xs-12">
+				<button type="button" class="btn btn-success pull-right">
+					<i class="fa fa-credit-card"></i> Cấp phép
+				</button>
+				<button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
+					<i class="fa fa-download"></i> Thông báo sai
+				</button>
+			</div>
+		</div>
+	</section>
+	<!-- /.content -->
+	<div class="clearfix"></div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<!-- /.content-wrapper -->
+<!-- Modal4 -->
+<div class="modal fade" id="myModal1" role="dialog">
+	<div class="modal-dialog modal-primary">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Ảnh cửa hàng</h4>
+			</div>
+			<div class="modal-body">
+				@Html.DisplayFor(model => model.Image1)
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal4 -->
+<div class="modal fade" id="myModal2" role="dialog">
+	<div class="modal-dialog modal-primary">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Giấy chứng minh mặt trước</h4>
+			</div>
+			<div class="modal-body">
+				@Html.DisplayFor(model => model.Image2)
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal4 -->
+<div class="modal fade" id="myModal3" role="dialog">
+	<div class="modal-dialog modal-primary">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Giấy Chứng mặt sau</h4>
+			</div>
+			<div class="modal-body">
+				@Html.DisplayFor(model => model.Image3)
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal4 -->
+<div class="modal fade" id="myModal4" role="dialog">
+	<div class="modal-dialog modal-primary">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Giấy phép kinh doanh mặt trước</h4>
+			</div>
+			<div class="modal-body">
+				@Html.DisplayFor(model => model.Image4)
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal4 -->
+<div class="modal fade" id="myModal5" role="dialog">
+	<div class="modal-dialog modal-primary">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Giấy phép kinh doanh mặt sau</h4>
+			</div>
+			<div class="modal-body">
+				@Html.DisplayFor(model => model.Image5)
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+			</div>
+		</div>
+	</div>
+</div>

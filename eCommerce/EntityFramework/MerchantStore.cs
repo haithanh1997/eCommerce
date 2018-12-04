@@ -32,8 +32,8 @@ namespace eCommerce.EntityFramework
         [DisplayName("Mã số thẻ")]
         public string CreditCardNumber { get; set; }
         [Required]
-        [DataType(DataType.CreditCard)]
-        [DisplayName("Số tài khoản")]
+		[DataType(DataType.CreditCard)]
+		[DisplayName("Số tài khoản")]
         public string CardTradeNumber { get; set; }
         [Required]
         [DataType(DataType.PhoneNumber)]
@@ -43,7 +43,7 @@ namespace eCommerce.EntityFramework
         [DisplayName("Phương thức giao hàng")]
         public DeliveryMethod DeliveryMethod { get; set; }
         [Required]
-        [DataType(DataType.Date)]
+		[DataType(DataType.Date)]
         [DisplayName("Ngày thành lập")]
         public DateTime createdDate { get; set; }
         [Required]
