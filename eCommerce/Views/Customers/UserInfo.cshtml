@@ -12,11 +12,8 @@
 		<!-- row -->
 		<div class="row">
 			<div class="col-md-12">
-				<h3 class="breadcrumb-header">Checkout</h3>
-				<ul class="breadcrumb-tree">
-					<li><a href="#">Home</a></li>
-					<li class="active">Checkout</li>
-				</ul>
+				<h3 class="breadcrumb-header">THANH TOÁN</h3>
+				
 			</div>
 		</div>
 		<!-- /row -->
@@ -31,54 +28,30 @@
 		<!-- row -->
 		<div class="row">
 
-			<div class="col-md-7">
+			@*<div class="col-md-7">
 				
 				<!-- Shiping Details -->
-				<div class="shiping-details">
-					<div class="section-title">
-						<h3 class="title">Địa chỉ nhận hàng</h3>
-					</div>
-					<div class="input-checkbox">
-						<input type="checkbox" id="shiping-address">
-						<label for="shiping-address">
-							<span></span>
-							Thay đổi đến địa chỉ nhận hàng khác.
-						</label>
-						<div class="caption">
-							<div class="form-group">
-								<input class="input" type="text" name="first-name" placeholder="First Name">
-							</div>
-							<div class="form-group">
-								<input class="input" type="text" name="last-name" placeholder="Last Name">
-							</div>
-							
-							<div class="form-group">
-								<input class="input" type="text" name="address" placeholder="Address">
-							</div>
-							<div class="form-group">
-								<input class="input" type="tel" name="tel" placeholder="Telephone">
-							</div>
-						</div>
-					</div>
-				</div>
+				
 				<!-- /Shiping Details -->
 				<!-- Order notes -->
 				<div class="order-notes">
 					<textarea class="input" placeholder="Ghi chú"></textarea>
 				</div>
 				<!-- /Order notes -->
-			</div>
+			</div>*@
 			
 			<!-- Order Details -->
-			<div class="col-md-5 order-details">
+			<div class="col-md-offset-2 col-md-8 order-details">
 				<div class="section-title text-center">
 					<h3 class="title">Đơn Hàng</h3>
 				</div>
 				<div class="order-summary">
+
 					<div class="order-col">
-						<div><strong>Địa chỉ</strong></div>
+						<div><strong>THÔNG TIN NHẬN HÀNG</strong></div>
 						<div><strong></strong></div>
 					</div>
+
 					<div class="order-products">
 						<div class="order-col">
 							<div>Họ Tên</div>
@@ -86,45 +59,68 @@
 						</div>
 						<div class="order-col">
 							<div>Địa chỉ</div>
-							<div></div>   <!--ko dc xóa-->
+							<div></div>   <!--không được xóa-->
 						</div>
 						<div class="order-col">
 							<div>Số điện thoại</div>
 							<div></div>
 						</div>
 					</div>
+
+                    <div class="shiping-details" style="margin-top:10px; margin-bottom:0">
+                        <div class="input-checkbox">
+                            <input type="checkbox" id="shiping-address">
+                            <label for="shiping-address">
+                                <span></span>
+                                Thay đổi thông tin nhận hàng
+                            </label>
+                            <div class="caption">
+                                <div class="form-group">
+                                    <input class="input" type="text" name="first-name" placeholder="Họ và tên lót">
+                                </div>
+                                <div class="form-group">
+                                    <input class="input" type="text" name="last-name" placeholder="Tên">
+                                </div>
+                                <div class="form-group">
+                                    <input class="input" type="text" name="address" placeholder="Địa chỉ nhận hàng">
+                                </div>
+                                <div class="form-group">
+                                    <input class="input" type="tel" name="tel" placeholder="Số điện thoại">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
 					<div class="order-col">
-						<div><strong>Phí Ship</strong></div>
+						<div><strong>PHÍ SHIP</strong></div>
 						<div>Giá ship</div>
 					</div>
+
 					<div class="order-col">
 						<div><strong>VAT</strong></div>
 						<div>Phí VAT</div>
 					</div>
+
 					<div class="order-col">
-						<div><strong>Tổng tiền</strong></div>
-						<div><strong class="order-total" style="font-size:14px;">130000000000 VND</strong></div>
+						<div><strong>TỔNG TIỀN</strong></div>
+						<div><strong class="order-total" style="font-size:14px;">1300000 VND</strong></div>
 					</div>
+
 					<div class="order-col">
-						<div><strong>Thành tiền</strong></div>
+						<div><strong>THÀNH TIỀN</strong></div>
 						<div><strong class="order-total" style="font-size:14px;">Tiền cuối cùng</strong></div>
 					</div>
-				</div>
-				<div class="payment-method">
-					<div class="input-radio">
-						<input type="radio" name="payment" id="payment-1">
-						<label for="payment-1">
-							<span></span>
-							Thay đổi Email theo dõi đơn hàng 
-						</label>
-						<div class="caption">
-							<div class="form-group">
-								<input class="input" type="text" name="Email" placeholder="Email">
-							</div>
-						</div>
 
-					</div>
+
+				</div>
+
+				<div class="payment-method">
 					
+					<label class="control-label">
+                        PHƯƠNG THỨC THANH TOÁN
+                    </label>
 					<div class="input-radio">
 						<input type="radio" name="payment" id="payment-2">
 						<label for="payment-2">
@@ -144,10 +140,30 @@
 							<span></span>
 							Thanh toán khi nhận hàng
 						</label>
-
 					</div>
-
 				</div>
+
+                <div class="shiping-details">
+                    <div class="input-checkbox">
+                        <div class="input-radio">
+                            <input type="checkbox" name="payment" id="payment-1">
+                            <label for="payment-1">
+                                <span></span>
+                                Thay đổi Email theo dõi đơn hàng
+                            </label>
+                            <div class="caption">
+                                <div class="form-group">
+                                    <div class="col-sm-10">
+                                        <input class="input form-control" type="text" name="Email" placeholder="Email">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button class="btn btn-danger btn-flat" style="margin-top:3px">Xác nhận</button> 
+                                    </div>     
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
 				<div class="input-checkbox">
 					<input type="checkbox" id="terms">
 					<label for="terms">
