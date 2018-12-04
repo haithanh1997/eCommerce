@@ -235,11 +235,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="MainDbContext.cs" />
+    <Compile Include="Models\PaymentModel.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Static\SHA1Convert.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Assets\bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.css" />
