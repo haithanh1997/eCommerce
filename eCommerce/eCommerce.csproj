@@ -202,6 +202,7 @@
     <Compile Include="Areas\Admin\Controllers\AdPackagesController.cs" />
     <Compile Include="Areas\Admin\Controllers\CartsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ChatboxController.cs" />
     <Compile Include="Areas\Admin\Controllers\InvoiceDetailsController.cs" />
     <Compile Include="Areas\Admin\Controllers\InvoicesController.cs" />
     <Compile Include="Areas\Admin\Controllers\MerchantsAccountController.cs" />
@@ -9133,6 +9134,7 @@
     <Content Include="Areas\Admin\Views\MerchantsAccount\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\MerchantsAccount\Confirmation.cshtml" />
     <Content Include="Areas\Admin\Views\MerchantsAccount\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Chatbox\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

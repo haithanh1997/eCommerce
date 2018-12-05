@@ -76,7 +76,7 @@ namespace eCommerce.Areas.Admin.Controllers
 
         // POST: Admin/Products/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,Price,Quantity,brandName,discountValue,Description,CPU,RAM,hardDrive,screenType,GPU,IOPort,OS,DesignType,Size,uploadDate,updateDate,deletedDate,Image1,Image2,Image3,isDisabled")] Product product)

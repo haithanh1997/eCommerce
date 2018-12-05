@@ -15,7 +15,7 @@ namespace eCommerce.Controllers
         public ActionResult Index()
         {
 
-    //Test SMTP
+            //Test SMTP
 
             //create a object to hold the message
             //MailMessage newMessage = new MailMessage();
@@ -40,11 +40,11 @@ namespace eCommerce.Controllers
             //now send the message
             //client.Send(newMessage);
 
-    //Test PAYMENT
-            
+            //Test PAYMENT
+
             //DITMELOZTHANHMICODE123PAY1000000127.0.0.1Uhttps://google.comhttps://google.comhttps://google.comMIPASSCODEMIKEY
-            
-            //var transactionId = "DITMELOZTHANH" + (new Random()).Next(100000); 
+
+            //var transactionId = "DITMELOZTHANH" + (new Random()).Next(100000);
             //var totalAmount = "120000";
             //var cancelUrl = "https://google.com";               //Cancel payment
             //var redirectUrl = "https://google.com";             //Redirect page
@@ -71,7 +71,7 @@ namespace eCommerce.Controllers
 
             //var response = wc.UploadString("https://sandbox.123pay.vn/miservice/createOrder1", body);
             //ViewBag.Response = response.Split(',')[2].Replace("\"", "").Replace("/", "");
-            
+
             return View();
         }
 
