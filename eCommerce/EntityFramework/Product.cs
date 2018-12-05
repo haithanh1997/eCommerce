@@ -15,7 +15,7 @@ namespace eCommerce.EntityFramework
         public string Name { get; set; }
         public string Price { get; set; }
         public int Quantity { get; set; }
-        public string brandName { get; set; }
+    
         public virtual Category Category { get; set; }
         public virtual ProductType Type { get; set; }
         public int discountValue { get; set; }
@@ -30,7 +30,7 @@ namespace eCommerce.EntityFramework
         public string OS { get; set; }
         public string DesignType { get; set; }
         public float Size { get; set; }
-        public DateTime uploadDate { get; set; }
+
         public DateTime updateDate { get; set; }
         public DateTime deletedDate { get; set; }
         public string Image1 { get; set; }

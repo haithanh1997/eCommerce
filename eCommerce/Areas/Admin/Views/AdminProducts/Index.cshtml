@@ -5,156 +5,127 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.brandName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.discountValue)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CPU)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RAM)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.hardDrive)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.screenType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GPU)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IOPort)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OS)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DesignType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Size)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.uploadDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.updateDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.deletedDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image3)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.isDisabled)
-        </th>
-        <th></th>
-    </tr>
+<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+	<section class="content-header">
+		<h1>
+			Sản phẩm bán trên website
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Quantity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.brandName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.discountValue)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CPU)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RAM)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.hardDrive)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.screenType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GPU)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IOPort)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OS)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DesignType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Size)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.uploadDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.updateDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.deletedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Image1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Image2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Image3)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.isDisabled)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+			<li><a href="#">Danh mục</a></li>
+			<li class="active">Sản Phẩm</li>
+		</ol>
+	</section>
+	<!-- Main content -->
+	<section class="content">
+		<div class="row">
+			<div class="col-xs-12">
 
-</table>
+				<!-- /.box -->
+				<div class="box">
+					<div class="box-header">
+						<h3 class="box-title">Danh sách sản phẩm</h3>
+					</div>
+					<!-- /.box-header -->
+					<div class="box-body table-responsive">
+						<table id="example1" class="table table-bordered table-striped">
+							<thead>
+								<tr>
+									<th>
+										@Html.DisplayNameFor(model => model.Image1)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.Name)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.Price)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.Quantity)
+									</th>
+
+									<th>
+										@Html.DisplayNameFor(model => model.discountValue)
+									</th>
+								
+									<th>
+										@Html.DisplayNameFor(model => model.updateDate)
+									</th>
+
+									<th>
+										@Html.DisplayNameFor(model => model.deletedDate)
+									</th>
+
+									<th>
+										@Html.DisplayNameFor(model => model.isDisabled)
+									</th>
+									<th></th>
+
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+
+								@foreach (var item in Model)
+								{
+								<tr>
+
+									<td>
+										@Html.DisplayFor(modelItem => item.Image1)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.Name)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.Price)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.Quantity)
+									</td>
+
+									<td>
+										@Html.DisplayFor(modelItem => item.discountValue)
+									</td>
+
+									<td>
+										@Html.DisplayFor(modelItem => item.updateDate)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.deletedDate)
+									</td>
+
+									@if (item.isDisabled == true)
+									{
+										<td>
+											block;
+										</td>
+									}
+									@if (item.isDisabled == false)
+									{
+										<td>
+											Đang bán;
+										</td>
+									}
+
+									<td>
+										@Html.ActionLink("Details", "Details", new { id = item.Id }) |
+										@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+									</td>
+								</tr>
+								}
+							</tbody>
+						</table>
+					</div>
+					<!-- /.box-body -->
+				</div>
+				<!-- /.box -->
+			</div>
+			<!-- /.col -->
+		</div>
+		<!-- /.row -->
+	</section>
+	<!-- /.content -->
+</div>

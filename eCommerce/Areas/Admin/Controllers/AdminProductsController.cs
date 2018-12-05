@@ -22,57 +22,26 @@ namespace eCommerce.Areas.Admin.Controllers
         }
 
         // GET: Admin/Products/Details/5
-        public ActionResult Details(long? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Product product = db.Products.Find(id);
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
-            return View(product);
-        }
+	
+        public ActionResult Details(long? id, string user_id) 
+		{
+			ViewBag.userName = (from x in db.MerchantStores.Where(x => x.User.Id == user_id) select x.User.UserName).FirstOrDefault();
 
-        // GET: Admin/Products/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+			if (id == null)
+			{
+			 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			Product product = db.Products.Find(id);
+			if (product == null)
+			{
+			return HttpNotFound();
+			}
+			return View(product);
+			
+		}
 
-        // POST: Admin/Products/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Price,Quantity,brandName,discountValue,Description,CPU,RAM,hardDrive,screenType,GPU,IOPort,OS,DesignType,Size,uploadDate,updateDate,deletedDate,Image1,Image2,Image3,isDisabled")] Product product)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Products.Add(product);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+       
 
-            return View(product);
-        }
-
-        // GET: Admin/Products/Edit/5
-        public ActionResult Edit(long? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Product product = db.Products.Find(id);
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
-            return View(product);
-        }
 
         // POST: Admin/Products/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -83,6 +52,7 @@ namespace eCommerce.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+				product.isDisabled = true ;
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -90,20 +60,7 @@ namespace eCommerce.Areas.Admin.Controllers
             return View(product);
         }
 
-        // GET: Admin/Products/Delete/5
-        public ActionResult Delete(long? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Product product = db.Products.Find(id);
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
-            return View(product);
-        }
+      
 
         // POST: Admin/Products/Delete/5
         [HttpPost, ActionName("Delete")]
