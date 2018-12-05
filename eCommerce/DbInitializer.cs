@@ -124,6 +124,7 @@ namespace eCommerce
             //Add default User to Role   
             if (chkUser.Succeeded)
             {
+				
                 UserManager.AddToRole(defaultMod.Id, "Moderator");
             }
 
