@@ -11,7 +11,7 @@ namespace eCommerce.EntityFramework
     {
         [Key]
         public long Id { get; set; }
-        public MerchantStore Store { get; set; }
+        public virtual MerchantStore Store { get; set; }
         public string Name { get; set; }
         public int Price { get; set; }
         public int Quantity { get; set; }

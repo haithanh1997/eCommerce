@@ -64,5 +64,9 @@ namespace eCommerce.EntityFramework
         [Required]
         [DisplayName("GPKD mặt sau")]
         public string Image5 { get; set; }
-    }
+		[Required]
+		[DisplayName("Trạng thái")]
+		public bool isDisabled { get; set; }
+
+	}
 }

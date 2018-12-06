@@ -51,6 +51,7 @@
 						</tr>
 					</thead>
 					<tbody>
+
 						<tr>
 							<td style="width:300px">@Html.DisplayNameFor(model => model.Name):</td>
 							<td>@Html.DisplayFor(model => model.Name)</td>
@@ -76,14 +77,23 @@
 							<td>@Html.DisplayFor(model => model.discountValue)</td>
 
 						</tr>
+
 						<tr>
 							<td>@Html.DisplayNameFor(model => model.Store.Name):</td>
 							<td>@Html.DisplayFor(model => model.Store.Name)</td>
 
 						</tr>
+
 						<tr>
-							<td>@Html.DisplayNameFor(model => model.Category.Name)</td>
-							<td>@Html.DisplayFor(model => model.Category.Name):</td>
+
+							<td>@Html.DisplayNameFor(model => model.Store.User.UserName):</td>
+							<td>@Html.DisplayFor(model => model.Store.User.UserName)</td>
+
+						</tr>
+
+						<tr>
+							<td>@Html.DisplayNameFor(model => model.Category.Name):</td>
+							<td>@Html.DisplayFor(model => model.Category.Name)</td>
 
 
 						</tr>
@@ -93,9 +103,7 @@
 
 
 						</tr>
-						<tr>
-							<td>Tên chủ cửa hàng:</td>
-							<td>@ViewBag.userName()</td>
+
 
 						<tr>
 							<td>@Html.DisplayNameFor(model => model.CPU):</td>
@@ -108,8 +116,8 @@
 
 						</tr>
 						<tr>
-							<td>@Html.DisplayNameFor(model => model.uploadDate):</td>
-							<td>@Html.DisplayFor(model => model.uploadDate)</td>
+							<td>@Html.DisplayNameFor(model => model.updateDate):</td>
+							<td>@Html.DisplayFor(model => model.updateDate)</td>
 
 						</tr>
 
@@ -143,8 +151,11 @@
 		<!-- this row will not appear when printing -->
 		<div class="row no-print">
 			<div class="col-xs-12">
-				<a href="@Url.Action("Edit","AdminProducts",new { id = Model.Id })" type="button" class="btn btn-success pull-right">
+				<a href="@Url.Action("Block","AdminProducts",new { id = Model.Id })" type="button" class="btn btn-danger pull-right">
 					<i class="fa fa-credit-card"></i> Gỡ sản phẩm
+				</a>
+				<a href="@Url.Action("Sale","AdminProducts",new { id = Model.Id })" type="button" class="btn btn-success pull-right" style="margin-right: 5px;">
+					<i class="fa fa-credit-card"></i> Cho phép bán lại
 				</a>
 				<a href="@Url.Action("Index","AdminProducts")" type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
 					<i class="fa fa-download"></i> Trở lại
@@ -245,7 +256,7 @@
 				<h4 class="modal-title">Giấy chứng minh mặt trước</h4>
 			</div>
 			<div class="modal-body">
-				@Html.DisplayFor(model => model.Image1)
+				<img src="@Model.Image1" />
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>

@@ -203,7 +203,6 @@
     <Compile Include="Areas\Admin\Controllers\CartsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ChatboxController.cs" />
-    <Compile Include="Areas\Admin\Controllers\InvoiceDetailsController.cs" />
     <Compile Include="Areas\Admin\Controllers\InvoicesController.cs" />
     <Compile Include="Areas\Admin\Controllers\MerchantsAccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\MerchantsController.cs" />
@@ -9108,14 +9107,8 @@
     <Content Include="Areas\Admin\Views\AdminProducts\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Invoices\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Invoices\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Invoices\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Invoices\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Invoices\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\InvoiceDetails\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\InvoiceDetails\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\InvoiceDetails\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\InvoiceDetails\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\InvoiceDetails\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AdPackages\Create.cshtml" />
     <Content Include="Areas\Admin\Views\AdPackages\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\AdPackages\Details.cshtml" />
@@ -9135,6 +9128,7 @@
     <Content Include="Areas\Admin\Views\MerchantsAccount\Confirmation.cshtml" />
     <Content Include="Areas\Admin\Views\MerchantsAccount\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Chatbox\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Invoices\Details.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

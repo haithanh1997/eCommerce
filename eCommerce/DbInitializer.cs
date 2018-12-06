@@ -175,14 +175,14 @@ namespace eCommerce
 
             //Seed for Merchant Stores
             IList<MerchantStore> defaultStores = new List<MerchantStore>();
-            defaultStores.Add(new MerchantStore() { User = context.Users.FirstOrDefault(x => x.Id == id), Name = "Cửa hàng Phú Dái",
-                Address = "Chèn sau", BusinessRegistrationCode = "0xxxxxxxxx" ,
-                TaxRegistrationCode = "0xxxxxxxx", CardTradeNumber = "7652xxxxxxxx",
-                CreditCardNumber = "1600xxxxxx",PhoneNumber="0396372123",
-                DeliveryMethod = DeliveryMethod.Fast, createdDate =DateTime.Now,
-                BankName = "Agribank", Image1 = "/Assets/img/...",
-                Image2 = "/Assets/img/..." , Image3 = "/Assets/img/..." ,
-                Image4 = "/Assets/img/..." , Image5 = "/Assets/img/..."
+			defaultStores.Add(new MerchantStore() { User = context.Users.FirstOrDefault(x => x.Id == id), Name = "Cửa hàng Phú Dái",
+				Address = "Chèn sau", BusinessRegistrationCode = "0xxxxxxxxx",
+				TaxRegistrationCode = "0xxxxxxxx", CardTradeNumber = "7652xxxxxxxx",
+				CreditCardNumber = "1600xxxxxx", PhoneNumber = "0396372123",
+				DeliveryMethod = DeliveryMethod.Fast, createdDate = DateTime.Now,
+				BankName = "Agribank", Image1 = "~/Assets/img/new01.jpg",
+				Image2 = "/Assets/img/...", Image3 = "/Assets/img/...",
+				Image4 = "/Assets/img/...", Image5 = "/Assets/img/...", isDisabled = false
             });
 
             context.MerchantStores.AddRange(defaultStores);
@@ -211,9 +211,9 @@ namespace eCommerce
                 DesignType = "đéo biết",
                 Size = 2.3F,
                 updateDate = DateTime.Now,
-                Image1 = "/Assets/img/product1.png",
-                Image2 = "/Assets/img/product2.png",
-                Image3 = "/Assets/img/product3.png",
+                Image1 = "~/Assets/img/product1.png",
+                Image2 = "~/Assets/img/product2.png",
+                Image3 = "~/Assets/img/product3.png",
                 isDisabled = false
             });
 

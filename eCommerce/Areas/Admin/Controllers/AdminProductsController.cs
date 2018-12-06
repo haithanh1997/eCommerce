@@ -11,7 +11,8 @@ using eCommerce.EntityFramework;
 
 namespace eCommerce.Areas.Admin.Controllers
 {
-    public class AdminProductsController : Controller
+	[Authorize(Roles = "Moderator")]
+	public class AdminProductsController : Controller
     {
         private MainDbContext db = new MainDbContext();
 
@@ -23,9 +24,9 @@ namespace eCommerce.Areas.Admin.Controllers
 
         // GET: Admin/Products/Details/5
 	
-        public ActionResult Details(long? id, string user_id) 
+        public ActionResult Details(long? id) 
 		{
-			ViewBag.userName = (from x in db.MerchantStores.Where(x => x.User.Id == user_id) select x.User.UserName).FirstOrDefault();
+			
 
 			if (id == null)
 			{
@@ -40,31 +41,43 @@ namespace eCommerce.Areas.Admin.Controllers
 			
 		}
 
-       
-
-
-        // POST: Admin/Products/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Price,Quantity,brandName,discountValue,Description,CPU,RAM,hardDrive,screenType,GPU,IOPort,OS,DesignType,Size,uploadDate,updateDate,deletedDate,Image1,Image2,Image3,isDisabled")] Product product)
+		//[HttpPost]
+		//[ValidateAntiForgeryToken]
+		public ActionResult Block(long? id)
         {
             if (ModelState.IsValid)
             {
+				var product = db.Products.Find(id);
 				product.isDisabled = true ;
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(product);
+			return View();
         }
+		//[HttpPost]
+		//[ValidateAntiForgeryToken]
+		
+		
+		public ActionResult Sale(long? id)
+		{
+			if (ModelState.IsValid)
+			{
+				var product = db.Products.Find(id);
+				product.isDisabled = false;
+				db.Entry(product).State = EntityState.Modified;
+				db.SaveChanges();
+				return RedirectToAction("Index");
+			}
+			return View();
+		}
 
-      
 
-        // POST: Admin/Products/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+
+		//[HttpPost]
+		//[ValidateAntiForgeryToken]
+		[Authorize(Roles = "Admin")]
+		[ActionName("Delete")]
         public ActionResult DeleteConfirmed(long id)
         {
             Product product = db.Products.Find(id);

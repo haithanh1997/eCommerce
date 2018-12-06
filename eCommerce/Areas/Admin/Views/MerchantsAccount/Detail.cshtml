@@ -63,8 +63,8 @@
 
 						</tr>
 						<tr>
-							<td>@Html.DisplayNameFor(model => model.User)</td>
-							<td>@Html.DisplayFor(model => model.User)</td>
+							<td>@Html.DisplayNameFor(model => model.User.UserName)</td>
+							<td>@Html.DisplayFor(model => model.User.UserName)</td>
 
 						</tr>
 						<tr>
@@ -155,12 +155,15 @@
 		<!-- this row will not appear when printing -->
 		<div class="row no-print">
 			<div class="col-xs-12">
-				<button type="button" class="btn btn-success pull-right">
+				<a href="@Url.Action("Confirm","MerchantsAccount",new { id = Model.Id })" type="button" class="btn btn-success pull-right">
 					<i class="fa fa-credit-card"></i> Cấp phép
-				</button>
-				<button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
-					<i class="fa fa-download"></i> Thông báo sai
-				</button>
+				</a>
+				<a href="@Url.Action("Block","MerchantsAccount",new { id = Model.Id })" type="button" class="btn btn-danger pull-right" style="margin-right: 5px;">
+					<i class="fa fa-download"></i> Block
+				</a>
+				<a href="@Url.Action("Confirmation","MerchantsAccount")" type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
+					<i class="fa fa-download"></i> Trở lại
+				</a>
 			</div>
 		</div>
 	</section>

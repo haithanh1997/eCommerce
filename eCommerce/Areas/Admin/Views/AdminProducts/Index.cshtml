@@ -35,6 +35,7 @@
 							<thead>
 								<tr>
 									<th>
+										
 										@Html.DisplayNameFor(model => model.Image1)
 									</th>
 									<th>
@@ -74,7 +75,8 @@
 								<tr>
 
 									<td>
-										@Html.DisplayFor(modelItem => item.Image1)
+										<img src="@item.Image1" width="50" height="50" />
+
 									</td>
 									<td>
 										@Html.DisplayFor(modelItem => item.Name)
@@ -100,19 +102,20 @@
 									@if (item.isDisabled == true)
 									{
 										<td>
-											block;
+											block
 										</td>
 									}
 									@if (item.isDisabled == false)
 									{
 										<td>
-											Đang bán;
+											Đang bán
 										</td>
 									}
 
 									<td>
-										@Html.ActionLink("Details", "Details", new { id = item.Id }) |
-										@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+							
+									@Html.ActionLink("Details", "Details", new { id = item.Id }) |
+									@Html.ActionLink("Delete", "Delete", new { id = item.Id })
 									</td>
 								</tr>
 								}
@@ -129,3 +132,4 @@
 	</section>
 	<!-- /.content -->
 </div>
+

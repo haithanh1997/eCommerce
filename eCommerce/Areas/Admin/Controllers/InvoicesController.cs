@@ -24,16 +24,28 @@ namespace eCommerce.Areas.Admin.Controllers
         // GET: Admin/Invoices/Details/5
         public ActionResult Details(long? id)
         {
-            if (id == null)
+			ViewBag.ngaytao = (from x in db.Invoices.Where(x => x.Id == id) select x.createdDate).FirstOrDefault();
+			ViewBag.cuahang = (from x in db.InvoiceDetails.Where(x => x.Id == id) select x.Product.Name).FirstOrDefault();
+			ViewBag.nguoimua = (from x in db.Invoices.Where(x => x.Id == id) select x.User.UserName).FirstOrDefault();
+			ViewBag.diachi = (from x in db.Invoices.Where(x => x.Id == id) select x.Address).FirstOrDefault();
+			ViewBag.sdt = (from x in db.Invoices.Where(x => x.Id == id) select x.User.PhoneNumber).FirstOrDefault();
+			ViewBag.email = (from x in db.Invoices.Where(x => x.Id == id) select x.User.Email).FirstOrDefault();
+			ViewBag.madonhang = (from x in db.Invoices.Where(x => x.Id == id) select x.Id).FirstOrDefault();
+			ViewBag.giaohang = (from x in db.Invoices.Where(x => x.Id == id) select x.DeliveryMethod).FirstOrDefault();
+			ViewBag.thanhtoan = (from x in db.Invoices.Where(x => x.Id == id) select x.PaymentMethod).FirstOrDefault();
+			ViewBag.tong = (from x in db.Invoices.Where(x => x.Id == id) select x.Total).FirstOrDefault();
+	
+
+			if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Invoice invoice = db.Invoices.Find(id);
-            if (invoice == null)
+           var invoice_detail = db.InvoiceDetails.Where(x=>x.Invoice.Id == id).ToList();
+            if (invoice_detail == null)
             {
                 return HttpNotFound();
             }
-            return View(invoice);
+            return View(invoice_detail);
         }
 
         // GET: Admin/Invoices/Create

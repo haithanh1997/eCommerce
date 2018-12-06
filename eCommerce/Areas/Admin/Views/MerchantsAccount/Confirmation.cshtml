@@ -37,7 +37,7 @@
 							<thead>
 								<tr>
 									<th>
-										@Html.DisplayNameFor(model => model.User)
+										@Html.DisplayNameFor(model => model.User.Id)
 									</th>
 									<th>
 										@Html.DisplayNameFor(model => model.Name)
@@ -56,7 +56,7 @@
 									</th>
 
 									<th>
-										@Html.DisplayNameFor(model => model.Image1)
+										@Html.DisplayNameFor(model => model.isDisabled)
 									</th>
 
 									<th></th>
@@ -66,34 +66,44 @@
 
 								@foreach (var item in Model)
 								{
-									<tr>
-										<td>
-											@Html.DisplayFor(modelItem => item.User)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.Name)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.Address)
-										</td>
+								<tr>
+									<td>
+										@Html.DisplayFor(modelItem => item.User.Id)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.Name)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.Address)
+									</td>
 
-										<td>
-											@Html.DisplayFor(modelItem => item.PhoneNumber)
-										</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.PhoneNumber)
+									</td>
 
-										<td>
-											@Html.DisplayFor(modelItem => item.createdDate)
-										</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.createdDate)
+									</td>
 
+									@if (item.isDisabled == true)
+									{
 										<td>
-											@Html.DisplayFor(modelItem => item.Image1)
+											Được cấp phép
 										</td>
+									}
+									@if (item.isDisabled == false)
+									{
+										<td>
+											Chưa cấp phép
+										</td>
+									}
 
-										<td>
-											@Html.ActionLink("Detail", "Detail", new { id = item.Id }) |
-											@Html.ActionLink("Delete", "Delete", new { id = item.Id })
-										</td>
-									</tr>
+
+									<td>
+										@Html.ActionLink("Detail", "Detail", new { id = item.Id }) |
+										@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+									</td>
+								</tr>
 								}
 							</tbody>
 						</table>

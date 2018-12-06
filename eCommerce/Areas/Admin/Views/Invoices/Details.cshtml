@@ -1,83 +1,148 @@
-﻿@model eCommerce.EntityFramework.Invoice
+﻿@model IEnumerable<eCommerce.EntityFramework.InvoiceDetail>
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>Invoice</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
+<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+	<section class="content-header">
+		<h1>
+			Hóa đơn khách hàng
+		</h1>
+	</section>
 
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
+	<!-- Main content -->
+	<section class="invoice">
+		<!-- title row -->
+		<div class="row">
+			<div class="col-xs-12">
+				<h2 class="page-header">
+					<i class="fa fa-globe"></i> Chi tiết đơn hàng
+					<small class="pull-right">@ViewBag.ngaytao</small>
+				</h2>
+			</div>
+			<!-- /.col -->
+		</div>
+		<!-- info row -->
+		<div class="row invoice-info">
+			<div class="col-sm-4 invoice-col">
+				<h4><strong>NHÀ CUNG CẤP</strong></h4>
+				<address>
+					Tên cửa hàng: @ViewBag.cuahang
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Total)
-        </dt>
+				</address>
+			</div>
+			<!-- /.col -->
+			<div class="col-sm-4 invoice-col">
+				<h4><strong>KHÁCH HÀNG</strong></h4>
+				<address>
+					Người mua: @ViewBag.nguoimua<br>
+					Địa chỉ: @ViewBag.diachi<br>
+					Sđt: @ViewBag.sdt<br>
+					Email: @ViewBag.email
+				</address>
+			</div>
+			<!-- /.col -->
+			<div class="col-sm-4 invoice-col">
+				<h4><strong>THÔNG TIN</strong></h4>
+				Mã hóa đơn: <b> @ViewBag.madonhang</b><br>
+				Hình thức giao:  @ViewBag.giaohang <br>
 
-        <dd>
-            @Html.DisplayFor(model => model.Total)
-        </dd>
+			</div>
+			<!-- /.col -->
+		</div>
+		<!-- /.row -->
+		<!-- Table row -->
+		<div class="row">
+			<div class="col-xs-12 table-responsive">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>@Html.DisplayNameFor(model => model.Product.Id)</th>
+							<th>@Html.DisplayNameFor(model => model.Product.Name)</th>
+							<th>@Html.DisplayNameFor(model => model.Quantity)</th>
+							<th>@Html.DisplayNameFor(model => model.Price)</th>
+							<th>Thành tiền</th>
+						</tr>
+					</thead>
+					<tbody>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PaymentMethod)
-        </dt>
+						@foreach (var item in Model)
+						{
+						<tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.PaymentMethod)
-        </dd>
+							<td>
+								@Html.DisplayFor(modelItem => item.Product.Id)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Product.Name)
+							</td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DeliveryMethod)
-        </dt>
+							<td>
+								@Html.DisplayFor(modelItem => item.Quantity)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Price) VND
+							</td>
+							<td>
+								@{ 
+									int tong = item.Price * item.Quantity;
+								}
 
-        <dd>
-            @Html.DisplayFor(model => model.DeliveryMethod)
-        </dd>
+								@tong VND
+							</td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+						</tr>
+						}
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.createdDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.createdDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.isDisabled)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.isDisabled)
-        </dd>
-
-    </dl>
+					</tbody>
+				</table>
+			</div>
+			<!-- /.col -->
+		</div>
+		<!-- /.row -->
+		<div class="row">
+			<!-- accepted payments column -->
+			<div class="col-xs-6">
+				<p class="lead"><strong>Hình thức thanh toán:</strong></p>
+				
+					<img src="~/Assets/img/logo123.png" alt="123Pay">
+				
+				
+			</div>
+			<!-- /.col -->
+			<div class="col-xs-6">
+				<p class="lead"><strong>Tổng tiền:</strong></p>
+				<div class="table-responsive">
+					<table class="table">
+						<tr>
+							<th style="width:50%">Tổng hóa đơn:</th>
+							<td>@ViewBag.tong VND</td>
+						</tr>
+						<tr>
+							<th>Phí ship:</th>
+							<td>30000 VND</td>
+						</tr>
+						<tr>
+							<th>Tổng tiền:</th>
+							<td>@ViewBag.tong VND</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<!-- /.col -->
+		</div>
+		<!-- /.row -->
+		<!-- this row will not appear when printing -->
+		<div class="row no-print">
+			<div class="col-xs-12">
+				<a href="in-donhang.html" target="_blank" class="btn btn-default pull-right"><i class="fa fa-print"></i> Print</a>
+			</div>
+		</div>
+	</section>
+	<!-- /.content -->
+	<div class="clearfix"></div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
