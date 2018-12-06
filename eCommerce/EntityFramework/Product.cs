@@ -13,7 +13,7 @@ namespace eCommerce.EntityFramework
         public long Id { get; set; }
         public MerchantStore Store { get; set; }
         public string Name { get; set; }
-        public string Price { get; set; }
+        public int Price { get; set; }
         public int Quantity { get; set; }
     
         public virtual Category Category { get; set; }
@@ -32,7 +32,7 @@ namespace eCommerce.EntityFramework
         public float Size { get; set; }
 
         public DateTime updateDate { get; set; }
-        public DateTime deletedDate { get; set; }
+        public Nullable<DateTime> deletedDate { get; set; }
         public string Image1 { get; set; }
         public string Image2 { get; set; }
         public string Image3 { get; set; }

@@ -13,10 +13,10 @@ namespace eCommerce.EntityFramework
         [Key]
         public long Id { get; set; }
 
-        [Required]
+       [Required]
         [DisplayName("Mã chủ cửa hàng")]
         public virtual IdentityUser User { get; set; }
-        [Required]
+       [Required]
         [DisplayName("Tên cửa hàng")]
         public string Name { get; set; }
         [Required]
@@ -32,18 +32,18 @@ namespace eCommerce.EntityFramework
         [DisplayName("Mã số thẻ")]
         public string CreditCardNumber { get; set; }
         [Required]
-		[DataType(DataType.CreditCard)]
+		//[DataType(DataType.CreditCard)]
 		[DisplayName("Số tài khoản")]
         public string CardTradeNumber { get; set; }
         [Required]
-        [DataType(DataType.PhoneNumber)]
+        //[DataType(DataType.PhoneNumber)]
         [DisplayName("Số điện thoại")]
         public string PhoneNumber { get; set; }
         [Required]
         [DisplayName("Phương thức giao hàng")]
         public DeliveryMethod DeliveryMethod { get; set; }
         [Required]
-		[DataType(DataType.Date)]
+		//[DataType(DataType.Date)]
         [DisplayName("Ngày thành lập")]
         public DateTime createdDate { get; set; }
         [Required]
