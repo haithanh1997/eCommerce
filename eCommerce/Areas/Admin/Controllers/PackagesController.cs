@@ -37,8 +37,8 @@ namespace eCommerce.Areas.Admin.Controllers
             return View(package);
         }
 
-        [Authorize(Roles = "Admin")]
         // GET: Admin/Packages/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -47,10 +47,10 @@ namespace eCommerce.Areas.Admin.Controllers
         // POST: Admin/Packages/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Price,Times,isDisabled")] Package package)
+        [Authorize(Roles = "Admin")]
+        public ActionResult Create([Bind(Include = "Id,Name,Price,Times,Days,isDisabled")] Package package)
         {
             if (ModelState.IsValid)
             {
@@ -62,8 +62,8 @@ namespace eCommerce.Areas.Admin.Controllers
             return View(package);
         }
 
-        [Authorize(Roles = "Admin")]
         // GET: Admin/Packages/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(long? id)
         {
             if (id == null)
@@ -78,13 +78,13 @@ namespace eCommerce.Areas.Admin.Controllers
             return View(package);
         }
 
-        [Authorize(Roles = "Admin")]
         // POST: Admin/Packages/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Price,Times,isDisabled")] Package package)
+        [Authorize(Roles = "Admin")]
+        public ActionResult Edit([Bind(Include = "Id,Name,Price,Times,Days,isDisabled")] Package package)
         {
             if (ModelState.IsValid)
             {
@@ -95,8 +95,8 @@ namespace eCommerce.Areas.Admin.Controllers
             return View(package);
         }
 
-        [Authorize(Roles = "Admin")]
         // GET: Admin/Packages/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(long? id)
         {
             if (id == null)
@@ -111,10 +111,10 @@ namespace eCommerce.Areas.Admin.Controllers
             return View(package);
         }
 
-        [Authorize(Roles = "Admin")]
         // POST: Admin/Packages/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(long id)
         {
             Package package = db.Packages.Find(id);
