@@ -18,7 +18,7 @@ namespace eCommerce.Areas.Admin.Controllers
         // GET: Admin/Invoices
         public ActionResult Index()
         {
-            return View(db.Invoices.ToList());
+            return View(db.Invoices.Where(x => x.Status == ProductStatus.Validated).ToList());
         }
 
         // GET: Admin/Invoices/Details/5
@@ -47,9 +47,21 @@ namespace eCommerce.Areas.Admin.Controllers
             }
             return View(invoice_detail);
         }
-
-        // GET: Admin/Invoices/Create
-        public ActionResult Create()
+		[HttpPost]
+		public ActionResult ChangeStatus(long? id)
+		{
+			if (ModelState.IsValid)
+			{
+				var model = db.Invoices.Find(id);
+				model.Status = ProductStatus.Processing;
+				db.Entry(model).State = EntityState.Modified;
+				db.SaveChanges();
+				return RedirectToAction("Index");
+			}
+			return View();
+		}
+		// GET: Admin/Invoices/Create
+		public ActionResult Create()
         {
             return View();
         }

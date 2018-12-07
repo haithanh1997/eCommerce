@@ -256,7 +256,7 @@ namespace eCommerce
                 DeliveryMethod = DeliveryMethod.Standard,
                 Description = "Giàu vl mua 2 cái lap 1 lúc",
                 createdDate = DateTime.Now,
-                Status = ProductStatus.Delivered,
+                Status = ProductStatus.Validated,
                 isDisabled = false,
             });
 

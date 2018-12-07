@@ -9140,6 +9140,9 @@
     <Content Include="Areas\Admin\Views\Packages\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Statistic\Monthly.cshtml" />
     <Content Include="Areas\Admin\Views\Statistic\Year.cshtml" />
+    <Content Include="Areas\Admin\Views\Delivery\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Delivery\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistic\LowQuatity.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -9200,7 +9203,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\Delivery\" />
     <Folder Include="Areas\Admin\Views\PeriodPaidback\" />
     <Folder Include="Views\Report\" />
   </ItemGroup>

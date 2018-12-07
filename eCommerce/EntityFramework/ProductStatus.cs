@@ -8,15 +8,16 @@ namespace eCommerce.EntityFramework
 {
     public enum ProductStatus
     {
-        [Description("NotValidated")]
+        [Description("Chưa xác nhận")]
         NotValidated = 0,
-        [Description("Validated")]
+        [Description("Đã xác nhận")]
         Validated = 1,
-        [Description("Processing")]
+        [Description("Đang xử lý")]
         Processing = 2,
-        [Description("Delivering")]
+        [Description("Đang giao")]
         Delivering = 3,
-        [Description("Delivered")]
+        [Description("Đã giao")]
         Delivered = 4,
-    }
+	
+	}
 }

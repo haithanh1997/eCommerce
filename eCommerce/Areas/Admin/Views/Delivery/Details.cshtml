@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<eCommerce.EntityFramework.InvoiceDetail>
 
 @{
-    ViewBag.Title = "Details";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "Details";
+	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 
@@ -72,30 +72,30 @@
 
 						@foreach (var item in Model)
 						{
-						<tr>
+							<tr>
 
-							<td>
-								@Html.DisplayFor(modelItem => item.Product.Id)
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.Product.Name)
-							</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.Product.Id)
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.Product.Name)
+								</td>
 
-							<td>
-								@Html.DisplayFor(modelItem => item.Quantity)
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.Price) VND
-							</td>
-							<td>
-								@{ 
-									int tong = item.Price * item.Quantity;
-								}
+								<td>
+									@Html.DisplayFor(modelItem => item.Quantity)
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.Price) VND
+								</td>
+								<td>
+									@{
+										int tong = item.Price * item.Quantity;
+									}
 
-								@tong VND
-							</td>
+									@tong VND
+								</td>
 
-						</tr>
+							</tr>
 						}
 
 					</tbody>
@@ -108,10 +108,10 @@
 			<!-- accepted payments column -->
 			<div class="col-xs-6">
 				<p class="lead"><strong>Hình thức thanh toán:</strong></p>
-				
-					<img src="~/Assets/img/logo123.png" alt="123Pay">
-				
-				
+
+				<img src="~/Assets/img/logo123.png" alt="123Pay">
+
+
 			</div>
 			<!-- /.col -->
 			<div class="col-xs-6">
@@ -138,14 +138,14 @@
 		<!-- /.row -->
 		<!-- this row will not appear when printing -->
 		<div class="row no-print">
-            <div class="col-xs-12">
-                <a href="@Url.Action("ChangeStatus","Invoices",new { id = ViewBag.madonhang })" type="button" class="btn btn-success pull-right">
-                    <i class="fa fa-credit-card"></i> Chuyển giao bộ phận giao hàng
-                </a>
-                <a href="@Url.Action("Index","Invoices")" type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
-                    <i class="fa fa-download"></i> Trở lại
-                </a>
-            </div>
+			<div class="col-xs-12">
+				<a href="@Url.Action("ChangeStatus","Delivery",new { id = ViewBag.madonhang })" type="button" class="btn btn-success pull-right">
+					<i class="fa fa-credit-card"></i> Giao Hàng
+				</a>
+				<a href="@Url.Action("Index","Delivery")" type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
+					<i class="fa fa-download"></i> Trở lại
+				</a>
+			</div>
 		</div>
 	</section>
 	<!-- /.content -->

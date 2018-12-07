@@ -11,6 +11,14 @@ namespace eCommerce.Areas.Admin.Controllers
     {
         MainDbContext db = new MainDbContext();
         // GET: Admin/Statistic
+		public ActionResult LowQuatity()
+		{
+			return View(db.Products.Where(x=>x.Quantity <=2).ToList());
+		}
+		public ActionResult Notify()
+		{
+			return View();
+		}
         public ActionResult Daily()
         {
             int total = 0;
