@@ -38,5 +38,7 @@ namespace eCommerce.EntityFramework
         public ProductStatus Status { get; set; }
         [DisplayName("Không hiển thị")]
         public bool isDisabled { get; set; }
+        [DisplayName("Mã giao dịch")]
+        public string TransactionId { get; set; }
     }
 }

@@ -203,11 +203,15 @@
     <Compile Include="Areas\Admin\Controllers\CartsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ChatboxController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DeliveryController.cs" />
     <Compile Include="Areas\Admin\Controllers\InvoicesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MailboxsController.cs" />
     <Compile Include="Areas\Admin\Controllers\MerchantsAccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\MerchantsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PackagesController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminProductsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PeriodPaidbackController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductTypesController.cs" />
     <Compile Include="Areas\Admin\Controllers\StoresController.cs" />
     <Compile Include="Areas\Admin\Models\ProductTypeModel.cs" />
@@ -217,6 +221,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\ShopsController.cs" />
     <Compile Include="DbInitializer.cs" />
     <Compile Include="EntityFramework\AdPackage.cs" />
@@ -9129,6 +9134,8 @@
     <Content Include="Areas\Admin\Views\MerchantsAccount\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Chatbox\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Invoices\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Mailboxs\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -9189,6 +9196,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\Delivery\" />
+    <Folder Include="Areas\Admin\Views\PeriodPaidback\" />
+    <Folder Include="Views\Report\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -138,9 +138,14 @@
 		<!-- /.row -->
 		<!-- this row will not appear when printing -->
 		<div class="row no-print">
-			<div class="col-xs-12">
-				<a href="in-donhang.html" target="_blank" class="btn btn-default pull-right"><i class="fa fa-print"></i> Print</a>
-			</div>
+            <div class="col-xs-12">
+                <a href="@Url.Action("Confirm","MerchantsAccount",new { id = Model.Id })" type="button" class="btn btn-success pull-right">
+                    <i class="fa fa-credit-card"></i> Giao hàng
+                </a>
+                <a href="@Url.Action("Confirmation","MerchantsAccount")" type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
+                    <i class="fa fa-download"></i> Trở lại
+                </a>
+            </div>
 		</div>
 	</section>
 	<!-- /.content -->
