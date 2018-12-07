@@ -9132,12 +9132,14 @@
     <Content Include="Areas\Admin\Views\Invoices\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Mailboxs\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Statistic\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistic\Daily.cshtml" />
     <Content Include="Areas\Admin\Views\Packages\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Packages\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Packages\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Packages\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Packages\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistic\Monthly.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistic\Year.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

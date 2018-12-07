@@ -11,10 +11,50 @@ namespace eCommerce.Areas.Admin.Controllers
     {
         MainDbContext db = new MainDbContext();
         // GET: Admin/Statistic
-        public ActionResult Index()
+        public ActionResult Daily()
         {
-            DateTime now = DateTime.Now.Date;
-            return View(db.Invoices.Where(x => x.createdDate.Date == now && x.isDisabled == false).ToList());
+            int total = 0;
+            var model = db.Invoices.Where(x => x.isDisabled == false &&
+                        x.createdDate.Day == DateTime.Now.Day &&
+                        x.createdDate.Month == DateTime.Now.Month &&
+                        x.createdDate.Year == DateTime.Now.Year &&
+                        (x.PaymentMethod == EntityFramework.PaymentMethod.Online ||
+                        x.Status == EntityFramework.ProductStatus.Delivered)).ToList();
+            foreach(var item in model)
+            {
+                total = total + item.Total;
+            }
+            ViewBag.Total = total;
+            return View(model);
+        }
+
+        public ActionResult Monthly()
+        {
+            int total = 0;
+            var model = db.Invoices.Where(x => x.isDisabled == false &&
+                        x.createdDate.Month == DateTime.Now.Month &&
+                        x.createdDate.Year == DateTime.Now.Year &&
+                        x.Status == EntityFramework.ProductStatus.Delivered).ToList();
+            foreach (var item in model)
+            {
+                total = total + item.Total;
+            }
+            ViewBag.Total = total;
+            return View(model);
+        }
+
+        public ActionResult Year()
+        {
+            int total = 0;
+            var model = db.Invoices.Where(x => x.isDisabled == false &&
+                        x.createdDate.Year == DateTime.Now.Year &&
+                        x.Status == EntityFramework.ProductStatus.Delivered).ToList();
+            foreach (var item in model)
+            {
+                total = total + item.Total;
+            }
+            ViewBag.Total = total;
+            return View(model);
         }
     }
 }
