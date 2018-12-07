@@ -11,6 +11,7 @@ using eCommerce.EntityFramework;
 
 namespace eCommerce.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Moderator")]
     public class AdPackagesController : Controller
     {
         private MainDbContext db = new MainDbContext();
@@ -37,6 +38,7 @@ namespace eCommerce.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdPackages/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -47,7 +49,8 @@ namespace eCommerce.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Price,ExpiredDate,isDisabled")] AdPackage adPackage)
+        [Authorize(Roles = "Admin")]
+        public ActionResult Create([Bind(Include = "Id,Name,Price,Position,Period,isDisabled")] AdPackage adPackage)
         {
             if (ModelState.IsValid)
             {
@@ -60,6 +63,7 @@ namespace eCommerce.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdPackages/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(long? id)
         {
             if (id == null)
@@ -79,7 +83,8 @@ namespace eCommerce.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Price,ExpiredDate,isDisabled")] AdPackage adPackage)
+        [Authorize(Roles = "Admin")]
+        public ActionResult Edit([Bind(Include = "Id,Name,Price,Position,Period,isDisabled")] AdPackage adPackage)
         {
             if (ModelState.IsValid)
             {
@@ -91,6 +96,7 @@ namespace eCommerce.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdPackages/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(long? id)
         {
             if (id == null)
@@ -106,6 +112,7 @@ namespace eCommerce.Areas.Admin.Controllers
         }
 
         // POST: Admin/AdPackages/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(long id)

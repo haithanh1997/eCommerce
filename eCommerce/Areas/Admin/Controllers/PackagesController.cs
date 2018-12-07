@@ -11,6 +11,7 @@ using eCommerce.EntityFramework;
 
 namespace eCommerce.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Moderator")]
     public class PackagesController : Controller
     {
         private MainDbContext db = new MainDbContext();
@@ -36,6 +37,7 @@ namespace eCommerce.Areas.Admin.Controllers
             return View(package);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Admin/Packages/Create
         public ActionResult Create()
         {
@@ -45,6 +47,7 @@ namespace eCommerce.Areas.Admin.Controllers
         // POST: Admin/Packages/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,Price,Times,isDisabled")] Package package)
@@ -59,6 +62,7 @@ namespace eCommerce.Areas.Admin.Controllers
             return View(package);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Admin/Packages/Edit/5
         public ActionResult Edit(long? id)
         {
@@ -74,6 +78,7 @@ namespace eCommerce.Areas.Admin.Controllers
             return View(package);
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: Admin/Packages/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -90,6 +95,7 @@ namespace eCommerce.Areas.Admin.Controllers
             return View(package);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Admin/Packages/Delete/5
         public ActionResult Delete(long? id)
         {
@@ -105,6 +111,7 @@ namespace eCommerce.Areas.Admin.Controllers
             return View(package);
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: Admin/Packages/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
