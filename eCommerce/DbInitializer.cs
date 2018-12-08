@@ -180,7 +180,7 @@ namespace eCommerce
 				TaxRegistrationCode = "0xxxxxxxx", CardTradeNumber = "7652xxxxxxxx",
 				CreditCardNumber = "1600xxxxxx", PhoneNumber = "0396372123",
 				DeliveryMethod = DeliveryMethod.Fast, createdDate = DateTime.Now,
-				BankName = "Agribank", Image1 = "~/Assets/img/new01.jpg",
+				BankName = "Agribank", Image1 = "~/Assets/img/new_1.png",
 				Image2 = "/Assets/img/...", Image3 = "/Assets/img/...",
 				Image4 = "/Assets/img/...", Image5 = "/Assets/img/...", isDisabled = false
             });
@@ -211,9 +211,9 @@ namespace eCommerce
                 DesignType = "đéo biết",
                 Size = 2.3F,
                 updateDate = DateTime.Now,
-                Image1 = "~/Assets/img/product1.png",
-                Image2 = "~/Assets/img/product2.png",
-                Image3 = "~/Assets/img/product3.png",
+                Image1 = "/Assets/img/product01.png",
+                Image2 = "/Assets/img/product02.png",
+                Image3 = "/Assets/img/product03.png",
                 isDisabled = false
             });
 
@@ -237,9 +237,9 @@ namespace eCommerce
                 DesignType = "đéo biết",
                 Size = 2.1F,
                 updateDate = DateTime.Now,
-                Image1 = "/Assets/img/product4.png",
-                Image2 = "/Assets/img/product5.png",
-                Image3 = "/Assets/img/product6.png",
+                Image1 = "/Assets/img/product04.png",
+                Image2 = "/Assets/img/product05.png",
+                Image3 = "/Assets/img/product06.png",
                 isDisabled = false
             });
 

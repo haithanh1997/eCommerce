@@ -30,5 +30,7 @@ namespace eCommerce
         public System.Data.Entity.DbSet<eCommerce.EntityFramework.MerchantStore> MerchantStores { get; set; }
 
         public System.Data.Entity.DbSet<eCommerce.EntityFramework.Cart> Carts { get; set; }
+
+        public System.Data.Entity.DbSet<eCommerce.Areas.Admin.Controllers.UserWithRole> UserWithRoles { get; set; }
     }
 }

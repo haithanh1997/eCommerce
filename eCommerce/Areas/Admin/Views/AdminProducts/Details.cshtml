@@ -120,22 +120,28 @@
 							<td>@Html.DisplayFor(model => model.updateDate)</td>
 
 						</tr>
-
-						</tr>
-						<tr>
-							<td>@Html.DisplayNameFor(model => model.deletedDate):</td>
-							<td>@Html.DisplayFor(model => model.deletedDate)</td>
-
-						</tr>
 						<tr>
 							<td>@Html.DisplayNameFor(model => model.isDisabled):</td>
-							<td>@Html.DisplayFor(model => model.isDisabled)</td>
+							<td>
+                                @if(Model.isDisabled == true)
+                                {
+                                    <p>Đã hết bán</p>
+                                }
+                                else
+                                {
+                                    <p>Đang bán</p>
+                                }
+                            </td>
 
-						</tr>
 
-						<tr>
-							<td>Thông số sản phẩm</td>
-							<td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal1">Xem </button></td>
+                        </tr>
+
+
+                        <tr>
+
+                            <td>Thông số sản phẩm</td>
+
+                            <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal1">Xem </button></td>
 
 						</tr>
 
@@ -153,13 +159,13 @@
 			<div class="col-xs-12">
 				<a href="@Url.Action("Block","AdminProducts",new { id = Model.Id })" type="button" class="btn btn-danger pull-right">
 					<i class="fa fa-credit-card"></i> Gỡ sản phẩm
-				</a>
+                </a>
 				<a href="@Url.Action("Sale","AdminProducts",new { id = Model.Id })" type="button" class="btn btn-success pull-right" style="margin-right: 5px;">
 					<i class="fa fa-credit-card"></i> Cho phép bán lại
-				</a>
+                </a>
 				<a href="@Url.Action("Index","AdminProducts")" type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
 					<i class="fa fa-download"></i> Trở lại
-				</a>
+                </a>
 			</div>
 		</div>
 	</section>

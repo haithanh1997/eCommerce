@@ -33,91 +33,89 @@
 					<div class="box-body table-responsive">
 						<table id="example1" class="table table-bordered table-striped">
 							<thead>
-								<tr>
-									<th>
-										
-										@Html.DisplayNameFor(model => model.Image1)
-									</th>
-									<th>
-										@Html.DisplayNameFor(model => model.Name)
-									</th>
-									<th>
-										@Html.DisplayNameFor(model => model.Price)
-									</th>
-									<th>
-										@Html.DisplayNameFor(model => model.Quantity)
-									</th>
+                                <tr>
+                                    <th>
 
-									<th>
-										@Html.DisplayNameFor(model => model.discountValue)
-									</th>
-								
-									<th>
-										@Html.DisplayNameFor(model => model.updateDate)
-									</th>
+                                        @Html.DisplayNameFor(model => model.Image1)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Store.Name)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Name)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Price)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Quantity)
+                                    </th>
 
-									<th>
-										@Html.DisplayNameFor(model => model.deletedDate)
-									</th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.discountValue)
+                                    </th>
 
-									<th>
-										@Html.DisplayNameFor(model => model.isDisabled)
-									</th>
-									<th></th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.updateDate)
+                                    </th>
 
-									<th></th>
-								</tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.isDisabled)
+                                    </th>
+                                    <th>Tùy chọn</th>
+
+
+                                </tr>
 							</thead>
 							<tbody>
 
 								@foreach (var item in Model)
 								{
-								<tr>
+                                <tr>
 
-									<td>
-										<img src="@item.Image1" width="50" height="50" />
+                                    <td>
+                                        <img src="@item.Image1" width="50" height="50" />
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Store.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Price)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Quantity)
+                                    </td>
 
-									</td>
-									<td>
-										@Html.DisplayFor(modelItem => item.Name)
-									</td>
-									<td>
-										@Html.DisplayFor(modelItem => item.Price)
-									</td>
-									<td>
-										@Html.DisplayFor(modelItem => item.Quantity)
-									</td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.discountValue)
+                                    </td>
 
-									<td>
-										@Html.DisplayFor(modelItem => item.discountValue)
-									</td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.updateDate)
+                                    </td>
 
-									<td>
-										@Html.DisplayFor(modelItem => item.updateDate)
-									</td>
-									<td>
-										@Html.DisplayFor(modelItem => item.deletedDate)
-									</td>
+                                    @if (item.isDisabled == true)
+                                    {
+                                        <td>
+                                            block
+                                        </td>
+                                    }
+                                    @if (item.isDisabled == false)
+                                    {
+                                        <td>
+                                            Đang bán
+                                        </td>
+                                    }
 
-									@if (item.isDisabled == true)
-									{
-										<td>
-											block
-										</td>
-									}
-									@if (item.isDisabled == false)
-									{
-										<td>
-											Đang bán
-										</td>
-									}
+                                    <td>
 
-									<td>
-							
-									@Html.ActionLink("Details", "Details", new { id = item.Id }) |
-									@Html.ActionLink("Delete", "Delete", new { id = item.Id })
-									</td>
-								</tr>
+                                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                    </td>
+                                </tr>
 								}
 							</tbody>
 						</table>

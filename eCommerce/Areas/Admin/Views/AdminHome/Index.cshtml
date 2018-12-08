@@ -22,13 +22,13 @@
                 <!-- small box -->
                 <div class="small-box bg-aqua">
                     <div class="inner">
-                        <h3>150</h3>
+                        <h3>@ViewBag.CountNew</h3>
                         <p>Đơn đặt hàng mới</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-bag"></i>
                     </div>
-                    <a href="#" class="small-box-footer">Xem chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="@Url.Action("Index","Invoices")" class="small-box-footer">Xem chi tiết <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -36,13 +36,13 @@
                 <!-- small box -->
                 <div class="small-box bg-green">
                     <div class="inner">
-                        <h3>53<sup style="font-size: 20px"></sup></h3>
-                        <p>Sản phẩm cần duyệt</p>
+                        <h3>@ViewBag.NotValidatedStore<sup style="font-size: 20px"></sup></h3>
+                        <p>Cửa hàng chưa được cấp phép</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-refresh"></i>
                     </div>
-                    <a href="#" class="small-box-footer">Xem chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="@Url.Action("Confirmation","MerchantsAccount")" class="small-box-footer">Xem chi tiết <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -50,13 +50,13 @@
                 <!-- small box -->
                 <div class="small-box bg-yellow">
                     <div class="inner">
-                        <h3>44</h3>
+                        <h3>@ViewBag.CustomerNum</h3>
                         <p>Người dùng đã đăng kí</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-person-add"></i>
                     </div>
-                    <a href="#" class="small-box-footer">Xem chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="@Url.Action("AllUsers","AdminHome")" class="small-box-footer">Xem chi tiết <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
