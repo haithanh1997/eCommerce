@@ -8293,6 +8293,7 @@
     <Content Include="Assets\img\logos_2.png" />
     <Content Include="Assets\img\logos_3.png" />
     <Content Include="Assets\img\logos_4.png" />
+    <Content Include="Assets\img\logout.png" />
     <Content Include="Assets\img\mail.png" />
     <Content Include="Assets\img\mail_white.png" />
     <Content Include="Assets\img\marker.png" />
@@ -8346,6 +8347,7 @@
     <Content Include="Assets\img\trends_background.jpg" />
     <Content Include="Assets\img\user.png" />
     <Content Include="Assets\img\user.svg" />
+    <Content Include="Assets\img\user01.png" />
     <Content Include="Assets\img\view_1.jpg" />
     <Content Include="Assets\img\view_2.jpg" />
     <Content Include="Assets\img\view_3.jpg" />
