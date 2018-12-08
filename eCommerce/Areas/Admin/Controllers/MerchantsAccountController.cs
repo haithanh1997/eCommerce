@@ -32,11 +32,11 @@ namespace eCommerce.Areas.Admin.Controllers
 		
 		public ActionResult Confirm(long? id)
 		{
-			//UserManager<ApplicationUser> UserManager;
-			if (ModelState.IsValid)
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            if (ModelState.IsValid)
 			{
 				var store = db.MerchantStores.Find(id);
-				//UserManager.AddToRoles(store.User.Id, "Merchant");
+				UserManager.AddToRoles(store.User.Id, "Merchant");
 				store.isDisabled = true;
 				db.Entry(store).State = EntityState.Modified;
 				db.SaveChanges();
@@ -64,11 +64,11 @@ namespace eCommerce.Areas.Admin.Controllers
 		[Authorize(Roles = "Admin")]
 		public ActionResult Block(long? id)
 		{
-			//UserManager<ApplicationUser> UserManager;
-			if (ModelState.IsValid)
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            if (ModelState.IsValid)
 			{
 				var store = db.MerchantStores.Find(id);
-				//UserManager.AddToRoles(store.User.Id, "Merchant");
+                UserManager.RemoveFromRole(store.User.Id, "Merchant");
 				store.isDisabled = false;
 				db.Entry(store).State = EntityState.Modified;
 				db.SaveChanges();

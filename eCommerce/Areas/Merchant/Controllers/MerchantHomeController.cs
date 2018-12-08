@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace eCommerce.Areas.Merchant.Controllers
 {
+    [Authorize(Roles = "Merchant")]
     public class MerchantHomeController : Controller
     {
         // GET: Merchant/MerchantHome

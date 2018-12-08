@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using eCommerce.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace eCommerce.Controllers
 {
@@ -17,6 +18,7 @@ namespace eCommerce.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        MainDbContext db = new MainDbContext();
 
         public AccountController()
         {
@@ -151,8 +153,9 @@ namespace eCommerce.Controllers
         {
             if (ModelState.IsValid)
             {
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var result = userManager.Create(user, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);

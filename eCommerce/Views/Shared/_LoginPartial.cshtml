@@ -15,8 +15,9 @@
 }
 else
 {
-    <ul class="header-links pull-right">
-        <li><i class="fa fa-user-o"></i> @Html.ActionLink("Đăng ký", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li><i class="fa fa-user-o"></i> @Html.ActionLink("Đăng nhập", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
+        <ul class="header-links pull-right">
+            <li><i class="fa fa-user-o"></i> @Html.ActionLink("Bán hàng trên TechLap", "Register", "Shops")</li>
+            <li><i class="fa fa-user-o"></i> @Html.ActionLink("Đăng ký", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li><i class="fa fa-user-o"></i> @Html.ActionLink("Đăng nhập", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        </ul>
 }

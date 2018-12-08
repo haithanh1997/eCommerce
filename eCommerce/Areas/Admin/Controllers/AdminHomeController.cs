@@ -21,6 +21,7 @@ namespace eCommerce.Areas.Admin.Controllers
             ViewBag.CountNew = GetInvoice();
             ViewBag.NotValidatedStore = GetNotValidatedStore();
             ViewBag.CustomerNum = GetCustomer();
+            ViewBag.LowQuantityProduct = GetLowQuantityProduct();
             return View();
         }
 
@@ -70,6 +71,17 @@ namespace eCommerce.Areas.Admin.Controllers
         {
             int count = 0;
             var model = db.Users;
+            foreach(var item in model)
+            {
+                count++;
+            }
+            return count;
+        }
+
+        public int GetLowQuantityProduct()
+        {
+            int count = 0;
+            var model = db.Products.Where(x => x.Quantity <= 2);
             foreach(var item in model)
             {
                 count++;

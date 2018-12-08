@@ -38,6 +38,9 @@
 
 										@Html.DisplayNameFor(model => model.Image1)
 									</th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Store)
+                                    </th>
 									<th>
 										@Html.DisplayNameFor(model => model.Name)
 									</th>
@@ -57,15 +60,11 @@
 									</th>
 
 									<th>
-										@Html.DisplayNameFor(model => model.deletedDate)
-									</th>
-
-									<th>
 										@Html.DisplayNameFor(model => model.isDisabled)
 									</th>
-									<th></th>
-
-									<th></th>
+									<th>
+                                        Tùy chọn
+                                    </th>
 								</tr>
 							</thead>
 							<tbody>
@@ -81,6 +80,9 @@
 										<td>
 											@Html.DisplayFor(modelItem => item.Name)
 										</td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Store.Name)
+                                        </td>
 										<td>
 											@Html.DisplayFor(modelItem => item.Price)
 										</td>
@@ -94,9 +96,6 @@
 
 										<td>
 											@Html.DisplayFor(modelItem => item.updateDate)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.deletedDate)
 										</td>
 
 										@if (item.isDisabled == true)

@@ -9222,6 +9222,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\PeriodPaidback\" />
     <Folder Include="Areas\Merchant\Models\" />
+    <Folder Include="MerchantImages\" />
     <Folder Include="Views\Report\" />
   </ItemGroup>
   <ItemGroup>

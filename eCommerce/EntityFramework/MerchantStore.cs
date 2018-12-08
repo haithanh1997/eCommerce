@@ -12,11 +12,9 @@ namespace eCommerce.EntityFramework
     {
         [Key]
         public long Id { get; set; }
-
-       [Required]
         [DisplayName("Mã chủ cửa hàng")]
         public virtual IdentityUser User { get; set; }
-       [Required]
+        [Required]
         [DisplayName("Tên cửa hàng")]
         public string Name { get; set; }
         [Required]
@@ -42,7 +40,6 @@ namespace eCommerce.EntityFramework
         [Required]
         [DisplayName("Phương thức giao hàng")]
         public DeliveryMethod DeliveryMethod { get; set; }
-        [Required]
 		//[DataType(DataType.Date)]
         [DisplayName("Ngày thành lập")]
         public DateTime createdDate { get; set; }
@@ -64,7 +61,6 @@ namespace eCommerce.EntityFramework
         [Required]
         [DisplayName("GPKD mặt sau")]
         public string Image5 { get; set; }
-		[Required]
 		[DisplayName("Trạng thái")]
 		public bool isDisabled { get; set; }
 
