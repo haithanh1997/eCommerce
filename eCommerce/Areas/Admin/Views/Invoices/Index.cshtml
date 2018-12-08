@@ -61,48 +61,80 @@
 									<th>
 										@Html.DisplayNameFor(model => model.Status)
 									</th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.isDisabled)
+                                    </th>
 									<th></th>
 								</tr>
 							</thead>
 							<tbody>
 									@foreach (var item in Model)
 									{
-								<tr>
-									<td>
-										@Html.DisplayFor(modelItem => item.Id)
-									</td>
-									<td>
-										@Html.DisplayFor(modelItem => item.User.UserName)
-									</td>
-									<td>
-										@Html.DisplayFor(modelItem => item.Address)
-									</td>
-									<td>
-										@Html.DisplayFor(modelItem => item.User.PhoneNumber)
-									</td>
-									<td>
-										@Html.DisplayFor(modelItem => item.Total)
-									</td>
-									<td>
-										@Html.DisplayFor(modelItem => item.PaymentMethod)
-									</td>
-									<td>
-										@Html.DisplayFor(modelItem => item.DeliveryMethod)
-									</td>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.User.UserName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Address)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.User.PhoneNumber)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Total)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PaymentMethod)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DeliveryMethod)
+                                    </td>
 
-									<td>
-										@Html.DisplayFor(modelItem => item.createdDate)
-									</td>
-									<td>
-										@Html.DisplayFor(modelItem => item.Status)
-									</td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.createdDate)
+                                    </td>
+                                    <td>
+                                        @if (item.Status == eCommerce.EntityFramework.ProductStatus.NotValidated)
+                                        {
+                                            <p>Chưa xác nhận</p>
+                                        }
+                                        else if(item.Status == eCommerce.EntityFramework.ProductStatus.Processing)
+                                        {
+                                            <p>Đang xử lý</p>
+                                        }
+                                        else if(item.Status == eCommerce.EntityFramework.ProductStatus.Validated)
+                                        {
+                                            <p>Đã xác nhận</p>
+                                        }
+                                        else if (item.Status == eCommerce.EntityFramework.ProductStatus.Delivering)
+                                        {
+                                            <p>Đang giao</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Đã giao xong</p>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if(item.isDisabled == true)
+                                        {
+                                            <p>Hóa đơn đã ẩn</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Hóa đơn không ẩn</p>
+                                        }
+                                    </td>
 
-									<td>
+                                        <td>
 
-										@Html.ActionLink("Details", "Details", new { id = item.Id }) |
-										@Html.ActionLink("Delete", "Delete", new { id = item.Id })
-									</td>
-								</tr>
+                                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                        </td>
+                                    </tr>
 									}
 							</tbody>
 						</table>

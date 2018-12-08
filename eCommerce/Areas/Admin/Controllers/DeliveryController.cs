@@ -16,16 +16,23 @@ namespace eCommerce.Areas.Admin.Controllers
         public ActionResult Index(long? id)
         {
 			
-			return View(db.Invoices.Where(x=>x.Status==ProductStatus.Processing).ToList());
+			return View(db.Invoices.Where(x=>x.Status==ProductStatus.Processing || x.Status == ProductStatus.Delivering).ToList());
 		}
 
-		[HttpPost]
 		public ActionResult ChangeStatus(long? id)
 		{
 			if (ModelState.IsValid)
 			{
 				var model = db.Invoices.Find(id);
-				model.Status = ProductStatus.Delivering;
+                if(model.Status == ProductStatus.Delivering)
+                {
+                    model.Status = ProductStatus.Delivered;
+                }
+				else if(model.Status == ProductStatus.Processing)
+                {
+                    model.Status = ProductStatus.Delivering;
+                }
+
 				db.Entry(model).State = EntityState.Modified;
 				db.SaveChanges();
 				return RedirectToAction("Index");
