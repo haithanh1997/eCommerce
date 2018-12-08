@@ -9,12 +9,14 @@ namespace eCommerce.Areas.Merchant.Controllers
     [Authorize(Roles = "Merchant")]
     public class MerchantHomeController : Controller
     {
-        // GET: Merchant/MerchantHome
-        public ActionResult Index()
-        {
-            return View();
-        }
-        public ActionResult Account()
+		private MainDbContext db = new MainDbContext();
+
+		// GET: Admin/Products
+		public ActionResult Index(string id)
+		{
+			return View();
+		}
+		public ActionResult Account()
         {
             return View();
         }

@@ -31,6 +31,22 @@
 				<ul class="nav navbar-top-links navbar-right">
 					<li class="dropdown">
 						<a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+							<em class="fa fa-user"></em>
+						</a>
+						<ul class="dropdown-menu dropdown-messages">
+							@Html.Partial("_LayoutPatial")
+							
+							<li class="divider"></li>
+							
+						</ul>
+					</li>
+
+				</ul>
+
+				<ul class="nav navbar-top-links navbar-right">
+
+					<li class="dropdown">
+						<a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
 							<em class="fa fa-envelope"></em><span class="label label-danger">15</span>
 						</a>
 						<ul class="dropdown-menu dropdown-messages">
@@ -102,6 +118,8 @@
 							</li>
 						</ul>
 					</li>
+
+
 				</ul>
 			</div>
 		</div><!-- /.container-fluid -->
@@ -159,6 +177,11 @@
 					<li>
 						<a class="" href="@Url.Action("Create","Merchants")">
 							<span class="fa fa-arrow-right">&nbsp;</span> Thêm Sản Phẩm
+						</a>
+					</li>
+					<li>
+						<a class="" href="@Url.Action("LowQuantity","Merchants")">
+							<span class="fa fa-arrow-right">&nbsp;</span> Sản Phẩm Sắp Hết
 						</a>
 					</li>
 

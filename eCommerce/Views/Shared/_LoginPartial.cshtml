@@ -5,12 +5,13 @@
     {
         @Html.AntiForgeryToken()
 
-        <ul class="header-links pull-right">
-            <li>
-                @Html.ActionLink("Xin chào " + User.Identity.GetUserName().Split('@')[0] + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-            </li>
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">Đăng xuất</a></li>
-        </ul>
+<ul class="header-links pull-right">
+	<li><i class="fa fa-user-o"></i> @Html.ActionLink("Bán hàng trên TechLap", "Register", "Shops")</li>
+	<li>
+		@Html.ActionLink("Xin chào " + User.Identity.GetUserName().Split('@')[0] + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+	</li>
+	<li><a href="javascript:document.getElementById('logoutForm').submit()">Đăng xuất</a></li>
+</ul>
     }
 }
 else

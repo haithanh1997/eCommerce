@@ -9160,6 +9160,7 @@
     <Content Include="Areas\Merchant\Assets\datatables.net-bs\bower.json" />
     <Content Include="Areas\Merchant\Assets\datatables.net-bs\Readme.md" />
     <Content Include="Areas\Admin\Views\AdminHome\AllUsers.cshtml" />
+    <Content Include="Areas\Merchant\Views\Shared\_LayoutPatial.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

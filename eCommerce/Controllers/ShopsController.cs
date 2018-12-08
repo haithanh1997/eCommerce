@@ -5,6 +5,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -14,16 +16,19 @@ namespace eCommerce.Controllers
 {
     public class ShopsController : Controller
     {
+		
         MainDbContext db = new MainDbContext();
         // GET: Shops
         public ActionResult ShopsIndex()
         {
             return View();
         }
+		
         // GET: /Account/Register
-        [AllowAnonymous]
+		[Authorize]
         public ActionResult Register()
         {
+			
             return View();
         }
 
@@ -32,21 +37,21 @@ namespace eCommerce.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(MerchantStore model)
+        public ActionResult Register(MerchantStore model,string userid)
         {
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
-            var user_id = "";
+            //var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            //var user_id = "";
             if (ModelState.IsValid)
             {
-                var email = Request.Form["email"];
-                var pass = Request.Form["pass"];
-                var user = new ApplicationUser { UserName = email, Email = email };
-                var result =  userManager.Create(user, pass);
-                if (result.Succeeded)
-                {
-                    user_id = user.Id;
+                //var email = Request.Form["email"];
+                //var pass = Request.Form["pass"];
+                //var user = new ApplicationUser { UserName = email, Email = email };
+                //var result =  userManager.Create(user, pass);
+               //if (result.Succeeded)
+                //{
+                    //user_id = user.Id;
                     MerchantStore store = new MerchantStore();
-                    store.User = db.Users.FirstOrDefault(x => x.Id == user_id);
+                    store.User =  db.Users.FirstOrDefault(x => x.Id == userid);
                     store.Name = model.Name;
                     store.Address = model.Address;
                     store.BusinessRegistrationCode = model.BusinessRegistrationCode;
@@ -98,7 +103,7 @@ namespace eCommerce.Controllers
                     db.MerchantStores.Add(store);
                     db.SaveChanges();
                     return RedirectToAction("Index","Home");
-                }
+                //}
             }
 
             // If we got this far, something failed, redisplay form

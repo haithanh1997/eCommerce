@@ -1,0 +1,33 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+	using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+	{
+		@Html.AntiForgeryToken()
+
+		<li>
+			<div class="dropdown-messages-box">
+				<a href="profile.html" class="pull-left">
+					<img alt="image" class="img-circle" src="~/Assets/img/user01.png" width="40px" height="40px"> 
+				</a>
+				<div class="message-body">
+					<h4>Xin chào @User.Identity.GetUserName().Split('@')[0] </h4>
+				
+				</div>
+			</div>
+		</li>
+		<li class="divider"></li>
+		<li>
+			<div class="dropdown-messages-box">
+				<a href="profile.html" class="pull-left">
+					<img alt="image" class="img-circle" src="~/Assets/img/logout.png" width="40px" height="40px">
+				</a>
+				<div class="message-body">
+					<a href="javascript:document.getElementById('logoutForm').submit()"><h4>Đăng xuất</h4></a>
+				</div>
+			</div>
+		</li>
+
+	}
+}
+
