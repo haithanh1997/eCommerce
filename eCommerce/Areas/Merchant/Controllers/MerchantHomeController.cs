@@ -40,5 +40,9 @@ namespace eCommerce.Areas.Merchant.Controllers
         {
             return View();
         }
+        public ActionResult LowQuantity(string id)
+        {
+            return View(db.Products.Where(x=>x.Price <= 2 && x.Store.User.Id== id));
+        }
     }
 }

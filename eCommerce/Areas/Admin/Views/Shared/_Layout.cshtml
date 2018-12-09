@@ -204,7 +204,7 @@
 									</div>
 									@if (Request.IsAuthenticated)
 									{
-										using (Html.BeginForm("Login", "Account",new {area ="" }, FormMethod.Post, new { id = "logoutForm", @class = "pull-right" }))
+										using (Html.BeginForm("LogOff", "Account",new {area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "pull-right" }))
 										{
 											@Html.AntiForgeryToken()
 											<div class="pull-right">
