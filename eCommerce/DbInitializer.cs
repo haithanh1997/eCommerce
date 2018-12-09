@@ -121,35 +121,11 @@ namespace eCommerce
             //Seed for ProductType
             IList<ProductType> defaultTypes = new List<ProductType>();
 
-            defaultTypes.Add(new ProductType() { Name = "Gaming", Category = context.Categories.FirstOrDefault(x => x.Id == 1), isDisabled = false });
-            defaultTypes.Add(new ProductType() { Name = "Notebook", Category = context.Categories.FirstOrDefault(x => x.Id == 1), isDisabled = false });
-            defaultTypes.Add(new ProductType() { Name = "Workstation", Category = context.Categories.FirstOrDefault(x => x.Id == 1), isDisabled = false });
-            defaultTypes.Add(new ProductType() { Name = "Doanh nhân", Category = context.Categories.FirstOrDefault(x => x.Id == 1), isDisabled = false });
+            defaultTypes.Add(new ProductType() { Name = "Gaming",  isDisabled = false });
+            defaultTypes.Add(new ProductType() { Name = "Notebook", isDisabled = false });
+            defaultTypes.Add(new ProductType() { Name = "Workstation", isDisabled = false });
+            defaultTypes.Add(new ProductType() { Name = "Doanh nhân", isDisabled = false });
 
-            defaultTypes.Add(new ProductType() { Name = "Gaming", Category = context.Categories.FirstOrDefault(x => x.Id == 2), isDisabled = false });
-            defaultTypes.Add(new ProductType() { Name = "Notebook", Category = context.Categories.FirstOrDefault(x => x.Id == 2), isDisabled = false });
-            defaultTypes.Add(new ProductType() { Name = "Workstation", Category = context.Categories.FirstOrDefault(x => x.Id == 2), isDisabled = false });
-            defaultTypes.Add(new ProductType() { Name = "Doanh nhân", Category = context.Categories.FirstOrDefault(x => x.Id == 2), isDisabled = false });
-
-            defaultTypes.Add(new ProductType() { Name = "Gaming", Category = context.Categories.FirstOrDefault(x => x.Id == 3), isDisabled = false });
-            defaultTypes.Add(new ProductType() { Name = "Notebook", Category = context.Categories.FirstOrDefault(x => x.Id == 3), isDisabled = false });
-            defaultTypes.Add(new ProductType() { Name = "Workstation", Category = context.Categories.FirstOrDefault(x => x.Id == 3), isDisabled = false });
-            defaultTypes.Add(new ProductType() { Name = "Doanh nhân", Category = context.Categories.FirstOrDefault(x => x.Id == 3), isDisabled = false });
-
-            defaultTypes.Add(new ProductType() { Name = "Gaming", Category = context.Categories.FirstOrDefault(x => x.Id == 4), isDisabled = false });
-            defaultTypes.Add(new ProductType() { Name = "Notebook", Category = context.Categories.FirstOrDefault(x => x.Id == 4), isDisabled = false });
-            defaultTypes.Add(new ProductType() { Name = "Workstation", Category = context.Categories.FirstOrDefault(x => x.Id == 4), isDisabled = false });
-            defaultTypes.Add(new ProductType() { Name = "Doanh nhân", Category = context.Categories.FirstOrDefault(x => x.Id == 4), isDisabled = false });
-
-            defaultTypes.Add(new ProductType() { Name = "Gaming", Category = context.Categories.FirstOrDefault(x => x.Id == 5), isDisabled = false });
-            defaultTypes.Add(new ProductType() { Name = "Notebook", Category = context.Categories.FirstOrDefault(x => x.Id == 5), isDisabled = false });
-            defaultTypes.Add(new ProductType() { Name = "Workstation", Category = context.Categories.FirstOrDefault(x => x.Id == 5), isDisabled = false });
-            defaultTypes.Add(new ProductType() { Name = "Doanh nhân", Category = context.Categories.FirstOrDefault(x => x.Id == 5), isDisabled = false });
-
-            defaultTypes.Add(new ProductType() { Name = "Gaming", Category = context.Categories.FirstOrDefault(x => x.Id == 6), isDisabled = false });
-            defaultTypes.Add(new ProductType() { Name = "Notebook", Category = context.Categories.FirstOrDefault(x => x.Id == 6), isDisabled = false });
-            defaultTypes.Add(new ProductType() { Name = "Workstation", Category = context.Categories.FirstOrDefault(x => x.Id == 6), isDisabled = false });
-            defaultTypes.Add(new ProductType() { Name = "Doanh nhân", Category = context.Categories.FirstOrDefault(x => x.Id == 6), isDisabled = false });
 
             context.ProductTypes.AddRange(defaultTypes);
             context.SaveChanges();
@@ -214,6 +190,7 @@ namespace eCommerce
                 Image1 = "/Assets/img/product01.png",
                 Image2 = "/Assets/img/product02.png",
                 Image3 = "/Assets/img/product03.png",
+                AdType = AdType.Default,
                 isDisabled = false
             });
 
@@ -240,6 +217,7 @@ namespace eCommerce
                 Image1 = "/Assets/img/product04.png",
                 Image2 = "/Assets/img/product05.png",
                 Image3 = "/Assets/img/product06.png",
+                AdType = AdType.Default,
                 isDisabled = false
             });
 

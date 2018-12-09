@@ -1,0 +1,274 @@
+﻿@model eCommerce.EntityFramework.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Merchant/Views/Shared/_Layout-Merchants.cshtml";
+}
+
+<h2>Details</h2>
+
+
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li>
+                <a href="#">
+                    <em class="fa fa-home"></em>
+                </a>
+            </li>
+            <li class="active">Chi tiết sản phẩm</li>
+        </ol>
+    </div><!--/.row-->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Thông tin</h1>
+        </div>
+    </div><!--/.row-->
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="panel panel-blue">
+                <div class="panel-heading">
+                    Chi tiết
+
+                    <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
+                </div>
+                <div class="panel-body ">
+                    <div class="box">
+
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table class="table table-bordered table-hover" style="color:black">
+                                <thead>
+                                    <tr>
+
+                                        <th>Thông tin</th>
+                                        <th>Chi Tiết</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr>
+                                        <td style="width:300px">@Html.DisplayNameFor(model => model.Name):</td>
+                                        <td>@Html.DisplayFor(model => model.Name)</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>@Html.DisplayNameFor(model => model.Image1)</td>
+                                        <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">Xem </button></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>@Html.DisplayNameFor(model => model.Price):</td>
+                                        <td>@Html.DisplayFor(model => model.Price)</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>@Html.DisplayNameFor(model => model.Quantity):</td>
+                                        <td>@Html.DisplayFor(model => model.Quantity)</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>@Html.DisplayNameFor(model => model.discountValue):</td>
+                                        <td>@Html.DisplayFor(model => model.discountValue)</td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td>@Html.DisplayNameFor(model => model.Store.Name):</td>
+                                        <td>@Html.DisplayFor(model => model.Store.Name)</td>
+
+                                    </tr>
+
+                                    <tr>
+
+                                        <td>@Html.DisplayNameFor(model => model.Store.User.UserName):</td>
+                                        <td>@Html.DisplayFor(model => model.Store.User.UserName)</td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td>@Html.DisplayNameFor(model => model.Category.Name):</td>
+                                        <td>@Html.DisplayFor(model => model.Category.Name)</td>
+
+
+                                    </tr>
+                                    <tr>
+                                        <td>@Html.DisplayNameFor(model => model.Type.Name):</td>
+                                        <td>@Html.DisplayFor(model => model.Type.Name)</td>
+
+
+                                    </tr>
+
+
+                                    <tr>
+                                        <td>@Html.DisplayNameFor(model => model.CPU):</td>
+                                        <td>@Html.DisplayFor(model => model.CPU)</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>@Html.DisplayNameFor(model => model.Description):</td>
+                                        <td>@Html.DisplayFor(model => model.Description)</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>@Html.DisplayNameFor(model => model.updateDate):</td>
+                                        <td>@Html.DisplayFor(model => model.updateDate)</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>@Html.DisplayNameFor(model => model.isDisabled):</td>
+                                        <td>
+                                            @if (Model.isDisabled == true)
+                                            {
+                                                <p style="color:black">Đã hết bán</p>
+                                            }
+                                            else
+                                            {
+                                                <p style="color:black">Đang bán</p>
+                                            }
+                                        </td>
+
+
+                                    </tr>
+
+
+                                    <tr>
+
+                                        <td>Thông số sản phẩm</td>
+
+                                        <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal1">Xem </button></td>
+
+                                    </tr>
+
+
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row no-print">
+                <div class="col-xs-12">
+                    <a href="@Url.Action("Edit","MerchantHome",new { id = Model.Id })" type="button" class="btn btn-danger pull-right">
+                        <i class="fa fa-credit-card"></i> Sửa thông tin
+                    </a>
+                    <a href="@Url.Action("BuyAd","MerchantHome",new { id = Model.Id })" type="button" class="btn btn-warning pull-right" style="margin-right: 5px;">
+                        <i class="fa fa-credit-card"></i> Đăng ký quảng cáo
+                    </a>
+                    <a href="@Url.Action("Index","MerchantHome")" type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
+                        <i class="fa fa-download"></i> Trở lại
+                    </a>
+                </div>
+            </div>
+        </div><!--/.col-->
+       
+
+    </div><!--/.row-->
+</div>
+<div class="modal fade" id="myModal2" role="dialog">
+    <div class="modal-dialog modal-primary">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Giấy chứng minh mặt trước</h4>
+            </div>
+            <div class="modal-body">
+                <img src="@Model.Image1" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Thông số sản phẩm modal-->
+<div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog modal-danger">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Ảnh cửa hàng</h4>
+            </div>
+            <div class="modal-body">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.RAM)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.RAM)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.hardDrive)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.hardDrive)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.screenType)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.screenType)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.GPU)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.GPU)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.IOPort)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.IOPort)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.OS)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.OS)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.DesignType)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.DesignType)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Size)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Size)
+                    </dd>
+                </dl>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>

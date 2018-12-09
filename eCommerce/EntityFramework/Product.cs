@@ -61,7 +61,7 @@ namespace eCommerce.EntityFramework
         [Required]
         [DisplayName("Trọng lượng")]
         public float Size { get; set; }
-        [Required]
+      
         [DisplayName("Ngày đăng")]
         public DateTime updateDate { get; set; }
         //public Nullable<DateTime> deletedDate { get; set; }
@@ -74,6 +74,8 @@ namespace eCommerce.EntityFramework
         [Required]
         [DisplayName("Ảnh 3")]
         public string Image3 { get; set; }
+        [DisplayName("Quảng cáo")]
+        public AdType AdType { get; set; }
         [Required]
         [DisplayName("Trạng thái")]
         public bool isDisabled { get; set; }

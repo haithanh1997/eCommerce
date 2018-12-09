@@ -227,6 +227,7 @@
     <Compile Include="Controllers\ShopsController.cs" />
     <Compile Include="DbInitializer.cs" />
     <Compile Include="EntityFramework\AdPackage.cs" />
+    <Compile Include="EntityFramework\AdType.cs" />
     <Compile Include="EntityFramework\Cart.cs" />
     <Compile Include="EntityFramework\Category.cs" />
     <Compile Include="EntityFramework\DeliveryMethod.cs" />
@@ -9164,6 +9165,8 @@
     <Content Include="Areas\Admin\Views\AdminHome\AllUsers.cshtml" />
     <Content Include="Areas\Merchant\Views\Shared\_LayoutPatial.cshtml" />
     <Content Include="Areas\Merchant\Views\MerchantHome\LowQuantity.cshtml" />
+    <Content Include="Areas\Merchant\Views\MerchantHome\Details.cshtml" />
+    <Content Include="Areas\Merchant\Views\MerchantHome\Edit.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -9227,6 +9230,7 @@
     <Folder Include="Areas\Admin\Views\PeriodPaidback\" />
     <Folder Include="Areas\Merchant\Models\" />
     <Folder Include="MerchantImages\" />
+    <Folder Include="MerchantProduct\" />
     <Folder Include="Views\Report\" />
   </ItemGroup>
   <ItemGroup>

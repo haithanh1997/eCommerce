@@ -17,9 +17,6 @@ namespace eCommerce.EntityFramework
         [DisplayName("Tên loại")]
         public string Name { get; set; }
 
-        [Required]
-        [DisplayName("Thuộc mã danh mục")]
-        public virtual Category Category { get; set; }
 
         [DisplayName("Không hiển thị")]
         public bool isDisabled { get; set; }

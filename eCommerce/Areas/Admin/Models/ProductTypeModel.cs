@@ -21,9 +21,6 @@ namespace eCommerce.Areas.Admin.Models
         
         public List<SelectListItem> Categories { get; set; }
 
-        [Required]
-        [DisplayName("Thuộc mã danh mục")]
-        public long CategorySelectedId { get; set; }
 
         [DisplayName("Không hiển thị")]
         public bool isDisabled { get; set; }

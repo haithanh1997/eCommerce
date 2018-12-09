@@ -64,7 +64,6 @@ namespace eCommerce.Areas.Admin.Controllers
                 {
                     Name = productType.Name,
                     isDisabled = productType.isDisabled,
-                    Category = db.Categories.FirstOrDefault(x => x.Id == productType.CategorySelectedId)
                 };
                 db.ProductTypes.Add(entity);
                 db.SaveChanges();
@@ -92,7 +91,6 @@ namespace eCommerce.Areas.Admin.Controllers
             {
                 Id = entity.Id,
                 Name = entity.Name,
-                CategorySelectedId = entity.Category.Id,
                 Categories = db.Categories.Select(x => new SelectListItem()
                 {
                     Text = x.Name,
@@ -118,8 +116,7 @@ namespace eCommerce.Areas.Admin.Controllers
             {
                 var entity = db.ProductTypes.FirstOrDefault(x => x.Id == productType.Id);
                 entity.Name = productType.Name;
-                entity.isDisabled = productType.isDisabled;
-                entity.Category = db.Categories.FirstOrDefault(x => x.Id == productType.CategorySelectedId);
+                entity.isDisabled = productType.isDisabled;  
                 db.Entry(entity).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
