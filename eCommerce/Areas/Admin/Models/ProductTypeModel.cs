@@ -18,11 +18,9 @@ namespace eCommerce.Areas.Admin.Models
         [Required]
         [DisplayName("Tên loại")]
         public string Name { get; set; }
-        
-        public List<SelectListItem> Categories { get; set; }
+		
 
-
-        [DisplayName("Không hiển thị")]
+		[DisplayName("Không hiển thị")]
         public bool isDisabled { get; set; }
     }
 }

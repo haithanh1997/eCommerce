@@ -27,7 +27,7 @@ namespace eCommerce.EntityFramework
        [Required]
        [DisplayName("Đơn giá")]
         public int Price { get; set; }
-        [DisplayName("Không hiển thị")]
+        [DisplayName("Xác nhận")]
        public bool isDisabled { get; set; }
     }
 }

@@ -42,12 +42,13 @@ namespace eCommerce.Areas.Admin.Controllers
         // GET: Admin/ProductTypes/Create
         public ActionResult Create()
         {
-            return View(new ProductTypeModel() {
-                Categories = db.Categories.Select(x => new SelectListItem() {
-                    Text = x.Name,
-                    Value = x.Id.ToString()
-                }).ToList()
-            });
+			// return View(new ProductTypeModel() {
+			// Categories = db.Categories.Select(x => new SelectListItem() {
+			// Text = x.Name,
+			// Value = x.Id.ToString()
+			//}).ToList()
+			//});
+			return View();
         }
 
         // POST: Admin/ProductTypes/Create
@@ -56,26 +57,26 @@ namespace eCommerce.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Create(ProductTypeModel productType)
+        public ActionResult Create(Product product)
         {
             if (ModelState.IsValid)
             {
-                var entity = new ProductType()
-                {
-                    Name = productType.Name,
-                    isDisabled = productType.isDisabled,
-                };
-                db.ProductTypes.Add(entity);
+                //var entity = new ProductType()
+                //{
+                    //Name = productType.Name,
+                    //isDisabled = productType.isDisabled,
+                //};
+                db.Products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            productType.Categories = db.Categories.Select(x => new SelectListItem()
-            {
-                Text = x.Name,
-                Value = x.Id.ToString()
-            }).ToList();
+            //productType.Categories = db.Categories.Select(x => new SelectListItem()
+            //{
+                //Text = x.Name,
+                //Value = x.Id.ToString()
+            //}).ToList();
 
-            return View(productType);
+            return View(product);
         }
 
         [Authorize(Roles = "Admin")]
@@ -86,17 +87,7 @@ namespace eCommerce.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var entity = db.ProductTypes.Find(id);
-            ProductTypeModel productType = new ProductTypeModel()
-            {
-                Id = entity.Id,
-                Name = entity.Name,
-                Categories = db.Categories.Select(x => new SelectListItem()
-                {
-                    Text = x.Name,
-                    Value = x.Id.ToString()
-                }).ToList()
-            };
+            var productType = db.ProductTypes.Find(id);
             if (productType == null)
             {
                 return HttpNotFound();
@@ -121,11 +112,7 @@ namespace eCommerce.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            productType.Categories = db.Categories.Select(x => new SelectListItem()
-            {
-                Text = x.Name,
-                Value = x.Id.ToString()
-            }).ToList();
+         
             return View(productType);
         }
 
