@@ -1,4 +1,5 @@
-﻿using System;
+﻿using eCommerce.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,12 +9,16 @@ namespace eCommerce.Controllers
 {
     public class ProductsController : Controller
     {
+        MainDbContext db = new MainDbContext();
         // GET: Products
         public ActionResult ProductsIndex()
         {
-            return View();
+            return View(new ProductIndexModel()
+            {
+                Products = db.Products.ToList(),
+            });
         }
-		public ActionResult Types()
+        public ActionResult Types()
 		{
 			return View();
 		}

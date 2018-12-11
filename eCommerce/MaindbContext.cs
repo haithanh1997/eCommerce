@@ -33,8 +33,6 @@ namespace eCommerce
 
         public System.Data.Entity.DbSet<eCommerce.Areas.Admin.Controllers.UserWithRole> UserWithRoles { get; set; }
 
-		public System.Data.Entity.DbSet<eCommerce.Areas.Admin.Models.ProductTypeModel> ProductTypeModels { get; set; }
-
-
-	}
+        public System.Data.Entity.DbSet<eCommerce.EntityFramework.CartItem> CartItems { get; set; }
+    }
 }

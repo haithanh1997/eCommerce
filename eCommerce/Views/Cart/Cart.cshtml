@@ -1,0 +1,43 @@
+﻿
+@{
+    Layout = null;
+}
+@model eCommerce.Models.UserCartModel
+
+<!-- Cart -->
+<div class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+        <i class="fa fa-shopping-cart"></i>
+        <span>Giỏ hàng</span>
+        <div class="qty">@(Model != null ? Model.TotalQuantity : 0)</div>
+    </a>
+    <div class="cart-dropdown">
+        <div class="cart-list">
+            @if (Model != null)
+            {
+                foreach (var item in Model.CartItems)
+                {
+                    <div class="product-widget product-@item.Product.Id">
+                        <div class="product-img">
+                            <img src="@item.Product.Image1" alt="">
+                        </div>
+                        <div class="product-body">
+                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                            <h4 class="product-price"><span class="qty">@(item.Quantity + "x")</span>@("$" + string.Format("{0:0,0}", item.Price))</h4>
+                        </div>
+                        <button class="delete" data-id="@item.Product.Id"><i class="fa fa-close"></i></button>
+                    </div>
+                }
+            }
+        </div>
+        <div class="cart-summary">
+            <small>@(Model != null ? Model.TotalQuantity : 0) Item(s) selected</small>
+            <h5>SUBTOTAL: @(Model != null ? "$" + string.Format("{0:0,0}", Model.TotalAmount) : "$0")</h5>
+        </div>
+        <div class="cart-btns">
+            <a href="/Cart/Index">Chi tiết</a>
+            <a href="#">Thanh toán  <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+</div>
+<!-- /Cart -->
