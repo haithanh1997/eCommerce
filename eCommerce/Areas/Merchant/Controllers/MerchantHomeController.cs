@@ -31,6 +31,16 @@ namespace eCommerce.Areas.Merchant.Controllers
 			var model = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id && x.Invoice.Status == ProductStatus.NotValidated).ToList();
             return View(model);
         }
+		[HttpPost]
+		public ActionResult Confirm(long product,long invoice)
+		{
+			var model = db.InvoiceDetails.FirstOrDefault(x => x.Invoice.Id == invoice && x.Product.Id == product);
+			model.isDisabled = true;
+			db.Entry(model).State = EntityState.Modified;
+			db.SaveChanges();
+			return View();
+		}
+
 		// Function theo dõi Các sản phẩm được mua của Merchant
 		public ActionResult Follow(string id)
 		{
@@ -79,7 +89,7 @@ namespace eCommerce.Areas.Merchant.Controllers
 		// Tạo sản phẩm
         public ActionResult Create(string id)
         {
-
+			var model = db.MerchantStores.FirstOrDefault(x => x.User.Id == id);
 			return View(new ProductModel() {
 				Category = db.Categories.Select(x => new SelectListItem() {
 					Text = x.Name,
@@ -90,20 +100,22 @@ namespace eCommerce.Areas.Merchant.Controllers
 					Text = x.Name,
 					Value = x.Id.ToString()
 				}).ToList(),
-				Store = db.MerchantStores.FirstOrDefault(x=>x.User.Id == id),
-				
-			 });
+				Store = model
+
+			});
 
         }
         [HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Create(ProductModel model)
+		public ActionResult Create(ProductModel model,string id)
         {
+
+
 			Product product = new Product();
             if (ModelState.IsValid)
             {
-				product.Id = model.Id;
-				product.Store = model.Store;
+				product.Id = model.IdSanpham;
+				product.Store = db.MerchantStores.FirstOrDefault(x=>x.User.Id == id);
 				product.Name = model.Name;
 				product.Price = model.Price;
 				product.Quantity = model.Quantity;
@@ -124,26 +136,24 @@ namespace eCommerce.Areas.Merchant.Controllers
 				product.AdType = model.AdType;
 				product.isDisabled = model.isDisabled;
 
-				var f1 = Request.Files["Image1"];
-                var f2 = Request.Files["Image2"];
-                var f3 = Request.Files["Image3"];
-                if (f1 != null && f1.ContentLength > 0)
+		
+                if (model.Image1 != null)
                 {
-                    var path = Server.MapPath("~/MerchantProduct/" + f1.FileName);
-                    f1.SaveAs(path);
-                    product.Image1 = "/MerchantProduct/" + f1.FileName;
+                    var path = Server.MapPath("~/MerchantProduct/" + model.Image1);
+					
+                    product.Image1 = "/MerchantProduct/" + model.Image1;
                 }
-                if (f2 != null && f2.ContentLength > 0)
+                if (model.Image2 != null  )
                 {
-                    var path = Server.MapPath("~/MerchantProduct/" + f2.FileName);
-                    f2.SaveAs(path);
-                    product.Image2 = "/MerchantProduct/" + f2.FileName;
+                    var path = Server.MapPath("~/MerchantProduct/" + model.Image2);
+                 
+                    product.Image2 = "/MerchantProduct/" + model.Image2;
                 }
-                if (f3 != null && f3.ContentLength > 0)
+                if (model.Image3 != null )
                 {
-                    var path = Server.MapPath("~/MerchantProduct/" + f3.FileName);
-                    f3.SaveAs(path);
-                    product.Image3 = "/MerchantProduct/" + f3.FileName;
+                    var path = Server.MapPath("~/MerchantProduct/" + model.Image3);
+                 
+                    product.Image3 = "/MerchantProduct/" + model.Image3;
                 }
                 db.Products.Add(product);
                 db.SaveChanges();
@@ -179,7 +189,7 @@ namespace eCommerce.Areas.Merchant.Controllers
             }
 			ProductModel model1 = new ProductModel()
 			{
-				Id = model.Id,
+				IdSanpham = model.Id,
 				Store = model.Store,
 				Name = model.Name,
 				Price = model.Price,
@@ -220,11 +230,11 @@ namespace eCommerce.Areas.Merchant.Controllers
 		[ValidateAntiForgeryToken]
 		public ActionResult Edit(ProductModel model)
 			{
-			Product product = db.Products.Find(model.Id);
+			Product product = db.Products.Find(model.IdSanpham);
 			if (ModelState.IsValid)
             {
 
-				product.Id = model.Id;
+				product.Id = model.IdSanpham;
 				product.Store = model.Store;
 				product.Name = model.Name;
 				product.Price = model.Price;
@@ -278,7 +288,7 @@ namespace eCommerce.Areas.Merchant.Controllers
 			// Hàng trả về khi thay đổi thất bại :))
 			ProductModel model1 = new ProductModel()
 			{
-				Id = model.Id,
+				IdSanpham = model.IdSanpham,
 				Store = model.Store,
 				Name = model.Name,
 				Price = model.Price,
@@ -319,10 +329,7 @@ namespace eCommerce.Areas.Merchant.Controllers
         {
             return View(db.Products.Where(x=>x.Price <= 2 && x.Store.User.Id== id));
         }
-		public ActionResult test(string id)
-		{
-			return View(db.Products.Where(x => x.Price <= 2 && x.Store.User.Id == id));
-		}
+		
 
 	}
 }

@@ -12,7 +12,7 @@ namespace eCommerce.Areas.Merchant.Models
 	public class ProductModel
 	{
 		[Key]
-		public long Id { get; set; }
+		public long IdSanpham { get; set; } // Đặt tên khác giùm
 
 		[DisplayName("Cửa hàng")] 
 		public virtual MerchantStore Store { get; set; }

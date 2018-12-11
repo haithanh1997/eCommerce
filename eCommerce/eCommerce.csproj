@@ -9139,7 +9139,6 @@
     <Content Include="Areas\Merchant\Views\MerchantHome\Create.cshtml" />
     <Content Include="Areas\Merchant\Views\MerchantHome\Index.cshtml" />
     <Content Include="Areas\Merchant\Views\MerchantHome\ManageProduct.cshtml" />
-    <Content Include="Areas\Merchant\Views\MerchantHome\NewInvoices.cshtml" />
     <Content Include="Areas\Merchant\Views\MerchantHome\Profit.cshtml" />
     <Content Include="Areas\Merchant\Views\MerchantHome\OldInvoices.cshtml" />
     <Content Include="Areas\Merchant\Views\Shared\_Layout-Merchants.cshtml" />
@@ -9171,6 +9170,8 @@
     <Content Include="Areas\Merchant\Views\MerchantHome\LowQuantity.cshtml" />
     <Content Include="Areas\Merchant\Views\MerchantHome\Details.cshtml" />
     <Content Include="Areas\Merchant\Views\MerchantHome\Edit.cshtml" />
+    <Content Include="Areas\Merchant\Views\MerchantHome\NewInvoices.cshtml" />
+    <Content Include="Areas\Merchant\Views\MerchantHome\Confirm.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

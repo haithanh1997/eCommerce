@@ -179,7 +179,6 @@
 							</ul>
 						</li>
 						<!-- Tasks: style can be found in dropdown.less -->
-
 						<!-- User Account: style can be found in dropdown.less -->
 						<li class="dropdown user user-menu">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -196,7 +195,6 @@
 									</p>
 								</li>
 								<!-- Menu Body -->
-								
 								<!-- Menu Footer-->
 								<li class="user-footer">
 									<div class="pull-left">
@@ -204,7 +202,7 @@
 									</div>
 									@if (Request.IsAuthenticated)
 									{
-										using (Html.BeginForm("LogOff", "Account",new {area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "pull-right" }))
+										using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "pull-right" }))
 										{
 											@Html.AntiForgeryToken()
 											<div class="pull-right">
@@ -250,96 +248,96 @@
 				</form>
 				<!-- /.search form -->
 				<!-- sidebar menu: : style can be found in sidebar.less -->
-                <ul class="sidebar-menu" data-widget="tree">
-                    <li>
-                        <a href="@Url.Action("Index","AdminHome")">
-                            <i class="fa fa-dashboard"></i> <span>Quản lí chung</span>
-                        </a>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-book"></i>
-                            <span>Danh mục</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="@Url.Action("Index","AdminProducts")"><i class="fa fa-circle-o"></i> Sản phẩm</a></li>
-                            <li><a href="@Url.Action("Index","ProductTypes")"><i class="fa fa-circle-o"></i> Loại sản phẩm</a></li>
-                            <li><a href="@Url.Action("Index","Categories")"><i class="fa fa-circle-o"></i> Thương hiệu</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-folder-open"></i>
-                            <span>Quản lý gói</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="@Url.Action("Index","Packages")"><i class="fa fa-circle-o"></i> Gói bài đăng</a></li>
-                            <li><a href="@Url.Action("Index","AdPackages")"><i class="fa fa-circle-o"></i> Gói quảng cáo</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-shopping-cart"></i> <span>Quản lí bán hàng</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="@Url.Action("Index","Invoices")"><i class="fa fa-circle-o"></i> Đơn hàng</a></li>
-                            <li><a href="@Url.Action("Index","Delivery")"><i class="fa fa-circle-o"></i> Vận chuyển</a></li>
-                            <li><a href="@Url.Action("Payment","Invoices")"><i class="fa fa-circle-o"></i> Thanh toán định kì</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-home"></i>
-                            <span>Quản lí cửa hàng</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="@Url.Action("Index","MerchantsAccount")"><i class="fa fa-circle-o"></i> Danh sách tài khoản</a></li>
-                            <li><a href="@Url.Action("Confirmation","MerchantsAccount")"><i class="fa fa-circle-o"></i> Xác Nhận tài khoản</a></li>
-                        </ul>
-                    </li>
+				<ul class="sidebar-menu" data-widget="tree">
+					<li>
+						<a href="@Url.Action("Index","AdminHome")">
+							<i class="fa fa-dashboard"></i> <span>Quản lí chung</span>
+						</a>
+					</li>
+					<li class="treeview">
+						<a href="#">
+							<i class="fa fa-book"></i>
+							<span>Danh mục</span>
+							<span class="pull-right-container">
+								<i class="fa fa-angle-left pull-right"></i>
+							</span>
+						</a>
+						<ul class="treeview-menu">
+							<li><a href="@Url.Action("Index","AdminProducts")"><i class="fa fa-circle-o"></i> Sản phẩm</a></li>
+							<li><a href="@Url.Action("Index","ProductTypes")"><i class="fa fa-circle-o"></i> Loại sản phẩm</a></li>
+							<li><a href="@Url.Action("Index","Categories")"><i class="fa fa-circle-o"></i> Thương hiệu</a></li>
+						</ul>
+					</li>
+					<li class="treeview">
+						<a href="#">
+							<i class="fa fa-folder-open"></i>
+							<span>Quản lý gói</span>
+							<span class="pull-right-container">
+								<i class="fa fa-angle-left pull-right"></i>
+							</span>
+						</a>
+						<ul class="treeview-menu">
+							<li><a href="@Url.Action("Index","Packages")"><i class="fa fa-circle-o"></i> Gói bài đăng</a></li>
+							<li><a href="@Url.Action("Index","AdPackages")"><i class="fa fa-circle-o"></i> Gói quảng cáo</a></li>
+						</ul>
+					</li>
+					<li class="treeview">
+						<a href="#">
+							<i class="fa fa-shopping-cart"></i> <span>Quản lí bán hàng</span>
+							<span class="pull-right-container">
+								<i class="fa fa-angle-left pull-right"></i>
+							</span>
+						</a>
+						<ul class="treeview-menu">
+							<li><a href="@Url.Action("Index","Invoices")"><i class="fa fa-circle-o"></i> Đơn hàng</a></li>
+							<li><a href="@Url.Action("Index","Delivery")"><i class="fa fa-circle-o"></i> Vận chuyển</a></li>
+							<li><a href="@Url.Action("Payment","Invoices")"><i class="fa fa-circle-o"></i> Thanh toán định kì</a></li>
+						</ul>
+					</li>
+					<li class="treeview">
+						<a href="#">
+							<i class="fa fa-home"></i>
+							<span>Quản lí cửa hàng</span>
+							<span class="pull-right-container">
+								<i class="fa fa-angle-left pull-right"></i>
+							</span>
+						</a>
+						<ul class="treeview-menu">
+							<li><a href="@Url.Action("Index","MerchantsAccount")"><i class="fa fa-circle-o"></i> Danh sách tài khoản</a></li>
+							<li><a href="@Url.Action("Confirmation","MerchantsAccount")"><i class="fa fa-circle-o"></i> Xác Nhận tài khoản</a></li>
+						</ul>
+					</li>
 
-                    <li>
-                        <a href="@Url.Action("AllUsers","AdminHome")"><i class="fa fa-users"></i>Xem tài khoản</a>
-                    </li>
+					<li>
+						<a href="@Url.Action("AllUsers","AdminHome")"><i class="fa fa-users"></i>Xem tài khoản</a>
+					</li>
 
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-line-chart"></i> <span>Thống kê báo cáo</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="@Url.Action("LowQuatity","Statistic")"><i class="fa fa-circle-o"></i> Sản phẩm sắp hết</a></li>
-                            <li><a href="@Url.Action("Daily","Statistic")"><i class="fa fa-circle-o"></i> Doanh thu ngày</a></li>
-                            <li><a href="@Url.Action("Monthly","Statistic")"><i class="fa fa-circle-o"></i> Doanh thu tháng</a></li>
-                            <li><a href="@Url.Action("Year","Statistic")"><i class="fa fa-circle-o"></i> Doanh thu năm</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="pages/mailbox/mailbox.html">
-                            <i class="fa fa-envelope"></i> <span>Hộp thư</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("Index","Chatbox")"><i class="fa fa-wechat"></i> Tư vấn online</a>
-                    </li>
-                </ul>
+					<li class="treeview">
+						<a href="#">
+							<i class="fa fa-line-chart"></i> <span>Thống kê báo cáo</span>
+							<span class="pull-right-container">
+								<i class="fa fa-angle-left pull-right"></i>
+							</span>
+						</a>
+						<ul class="treeview-menu">
+							<li><a href="@Url.Action("LowQuatity","Statistic")"><i class="fa fa-circle-o"></i> Sản phẩm sắp hết</a></li>
+							<li><a href="@Url.Action("Daily","Statistic")"><i class="fa fa-circle-o"></i> Doanh thu ngày</a></li>
+							<li><a href="@Url.Action("Monthly","Statistic")"><i class="fa fa-circle-o"></i> Doanh thu tháng</a></li>
+							<li><a href="@Url.Action("Year","Statistic")"><i class="fa fa-circle-o"></i> Doanh thu năm</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="pages/mailbox/mailbox.html">
+							<i class="fa fa-envelope"></i> <span>Hộp thư</span>
+							<span class="pull-right-container">
+								<i class="fa fa-angle-left pull-right"></i>
+							</span>
+						</a>
+					</li>
+					<li>
+						<a href="@Url.Action("Index","Chatbox")"><i class="fa fa-wechat"></i> Tư vấn online</a>
+					</li>
+				</ul>
 			</section>
 			<!-- /.sidebar -->
 		</aside>
@@ -557,14 +555,14 @@
 	<script src="~/Areas/Admin/Assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 	<script src="~/Areas/Admin/Assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 	<script>
-	$(function () {
-		$('#example1').DataTable({
-			'language': {
-				"url": '//cdn.datatables.net/plug-ins/1.10.19/i18n/Vietnamese.json'
-			}
-		})
+		$(function () {
+			$('#example1').DataTable({
+				'language': {
+					"url": '//cdn.datatables.net/plug-ins/1.10.19/i18n/Vietnamese.json'
+				}
+			})
 
-	})
+		})
 	</script>
 
 
