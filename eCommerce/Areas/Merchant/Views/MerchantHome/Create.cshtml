@@ -40,7 +40,7 @@
 
                         <!-- /.box-header -->
                         <div class="box-body">
-                            @using (Html.BeginForm("Create", "MerchantHome", new { id = User.Identity.GetUserId() }, FormMethod.Post))
+                            @using (Html.BeginForm("Create","MerchantHome",FormMethod.Post,new { id = User.Identity.GetUserId() , enctype = "multipart/form-data" }))
 							{
                                 @Html.AntiForgeryToken()
 
@@ -201,24 +201,21 @@
 								<div class="form-group">
 									@Html.LabelFor(model => model.Image1, htmlAttributes: new { @class = "col-md-2 control-label" })
 									<div class="col-md-4">
-										@Html.TextBoxFor(model => model.Image1, htmlAttributes: new { type = "file", @class = "form-control" })
-										@Html.ValidationMessageFor(model => model.Image1, "", new { @class = "text-danger" })
+										<input type="file" id="Image1" name="Image1" />
 									</div>
 								</div>
 
 								<div class="form-group ">
 									@Html.LabelFor(model => model.Image2, htmlAttributes: new { @class = "col-md-2 control-label" })
 									<div class="col-md-4">
-										@Html.TextBoxFor(model => model.Image2, htmlAttributes: new { type = "file" , @class = "form-control" })
-										@Html.ValidationMessageFor(model => model.Image2, "", new { @class = "text-danger" })
+                                        <input type="file" id="Image2" name="Image2" />
 									</div>
 								</div>
 
 								<div class="form-group ">
 									@Html.LabelFor(model => model.Image3, htmlAttributes: new { @class = "col-md-2 control-label" })
 									<div class="col-md-4">
-										@Html.TextBoxFor(model => model.Image3, htmlAttributes: new { type = "file", @class = "form-control" })
-										@Html.ValidationMessageFor(model => model.Image3, "", new { @class = "text-danger" })
+                                        <input type="file" id="Image3" name="Image3" />
 									</div>
 								</div>
 
