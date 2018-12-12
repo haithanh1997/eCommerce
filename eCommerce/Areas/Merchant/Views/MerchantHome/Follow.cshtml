@@ -1,7 +1,7 @@
-﻿@model IEnumerable<eCommerce.EntityFramework.Product>
+﻿@model IEnumerable<eCommerce.EntityFramework.InvoiceDetail>
 
 @{
-    ViewBag.Title = "LowQuantity";
+    ViewBag.Title = "NewInvoices";
     Layout = "~/Areas/Merchant/Views/Shared/_Layout-Merchants.cshtml";
 }
 
@@ -14,13 +14,13 @@
                     <em class="fa fa-home"></em>
                 </a>
             </li>
-            <li class="active">Sản phẩm</li>
+            <li class="active">Hóa đơn</li>
         </ol>
     </div><!--/.row-->
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Sản phẩm sắp hết</h1>
+            <h1 class="page-header">Theo dõi sản phẩm</h1>
         </div>
     </div><!--/.row-->
     <div class="row">
@@ -28,8 +28,8 @@
 
             <div class="panel panel-blue">
                 <div class="panel-heading">
-                    Danh Sách Sản Phẩm
-                  
+                    Danh Sách sản phẩm theo dõi
+
                     <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
                 </div>
                 <div class="panel-body ">
@@ -41,69 +41,82 @@
                                 <thead>
                                     <tr>
                                         <th>
-                                            @Html.DisplayNameFor(model => model.Image1)
+                                            @Html.DisplayNameFor(model => model.Invoice.User.UserName)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Product.Image1)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Product.Name)
                                         </th>
 
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.Name)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.Price)
-                                        </th>
                                         <th>
                                             @Html.DisplayNameFor(model => model.Quantity)
                                         </th>
                                         <th>
-                                            @Html.DisplayNameFor(model => model.discountValue)
+                                            @Html.DisplayNameFor(model => model.Price) 
                                         </th>
-
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.updateDate)
-                                        </th>
-
                                         <th>
                                             @Html.DisplayNameFor(model => model.isDisabled)
                                         </th>
-                                        <th></th>
+                                        <th>Thành Tiền</th>
+                                        <th>Tùy chọn</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                     @foreach (var item in Model)
                                     {
                                     <tr>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.Image1)
+                                            @Html.DisplayFor(modelItem => item.Invoice.User.UserName)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.Name)
+                                            <img src="@Html.DisplayFor(modelItem => item.Product.Image1)" width="50"  height="50"/> 
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.Price)
+                                            @Html.DisplayFor(modelItem => item.Product.Name)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.Quantity)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.discountValue)
+                                            @Html.DisplayFor(modelItem => item.Product.Price) VNĐ
                                         </td>
 
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.updateDate)
+                                            @if (item.isDisabled == true)
+                                            {
+                                                <p style="color:black;">Đã Xác nhận</p>
+                                            }
+                                            else
+                                            {
+                                                <p style="color:black;">Chưa xác nhận</p>
+                                            }
                                         </td>
+                                        @{
+                                            var Thanhtien = item.Product.Price * item.Quantity;
+                                        }
+                                        <td>
+                                            @Thanhtien VNĐ
+                                        </td>
+                                        @if (item.isDisabled == true && item.Invoice.Status == eCommerce.EntityFramework.ProductStatus.Processing || item.Invoice.Status == eCommerce.EntityFramework.ProductStatus.Validated)
+                                        {
+                                        <td>
+                                            @Html.ActionLink("Hủy xác nhận", "Confirm", new { invoice = item.Invoice.Id, product = item.Product.Id }) 
 
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.isDisabled)
                                         </td>
-                                        <td>
-                                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                                        </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+
+                                            </td>
+                                        }
                                     </tr>
                                     }
+
                                 </tbody>
-                                
+
                             </table>
                         </div>
                         <!-- /.box-body -->
@@ -117,3 +130,27 @@
 
     </div><!--/.row-->
 </div>
+@section scripts{
+    <script>
+	$(document).ready(function () {
+		$("#confirm").click(function () {
+			var form = document.createElement("form");
+			var element1 = document.createElement("input");
+			var element2 = document.createElement("input");
+			form.method = "POST";
+			form.action = "/Merchant/MerchantHome/Confirm";
+			element1.value = Number($(this).attr("data-product"));
+			element1.name = "product";
+			form.appendChild(element1);
+
+			element2.value = Number($(this).attr("data-invoice"));
+			element2.name = "invoice";
+			form.appendChild(element2);
+
+			document.body.appendChild(form);
+
+			form.submit();
+		})
+	})
+    </script>
+}

@@ -14,13 +14,13 @@
 					<em class="fa fa-home"></em>
 				</a>
 			</li>
-			<li class="active">Danh Sách Sản Phẩm</li>
+			<li class="active">Hóa đơn</li>
 		</ol>
 	</div><!--/.row-->
 
 	<div class="row">
 		<div class="col-lg-12">
-			<h1 class="page-header">Danh Sách Sản Phẩm</h1>
+            <h1 class="page-header">Xác nhận hóa đơn</h1>
 		</div>
 	</div><!--/.row-->
 	<div class="row">
@@ -70,9 +70,9 @@
 										<td>
 											@Html.DisplayFor(modelItem => item.Invoice.User.UserName)
 										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.Product.Image1)
-										</td>
+                                        <td>
+                                            <img src="@Html.DisplayFor(modelItem => item.Product.Image1)" width="50" height="50" />
+                                        </td>
 										<td>
 											@Html.DisplayFor(modelItem => item.Product.Name)
 										</td>
@@ -80,7 +80,7 @@
 											@Html.DisplayFor(modelItem => item.Quantity)
 										</td>
 										<td>
-											@Html.DisplayFor(modelItem => item.Product.Price)
+											@Html.DisplayFor(modelItem => item.Product.Price) VNĐ
 										</td>
 
 										<td>
@@ -97,14 +97,13 @@
 											var Thanhtien = item.Product.Price * item.Quantity;
 										}
 										<td>
-											@Thanhtien
+											@Thanhtien VNĐ
 										</td>
 										
-										<td>
-											<a href="javascript:void(0)" id="confirm" data-product="@item.Product.Id" data-invoice="@item.Id">Xác nhận</a> |
-										
-											@Html.ActionLink("Xóa", "Delete", new { id = item.Id }, FormMethod.Post)
-										</td>
+                                        <td>
+                                            @Html.ActionLink("Xác nhận", "Confirm", new { invoice = item.Invoice.Id , product = item.Product.Id }) 
+
+                                        </td>
 									</tr>
 									}
 
@@ -123,27 +122,3 @@
 
 	</div><!--/.row-->
 </div>
-@section scripts{
-<script>
-	$(document).ready(function () {
-		$("#confirm").click(function () {
-			var form = document.createElement("form");
-			var element1 = document.createElement("input");
-			var element2 = document.createElement("input");  
-			form.method = "POST";
-			form.action = "/Merchant/MerchantHome/Confirm"; 
-			element1.value = Number($(this).attr("data-product"));
-			element1.name = "product";
-			form.appendChild(element1);
-
-			element2.value = Number($(this).attr("data-invoice"));
-			element2.name = "invoice";
-			form.appendChild(element2);
-
-			document.body.appendChild(form);
-
-			form.submit();
-		})
-	})
-</script>
-}

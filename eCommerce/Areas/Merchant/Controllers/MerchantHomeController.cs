@@ -19,8 +19,16 @@ namespace eCommerce.Areas.Merchant.Controllers
 		// Dashboard
 		public ActionResult Index(string id)
 		{
-			return View();
-		}
+            var model0 = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id && x.Invoice.Status == ProductStatus.Delivered && x.isDisabled == false);
+            int daily = 0;
+            foreach(var item in model0)
+            {
+                daily += item.Price * item.Quantity;
+            }
+            ViewBag.DailyProfit = daily/1000000;
+            var model = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id && x.Invoice.Status == ProductStatus.NotValidated).ToList();
+            return View(model);
+        }
 		// THông tin tài khoản 
 		public ActionResult Account()
         {
@@ -32,26 +40,37 @@ namespace eCommerce.Areas.Merchant.Controllers
 			var model = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id && x.Invoice.Status == ProductStatus.NotValidated).ToList();
             return View(model);
         }
-		[HttpPost]
+	
 		public ActionResult Confirm(long product,long invoice)
 		{
 			var model = db.InvoiceDetails.FirstOrDefault(x => x.Invoice.Id == invoice && x.Product.Id == product);
-			model.isDisabled = true;
+            if(model.isDisabled == false)
+            {
+                model.isDisabled = true;
+            }
+            else
+            {
+                model.isDisabled = false;
+            }
+		
 			db.Entry(model).State = EntityState.Modified;
 			db.SaveChanges();
-			return View();
+           return RedirectToAction("NewInvoices");
+			//return View();
 		}
 
 		// Function theo dõi Các sản phẩm được mua của Merchant
 		public ActionResult Follow(string id)
 		{
-			var model = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id && (x.Invoice.Status == ProductStatus.Delivered || x.Invoice.Status == ProductStatus.Processing || x.Invoice.Status == ProductStatus.Delivering)).ToList();
-			return View();
+			var model = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id 
+                                            && (x.Invoice.Status == ProductStatus.Delivered || x.Invoice.Status == ProductStatus.Processing || x.Invoice.Status == ProductStatus.Delivering) 
+                                            && x.isDisabled == true).ToList();
+			return View(model);
 		}
 		// Function hiển thị Các sản phẩm đã giao xong của Merchant
 		public ActionResult OldInvoices(string id)
         {
-			var model = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id && x.Invoice.Status == ProductStatus.Delivered).ToList();
+			var model = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id && x.Invoice.Status == ProductStatus.Delivered && x.isDisabled == true).ToList();
 			return View(model);
         }
 		//Lợi nhuận thu đươc cưa thanh toán Merchant
@@ -132,8 +151,8 @@ namespace eCommerce.Areas.Merchant.Controllers
 				product.DesignType = model.DesignType;
 				product.Size = model.Size;
 				product.updateDate = DateTime.Now;
-				product.AdType = model.AdType;
-				product.isDisabled = model.isDisabled;
+                product.AdType = EntityFramework.AdType.Default;
+                product.isDisabled = false;
 
                 bool exists = System.IO.Directory.Exists(Server.MapPath("~/MerchantProduct/"+ViewBag.UserID));
 
