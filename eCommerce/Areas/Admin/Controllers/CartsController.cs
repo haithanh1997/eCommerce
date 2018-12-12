@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using eCommerce;
 using eCommerce.EntityFramework;
+using eCommerce.Areas.Admin.Models;
 
 namespace eCommerce.Areas.Admin.Controllers
 {
@@ -123,6 +124,15 @@ namespace eCommerce.Areas.Admin.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult Alert()
+        {
+            var invoices = db.Invoices.Where(x => x.Status == ProductStatus.NotValidated).ToList();
+            return View(new AlertModel() {
+                Quantity = invoices.Count,
+                Invoices = invoices
+            });
         }
     }
 }

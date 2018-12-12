@@ -47,12 +47,27 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.AspNet.SignalR.Client, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Client.2.4.0\lib\net45\Microsoft.AspNet.SignalR.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.4.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Owin, Version=1.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Owin.1.2.2\lib\net45\Microsoft.AspNet.SignalR.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.4.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -212,6 +227,7 @@
     <Compile Include="Areas\Admin\Controllers\ProductTypesController.cs" />
     <Compile Include="Areas\Admin\Controllers\StatisticController.cs" />
     <Compile Include="Areas\Admin\Controllers\StoresController.cs" />
+    <Compile Include="Areas\Admin\Models\CartModel.cs" />
     <Compile Include="Areas\Admin\Models\ProductTypeModel.cs" />
     <Compile Include="Areas\Merchant\Controllers\BuyPackageController.cs" />
     <Compile Include="Areas\Merchant\Controllers\MerchantHomeController.cs" />
@@ -227,6 +243,7 @@
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\ShopsController.cs" />
+    <Compile Include="SignalRHub.cs" />
     <Compile Include="DbInitializer.cs" />
     <Compile Include="EntityFramework\AdPackage.cs" />
     <Compile Include="EntityFramework\AdType.cs" />
@@ -247,6 +264,7 @@
     </Compile>
     <Compile Include="MainDbContext.cs" />
     <Compile Include="Models\CartModel.cs" />
+    <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Models\PaymentModel.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -254,6 +272,7 @@
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Static\Payment.cs" />
     <Compile Include="Static\SHA1Convert.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -9141,6 +9160,7 @@
     <Content Include="Areas\Merchant\Views\MerchantHome\Create.cshtml" />
     <Content Include="Areas\Merchant\Views\MerchantHome\Index.cshtml" />
     <Content Include="Areas\Merchant\Views\MerchantHome\ManageProduct.cshtml" />
+    <Content Include="Areas\Merchant\Views\MerchantHome\NewInvoices.cshtml" />
     <Content Include="Areas\Merchant\Views\MerchantHome\Profit.cshtml" />
     <Content Include="Areas\Merchant\Views\MerchantHome\OldInvoices.cshtml" />
     <Content Include="Areas\Merchant\Views\Shared\_Layout-Merchants.cshtml" />
@@ -9172,9 +9192,6 @@
     <Content Include="Areas\Merchant\Views\MerchantHome\LowQuantity.cshtml" />
     <Content Include="Areas\Merchant\Views\MerchantHome\Details.cshtml" />
     <Content Include="Areas\Merchant\Views\MerchantHome\Edit.cshtml" />
-    <Content Include="Areas\Merchant\Views\MerchantHome\NewInvoices.cshtml" />
-    <Content Include="Areas\Merchant\Views\MerchantHome\Follow.cshtml" />
-    <Content Include="Areas\Merchant\Views\BuyPackage\Index.cshtml" />
     <Content Include="Areas\Merchant\Views\MerchantHome\ChangePassWord.cshtml" />
     <Content Include="Areas\Merchant\Views\MerchantHome\Shop.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -9183,6 +9200,8 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.0.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.0.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -9236,6 +9255,8 @@
     <Content Include="Views\Shops\Register.cshtml" />
     <Content Include="Views\Cart\Cart.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Customers\PaymentComplete.cshtml" />
+    <Content Include="Views\Cart\Alert.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -9253,7 +9274,9 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>

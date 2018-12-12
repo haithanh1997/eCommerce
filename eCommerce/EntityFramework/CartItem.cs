@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace eCommerce.EntityFramework
@@ -25,7 +26,7 @@ namespace eCommerce.EntityFramework
         [DisplayName("Đơn giá")]
         public int Price { get; set; }
 
-        public decimal ItemAmount
+        public int ItemAmount
         {
             get
             {

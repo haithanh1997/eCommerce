@@ -3,7 +3,7 @@
 	ViewBag.Title = "UserInfo";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@model eCommerce.Models.UserInfoModel
 
 <!-- BREADCRUMB -->
 <div id="breadcrumb" class="section">
@@ -41,51 +41,41 @@
 			</div>*@
 			
 			<!-- Order Details -->
-			<div class="col-md-offset-2 col-md-8 order-details">
+			<form class="col-md-offset-2 col-md-8 order-details" action="/Customers/Payment" method="post">
 				<div class="section-title text-center">
 					<h3 class="title">Đơn Hàng</h3>
 				</div>
-				<div class="order-summary">
+				@if(Model != null)
+                {
+                    <div class="order-summary">
 
 					<div class="order-col">
 						<div><strong>THÔNG TIN NHẬN HÀNG</strong></div>
 						<div><strong></strong></div>
 					</div>
 
-					<div class="order-products">
-						<div class="order-col">
-							<div>Họ Tên</div>
-							<div></div>
-						</div>
-						<div class="order-col">
-							<div>Địa chỉ</div>
-							<div></div>   <!--không được xóa-->
-						</div>
-						<div class="order-col">
-							<div>Số điện thoại</div>
-							<div></div>
-						</div>
-					</div>
-
                     <div class="shiping-details" style="margin-top:10px; margin-bottom:0">
                         <div class="input-checkbox">
-                            <input type="checkbox" id="shiping-address">
-                            <label for="shiping-address">
-                                <span></span>
-                                Thay đổi thông tin nhận hàng
-                            </label>
                             <div class="caption">
                                 <div class="form-group">
-                                    <input class="input" type="text" name="first-name" placeholder="Họ và tên lót">
+                                     @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "input", @placeholder = "Tên" }})
+                                     @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="form-group">
-                                    <input class="input" type="text" name="last-name" placeholder="Tên">
+                                     @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @placeholder = "Địa chỉ nhận hàng" } })
+                                     @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="form-group">
-                                    <input class="input" type="text" name="address" placeholder="Địa chỉ nhận hàng">
+                                     @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", @placeholder = "Số điện thoại" } })
+                                     @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="form-group">
-                                    <input class="input" type="tel" name="tel" placeholder="Số điện thoại">
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email" } })
+                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                         </div>
@@ -105,7 +95,7 @@
 
 					<div class="order-col">
 						<div><strong>TỔNG TIỀN</strong></div>
-						<div><strong class="order-total" style="font-size:14px;">1300000 VND</strong></div>
+						<div><strong class="order-total" style="font-size:14px;">@string.Format("{0:0,0}", Model.TotalAmount) VND</strong></div>
 					</div>
 
 					<div class="order-col">
@@ -122,7 +112,7 @@
                         PHƯƠNG THỨC THANH TOÁN
                     </label>
 					<div class="input-radio">
-						<input type="radio" name="payment" id="payment-2">
+						<input type="radio" name="payment" id="payment-2"  value="1">
 						<label for="payment-2">
 							<span></span>
 							Thanh toán qua 123Pay
@@ -135,7 +125,7 @@
 
 					</div>
 					<div class="input-radio">
-						<input type="radio" name="payment" id="payment-3">
+						<input type="radio" name="payment" id="payment-3" value="2" checked>
 						<label for="payment-3">
 							<span></span>
 							Thanh toán khi nhận hàng
@@ -143,36 +133,18 @@
 					</div>
 				</div>
 
-                <div class="shiping-details">
-                    <div class="input-checkbox">
-                        <div class="input-radio">
-                            <input type="checkbox" name="payment" id="payment-1">
-                            <label for="payment-1">
-                                <span></span>
-                                Thay đổi Email theo dõi đơn hàng
-                            </label>
-                            <div class="caption">
-                                <div class="form-group">
-                                    <div class="col-sm-10">
-                                        <input class="input form-control" type="text" name="Email" placeholder="Email">
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <button class="btn btn-danger btn-flat" style="margin-top:3px">Xác nhận</button> 
-                                    </div>     
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-				<div class="input-checkbox">
-					<input type="checkbox" id="terms">
-					<label for="terms">
+				<div>
+                    @Html.ValidationMessageFor(model => model.AgreePolicy, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.AgreePolicy)
+					@*<input type="checkbox" name="AgreePolicy">*@
+					<label>
 						<span></span>
 						Tôi đã đọc và đồng ý với <a href="#">chính sách & điều khoản</a>
 					</label>
 				</div>
-				<a href="#" class="primary-btn order-submit">Thanh Toán</a>
-			</div>
+				<button type="submit" class="primary-btn order-submit">Thanh Toán</button>
+                }
+			</form>
 			<!-- /Order Details -->
 		</div>
 		<!-- /row -->
@@ -180,3 +152,8 @@
 	<!-- /container -->
 </div>
 <!-- /SECTION -->
+@section scripts{
+       <!-- Validate Scripts-->
+    <script src="/Scripts/jquery.validate.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.validate.unobtrusive.js" type="text/javascript"></script>
+}
