@@ -236,6 +236,10 @@ namespace eCommerce
                 createdDate = DateTime.Now,
                 Status = ProductStatus.Validated,
                 isDisabled = false,
+                Name = "Phú",
+                Email = "tamtam@gmail.com",
+                Phone = "0909090909",
+                TransactionId = "DOANXEM5"
             });
 
             defaultInvoices.Add(new Invoice()
@@ -249,6 +253,10 @@ namespace eCommerce
                 createdDate = DateTime.Now,
                 Status = ProductStatus.Processing,
                 isDisabled = false,
+                Name = "Cương",
+                Email = "tamtam@gmail.com",
+                Phone = "0909090909",
+                TransactionId = "DOANXEM4"
             });
 
             defaultInvoices.Add(new Invoice()
@@ -262,6 +270,10 @@ namespace eCommerce
                 createdDate = DateTime.Now,
                 Status = ProductStatus.NotValidated,
                 isDisabled = false,
+                Name = "Thành",
+                Email = "tamtam@gmail.com",
+                Phone = "0909090909",
+                TransactionId = "DOANXEM3"
             });
 
             defaultInvoices.Add(new Invoice()
@@ -275,6 +287,10 @@ namespace eCommerce
                 createdDate = DateTime.Now,
                 Status = ProductStatus.Delivering,
                 isDisabled = false,
+                Name = "Tâm",
+                Email = "tamtam@gmail.com",
+                Phone = "0909090909",
+                TransactionId = "DOANXEM2"
             });
 
             defaultInvoices.Add(new Invoice()
@@ -288,6 +304,10 @@ namespace eCommerce
                 createdDate = DateTime.Now,
                 Status = ProductStatus.Delivered,
                 isDisabled = false,
+                Name = "Tâm",
+                Email = "tamtam@gmail.com",
+                Phone = "0909090909",
+                TransactionId = "DOANXEM1"
             });
 
             context.Invoices.AddRange(defaultInvoices);

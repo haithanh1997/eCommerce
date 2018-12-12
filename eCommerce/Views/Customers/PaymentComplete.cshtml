@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "PaymentComplete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model eCommerce.Models.PaymentCompleteModel
+
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8 order-details">
+                <div class="section-title text-center">
+                    <h3 class="title">THÔNG BÁO</h3>
+                </div>
+                <div class="section-title text-center">
+                    <h2 class="title">THANH TOÁN THÀNH CÔNG</h2>
+                    <h3 class="title"><a href="">Kiểm tra đơn hàng ở đây</a></h3>
+                </div>
+                <a href="/"><button class="primary-btn order-submit col-sm-12 col-md-12">TRỞ VỀ TRANG CHỦ</button></a>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $.connection.hub.start().done(function () {
+                $.connection.SignalRHub.server.alert("@Model.InvoiceId");
+            });
+        })
+    </script>
+}

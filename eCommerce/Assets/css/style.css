@@ -277,7 +277,7 @@ textarea.input {
 
 .input-radio .caption, .input-checkbox .caption {
   margin-top: 5px;
-  max-height: 0;
+  /*max-height: 0;*/
   overflow: hidden;
   -webkit-transition: 0.3s max-height;
   transition: 0.3s max-height;

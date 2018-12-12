@@ -1,0 +1,28 @@
+﻿@{ 
+    Layout = null;
+}
+@model eCommerce.Areas.Admin.Models.AlertModel
+
+<li class="dropdown notifications-menu">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <i class="fa fa-bell-o"></i>
+        <span class="label label-warning">@(Model!=null ? Model.Quantity.ToString() : "")</span>
+    </a>
+    <ul class="dropdown-menu">
+        <li class="header">@(Model!=null ? Model.Quantity : 0) thông báo mới</li>
+        <li>
+            <!-- inner menu: contains the actual data -->
+            <ul class="menu">
+                @foreach (var item in Model.Invoices)
+                {
+                    <li>
+                        <a href="@item.Id">
+                            <i class="fa fa-users text-aqua"></i> @item.User.UserName đã đặt hàng
+                        </a>
+                    </li>
+                }
+            </ul>
+        </li>
+        <li class="footer"><a href="#">Xem tất cả</a></li>
+    </ul>
+</li>

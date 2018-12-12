@@ -16,8 +16,18 @@ namespace eCommerce.EntityFramework
         [DisplayName("Người dùng")]
         public virtual IdentityUser User { get; set; }
         [Required]
+        [DisplayName("Họ tên")]
+        public string Name { get; set; }
+
+        [Required]
         [DisplayName("Địa chỉ")]
         public string Address { get; set; }
+        [Required]
+        [DisplayName("Số điện thoại")]
+        public string Phone { get; set; }
+        [Required]
+        [DisplayName("Email")]
+        public string Email { get; set; }
         [Required]
         [DisplayName("Tổng tiền")]
         public int Total { get; set; }

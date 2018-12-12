@@ -1,7 +1,7 @@
-﻿﻿using eCommerce.EntityFramework;
+﻿using eCommerce.EntityFramework;
 using eCommerce.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Newtonsoft.Json;
+using System;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -65,7 +65,7 @@ namespace eCommerce.Controllers
                             Cart = cart,
                             Product = product,
                             Price = product.Price,
-                            Quantity = Quantity
+                            Quantity = Quantity,
                         };
                         db.CartItems.Add(cartItem);
                     }
