@@ -259,6 +259,7 @@ namespace eCommerce
                 TransactionId = "DOANXEM4"
             });
 
+
             defaultInvoices.Add(new Invoice()
             {
                 User = context.Users.FirstOrDefault(x => x.Id == user_id),
@@ -308,6 +309,40 @@ namespace eCommerce
                 Email = "tamtam@gmail.com",
                 Phone = "0909090909",
                 TransactionId = "DOANXEM1"
+            });
+
+            defaultInvoices.Add(new Invoice()
+            {
+                User = context.Users.FirstOrDefault(x => x.Id == user_id),
+                Address = "Nhà thằng phú",
+                Total = 17000000,
+                PaymentMethod = PaymentMethod.Online,
+                DeliveryMethod = DeliveryMethod.Fast,
+                Description = "Trả tiền online đồ",
+                createdDate = new DateTime(2018,11,12),
+                Status = ProductStatus.Delivered,
+                isDisabled = false,
+                Name = "Tâm",
+                Email = "tamtam@gmail.com",
+                Phone = "0909090909",
+                TransactionId = "DOANXEM0"
+            });
+
+            defaultInvoices.Add(new Invoice()
+            {
+                User = context.Users.FirstOrDefault(x => x.Id == user_id),
+                Address = "Nhà thằng phú",
+                Total = 17000000,
+                PaymentMethod = PaymentMethod.Online,
+                DeliveryMethod = DeliveryMethod.Fast,
+                Description = "Trả tiền online đồ",
+                createdDate = new DateTime(2018, 11, 15),
+                Status = ProductStatus.Delivered,
+                isDisabled = false,
+                Name = "Tâm",
+                Email = "tamtam@gmail.com",
+                Phone = "0909090909",
+                TransactionId = "DOANXEM-1"
             });
 
             context.Invoices.AddRange(defaultInvoices);
@@ -360,6 +395,24 @@ namespace eCommerce
             defaultInvoiceDetails.Add(new InvoiceDetail()
             {
                 Invoice = context.Invoices.FirstOrDefault(x => x.Id == 5),
+                Product = context.Products.FirstOrDefault(x => x.Id == 2),
+                Quantity = 1,
+                Price = 17000000,
+                isDisabled = false
+            });
+
+            defaultInvoiceDetails.Add(new InvoiceDetail()
+            {
+                Invoice = context.Invoices.FirstOrDefault(x => x.Id == 6),
+                Product = context.Products.FirstOrDefault(x => x.Id == 2),
+                Quantity = 1,
+                Price = 17000000,
+                isDisabled = false
+            });
+
+            defaultInvoiceDetails.Add(new InvoiceDetail()
+            {
+                Invoice = context.Invoices.FirstOrDefault(x => x.Id == 7),
                 Product = context.Products.FirstOrDefault(x => x.Id == 2),
                 Quantity = 1,
                 Price = 17000000,

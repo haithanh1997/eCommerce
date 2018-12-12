@@ -3,6 +3,7 @@ using eCommerce.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -18,16 +19,101 @@ namespace eCommerce.Areas.Merchant.Controllers
 
 		// Dashboard
 		public ActionResult Index(string id)
-		{
-            var model0 = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id && x.Invoice.Status == ProductStatus.Delivered && x.isDisabled == false);
-            int daily = 0;
-            foreach(var item in model0)
-            {
-                daily += item.Price * item.Quantity;
-            }
-            ViewBag.DailyProfit = daily/1000000;
+        {
+            ProfitCalculation(id);
+            Increasement(id);
             var model = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id && x.Invoice.Status == ProductStatus.NotValidated).ToList();
             return View(model);
+        }
+
+        public void ProfitCalculation(string id)
+        {
+            //daily revenue
+            var model0 = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id && x.Invoice.Status == ProductStatus.Delivered &&
+            x.isDisabled == false && x.Invoice.createdDate.Day == DateTime.Now.Day && x.Invoice.createdDate.Month == DateTime.Now.Month &&
+            x.Invoice.createdDate.Year == DateTime.Now.Year);
+            int daily = 0,dailyI = 0;
+            foreach (var item in model0)
+            {
+                daily += item.Price * item.Quantity;
+                dailyI += 1;
+            }
+            ViewBag.DailyProfit = daily / 1000000;
+            ViewBag.DailyBill = dailyI;
+            // end daily revenue
+
+            //weekly revenue
+            var model1 = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id && x.Invoice.Status == ProductStatus.Delivered &&
+            x.isDisabled == false && x.Invoice.createdDate >= DbFunctions.AddDays(DateTime.Now, -7));
+            int weekly = 0, weeklyI = 0 ;
+            foreach (var item in model1)
+            {
+                weekly += item.Price * item.Quantity;
+                weeklyI += 1;
+            }
+            ViewBag.WeeklyProfit = weekly / 1000000;
+            ViewBag.WeeklyBill = weeklyI;
+            //end weekly revenue
+
+            //monthly revenue
+            var model2 = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id && x.Invoice.Status == ProductStatus.Delivered &&
+            x.isDisabled == false && x.Invoice.createdDate >= DbFunctions.AddDays(DateTime.Now, -30));
+            int monthly = 0,mothlyI = 0;
+            foreach (var item in model2)
+            {
+                monthly += item.Price * item.Quantity;
+                mothlyI += 1;
+            }
+            ViewBag.MonthlyProfit = monthly / 1000000;
+            ViewBag.MonthlyBill = mothlyI;
+            //end monthly revenue
+
+            //90 days revenue
+            var model3 = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id && x.Invoice.Status == ProductStatus.Delivered &&
+            x.isDisabled == false && x.Invoice.createdDate >= DbFunctions.AddDays(DateTime.Now, -90));
+            int threeMonths = 0,threeMonthsI = 0;
+            foreach (var item in model3)
+            {
+                threeMonths += item.Price * item.Quantity;
+                threeMonthsI += 1;
+            }
+            ViewBag.ThreeMonthsProfit = threeMonths / 1000000;
+            ViewBag.ThreeMonthsBill = threeMonthsI;
+            //end 90 days revenue
+
+            //whole year revenue
+            var model4 = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id && x.Invoice.Status == ProductStatus.Delivered &&
+            x.isDisabled == false && x.Invoice.createdDate.Year == DateTime.Now.Year);
+            int wholeYear = 0,wholeYearI = 0;
+            foreach (var item in model4)
+            {
+                wholeYear += item.Price * item.Quantity;
+                wholeYearI += 1;
+            }
+            ViewBag.WholeYearProfit = wholeYear / 1000000;
+            ViewBag.WholeYearBill = wholeYearI;
+            //end whole year revenue
+        }
+
+        public void Increasement(string id)
+        {
+            var before = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id && x.Invoice.Status == ProductStatus.Delivered &&
+            x.isDisabled == false && x.Invoice.createdDate >= DbFunctions.AddMonths(DateTime.Now, -1));
+            int lastMonth = 0;
+            foreach(var item in before)
+            {
+                lastMonth += item.Price * item.Quantity;
+            }
+            int thisMonth = 0;
+            var after = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id && x.Invoice.Status == ProductStatus.Delivered &&
+            x.isDisabled == false && x.Invoice.createdDate.Month == DateTime.Now.Month);
+            foreach (var item in after)
+            {
+                thisMonth += item.Price * item.Quantity;
+            }
+            int increased = thisMonth - lastMonth;
+            double percent = (lastMonth + increased) / lastMonth * 100;
+            ViewBag.Percent = percent;
         }
 		// THông tin tài khoản 
 		public ActionResult Account()

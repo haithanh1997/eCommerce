@@ -37,7 +37,7 @@
 				<div class="panel panel-blue panel-widget border-right">
 					<div class="row no-padding">
 						<em class="fa fa-xl fa-file color-orange"></em>
-						<div class="large">52</div>
+                        <div class="large">@ViewBag.DailyBill</div>
 						<div class="text-muted">Hóa đơn hôm nay</div>
 					</div>
 				</div>
@@ -95,7 +95,7 @@
 									<td valign="bottom">
 										<span class="callout1">
 
-											0
+											@ViewBag.DailyBill
 
 										</span>
 									</td>
@@ -103,42 +103,42 @@
 								<tr>
 									<th scope="row">7 Ngày Trước</th>
 									<td>&nbsp;</td>
+                                    <td>
+
+                                        @ViewBag.WeeklyProfit triệu
+
+                                    </td>
 									<td>
 
-										$0
-
-									</td>
-									<td>
-
-										0
+										@ViewBag.WeeklyBill
 
 									</td>
 								</tr>
 								<tr>
 									<th scope="row">30 Ngày Trước</th>
 									<td>&nbsp;</td>
-									<td>
+                                    <td>
 
-										$0
+                                        @ViewBag.MonthlyProfit triệu
 
-									</td>
-									<td>
+                                    </td>
+                                    <td>
 
-										0
+                                        @ViewBag.MonthlyBill
 
-									</td>
+                                    </td>
 								</tr>
 								<tr>
 									<th scope="row">90 Ngày Trước</th>
 									<td>&nbsp;</td>
+                                    <td>
+
+                                        @ViewBag.ThreeMonthsProfit triệu
+
+                                    </td>
 									<td>
 
-										$0
-
-									</td>
-									<td>
-
-										0
+										@ViewBag.ThreeMonthsBill
 
 									</td>
 								</tr>
@@ -147,12 +147,12 @@
 									<td>&nbsp;</td>
 									<td>
 
-										$0
+										@ViewBag.WholeYearProfit triệu
 
 									</td>
 									<td>
 
-										0
+										@ViewBag.WholeYearBill
 
 									</td>
 								</tr>
@@ -167,7 +167,7 @@
 			<div class="panel panel-default">
 				<div class="panel-body easypiechart-panel">
 					<h4>Tăng Trưởng</h4>
-					<div class="easypiechart" id="easypiechart-red" data-percent="35"><span class="percent">35%</span></div>
+					<div class="easypiechart" id="easypiechart-red" data-percent="@ViewBag.Percent"><span class="percent">@ViewBag.Percent%</span></div>
 				</div>
 			</div>
 		</div>
