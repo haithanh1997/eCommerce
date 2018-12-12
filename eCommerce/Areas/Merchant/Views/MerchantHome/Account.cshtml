@@ -94,7 +94,7 @@
 						</fieldset>
 					</form>
 				</div>
-			</div>
+			</div> @Html.Action("ChangePassWord")
 			<div class="panel panel-warning">
 				<div class="panel-heading">
 					Dịch Vụ
@@ -160,13 +160,13 @@
 							<!-- Form actions -->
 							<div class="form-group">
 								<div class="col-md-12 widget-right">
-									<button type="submit" class="btn btn-default btn-md pull-right">Submit</button>
+									<a class="btn btn-default btn-md pull-right" href="@Url.Action("Index","BuyPackage")">Mua Thêm</a>
 								</div>
 							</div>
 						</fieldset>
 					</form>
 				</div>
-			</div>
+			</div> @Html.Action("Services")
 		</div><!--/.col-->
 
 		<div class="col-md-6">
@@ -269,7 +269,7 @@
 
 									</select>
 								</div>
-								
+
 							</div>
 
 							<div class="form-group">
@@ -318,7 +318,7 @@
 						</fieldset>
 					</form>
 				</div>
-			</div>
+			</div> @Html.Action("Shop")
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					Thông Tin Ví
@@ -357,7 +357,7 @@
 				<div class="panel-body">
 					<form class="form-horizontal" action="" method="post">
 						<fieldset>
-							
+
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="numbercard">Số Thẻ</label>
 								<div class="col-md-9">
@@ -365,7 +365,7 @@
 								</div>
 							</div>
 
-							
+
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="numberaccount">Số Tài Khoản</label>
 								<div class="col-md-9">
@@ -373,7 +373,7 @@
 								</div>
 							</div>
 
-							
+
 							<!-- Form actions -->
 							<div class="form-group">
 								<div class="col-md-12 widget-right">
@@ -383,7 +383,7 @@
 						</fieldset>
 					</form>
 				</div>
-			</div>
+			</div> @Html.Action("BankAccount")
 		</div><!--/.col-->
 		
 	</div><!--/.row-->

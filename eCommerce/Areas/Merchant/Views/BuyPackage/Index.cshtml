@@ -1,0 +1,70 @@
+﻿@model IEnumerable<eCommerce.EntityFramework.Package>
+
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Areas/Merchant/Views/Shared/_Layout-Merchants.cshtml";
+}
+
+
+<link rel="stylesheet" href="~/Areas/Admin/Assets/dist/css/AdminLTE.css">
+<div class="content-wrapper" >
+	<!-- Content Header (Page header) -->
+	<section class="content-header clear-fix">
+		<h1>
+			Gói bài đăng
+		</h1>
+	</section>
+	<!-- Main content -->
+
+	<section class="content">
+		<div class="box" style="padding-left: 20px; padding-right: 20px">
+			<div class="row">
+
+				<div class="pricing-table">
+					<div class="col-lg-4">
+						<div class="plan">
+							<h3>Cơ bản<span>299.000</span></h3>
+							<a class="btn btn-lg btn-primary" href="#">Chỉnh sửa</a>
+							<ul>
+								<li><b>10 lần</b> đăng bài</li>
+								<li><b>7 ngày</b> sản phẩm được đăng</li>
+								<li><b>Miễn phí</b> nhận thông báo số lượng sản phẩm</li>
+								<li><b>Rút tiền</b> khi đến giới hạn nhất định</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="plan most-popular">
+							<div class="plan-ribbon-wrapper">
+								<div class="plan-ribbon">Phổ biến</div>
+							</div>
+							<h3>Tiêu chuẩn<span>599.000</span></h3>
+							<a class="btn btn-lg btn-primary" href="#">Chỉnh sửa</a>
+							<ul>
+								<li><b>25 lần</b> đăng bài</li>
+								<li><b>30 ngày</b> sản phẩm được đăng</li>
+								<li><b>Miễn phí</b> nhận thông báo số lượng sản phẩm</li>
+								<li><b>Ưu tiên</b> hiển thị sản phẩm</li>
+								<li><b>Ngẫu nhiên</b> hiển thị quảng cáo sản phẩm</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="plan">
+							<h3>Doanh nghiệp<span>999.000</span></h3>
+							<a class="btn btn-lg btn-primary" href="#">Chỉnh sửa</a>
+							<ul>
+								<li><b>100 lần</b> đăng bài</li>
+								<li><b>Không giới hạn</b> thời gian treo sản phẩm</li>
+								<li><b>Miễn phí</b> nhận thông báo số lượng sản phẩm</li>
+								<li><b>Tùy chọn</b> vị trí đặt quảng cáo sản phẩm</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+	<!-- /.content -->
+</div>

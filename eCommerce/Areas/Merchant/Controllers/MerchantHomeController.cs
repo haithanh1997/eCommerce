@@ -390,6 +390,27 @@ namespace eCommerce.Areas.Merchant.Controllers
 
             return RedirectToAction("Index");
         }
+		[ChildActionOnly]
+		public ActionResult ChangePassWord()
+		{
+			return PartialView("ChangePassWord");
+		}
+		[ChildActionOnly]
+		public ActionResult Shop()
+		{
+			return PartialView("Shop");
+		}
+		[ChildActionOnly]
+		public ActionResult Services()
+		{
+			return PartialView("Service");
+		}
+		[ChildActionOnly]
+		public ActionResult BankAccount()
+		{
+			return PartialView("BankAccount");
+		}
 
-    }
+	}
+	
 }
