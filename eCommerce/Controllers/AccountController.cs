@@ -77,10 +77,20 @@ namespace eCommerce.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
+            var user = await UserManager.FindAsync(model.Email, model.Password);
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
+                    if (UserManager.IsInRole(user.Id,"Admin") || UserManager.IsInRole(user.Id,"Moderator"))
+                    {
+                        return RedirectToAction("Index", "AdminHome", new { area = "Admin" });
+                    }
+                    else if(UserManager.IsInRole(user.Id,"Merchant"))
+                    {
+                        return RedirectToAction("Index", "MerchantHome", new { area = "Merchant" , id = user.Id });
+                    }
+                    else
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

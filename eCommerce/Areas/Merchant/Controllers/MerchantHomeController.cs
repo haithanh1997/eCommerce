@@ -3,6 +3,7 @@ using eCommerce.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -18,8 +19,16 @@ namespace eCommerce.Areas.Merchant.Controllers
 		// Dashboard
 		public ActionResult Index(string id)
 		{
-			return View();
-		}
+            var model0 = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id && x.Invoice.Status == ProductStatus.Delivered && x.isDisabled == false);
+            int daily = 0;
+            foreach(var item in model0)
+            {
+                daily += item.Price * item.Quantity;
+            }
+            ViewBag.DailyProfit = daily/1000000;
+            var model = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id && x.Invoice.Status == ProductStatus.NotValidated).ToList();
+            return View(model);
+        }
 		// THông tin tài khoản 
 		public ActionResult Account()
         {
@@ -31,16 +40,37 @@ namespace eCommerce.Areas.Merchant.Controllers
 			var model = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id && x.Invoice.Status == ProductStatus.NotValidated).ToList();
             return View(model);
         }
+	
+		public ActionResult Confirm(long product,long invoice)
+		{
+			var model = db.InvoiceDetails.FirstOrDefault(x => x.Invoice.Id == invoice && x.Product.Id == product);
+            if(model.isDisabled == false)
+            {
+                model.isDisabled = true;
+            }
+            else
+            {
+                model.isDisabled = false;
+            }
+		
+			db.Entry(model).State = EntityState.Modified;
+			db.SaveChanges();
+           return RedirectToAction("NewInvoices");
+			//return View();
+		}
+
 		// Function theo dõi Các sản phẩm được mua của Merchant
 		public ActionResult Follow(string id)
 		{
-			var model = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id && (x.Invoice.Status == ProductStatus.Delivered || x.Invoice.Status == ProductStatus.Processing || x.Invoice.Status == ProductStatus.Delivering)).ToList();
-			return View();
+			var model = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id 
+                                            && (x.Invoice.Status == ProductStatus.Delivered || x.Invoice.Status == ProductStatus.Processing || x.Invoice.Status == ProductStatus.Delivering) 
+                                            && x.isDisabled == true).ToList();
+			return View(model);
 		}
 		// Function hiển thị Các sản phẩm đã giao xong của Merchant
 		public ActionResult OldInvoices(string id)
         {
-			var model = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id && x.Invoice.Status == ProductStatus.Delivered).ToList();
+			var model = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id && x.Invoice.Status == ProductStatus.Delivered && x.isDisabled == true).ToList();
 			return View(model);
         }
 		//Lợi nhuận thu đươc cưa thanh toán Merchant
@@ -57,7 +87,7 @@ namespace eCommerce.Areas.Merchant.Controllers
 		//Hiển thị sản phẩm đăng bán của Merchant
         public ActionResult ManageProduct(string id)
         {
-            return View(db.Products.Where(x => x.Store.User.Id == id));
+            return View(db.Products.Where(x => x.Store.User.Id == id && x.isDisabled == false));
         }
 		//Chi tiết sản phẩm
         public ActionResult Details(long? id)
@@ -79,7 +109,7 @@ namespace eCommerce.Areas.Merchant.Controllers
 		// Tạo sản phẩm
         public ActionResult Create(string id)
         {
-
+			var model = db.MerchantStores.FirstOrDefault(x => x.User.Id == id);
 			return View(new ProductModel() {
 				Category = db.Categories.Select(x => new SelectListItem() {
 					Text = x.Name,
@@ -90,20 +120,20 @@ namespace eCommerce.Areas.Merchant.Controllers
 					Text = x.Name,
 					Value = x.Id.ToString()
 				}).ToList(),
-				Store = db.MerchantStores.FirstOrDefault(x=>x.User.Id == id),
-				
-			 });
+				Store = model
+
+			});
 
         }
         [HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Create(ProductModel model)
+		public ActionResult Create(ProductModel model,string id)
         {
+            ViewBag.UserID = id;
 			Product product = new Product();
             if (ModelState.IsValid)
             {
-				product.Id = model.Id;
-				product.Store = model.Store;
+				product.Store = db.MerchantStores.FirstOrDefault(x=>x.User.Id == id);
 				product.Name = model.Name;
 				product.Price = model.Price;
 				product.Quantity = model.Quantity;
@@ -121,29 +151,35 @@ namespace eCommerce.Areas.Merchant.Controllers
 				product.DesignType = model.DesignType;
 				product.Size = model.Size;
 				product.updateDate = DateTime.Now;
-				product.AdType = model.AdType;
-				product.isDisabled = model.isDisabled;
+                product.AdType = EntityFramework.AdType.Default;
+                product.isDisabled = false;
 
-				var f1 = Request.Files["Image1"];
+                bool exists = System.IO.Directory.Exists(Server.MapPath("~/MerchantProduct/"+ViewBag.UserID));
+
+                if (!exists)
+                    System.IO.Directory.CreateDirectory(Server.MapPath("~/MerchantProduct/" + ViewBag.UserID));
+
+
+                var f1 = Request.Files["Image1"];
                 var f2 = Request.Files["Image2"];
                 var f3 = Request.Files["Image3"];
                 if (f1 != null && f1.ContentLength > 0)
                 {
-                    var path = Server.MapPath("~/MerchantProduct/" + f1.FileName);
+                    var path = Server.MapPath("~/MerchantProduct/" + ViewBag.UserID + "/" + f1.FileName);
                     f1.SaveAs(path);
-                    product.Image1 = "/MerchantProduct/" + f1.FileName;
+                    product.Image1 = "/MerchantProduct/" + ViewBag.UserID + "/" + f1.FileName;
                 }
                 if (f2 != null && f2.ContentLength > 0)
                 {
-                    var path = Server.MapPath("~/MerchantProduct/" + f2.FileName);
+                    var path = Server.MapPath("~/MerchantProduct/" + ViewBag.UserID + "/" + f2.FileName);
                     f2.SaveAs(path);
-                    product.Image2 = "/MerchantProduct/" + f2.FileName;
+                    product.Image2 = "/MerchantProduct/" + ViewBag.UserID + "/" + f2.FileName;
                 }
                 if (f3 != null && f3.ContentLength > 0)
                 {
-                    var path = Server.MapPath("~/MerchantProduct/" + f3.FileName);
+                    var path = Server.MapPath("~/MerchantProduct/" + ViewBag.UserID + "/" + f2.FileName);
                     f3.SaveAs(path);
-                    product.Image3 = "/MerchantProduct/" + f3.FileName;
+                    product.Image3 = "/MerchantProduct/" + ViewBag.UserID + "/" + f2.FileName;
                 }
                 db.Products.Add(product);
                 db.SaveChanges();
@@ -179,7 +215,7 @@ namespace eCommerce.Areas.Merchant.Controllers
             }
 			ProductModel model1 = new ProductModel()
 			{
-				Id = model.Id,
+				ProductId = model.Id,
 				Store = model.Store,
 				Name = model.Name,
 				Price = model.Price,
@@ -219,13 +255,14 @@ namespace eCommerce.Areas.Merchant.Controllers
         [HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Edit(ProductModel model)
-			{
-			Product product = db.Products.Find(model.Id);
+	    {
+			Product product = db.Products.Find(model.ProductId);
+            ViewBag.UserID = db.MerchantStores.FirstOrDefault(x => x.Id == model.Store.Id).User.Id;
 			if (ModelState.IsValid)
             {
 
-				product.Id = model.Id;
-				product.Store = model.Store;
+				product.Id = model.ProductId;
+				product.Store = db.MerchantStores.FirstOrDefault(x=>x.Id == model.Store.Id);
 				product.Name = model.Name;
 				product.Price = model.Price;
 				product.Quantity = model.Quantity;
@@ -243,32 +280,52 @@ namespace eCommerce.Areas.Merchant.Controllers
 				product.DesignType = model.DesignType;
 				product.Size = model.Size;
 				product.updateDate = DateTime.Now;
-				product.Image1 = model.Image1;
-				product.Image2 = model.Image2;
-				product.Image3 = model.Image3;
-				product.AdType = model.AdType;
+                product.Image1 = model.Image1;
+                product.Image2 = model.Image2;
+                product.Image3 = model.Image3;
+                product.AdType = model.AdType;
 				product.isDisabled = model.isDisabled;
 
-				var f1 = Request.Files["Image1"];
+                bool exists = System.IO.Directory.Exists(Server.MapPath("~/MerchantProduct/" + ViewBag.UserID));
+
+                if (!exists)
+                    System.IO.Directory.CreateDirectory(Server.MapPath("~/MerchantProduct/" + ViewBag.UserID));
+
+                var f1 = Request.Files["Image1"];
                 var f2 = Request.Files["Image2"];
                 var f3 = Request.Files["Image3"];
                 if (f1 != null && f1.ContentLength > 0)
                 {
-                    var path = Server.MapPath("~/MerchantImages/" + f1.FileName);
+                    string fullPath = Request.MapPath(model.Image1);
+                    if (System.IO.File.Exists(fullPath))
+                    {
+                        System.IO.File.Delete(fullPath);
+                    }
+                    var path = Server.MapPath("~/MerchantProduct/" + ViewBag.UserID + "/" + f1.FileName);
                     f1.SaveAs(path);
-					product.Image1 = "/MerchantImages/" + f1.FileName;
+                    product.Image1 = "/MerchantProduct/" + ViewBag.UserID + "/" + f1.FileName;
                 }
                 if (f2 != null && f2.ContentLength > 0)
                 {
-                    var path = Server.MapPath("~/MerchantImages/" + f2.FileName);
+                    string fullPath = Request.MapPath(model.Image2);
+                    if (System.IO.File.Exists(fullPath))
+                    {
+                        System.IO.File.Delete(fullPath);
+                    }
+                    var path = Server.MapPath("~/MerchantProduct/" + ViewBag.UserID + "/" + f2.FileName);
                     f2.SaveAs(path);
-					product.Image2 = "/MerchantImages/" + f2.FileName;
+                    product.Image2 = "/MerchantProduct/" + ViewBag.UserID + "/" + f2.FileName;
                 }
                 if (f3 != null && f3.ContentLength > 0)
                 {
-                    var path = Server.MapPath("~/MerchantImages/" + f3.FileName);
+                    string fullPath = Request.MapPath(model.Image3);
+                    if (System.IO.File.Exists(fullPath))
+                    {
+                        System.IO.File.Delete(fullPath);
+                    }
+                    var path = Server.MapPath("~/MerchantProduct/" + ViewBag.UserID + "/" + f3.FileName);
                     f3.SaveAs(path);
-					product.Image3 = "/MerchantImages/" + f3.FileName;
+                    product.Image3 = "/MerchantProduct/" + ViewBag.UserID + "/" + f3.FileName;
                 }
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
@@ -278,7 +335,7 @@ namespace eCommerce.Areas.Merchant.Controllers
 			// Hàng trả về khi thay đổi thất bại :))
 			ProductModel model1 = new ProductModel()
 			{
-				Id = model.Id,
+				ProductId = model.ProductId,
 				Store = model.Store,
 				Name = model.Name,
 				Price = model.Price,
@@ -319,10 +376,20 @@ namespace eCommerce.Areas.Merchant.Controllers
         {
             return View(db.Products.Where(x=>x.Price <= 2 && x.Store.User.Id== id));
         }
-		public ActionResult test(string id)
-		{
-			return View(db.Products.Where(x => x.Price <= 2 && x.Store.User.Id == id));
-		}
 
-	}
+        // GET: Admin/Categories/Delete/5
+        public ActionResult Delete(long id)
+        {
+            if(ModelState.IsValid)
+            {
+                var product = db.Products.Find(id);
+                product.isDisabled = true;
+                db.Entry(product).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+    }
 }
