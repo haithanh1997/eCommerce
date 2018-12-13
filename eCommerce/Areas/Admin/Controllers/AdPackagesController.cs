@@ -50,7 +50,7 @@ namespace eCommerce.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Create([Bind(Include = "Id,Name,Price,Position,Period,isDisabled")] AdPackage adPackage)
+        public ActionResult Create(AdPackage adPackage)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +84,7 @@ namespace eCommerce.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Edit([Bind(Include = "Id,Name,Price,Position,Period,isDisabled")] AdPackage adPackage)
+        public ActionResult Edit(AdPackage adPackage)
         {
             if (ModelState.IsValid)
             {

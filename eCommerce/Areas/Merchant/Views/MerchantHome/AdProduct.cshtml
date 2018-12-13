@@ -18,7 +18,7 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Danh Sách Sản Phẩm</h1>
+            <h1 class="page-header">Danh Sách Sản Phẩm đang quảng cáo</h1>
         </div>
     </div><!--/.row-->
     <div class="row">
@@ -73,7 +73,7 @@
                                     {
                                         <tr>
                                             <td>
-                                               <img src="@Html.DisplayFor(modelItem => item.Image1)" width="50" height="50"/> 
+                                                <img src="@Html.DisplayFor(modelItem => item.Image1)" width="50" height="50" />
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Name)
@@ -102,9 +102,9 @@
                                                 }
                                             </td>
                                             <td>
-                                                @if(item.isDisabled == true)
+                                                @if (item.isDisabled == true)
                                                 {
-                                                    <p style="color:black;">Sắp hết hàng</p>
+                                                    <p style="color:black;">Đã hết bán</p>
                                                 }
                                                 else
                                                 {
@@ -112,9 +112,7 @@
                                                 }
                                             </td>
                                             <td>
-                                                @Html.ActionLink("Sửa", "Edit", new { id = item.Id }) |
-                                                @Html.ActionLink("Xem", "Details", new { id = item.Id }) |
-                                                @Html.ActionLink("Xóa", "Delete", new { id = item.Id })
+                                                @Html.ActionLink("Xem", "Details", new { id = item.Id })
                                             </td>
                                         </tr>
                                     }
@@ -133,3 +131,4 @@
 
     </div><!--/.row-->
 </div>
+

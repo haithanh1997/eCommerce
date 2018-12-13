@@ -142,9 +142,12 @@ namespace eCommerce
 
             //Seed for advertise package
             IList<AdPackage> defaultAdPackages = new List<AdPackage>();
-            defaultAdPackages.Add(new AdPackage() { Name = "Gói quảng cáo 1", Price = 900000, Position = "FrontPage", Period = 30, isDisabled = false });
-            defaultAdPackages.Add(new AdPackage() { Name = "Gói quảng cáo 2", Price = 500000, Position = "LeftNav", Period = 30, isDisabled = false });
-            defaultAdPackages.Add(new AdPackage() { Name = "Gói quảng cáo 3", Price = 500000, Position = "RightNav", Period = 30, isDisabled = false });
+            defaultAdPackages.Add(new AdPackage() { Name = "Cao cấp 7D", Price = 200000, Level = "Popular", Period = 7, isDisabled = false });
+            defaultAdPackages.Add(new AdPackage() { Name = "Cao cấp 15D", Price = 350000, Level = "Popular", Period = 15, isDisabled = false });
+            defaultAdPackages.Add(new AdPackage() { Name = "Cao cấp 30D", Price = 500000, Level = "Popular", Period = 30, isDisabled = false });
+            defaultAdPackages.Add(new AdPackage() { Name = "Siêu cấp 7D", Price = 300000, Level = "Recommended", Period = 7, isDisabled = false });
+            defaultAdPackages.Add(new AdPackage() { Name = "Siêu cấp 15D", Price = 545000, Level = "Recommended", Period = 15, isDisabled = false });
+            defaultAdPackages.Add(new AdPackage() { Name = "Siêu cấp 30D", Price = 800000, Level = "Recommended", Period = 30, isDisabled = false });
 
             context.AdPackages.AddRange(defaultAdPackages);
             context.SaveChanges();

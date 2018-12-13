@@ -205,20 +205,29 @@ namespace eCommerce.Areas.Merchant.Controllers
         public ActionResult Create(string id)
         {
 			var model = db.MerchantStores.FirstOrDefault(x => x.User.Id == id);
-			return View(new ProductModel() {
-				Category = db.Categories.Select(x => new SelectListItem() {
-					Text = x.Name,
-					Value = x.Id.ToString()
-				}).ToList(),
-				Type = db.ProductTypes.Select(x => new SelectListItem()
-				{
-					Text = x.Name,
-					Value = x.Id.ToString()
-				}).ToList(),
-				Store = model
-
-			});
-
+            ViewBag.Package = model.Package;
+            ViewBag.AlertMessage = "Bạn không còn đủ gói tin để đăng thêm sản phẩm !";
+            if(model.Package <= 0)
+            {
+                return RedirectToAction("Index", "MerchantHome", new { Id = id });
+            }
+            else
+            {
+                return View(new ProductModel()
+                {
+                    Category = db.Categories.Select(x => new SelectListItem()
+                    {
+                        Text = x.Name,
+                        Value = x.Id.ToString()
+                    }).ToList(),
+                    Type = db.ProductTypes.Select(x => new SelectListItem()
+                    {
+                        Text = x.Name,
+                        Value = x.Id.ToString()
+                    }).ToList(),
+                    Store = model
+                });
+			}
         }
         [HttpPost]
 		[ValidateAntiForgeryToken]
@@ -469,7 +478,7 @@ namespace eCommerce.Areas.Merchant.Controllers
 		// Sản phẩm đang bán có số lượng ít
         public ActionResult LowQuantity(string id)
         {
-            return View(db.Products.Where(x=>x.Price <= 2 && x.Store.User.Id== id));
+            return View(db.Products.Where(x=>x.Quantity <= 2 && x.Store.User.Id== id));
         }
 
         // GET: Admin/Categories/Delete/5
@@ -505,7 +514,21 @@ namespace eCommerce.Areas.Merchant.Controllers
 		{
 			return PartialView("BankAccount");
 		}
+        public ActionResult BuyAd(string id)
+        {
+            var model = db.AdPackages.Where(x => x.isDisabled == false).ToList();
+            foreach (var item in model)
+            {
+                item.Price /= 1000;
+            }
+            return View(model);
+        }
 
+        public ActionResult AdProduct(string id)
+        {
+            var model = db.Products.Where(x => x.isDisabled == false && x.AdType != AdType.Default).ToList();
+            return View(model);
+        }
 	}
 	
 }

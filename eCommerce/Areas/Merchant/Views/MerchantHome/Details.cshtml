@@ -161,10 +161,17 @@
                     <a href="@Url.Action("Edit","MerchantHome",new { id = Model.Id })" type="button" class="btn btn-danger pull-right">
                         <i class="fa fa-credit-card"></i> Sửa thông tin
                     </a>
-                    <a href="@Url.Action("BuyAd","MerchantHome",new { id = Model.Id })" type="button" class="btn btn-warning pull-right" style="margin-right: 5px;">
-                        <i class="fa fa-credit-card"></i> Đăng ký quảng cáo
-                    </a>
-                    <a href="@Url.Action("Index","MerchantHome")" type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
+                    @if (Model.AdType != eCommerce.EntityFramework.AdType.Default)
+                    {
+
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("BuyAd","MerchantHome",new { id = Model.Id })" type="button" class="btn btn-warning pull-right" style="margin-right: 5px;">
+                            <i class="fa fa-credit-card"></i> Đăng ký quảng cáo
+                        </a>
+                    }
+                    <a href="@Url.Action("ManageProduct","MerchantHome", new { id = Model.Store.User.Id })" type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
                         <i class="fa fa-download"></i> Trở lại
                     </a>
                 </div>
@@ -179,10 +186,10 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Giấy chứng minh mặt trước</h4>
+                <h4 class="modal-title">Ảnh sản phẩm</h4>
             </div>
             <div class="modal-body">
-                <img src="@Model.Image1" />
+                <img src="@Model.Image1" width="570" height="440"/>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
@@ -197,7 +204,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Ảnh cửa hàng</h4>
+                <h4 class="modal-title">Thông số kĩ thuật</h4>
             </div>
             <div class="modal-body">
                 <dl class="dl-horizontal">
