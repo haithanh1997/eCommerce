@@ -13,16 +13,16 @@ namespace eCommerce.EntityFramework
         [Key]
         [DisplayName("Mã gói bài đăng")]
         public long Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Trường {0} bắt buộc nhập.")]
         [DisplayName("Tên gói")]
         public string Name { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Trường {0} bắt buộc nhập.")]
         [DisplayName("Giá gói (VNĐ)")]
         public int Price { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Trường {0} bắt buộc nhập.")]
         [DisplayName("Số lần đăng")]
         public int Times { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Trường {0} bắt buộc nhập.")]
         [DisplayName("Thời hạn")]
         public int Days { get; set; }
         [DisplayName("Trạng thái")]

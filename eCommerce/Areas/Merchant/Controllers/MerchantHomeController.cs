@@ -22,6 +22,15 @@ namespace eCommerce.Areas.Merchant.Controllers
         {
             ProfitCalculation(id);
             Increasement(id);
+            var package = db.MerchantStores.FirstOrDefault(x => x.User.Id == id).Package;
+            ViewBag.Package = package;
+            int count = 0;
+            var product = db.Products.Where(x => x.Store.User.Id == id && x.isDisabled == false);
+            foreach(var item in product)
+            {
+                count += 1;
+            }
+            ViewBag.Product = count;
             var model = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id && x.Invoice.Status == ProductStatus.NotValidated).ToList();
             return View(model);
         }
@@ -112,7 +121,7 @@ namespace eCommerce.Areas.Merchant.Controllers
                 thisMonth += item.Price * item.Quantity;
             }
             int increased = thisMonth - lastMonth;
-            double percent = (lastMonth + increased) / lastMonth * 100;
+            double percent = lastMonth / (lastMonth + increased) * 100;
             ViewBag.Percent = percent;
         }
 		// THông tin tài khoản 

@@ -12,7 +12,7 @@ namespace eCommerce.EntityFramework
     {
         [Key]
         public long Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Trường {0} bắt buộc nhập.")]
         [DisplayName("Người dùng")]
         public virtual IdentityUser User { get; set; }
     }

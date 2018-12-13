@@ -151,12 +151,12 @@ namespace eCommerce
 
             //Seed for Merchant Stores
             IList<MerchantStore> defaultStores = new List<MerchantStore>();
-			defaultStores.Add(new MerchantStore() { User = context.Users.FirstOrDefault(x => x.Id == id), Name = "Cửa hàng Phú Dái",
-				Address = "Chèn sau", BusinessRegistrationCode = "0xxxxxxxxx",
-				TaxRegistrationCode = "0xxxxxxxx", CardTradeNumber = "7652xxxxxxxx",
-				CreditCardNumber = "1600xxxxxx", PhoneNumber = "0396372123",
-				DeliveryMethod = DeliveryMethod.Fast, createdDate = DateTime.Now,
-				BankName = "Agribank", Image1 = "~/Assets/img/new_1.png",
+			defaultStores.Add(new MerchantStore() { User = context.Users.FirstOrDefault(x => x.Id == id), Name = "Cửa hàng Infinity",
+				Address = "362 Nguyễn Chí Thanh P16 Q11 TPHCM", BusinessRegistrationCode = "0310941649",
+				TaxRegistrationCode = "0102859048", CardTradeNumber = "9704-0509-0070-8986",
+				CreditCardNumber = "160035391322", PhoneNumber = "0396372123",
+				DeliveryMethod = DeliveryMethod.Fast, createdDate = new DateTime(2011,3,12),
+				BankName = "Agribank", Package = 50, Image1 = "~/Assets/img/new_1.png",
 				Image2 = "/Assets/img/...", Image3 = "/Assets/img/...",
 				Image4 = "/Assets/img/...", Image5 = "/Assets/img/...", isDisabled = false
             });
@@ -170,26 +170,26 @@ namespace eCommerce
             defaultProducts.Add(new Product()
             {
                 Store = context.MerchantStores.FirstOrDefault(x => x.Id == 1),
-                Name = "Laptop A",
-                Price = 20000000,
-                Quantity = 5,
-                Category = context.Categories.FirstOrDefault(x => x.Id == 1),
-                Type = context.ProductTypes.FirstOrDefault(x => x.Id == 1),
+                Name = "LAPTOP HP PROBOOK 4540s",
+                Price = 5600000,
+                Quantity = 25,
+                Category = context.Categories.FirstOrDefault(x => x.Id == 5),
+                Type = context.ProductTypes.FirstOrDefault(x => x.Id == 2),
                 discountValue = 0,
-                Description = "sản phẩm test",
-                CPU = "i7-7700K",
-                RAM = "16GB DDR4",
-                hardDrive = "SSD Samsung gì đó 256GB",
-                screenType = "FHD 144Hz IPS",
-                GPU = "GTX 1070Ti OC 6GB",
-                IOPort = "2 cổng USB 3.0 bla bla",
-                OS = "Windows 10",
-                DesignType = "đéo biết",
-                Size = 2.3F,
-                updateDate = DateTime.Now,
-                Image1 = "/Assets/img/product01.png",
-                Image2 = "/Assets/img/product02.png",
-                Image3 = "/Assets/img/product03.png",
+                Description = "hàng xách tay nước ngoài,máy nguyên zin 100 % có window bản quyền,chưa qua sửa chữa hay thay đổi gì",
+                CPU = "Core i5-3320m 2.6GHz TurboBoost 3.0GHz",
+                RAM = "4GB",
+                hardDrive = "HDD 320GB",
+                screenType = "15.6' HD chống chói",
+                GPU = "Intel HD4000",
+                IOPort = "2 cổng USB,cổng tai nghe,cổng VGA,LAN",
+                OS = "Windows 7",
+                DesignType = "HP Notebook",
+                Size = 2.13F,
+                updateDate = new DateTime(2018,12,1),
+                Image1 = "/Assets/img/product1-01.jpg",
+                Image2 = "/Assets/img/product1-01.jpg",
+                Image3 = "/Assets/img/product1-01.jpg",
                 AdType = AdType.Default,
                 isDisabled = false
             });
@@ -197,26 +197,26 @@ namespace eCommerce
             defaultProducts.Add(new Product()
             {
                 Store = context.MerchantStores.FirstOrDefault(x => x.Id == 1),
-                Name = "Laptop B",
-                Price = 17000000,
-                Quantity = 4,
-                Category = context.Categories.FirstOrDefault(x => x.Id == 2),
-                Type = context.ProductTypes.FirstOrDefault(x => x.Id == 3),
-                discountValue = 0,
-                Description = "sản phẩm test 2nd",
-                CPU = "i7-4720HQ",
+                Name = "Laptop Lenovo Thinkpad T440",
+                Price = 8900000,
+                Quantity = 2,
+                Category = context.Categories.FirstOrDefault(x => x.Id == 6),
+                Type = context.ProductTypes.FirstOrDefault(x => x.Id == 2),
+                discountValue = 10,
+                Description = "Dòng máy Laptop Thinkpad T440 siêu bền giá rẻ vỏ nhôm màu đen, xách tay giá rẻ, đời máy core i5 thế hệ thứ 4 nguyên zin rất đẹp.",
+                CPU = "I7–4600u 2.1ghz",
                 RAM = "8GB DDR3",
-                hardDrive = "SSD Samsung gì đó 128GB",
-                screenType = "FHD 14.7' 60Hz",
-                GPU = "GTX 960M 4GB DDR5",
+                hardDrive = "SSD 240GB",
+                screenType = "14' FHD LED chống chói",
+                GPU = "Intel hd 4400",
                 IOPort = "2 cổng USB 3.0 bla bla",
                 OS = "Windows 7",
-                DesignType = "đéo biết",
+                DesignType = "2 cổng USB,cổng tai nghe,cổng HDMI,LAN",
                 Size = 2.1F,
-                updateDate = DateTime.Now,
-                Image1 = "/Assets/img/product04.png",
-                Image2 = "/Assets/img/product05.png",
-                Image3 = "/Assets/img/product06.png",
+                updateDate = new DateTime(2018,12,10),
+                Image1 = "/Assets/img/product2-01.jpg",
+                Image2 = "/Assets/img/product2-01.jpg",
+                Image3 = "/Assets/img/product2-02.jpg",
                 AdType = AdType.Default,
                 isDisabled = false
             });
@@ -228,18 +228,35 @@ namespace eCommerce
             IList<Invoice> defaultInvoices = new List<Invoice>();
             defaultInvoices.Add(new Invoice() {
                 User = context.Users.FirstOrDefault(x => x.Id == user_id),
-                Address = "Nhà tao",
-                Total = 37000000,
+                Address = "254/11/8 CXBT P8 Q11",
+                Total = 8900000*3,
                 PaymentMethod = PaymentMethod.COD,
                 DeliveryMethod = DeliveryMethod.Standard,
-                Description = "Giàu vl mua 2 cái lap 1 lúc",
-                createdDate = DateTime.Now,
-                Status = ProductStatus.Validated,
+                Description = "Khách mua nhiều , giao hàng ngay lập tức",
+                createdDate = new DateTime(2018,12,12),
+                Status = ProductStatus.Delivered,
                 isDisabled = false,
-                Name = "Phú",
-                Email = "tamtam@gmail.com",
-                Phone = "0909090909",
-                TransactionId = "DOANXEM5"
+                Name = "Thành",
+                Email = "client@gmail.com",
+                Phone = "0908205083",
+                TransactionId = "186946987497432112"
+            });
+
+            defaultInvoices.Add(new Invoice()
+            {
+                User = context.Users.FirstOrDefault(x => x.Id == user_id),
+                Address = "254/11/8 CXBT P8 Q11",
+                Total = 8900000 * 1,
+                PaymentMethod = PaymentMethod.COD,
+                DeliveryMethod = DeliveryMethod.Fast,
+                Description = "Giao 1 laptop lúc 6h chiều cùng ngày",
+                createdDate = new DateTime(2018, 12, 13),
+                Status = ProductStatus.Delivered,
+                isDisabled = false,
+                Name = "Thành",
+                Email = "client@gmail.com",
+                Phone = "0908205083",
+                TransactionId = "2863214875467471133"
             });
 
             defaultInvoices.Add(new Invoice()
@@ -352,8 +369,17 @@ namespace eCommerce
             defaultInvoiceDetails.Add(new InvoiceDetail() {
                 Invoice = context.Invoices.FirstOrDefault(x => x.Id == 1),
                 Product = context.Products.FirstOrDefault(x => x.Id == 2),
+                Quantity = 3,
+                Price = 8900000,
+                isDisabled = false
+            });
+
+            defaultInvoiceDetails.Add(new InvoiceDetail()
+            {
+                Invoice = context.Invoices.FirstOrDefault(x => x.Id == 2),
+                Product = context.Products.FirstOrDefault(x => x.Id == 2),
                 Quantity = 1,
-                Price = 17000000,
+                Price = 8900000,
                 isDisabled = false
             });
 

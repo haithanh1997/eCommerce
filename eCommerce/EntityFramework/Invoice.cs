@@ -12,38 +12,38 @@ namespace eCommerce.EntityFramework
     {
         [Key]
         public long Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Trường {0} bắt buộc nhập.")]
         [DisplayName("Người dùng")]
         public virtual IdentityUser User { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Trường {0} bắt buộc nhập.")]
         [DisplayName("Họ tên")]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Trường {0} bắt buộc nhập.")]
         [DisplayName("Địa chỉ")]
         public string Address { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Trường {0} bắt buộc nhập.")]
         [DisplayName("Số điện thoại")]
         public string Phone { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Trường {0} bắt buộc nhập.")]
         [DisplayName("Email")]
         public string Email { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Trường {0} bắt buộc nhập.")]
         [DisplayName("Tổng tiền")]
         public int Total { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Trường {0} bắt buộc nhập.")]
         [DisplayName("Hình thức thanh toán")]
         public PaymentMethod PaymentMethod { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Trường {0} bắt buộc nhập.")]
         [DisplayName("Hình thức giao hàng")]
         public DeliveryMethod DeliveryMethod { get; set; }
         [DisplayName("Ghi chú")]
         public string Description { get; set; }
-        [Required]
-        [DataType(DataType.Date)]
+        [Required(ErrorMessage = "Trường {0} bắt buộc nhập.")]
+        [DataType(DataType.Date,ErrorMessage = "{0} nhập sai định dạng.")]
         [DisplayName("Ngày tạo")]
         public DateTime createdDate { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Trường {0} bắt buộc nhập.")]
         [DisplayName("Trạng thái")]
         public ProductStatus Status { get; set; }
         [DisplayName("Không hiển thị")]
