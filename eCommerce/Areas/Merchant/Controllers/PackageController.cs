@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace eCommerce.Areas.Merchant.Controllers
 {
-    public class BuyPackageController : Controller
+    public class PackageController : Controller
     {
-        // GET: Merchant/BuyPackage
+        // GET: Merchant/Package
         public ActionResult Index()
         {
             return View();
