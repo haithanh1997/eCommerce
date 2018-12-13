@@ -1,5 +1,6 @@
 ﻿@ViewBag.Response  <!--Href sang trang dang nhap 123Pay-->
 
+@Html.Partial("SlideShow")
 <!-- SECTION -->
 <div class="section">
 	<!-- container -->
@@ -79,40 +80,40 @@
 					<div class="products-tabs">
 						<!-- tab1 -->
 						<div id="tab1" class="tab-pane active">
-                            <div class="products-slick" data-nav="#slick-nav-1">
-                                @foreach (var product in Model.ProductView)
-                                {
-                                    <div class="product">
-                                        <div class="product-img">
-                                            <img src="@product.Image1" alt="@product.Name" width="200" height="250">
-                                            <div class="product-label">
-                                                <span class="new">NEW</span>
-                                            </div>
-                                        </div>
-                                        <div class="product-body">
-                                            <p class="product-category">Loại</p>
-                                            <h3 class="product-name"><a href="#">@product.Name</a></h3>
-                                            <h4 class="product-price">@product.Price.ToString("#,##0")VNĐ</h4>
-                                            <div class="product-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="product-btns">
-                                                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp"> Yêu thích</span></button>
-                                                <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">So sánh</span></button>
-                                                <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Chi tiết</span></button>
-                                            </div>
-                                        </div>
-                                        <div class="add-to-cart">
-                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
-                                        </div>
-                                    </div>
-                                }
-                                <!-- /product -->
-                            </div>
+							<div class="products-slick" data-nav="#slick-nav-1">
+								@foreach (var product in Model.ProductView)
+								{
+									<div class="product">
+										<div class="product-img">
+											<img src="@product.Image1" alt="@product.Name" width="200" height="250">
+											<div class="product-label">
+												<span class="new">NEW</span>
+											</div>
+										</div>
+										<div class="product-body">
+											<p class="product-category">Loại</p>
+											<h3 class="product-name"><a href="#">@product.Name</a></h3>
+											<h4 class="product-price">@product.Price.ToString("#,##0")VNĐ</h4>
+											<div class="product-rating">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+											</div>
+											<div class="product-btns">
+												<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp"> Yêu thích</span></button>
+												<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">So sánh</span></button>
+												<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Chi tiết</span></button>
+											</div>
+										</div>
+										<div class="add-to-cart">
+											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
+										</div>
+									</div>
+								}
+								<!-- /product -->
+							</div>
 							<div id="slick-nav-1" class="products-slick-nav"></div>
 						</div>
 						<!-- /tab1 -->
@@ -330,7 +331,7 @@
 			<div class="col-md-12">
 				<div class="section-title">
 					<h3 class="title">Bán chạy</h3>
-					
+
 				</div>
 			</div>
 			<!-- /section title -->

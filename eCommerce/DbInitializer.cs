@@ -142,12 +142,12 @@ namespace eCommerce
 
             //Seed for advertise package
             IList<AdPackage> defaultAdPackages = new List<AdPackage>();
-            defaultAdPackages.Add(new AdPackage() { Name = "Cao cấp 7D", Price = 200000, Level = "Popular", Period = 7, isDisabled = false });
-            defaultAdPackages.Add(new AdPackage() { Name = "Cao cấp 15D", Price = 350000, Level = "Popular", Period = 15, isDisabled = false });
-            defaultAdPackages.Add(new AdPackage() { Name = "Cao cấp 30D", Price = 500000, Level = "Popular", Period = 30, isDisabled = false });
-            defaultAdPackages.Add(new AdPackage() { Name = "Siêu cấp 7D", Price = 300000, Level = "Recommended", Period = 7, isDisabled = false });
-            defaultAdPackages.Add(new AdPackage() { Name = "Siêu cấp 15D", Price = 545000, Level = "Recommended", Period = 15, isDisabled = false });
-            defaultAdPackages.Add(new AdPackage() { Name = "Siêu cấp 30D", Price = 800000, Level = "Recommended", Period = 30, isDisabled = false });
+            defaultAdPackages.Add(new AdPackage() { Name = "Promote 1", Price = 200000, AdType = AdType.Encourage, Period = 7, isDisabled = false });
+            defaultAdPackages.Add(new AdPackage() { Name = "Promote 2", Price = 200000, AdType = AdType.FlashSale, Period = 1, isDisabled = false });
+            defaultAdPackages.Add(new AdPackage() { Name = "Promote 3", Price = 350000, AdType = AdType.Hot, Period = 7, isDisabled = false });
+            defaultAdPackages.Add(new AdPackage() { Name = "Promote 4", Price = 350000, AdType = AdType.New, Period = 7, isDisabled = false });
+            defaultAdPackages.Add(new AdPackage() { Name = "Event", Price = 599000, AdType = AdType.SlideShow, Period = 30, isDisabled = false });
+         
 
             context.AdPackages.AddRange(defaultAdPackages);
             context.SaveChanges();
@@ -193,7 +193,7 @@ namespace eCommerce
                 Image1 = "/Assets/img/product1-01.jpg",
                 Image2 = "/Assets/img/product1-01.jpg",
                 Image3 = "/Assets/img/product1-01.jpg",
-                AdType = AdType.Default,
+                AdType = AdType.Hot,
                 isDisabled = false
             });
 
@@ -220,7 +220,7 @@ namespace eCommerce
                 Image1 = "/Assets/img/product2-01.jpg",
                 Image2 = "/Assets/img/product2-01.jpg",
                 Image3 = "/Assets/img/product2-02.jpg",
-                AdType = AdType.Default,
+               
                 isDisabled = false
             });
 

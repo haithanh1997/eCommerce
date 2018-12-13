@@ -1,4 +1,5 @@
-﻿using System;
+﻿using eCommerce.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -24,5 +25,20 @@ namespace eCommerce.Areas.Merchant.Controllers
         {
             return View();
         }
-    }
+	    
+		public ActionResult Ad()
+		{
+			var model = db.Packages.Where(x => x.isDisabled == false).ToList();
+			foreach (var item in model)
+			{
+				item.Price /= 1000;
+			}
+			return PartialView(model);
+		}
+		public ActionResult AdProduct(string id)
+		{
+			var model = db.Products.Where(x => x.isDisabled == false && x.AdType != AdType.Default).ToList();
+			return View(model);
+		}
+	}
 }

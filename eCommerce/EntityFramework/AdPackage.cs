@@ -21,8 +21,8 @@ namespace eCommerce.EntityFramework
         [DisplayName("Giá gói (VNĐ)")]
         public int Price { get; set; }
         [Required(ErrorMessage = "Trường {0} bắt buộc nhập.")]
-        [DisplayName("Cấp độ")]
-        public string Level { get; set; }
+        [DisplayName("Loại ")]
+        public AdType AdType { get; set; }
         [Required(ErrorMessage = "Trường {0} bắt buộc nhập.")]
         [DisplayName("Thời hạn (ngày)")]
         public int Period { get; set; }

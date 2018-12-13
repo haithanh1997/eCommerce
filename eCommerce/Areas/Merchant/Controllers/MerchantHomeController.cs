@@ -521,11 +521,7 @@ namespace eCommerce.Areas.Merchant.Controllers
             return View(model);
         }
 
-        public ActionResult AdProduct(string id)
-        {
-            var model = db.Products.Where(x => x.isDisabled == false && x.AdType != AdType.Default).ToList();
-            return View(model);
-        }
+      
 	}
 	
 }

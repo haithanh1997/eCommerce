@@ -8265,6 +8265,7 @@
     <Content Include="Assets\img\adv_1.png" />
     <Content Include="Assets\img\adv_2.png" />
     <Content Include="Assets\img\adv_3.png" />
+    <Content Include="Assets\img\banner02.jpg" />
     <Content Include="Assets\img\banner_2_background.jpg" />
     <Content Include="Assets\img\banner_2_product.png" />
     <Content Include="Assets\img\banner_background.jpg" />
@@ -8315,6 +8316,7 @@
     <Content Include="Assets\img\hoantien.png" />
     <Content Include="Assets\img\hotdeal.png" />
     <Content Include="Assets\img\huyhieu.png" />
+    <Content Include="Assets\img\img_bg_3.jpg" />
     <Content Include="Assets\img\logo.png" />
     <Content Include="Assets\img\logo123.png" />
     <Content Include="Assets\img\logos_1.png" />
@@ -9201,7 +9203,6 @@
     <Content Include="Areas\Merchant\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Merchant\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Merchant\Views\MerchantHome\BuyAd.cshtml" />
-    <Content Include="Areas\Merchant\Views\MerchantHome\AdProduct.cshtml" />
     <Content Include="Areas\Merchant\Views\MerchantHome\Follow.cshtml" />
     <Content Include="Areas\Admin\Views\Statistic\DailyPackage.cshtml" />
     <Content Include="Areas\Admin\Views\Statistic\MonthlyPackage.cshtml" />
@@ -9209,7 +9210,8 @@
     <Content Include="Areas\Admin\Views\Statistic\DailyAd.cshtml" />
     <Content Include="Areas\Admin\Views\Statistic\MonthlyAd.cshtml" />
     <Content Include="Areas\Admin\Views\Statistic\YearAd.cshtml" />
-
+    <Content Include="Areas\Merchant\Views\Package\AdProduct.cshtml" />
+    <Content Include="Areas\Merchant\Views\Package\Ad.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -9273,6 +9275,7 @@
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Customers\PaymentComplete.cshtml" />
     <Content Include="Views\Cart\Alert.cshtml" />
+    <Content Include="Views\Shared\SlideShow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
