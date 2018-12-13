@@ -150,7 +150,7 @@ namespace eCommerce.Areas.Merchant.Controllers
 		
 			db.Entry(model).State = EntityState.Modified;
 			db.SaveChanges();
-           return RedirectToAction("NewInvoices");
+           return RedirectToAction("NewInvoices",model.Product.Store.User.Id);
 			//return View();
 		}
 
@@ -158,7 +158,7 @@ namespace eCommerce.Areas.Merchant.Controllers
 		public ActionResult Follow(string id)
 		{
 			var model = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id 
-                                            && (x.Invoice.Status == ProductStatus.Delivered || x.Invoice.Status == ProductStatus.Processing || x.Invoice.Status == ProductStatus.Delivering) 
+                                            && (x.Invoice.Status == ProductStatus.Validated || x.Invoice.Status == ProductStatus.Processing || x.Invoice.Status == ProductStatus.Delivering) 
                                             && x.isDisabled == true).ToList();
 			return View(model);
 		}

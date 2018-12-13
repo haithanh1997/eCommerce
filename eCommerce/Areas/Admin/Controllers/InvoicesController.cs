@@ -19,20 +19,22 @@ namespace eCommerce.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var model = db.Invoices.Where(x=>x.Status == ProductStatus.NotValidated).ToList();
-            var model1 = db.InvoiceDetails.Where(x=>x.Invoice.Status == ProductStatus.NotValidated).ToList();
+          
             foreach ( var i in model )
             {
-                
-                foreach(var j in model1)
-                {
-                    if(i.Id == j.Id &&  j.isDisabled == false )
-                    {
-                        continue;
-                    }
-                }
-                i.Status = ProductStatus.Validated;
-                db.Entry(model).State = EntityState.Modified;
-                db.SaveChanges();
+
+				var a = db.InvoiceDetails.Count(x => x.Invoice.Id == i.Id);
+				var b = db.InvoiceDetails.Count(x => x.Invoice.Id == i.Id && x.isDisabled == true);
+				if(a == b)
+				{
+					i.Status = ProductStatus.Validated;
+					db.Entry(i).State = EntityState.Modified;
+					db.SaveChanges();
+				}
+				else if(a >b)
+				{
+					break;
+				}
             }
             return View(db.Invoices.Where(x => x.Status == ProductStatus.Validated || x.Status == ProductStatus.Delivered).ToList());
         }
