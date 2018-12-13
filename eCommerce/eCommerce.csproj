@@ -243,6 +243,8 @@
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\ShopsController.cs" />
+    <Compile Include="EntityFramework\AdInvoice.cs" />
+    <Compile Include="EntityFramework\PackageInvoice.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="SignalRHub.cs" />
     <Compile Include="DbInitializer.cs" />
@@ -9200,6 +9202,12 @@
     <Content Include="Areas\Merchant\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Merchant\Views\MerchantHome\BuyAd.cshtml" />
     <Content Include="Areas\Merchant\Views\MerchantHome\AdProduct.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistic\DailyPackage.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistic\MonthlyPackage.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistic\YearPackage.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistic\DailyAd.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistic\MonthlyAd.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistic\YearAd.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
