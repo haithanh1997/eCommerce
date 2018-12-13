@@ -277,7 +277,7 @@
 
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-line-chart"></i> <span>Thống kê báo cáo</span>
+                            <i class="fa fa-line-chart"></i> <span>Thống kê báo cáo Merchant</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
@@ -289,6 +289,34 @@
                             <li><a href="@Url.Action("Year","Statistic")"><i class="fa fa-circle-o"></i> Doanh thu năm</a></li>
                         </ul>
                     </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-line-chart"></i> <span>Doanh thu từ gói tin</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("DailyPackage","Statistic")"><i class="fa fa-circle-o"></i> Doanh thu ngày</a></li>
+                            <li><a href="@Url.Action("MonthlyPackage","Statistic")"><i class="fa fa-circle-o"></i> Doanh thu tháng</a></li>
+                            <li><a href="@Url.Action("YearPackage","Statistic")"><i class="fa fa-circle-o"></i> Doanh thu năm</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-line-chart"></i> <span>Doanh thu từ gói QC</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("DailyAd","Statistic")"><i class="fa fa-circle-o"></i> Doanh thu ngày</a></li>
+                            <li><a href="@Url.Action("MonthlyAd","Statistic")"><i class="fa fa-circle-o"></i> Doanh thu tháng</a></li>
+                            <li><a href="@Url.Action("YearAd","Statistic")"><i class="fa fa-circle-o"></i> Doanh thu năm</a></li>
+                        </ul>
+                    </li>
+
                     <li>
                         <a href="pages/mailbox/mailbox.html">
                             <i class="fa fa-envelope"></i> <span>Hộp thư</span>

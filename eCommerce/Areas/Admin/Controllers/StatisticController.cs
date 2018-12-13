@@ -64,5 +64,83 @@ namespace eCommerce.Areas.Admin.Controllers
             ViewBag.Total = total;
             return View(model);
         }
+
+        public ActionResult DailyPackage()
+        {
+            int total = 0;
+            var model = db.PackageInvoices.Where(x => x.createdDate.Day == DateTime.Now.Day &&
+                         x.createdDate.Month == DateTime.Now.Month &&
+                         x.createdDate.Year == DateTime.Now.Year).ToList();
+            foreach(var item in model)
+            {
+                total += item.Price;
+            }
+            ViewBag.Total = total;
+            return View(model);
+        }
+
+        public ActionResult MonthlyPackage()
+        {
+            int total = 0;
+            var model = db.PackageInvoices.Where(x => x.createdDate.Month == DateTime.Now.Month &&
+                         x.createdDate.Year == DateTime.Now.Year).ToList();
+            foreach (var item in model)
+            {
+                total += item.Price;
+            }
+            ViewBag.Total = total;
+            return View(model);
+        }
+
+        public ActionResult YearPackage()
+        {
+            int total = 0;
+            var model = db.PackageInvoices.Where(x => x.createdDate.Year == DateTime.Now.Year).ToList();
+            foreach (var item in model)
+            {
+                total += item.Price;
+            }
+            ViewBag.Total = total;
+            return View(model);
+        }
+
+        public ActionResult DailyAd()
+        {
+            int total = 0;
+            var model = db.AdInvoices.Where(x => x.createdDate.Day == DateTime.Now.Day &&
+                         x.createdDate.Month == DateTime.Now.Month &&
+                         x.createdDate.Year == DateTime.Now.Year).ToList();
+            foreach (var item in model)
+            {
+                total += item.Price;
+            }
+            ViewBag.Total = total;
+            return View(model);
+        }
+
+        public ActionResult MonthlyAd()
+        {
+            int total = 0;
+            var model = db.AdInvoices.Where(x => x.createdDate.Month == DateTime.Now.Month &&
+                         x.createdDate.Year == DateTime.Now.Year).ToList();
+            foreach (var item in model)
+            {
+                total += item.Price;
+            }
+            ViewBag.Total = total;
+            return View(model);
+        }
+
+        public ActionResult YearAd()
+        {
+            int total = 0;
+            var model = db.AdInvoices.Where(x => x.createdDate.Year == DateTime.Now.Year).ToList();
+            foreach (var item in model)
+            {
+                total += item.Price;
+            }
+            ViewBag.Total = total;
+            return View(model);
+        }
     }
 }
