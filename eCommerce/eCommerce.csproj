@@ -243,6 +243,7 @@
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\ShopsController.cs" />
+    <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="SignalRHub.cs" />
     <Compile Include="DbInitializer.cs" />
     <Compile Include="EntityFramework\AdPackage.cs" />

@@ -12,6 +12,7 @@ namespace eCommerce.Controllers
 {
     public class HomeController : Controller
     {
+        MainDbContext db = new MainDbContext();
         public ActionResult Index()
         {
 
@@ -40,9 +41,17 @@ namespace eCommerce.Controllers
             //now send the message
             //client.Send(newMessage);
 
-            
 
-            return View();
+
+            var productlist = db.Products.Where(x => x.isDisabled == false);
+
+            var categorylist = db.Categories.Where(x => x.isDisabled == false);
+
+            var model = new HomeViewModel();
+            model.ProductView = productlist.ToList();
+            model.CategoryView = categorylist.ToList();
+
+            return View(model);
         }
 
         public ActionResult About()

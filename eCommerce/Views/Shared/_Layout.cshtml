@@ -120,17 +120,14 @@
 			<!-- responsive-nav -->
 			<div id="responsive-nav">
 				<!-- NAV -->
-				<ul class="main-nav nav navbar-nav">
-					<li class="active"><a href="#">Trang chủ</a></li>
-					<li><a href="#">Khuyến mãi</a></li>
-                    <li><a href="#">Tin tức</a></li>
-					<li><a href="#">ASUS</a></li>
-					<li><a href="#">DELL</a></li>
-					<li><a href="#">MSI</a></li>
-					<li><a href="#">ACER</a></li>
-					<li><a href="#">LENOVO</a></li>
-					<li><a href="#">HP</a></li>
-				</ul>
+                <ul class="main-nav nav navbar-nav">
+                    <li class="active"><a href="#">Trang chủ</a></li>
+                    <li><a href="#">Khuyến mãi</a></li>
+                    @foreach (var brand in Model.CategoryView)
+                    {
+                        <li><a href="@Url.Action("CategoryProducts", "Products", new { brand.Name })">@brand.Name</a></li>
+                    }
+                </ul>
 				<!-- /NAV -->
 			</div>
 			<!-- /responsive-nav -->
@@ -184,14 +181,13 @@
 					<div class="col-md-3 col-xs-6">
 						<div class="footer">
 							<h3 class="footer-title">THƯƠNG HIỆU</h3>
-							<ul class="footer-links">
-								<li><a href="#">Hot deals</a></li>
-								<li><a href="#">ASUS</a></li>
-								<li><a href="#">DELL</a></li>
-								<li><a href="#">ACHER</a></li>
-								<li><a href="#">MSI</a></li>
-								<li><a href="#">LENOVO</a></li>
-							</ul>
+                            <ul class="footer-links">
+                                <li><a href="#">Hot deals</a></li>
+                                @foreach (var brand in Model.CategoryView)
+                                {
+                                    <li><a href="@Url.Action("CategoryProducts", "Products", new { brand.Name })">@brand.Name</a></li>
+                                }
+                            </ul>
 						</div>
 					</div>
 
