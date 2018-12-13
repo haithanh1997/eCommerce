@@ -33,7 +33,7 @@ namespace eCommerce.Areas.Admin.Controllers
                     model.Status = ProductStatus.Delivering;
                 }
 
-				db.Entry(model).State = EntityState.Modified;
+					db.Entry(model).State = EntityState.Modified;
 				db.SaveChanges();
 				return RedirectToAction("Index");
 			}

@@ -143,14 +143,11 @@ namespace eCommerce.Areas.Merchant.Controllers
             {
                 model.isDisabled = true;
             }
-            else
-            {
-                model.isDisabled = false;
-            }
+        
 		
 			db.Entry(model).State = EntityState.Modified;
 			db.SaveChanges();
-           return RedirectToAction("NewInvoices",model.Product.Store.User.Id);
+           return RedirectToAction("NewInvoices",new { id = model.Product.Store.User.Id });
 			//return View();
 		}
 
