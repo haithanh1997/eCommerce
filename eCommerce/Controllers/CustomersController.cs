@@ -101,9 +101,27 @@ namespace eCommerce.Controllers
                     }
                     else
                     {
+                        // Create temporary invoice
+                        var invoice = new Invoice()
+                        {
+                            User = CurrentUser,
+                            Address = model.Address,
+                            createdDate = DateTime.Now,
+                            DeliveryMethod = DeliveryMethod.Fast,
+                            Description = model.Description,
+                            PaymentMethod = model.Payment,
+                            Status = ProductStatus.Temporary,
+                            Total = model.TotalAmount,
+                            TransactionId = transactionId,
+                            Name = model.UserName,
+                            Email = model.Email,
+                            Phone = model.Phone
+                        };
+                        db.Invoices.Add(invoice);
+                        db.SaveChanges();
+
                         var paymentUrl = eCommerce.Static.Payment.PaymentApi(transactionId, model.TotalAmount);
                         return Redirect(paymentUrl);
-
                     }
                 }
 
@@ -111,6 +129,51 @@ namespace eCommerce.Controllers
             }
 
             return View("UserInfo", model);
+        }
+        
+        public ActionResult OnlinePayment(OnlinePaymentModel model)
+        {
+            if (CurrentUser != null)
+            {
+                if (ModelState.IsValid)
+                {
+                    if (model.status == 0)
+                    {
+                        var cart = db.Carts.FirstOrDefault(x => x.User.Id == CurrentUser.Id);
+                        if (cart == null)
+                            return RedirectToAction("Index", "Cart");
+
+                        var invoice = db.Invoices.FirstOrDefault(x => x.TransactionId.Equals(model.transactionID) && x.Status == ProductStatus.Temporary);
+                        invoice.Status = ProductStatus.NotValidated;
+
+                        if(invoice != null)
+                        {
+                            var cartItems = db.CartItems.Where(x => x.Cart.Id == cart.Id).ToList();
+                            foreach (var item in cartItems)
+                            {
+                                var invoiceDetail = new InvoiceDetail()
+                                {
+                                    Invoice = invoice,
+                                    Price = item.Price,
+                                    Product = item.Product,
+                                    Quantity = item.Quantity
+                                };
+                                db.InvoiceDetails.Add(invoiceDetail);
+                            }
+                            db.SaveChanges();
+
+                            // Clear Shopping Cart
+                            db.CartItems.RemoveRange(cartItems);
+                            db.Carts.Remove(cart);
+                            db.SaveChanges();
+                            Session["InvoiceId"] = invoice.Id;
+                            return RedirectToAction("PaymentComplete", "Customers");
+                        }
+                    }
+                }
+            }
+
+            return RedirectToAction("Index", "Home");
         }
 
 

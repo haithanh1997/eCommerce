@@ -8,6 +8,8 @@ namespace eCommerce.EntityFramework
 {
     public enum ProductStatus
     {
+        [Description("Phiếu tạm")]
+        Temporary = 0,
         [Description("Chưa xác nhận")]
         NotValidated = 0,
         [Description("Đã xác nhận")]

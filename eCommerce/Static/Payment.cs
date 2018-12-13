@@ -14,9 +14,9 @@ namespace eCommerce.Static
                 //Test PAYMENT
 
                 //DITMELOZTHANHMICODE123PAY1000000127.0.0.1Uhttps://google.comhttps://google.comhttps://google.comMIPASSCODEMIKEY
-                var cancelUrl = "https://google.com";               //Cancel payment
-                var redirectUrl = "https://google.com";             //Redirect page
-                var errorUrl = "https://google.com";                //Error payment
+                var cancelUrl = "http://localhost:58107/Customers/OnlinePayment";               //Cancel payment
+                var redirectUrl = "http://localhost:58107/Customers/OnlinePayment";             //Redirect page
+                var errorUrl = "http://localhost:58107/Customers/OnlinePayment";                //Error payment
                 var payment = new PaymentRequestModel()
                 {
                     mTransactionID = transactionId,

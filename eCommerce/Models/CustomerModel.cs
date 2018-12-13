@@ -36,4 +36,15 @@ namespace eCommerce.Models
     {
         public long InvoiceId { get; set; }
     }
+
+    public class OnlinePaymentModel
+    {
+        public string transactionID { get; set; }
+
+        public int status { get; set; }
+
+        public string time { get; set; }
+
+        public string ticket { get; set; }
+    }
 }

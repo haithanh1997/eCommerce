@@ -50,5 +50,7 @@ namespace eCommerce.EntityFramework
         public bool isDisabled { get; set; }
         [DisplayName("Mã giao dịch")]
         public string TransactionId { get; set; }
+        [DisplayName("123Pay Ticket")]
+        public string Ticket { get; set; }
     }
 }
