@@ -14,20 +14,20 @@ namespace eCommerce.EntityFramework
         [DisplayName("Mã gói quảng cáo")]
         public long Id { get; set; }
         //public virtual IdentityUser User { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Trường {0} bắt buộc nhập.")]
         [DisplayName("Tên gói")]
         public string Name { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Trường {0} bắt buộc nhập.")]
         [DisplayName("Giá gói (VNĐ)")]
         public int Price { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Trường {0} bắt buộc nhập.")]
         [DisplayName("Vị trí đặt")]
         public string Position { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Trường {0} bắt buộc nhập.")]
         [DisplayName("Thời hạn (ngày)")]
         public int Period { get; set; }
         //public DateTime ExpiredDate { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Trường {0} bắt buộc nhập.")]
         [DisplayName("Trạng thái")]
         public bool isDisabled { get; set; }
     }

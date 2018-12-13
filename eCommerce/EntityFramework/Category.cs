@@ -13,7 +13,7 @@ namespace eCommerce.EntityFramework
         [DisplayName("Mã danh mục")]
         public long Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Trường {0} bắt buộc nhập.")]
         [DisplayName("Tên danh mục")]
         public string Name { get; set; }
 
