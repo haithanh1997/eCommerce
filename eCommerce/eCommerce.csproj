@@ -229,8 +229,8 @@
     <Compile Include="Areas\Admin\Controllers\StoresController.cs" />
     <Compile Include="Areas\Admin\Models\CartModel.cs" />
     <Compile Include="Areas\Admin\Models\ProductTypeModel.cs" />
-    <Compile Include="Areas\Merchant\Controllers\BuyPackageController.cs" />
     <Compile Include="Areas\Merchant\Controllers\MerchantHomeController.cs" />
+    <Compile Include="Areas\Merchant\Controllers\PackageController.cs" />
     <Compile Include="Areas\Merchant\MerchantAreaRegistration.cs" />
     <Compile Include="Areas\Merchant\Models\ProductModel.cs" />
     <Compile Include="Areas\Merchant\Models\Services.cs" />
@@ -9194,6 +9194,7 @@
     <Content Include="Areas\Merchant\Views\MerchantHome\Edit.cshtml" />
     <Content Include="Areas\Merchant\Views\MerchantHome\ChangePassWord.cshtml" />
     <Content Include="Areas\Merchant\Views\MerchantHome\Shop.cshtml" />
+    <Content Include="Areas\Merchant\Views\Package\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
