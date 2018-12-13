@@ -123,10 +123,10 @@
                 <ul class="main-nav nav navbar-nav">
                     <li class="active"><a href="#">Trang chủ</a></li>
                     <li><a href="#">Khuyến mãi</a></li>
-                    @foreach (var brand in Model.CategoryView)
+                    @*@foreach (var brand in Model.CategoryView)
                     {
                         <li><a href="@Url.Action("CategoryProducts", "Products", new { brand.Name })">@brand.Name</a></li>
-                    }
+                    }*@
                 </ul>
 				<!-- /NAV -->
 			</div>
@@ -183,10 +183,10 @@
 							<h3 class="footer-title">THƯƠNG HIỆU</h3>
                             <ul class="footer-links">
                                 <li><a href="#">Hot deals</a></li>
-                                @foreach (var brand in Model.CategoryView)
+                                @*@foreach (var brand in Model.CategoryView)
                                 {
                                     <li><a href="@Url.Action("CategoryProducts", "Products", new { brand.Name })">@brand.Name</a></li>
-                                }
+                                }*@
                             </ul>
 						</div>
 					</div>

@@ -142,13 +142,13 @@
 				<input type="text" class="form-control" placeholder="Search">
 			</div>
 		</form>
-		<ul class="nav menu">
-			<li class="active"><a href="@Url.Action("Index","MerchantHome",new { id = User.Identity.GetUserId() })"><em class="fa fa-dashboard">&nbsp;</em> Quản lý chung</a></li>
-			<li><a href="@Url.Action("Account","MerchantHome",new { id = User.Identity.GetUserId() })"><em class="fa fa-user">&nbsp;</em> Thông tin tài khoản</a></li>
-			<li class="parent ">
-				<a data-toggle="collapse" href="#sub-item-1">
-					<em class="fa fa-navicon">&nbsp;</em> Hóa Đơn <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
-				</a>
+        <ul class="nav menu">
+            <li class="active"><a href="@Url.Action("Index","MerchantHome",new { id = User.Identity.GetUserId() })"><em class="fa fa-dashboard">&nbsp;</em> Quản lý chung</a></li>
+            <li><a href="@Url.Action("Account","MerchantHome",new { id = User.Identity.GetUserId() })"><em class="fa fa-user">&nbsp;</em> Thông tin tài khoản</a></li>
+            <li class="parent ">
+                <a data-toggle="collapse" href="#sub-item-1">
+                    <em class="fa fa-navicon">&nbsp;</em> Hóa Đơn <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
+                </a>
                 <ul class="children collapse" id="sub-item-1">
                     <li>
                         <a class="" href="@Url.Action("NewInvoices","MerchantHome",new { id = User.Identity.GetUserId() })">
@@ -167,33 +167,35 @@
                     </li>
 
                 </ul>
-			</li>
-			<li><a href="@Url.Action("Profit","MerchantHome",new { id = User.Identity.GetUserId() })"><em class="fa fa-dollar">&nbsp;</em> Lợi Nhuận</a></li>
+            </li>
+            <li><a href="@Url.Action("Profit","MerchantHome",new { id = User.Identity.GetUserId() })"><em class="fa fa-dollar">&nbsp;</em> Lợi Nhuận</a></li>
 
-			<li class="parent ">
-				<a data-toggle="collapse" href="#sub-item-2">
-					<em class="fa fa-navicon">&nbsp;</em> Sản Phẩm <span data-toggle="collapse" href="#sub-item-2" class="icon pull-right"><em class="fa fa-plus"></em></span>
-				</a>
-				<ul class="children collapse" id="sub-item-2">
-					<li>
-						<a class="" href="@Url.Action("ManageProduct","MerchantHome",new { id = User.Identity.GetUserId() })">
-							<span class="fa fa-arrow-right">&nbsp;</span> Quản Lí Sản Phẩm
-						</a>
-					</li>
-					<li>
-						<a class="" href="@Url.Action("Create","MerchantHome",new { id = User.Identity.GetUserId() })">
-							<span class="fa fa-arrow-right">&nbsp;</span> Thêm Sản Phẩm
-						</a>
-					</li>
-					<li>
-						<a class="" href="@Url.Action("LowQuantity","MerchantHome",new { id = User.Identity.GetUserId() } )">
-							<span class="fa fa-arrow-right">&nbsp;</span> Sản Phẩm Sắp Hết
-						</a>
-					</li>
+            <li class="parent ">
+                <a data-toggle="collapse" href="#sub-item-2">
+                    <em class="fa fa-navicon">&nbsp;</em> Sản Phẩm <span data-toggle="collapse" href="#sub-item-2" class="icon pull-right"><em class="fa fa-plus"></em></span>
+                </a>
+                <ul class="children collapse" id="sub-item-2">
+                    <li>
+                        <a class="" href="@Url.Action("ManageProduct","MerchantHome",new { id = User.Identity.GetUserId() })">
+                            <span class="fa fa-arrow-right">&nbsp;</span> Quản Lí Sản Phẩm
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" href="@Url.Action("Create","MerchantHome",new { id = User.Identity.GetUserId() })">
+                            <span class="fa fa-arrow-right">&nbsp;</span> Thêm Sản Phẩm
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" href="@Url.Action("LowQuantity","MerchantHome",new { id = User.Identity.GetUserId() } )">
+                            <span class="fa fa-arrow-right">&nbsp;</span> Sản Phẩm Sắp Hết
+                        </a>
+                    </li>
 
-				</ul>
-			</li>
-		</ul>
+                </ul>
+            </li>
+
+            <li><a href="@Url.Action("Index","Package")"><em class="fa fa-file">&nbsp;</em> Mua gói tin</a></li>
+        </ul>
 	</div><!--/.sidebar-->
 
 	@RenderBody();
