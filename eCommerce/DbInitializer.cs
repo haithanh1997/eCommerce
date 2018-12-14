@@ -104,8 +104,8 @@ namespace eCommerce
 
             context.SaveChanges();
 
-            //Seed for Category
-            IList<Category> defaultCategories = new List<Category>();
+			//Seed for Category
+			IList<Category> defaultCategories = new List<Category>();
 
             defaultCategories.Add(new Category() { Name = "ASUS" , isDisabled = false });
             defaultCategories.Add(new Category() { Name = "ACER", isDisabled = false });

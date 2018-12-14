@@ -1,8 +1,16 @@
-﻿
+﻿@using Microsoft.AspNet.Identity
 @{
     ViewBag.Title = "PaymentComplete";
     Layout = "~/Areas/Merchant/Views/Shared/_Layout-Merchants.cshtml";
 }
 
-<h2>PaymentComplete</h2>
+<div class="text-center">
+	<h3>Thanh Toán Thành Công</h3>
+	<p>Có Thể Đăng Sản Phẩm </p>
+
+	<a href="@Url.Action("Create","MerchantHome",new { id =  User.Identity.GetUserId() })" type="button" class="btn btn-danger">
+		<i class="fa fa-upload"></i> Tạo Sản Phẩm
+	</a>
+
+</div>
 

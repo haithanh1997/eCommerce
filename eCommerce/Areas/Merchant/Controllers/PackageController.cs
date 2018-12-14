@@ -4,6 +4,7 @@ using eCommerce.Static;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -79,8 +80,15 @@ namespace eCommerce.Areas.Merchant.Controllers
                             transactionId = model.transactionID,
                             hashCode = model.ticket,
                         };
+					
                         db.PackageInvoices.Add(invoice);
-                        db.SaveChanges();
+
+						// Thêm số lần đăng cho Store
+						//var store = db.MerchantStores.Where(x => x.User.Id == CurrentUser.Id).FirstOrDefault();
+						//store.Package = invoice.Package.Times;
+						//db.Entry(store).State = EntityState.Modified;
+
+						db.SaveChanges();
 
                         return RedirectToAction("PaymentComplete", "Package");
                     }
@@ -127,10 +135,21 @@ namespace eCommerce.Areas.Merchant.Controllers
 		}
 
 		// Trang set up cho quảng cáo
-		public ActionResult AdCreate(string id)
+		public ActionResult AdCreate(string id ,long ad)
 		{
 			var model = db.Products.Where(x => x.Store.User.Id == id && x.AdType == AdType.No).ToList();
+			ViewBag.adtype = ad;
 			return View(model);
+		}
+		// Tạo SlideShow
+		public ActionResult AdCreatSlideShow(string id, long ad)
+		{ 
+			var model1 = db.AdInvoices.Where(x => x.User.Id == id && x.AdPackage.Id == ad && x.Status == false).FirstOrDefault();
+			ViewBag.adtype = model1.AdPackage.AdType;
+			model1.Status = true;
+			db.Entry(model1).State = EntityState.Modified;
+			db.SaveChanges();
+			return View();
 		}
 
 		//Trang danh sách các quảng cáo đang chạy
@@ -138,6 +157,53 @@ namespace eCommerce.Areas.Merchant.Controllers
 		{
 			var model = db.Products.Where(x => x.Store.User.Id == id && x.AdType == AdType.Hot || x.AdType == AdType.New || x.AdType == AdType.Encourage || x.AdType == AdType.FlashSale ).ToList();
 			return View(model);
+		}
+		//Trang danh sách các SlideShow đang chạy
+		public ActionResult SlideShowList(string id)
+		{
+			var model = db.SlideShows.Where(x => x.User.Id == id ).ToList();
+			return View(model);
+		}
+		//Gỡ SlideShow
+		public ActionResult EditSlideShow(long id)
+		{
+			var model = db.SlideShows.Find(id);
+			db.SlideShows.Remove(model);
+			db.SaveChanges();
+			return RedirectToAction("SlideShowList", new { id = model.User.Id });
+		}
+
+		// Gỡ quảng cáo
+		public ActionResult Edit(long id)
+		{
+			var model = db.Products.Find(id);
+			model.AdType = AdType.No;
+			db.Entry(model).State = EntityState.Modified;
+			db.SaveChanges();
+			return RedirectToAction("AdList",new {id = model.Store.User.Id });
+		}
+
+		//Chỉ định sản phẩm quảng cáo
+		public ActionResult Create(long id , long ad , string user)
+		{
+			var model = db.Products.Find(id);
+			var model1 = db.AdInvoices.Where(x => x.User.Id == user && x.AdPackage.Id == ad && x.Status == false).FirstOrDefault();
+			model.AdType = model1.AdPackage.AdType;
+			model1.Status = true;
+			db.Entry(model).State = EntityState.Modified;
+			db.Entry(model1).State = EntityState.Modified;
+			db.SaveChanges();
+			return RedirectToAction("AdManage", new { id = model.Store.User.Id });
+		}
+		[HttpPost]
+		public ActionResult CreateSlideShow(SlideShow model,string id)
+		{
+			var userid = id;
+			model.User = db.Users.Where(x => x.Id == id).FirstOrDefault();
+			model.isDisable = false;
+			db.SlideShows.Add(model);
+			db.SaveChanges();
+			return RedirectToAction("SlideShowList", new {id = userid});
 		}
 	}
 }

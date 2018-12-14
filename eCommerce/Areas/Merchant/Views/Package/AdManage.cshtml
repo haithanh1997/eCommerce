@@ -20,16 +20,16 @@
 	<section class="content">
 		<div class="box" style="padding-left: 20px; padding-right: 20px">
 			<div class="row">
-				@if (Model == null)
+				@if (Model.Count(x=>x.Status== true) == 5)
 				{
 					<div class="text-center">
 						<h4>Hiện tại không có quảng cáo nào</h4>
 						<p>Hãy mua thêm quảng cáo</p>
 
-						<a href="@Url.Action("Ad","Package",new { id =  User.Identity.GetUserId() })" type="button" class="btn btn-danger">
+						<a href="@Url.Action("Ad","Package",new { id =  User.Identity.GetUserId() })" type="button"  class="btn btn-danger">
 							<i class="fa fa-dollar"></i> Mua quảng cáo
 						</a>
-						<a href="@Url.Action("AdList","Package", new { id = User.Identity.GetUserId() })" type="button" class="btn btn-primary " style="margin-right: 5px;">
+						<a href="@Url.Action("AdList","Package", new { id = User.Identity.GetUserId() })" type="button"  class="btn btn-primary " style="margin-right: 5px;">
 							<i class="fa fa-list"></i> Quảng cáo đang hoạt động
 						</a>
 
@@ -44,7 +44,15 @@
 							<div class="col-lg-4">
 								<div class="plan">
 									<h3>@Html.DisplayFor(modelItem => item.AdPackage.Name)<span>@Html.DisplayFor(modelItem => item.Price).000</span></h3>
-									<a class="btn btn-lg btn-primary" href="@Url.Action("AdCreate","Package",new { id = item.Id })">Tạo quảng cáo</a>
+									@if (item.AdPackage.AdType == eCommerce.EntityFramework.AdType.SlideShow)
+									{
+										<a class="btn btn-lg btn-primary" href="@Url.Action("AdCreatSlideShow","Package",new { id = item.User.Id ,ad = item.AdPackage.Id })">Tạo quảng cáo</a>
+									}
+									else
+									{
+										<a class="btn btn-lg btn-primary" href="@Url.Action("AdCreate","Package",new { id = item.User.Id ,ad = item.AdPackage.Id })">Tạo quảng cáo</a>
+									}
+
 									<ul>
 										<li>Vị trí hiển thị <b>@Html.DisplayFor(modelItem => item.AdPackage.AdType)</b></li>
 										<li>Hết hạn <b>@Html.DisplayFor(modelItem => item.ExpiredDate) </b></li>
@@ -63,8 +71,11 @@
 							<a href="@Url.Action("Ad","Package",new { id =  User.Identity.GetUserId() })" type="button" class="btn btn-danger">
 								<i class="fa fa-dollar"></i> Mua quảng cáo
 							</a>
-							<a href="@Url.Action("AdList","Package", new { id = User.Identity.GetUserId() })" type="button" class="btn btn-primary " style="margin-right: 5px;">
-								<i class="fa fa-list"></i> Quảng cáo đang hoạt động
+							<a href="@Url.Action("AdList","Package", new { id = User.Identity.GetUserId() })" type="button" class="btn btn-warning " style="margin-right: 5px;">
+								<i class="fa fa-list"></i> Sản phẩm đang quảng cáo
+							</a>
+							<a href="@Url.Action("AdList","Package", new { id = User.Identity.GetUserId() })" type="button" class="btn btn-success " style="margin-right: 5px;">
+								<i class="fa fa-list"></i> SlideShow đang hoạt động
 							</a>
 						</div>
 					</div>
@@ -75,3 +86,4 @@
 	</section>
 	<!-- /.content -->
 </div>
+

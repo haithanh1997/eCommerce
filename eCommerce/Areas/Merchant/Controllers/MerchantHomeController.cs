@@ -124,11 +124,7 @@ namespace eCommerce.Areas.Merchant.Controllers
             double percent = lastMonth / (lastMonth + increased) * 100;
             ViewBag.Percent = percent;
         }
-		// THông tin tài khoản 
-		public ActionResult Account()
-        {
-            return View();
-        }
+	
 		// Function hiển thị Các sản phẩm được mua của Merchant
         public ActionResult NewInvoices(string id)
         {
@@ -168,13 +164,28 @@ namespace eCommerce.Areas.Merchant.Controllers
 		//Lợi nhuận thu đươc cưa thanh toán Merchant
         public ActionResult Profit(string id)
         {
+			ProfitCalculation(id);
+
+			//Tiền Doanh thu trong tháng
 			long profit = 0;
 			var model = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id && x.Invoice.Status == ProductStatus.Delivered && x.Invoice.isDisabled == false).ToList();
 			foreach(var i in model)
 			{
 				profit += (i.Product.Price * i.Quantity);
 			}
-			return View(profit);
+
+			// Tiền được chuyển trong tháng.
+			int month = DateTime.Now.Month;
+			int year = DateTime.Now.Year;
+			long profit1 = 0;
+			var model1 = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id && x.Invoice.createdDate.Month == month && x.Invoice.createdDate.Year == year && x.Invoice.Status == ProductStatus.Delivered && x.Invoice.isDisabled == true).ToList();
+			foreach (var i in model)
+			{
+				profit1 += (i.Product.Price * i.Quantity);
+			}
+			ViewBag.Profit_Now = (profit / 1000000);
+			ViewBag.Profit_Old = (profit / 1000000);
+			return View();
         }
 		//Hiển thị sản phẩm đăng bán của Merchant
         public ActionResult ManageProduct(string id)
@@ -230,10 +241,17 @@ namespace eCommerce.Areas.Merchant.Controllers
 		[ValidateAntiForgeryToken]
 		public ActionResult Create(ProductModel model,string id)
         {
-            ViewBag.UserID = id;
+			
+			ViewBag.UserID = id;
 			Product product = new Product();
             if (ModelState.IsValid)
             {
+				// Trừ số lần đăng của cửa hàng
+				var num = db.MerchantStores.FirstOrDefault(x => x.User.Id == id);
+				num.Package = num.Package - 1;
+				db.Entry(num).State = EntityState.Modified;
+
+
 				product.Store = db.MerchantStores.FirstOrDefault(x=>x.User.Id == id);
 				product.Name = model.Name;
 				product.Price = model.Price;
@@ -284,7 +302,7 @@ namespace eCommerce.Areas.Merchant.Controllers
                 }
                 db.Products.Add(product);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ManageProduct",new { id = ViewBag.UserID });
             }
 			var model1 =  new ProductModel()
 			{
@@ -491,20 +509,102 @@ namespace eCommerce.Areas.Merchant.Controllers
 
             return RedirectToAction("Index");
         }
+
+
+		// THông tin tài khoản 
+		public ActionResult Account(string id)
+		{
+			var model = db.MerchantStores.Where(x => x.User.Id == id).FirstOrDefault();
+			return View(model);
+		}
+
 		[ChildActionOnly]
 		public ActionResult ChangePassWord()
 		{
+			
 			return PartialView("ChangePassWord");
 		}
-		[ChildActionOnly]
-		public ActionResult Shop()
+
+		
+
+		public ActionResult EditInfo(MerchantStore model , string id)
 		{
-			return PartialView("Shop");
-		}
-		[ChildActionOnly]
-		public ActionResult Services()
-		{
-			return PartialView("Service");
+			ViewBag.UserID = db.MerchantStores.FirstOrDefault(x => x.User.Id == id);
+			if (ModelState.IsValid)
+			{
+				bool exists = System.IO.Directory.Exists(Server.MapPath("~/MerchantImages/" + ViewBag.UserID));
+
+				if (!exists)
+					System.IO.Directory.CreateDirectory(Server.MapPath("~/MerchantImages/" + ViewBag.UserID));
+
+				var f1 = Request.Files["Image1"];
+				var f2 = Request.Files["Image2"];
+				var f3 = Request.Files["Image3"];
+				var f4 = Request.Files["Image4"];
+				var f5 = Request.Files["Image5"];
+
+				if (f1 != null && f1.ContentLength > 0)
+				{
+					string fullPath = Request.MapPath(model.Image1);
+					if (System.IO.File.Exists(fullPath))
+					{
+						System.IO.File.Delete(fullPath);
+					}
+					var path = Server.MapPath("~/MerchantImages/" + ViewBag.UserID + "/" + f1.FileName);
+					f1.SaveAs(path);
+					model.Image1 = "/MerchantImages/" + ViewBag.UserID + "/" + f1.FileName;
+				}
+				if (f2 != null && f2.ContentLength > 0)
+				{
+					string fullPath = Request.MapPath(model.Image2);
+					if (System.IO.File.Exists(fullPath))
+					{
+						System.IO.File.Delete(fullPath);
+					}
+					var path = Server.MapPath("~/MerchantImages/" + ViewBag.UserID + "/" + f2.FileName);
+					f2.SaveAs(path);
+					model.Image2 = "/MerchantImages/" + ViewBag.UserID + "/" + f2.FileName;
+				}
+				if (f3 != null && f3.ContentLength > 0)
+				{
+					string fullPath = Request.MapPath(model.Image3);
+					if (System.IO.File.Exists(fullPath))
+					{
+						System.IO.File.Delete(fullPath);
+					}
+					var path = Server.MapPath("~/MerchantImages/" + ViewBag.UserID + "/" + f3.FileName);
+					f3.SaveAs(path);
+					model.Image3 = "/MerchantImages/" + ViewBag.UserID + "/" + f3.FileName;
+				}
+				if (f4 != null && f4.ContentLength > 0)
+				{
+					string fullPath = Request.MapPath(model.Image3);
+					if (System.IO.File.Exists(fullPath))
+					{
+						System.IO.File.Delete(fullPath);
+					}
+					var path = Server.MapPath("~/MerchantImages/" + ViewBag.UserID + "/" + f4.FileName);
+					f4.SaveAs(path);
+					model.Image4 = "/MerchantImages/" + ViewBag.UserID + "/" + f4.FileName;
+				}
+				if (f5 != null && f5.ContentLength > 0)
+				{
+					string fullPath = Request.MapPath(model.Image3);
+					if (System.IO.File.Exists(fullPath))
+					{
+						System.IO.File.Delete(fullPath);
+					}
+					var path = Server.MapPath("~/MerchantImages/" + ViewBag.UserID + "/" + f5.FileName);
+					f5.SaveAs(path);
+					model.Image5 = "/MerchantImages/" + ViewBag.UserID + "/" + f5.FileName;
+				}
+
+				db.Entry(model).State = EntityState.Modified;
+				db.SaveChanges();
+				return RedirectToAction("Account",new {id = ViewBag.UserID });
+			}
+			
+			return View();
 		}
 		[ChildActionOnly]
 		public ActionResult BankAccount()

@@ -9162,7 +9162,6 @@
     <Content Include="Areas\Admin\Views\Delivery\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Statistic\LowQuatity.cshtml" />
     <Content Include="Areas\Merchant\Views\web.config" />
-    <Content Include="Areas\Merchant\Views\MerchantHome\Account.cshtml" />
     <Content Include="Areas\Merchant\Views\MerchantHome\Create.cshtml" />
     <Content Include="Areas\Merchant\Views\MerchantHome\Index.cshtml" />
     <Content Include="Areas\Merchant\Views\MerchantHome\ManageProduct.cshtml" />
@@ -9199,7 +9198,6 @@
     <Content Include="Areas\Merchant\Views\MerchantHome\Details.cshtml" />
     <Content Include="Areas\Merchant\Views\MerchantHome\Edit.cshtml" />
     <Content Include="Areas\Merchant\Views\MerchantHome\ChangePassWord.cshtml" />
-    <Content Include="Areas\Merchant\Views\MerchantHome\Shop.cshtml" />
     <Content Include="Areas\Merchant\Views\Package\Index.cshtml" />
     <Content Include="Areas\Merchant\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Merchant\Views\Shared\_Layout.cshtml" />
@@ -9213,6 +9211,11 @@
     <Content Include="Areas\Merchant\Views\Package\Ad.cshtml" />
     <Content Include="Areas\Merchant\Views\Package\AdManage.cshtml" />
     <Content Include="Areas\Merchant\Views\Package\PaymentComplete.cshtml" />
+    <Content Include="Areas\Merchant\Views\Package\AdList.cshtml" />
+    <Content Include="Areas\Merchant\Views\Package\AdCreate.cshtml" />
+    <Content Include="Areas\Merchant\Views\Package\AdCreatSlideShow.cshtml" />
+    <Content Include="Areas\Merchant\Views\Package\SlideShowList.cshtml" />
+    <Content Include="Areas\Merchant\Views\MerchantHome\Account.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
