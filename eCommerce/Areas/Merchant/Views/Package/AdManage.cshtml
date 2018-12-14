@@ -1,0 +1,77 @@
+﻿@model IEnumerable<eCommerce.EntityFramework.AdInvoice>
+@using Microsoft.AspNet.Identity
+@{
+	ViewBag.Title = "AdManage";
+	Layout = "~/Areas/Merchant/Views/Shared/_Layout-Merchants.cshtml";
+}
+
+
+
+<link rel="stylesheet" href="~/Areas/Admin/Assets/dist/css/AdminLTE.css">
+<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+	<section class="content-header clear-fix">
+		<h1>
+			Quảng Cáo Hiện Có
+
+		</h1>
+	</section>
+	<!-- Main content -->
+	<section class="content">
+		<div class="box" style="padding-left: 20px; padding-right: 20px">
+			<div class="row">
+				@if (Model == null)
+				{
+					<div class="text-center">
+						<h4>Hiện tại không có quảng cáo nào</h4>
+						<p>Hãy mua thêm quảng cáo</p>
+
+						<a href="@Url.Action("Ad","Package",new { id =  User.Identity.GetUserId() })" type="button" class="btn btn-danger">
+							<i class="fa fa-dollar"></i> Mua quảng cáo
+						</a>
+						<a href="@Url.Action("AdList","Package", new { id = User.Identity.GetUserId() })" type="button" class="btn btn-primary " style="margin-right: 5px;">
+							<i class="fa fa-list"></i> Quảng cáo đang hoạt động
+						</a>
+
+					</div>
+
+				}
+				else
+				{
+					<div class="pricing-table">
+						@foreach (var item in Model)
+						{
+							<div class="col-lg-4">
+								<div class="plan">
+									<h3>@Html.DisplayFor(modelItem => item.AdPackage.Name)<span>@Html.DisplayFor(modelItem => item.Price).000</span></h3>
+									<a class="btn btn-lg btn-primary" href="@Url.Action("BuyAd","Package",new { id = item.Id })">Tạo quảng cáo</a>
+									<ul>
+										<li>Vị trí hiển thị <b>@Html.DisplayFor(modelItem => item.AdPackage.AdType)</b></li>
+										<li>Hết hạn <b>@Html.DisplayFor(modelItem => item.ExpiredDate) </b></li>
+										<li>Ưu tiên hiển thị trong mục <b>@Html.DisplayFor(modelItem => item.AdPackage.AdType)</b></li>
+										<li>Không tự động gia hạn </li>
+									</ul>
+								</div>
+							</div>
+
+
+
+						}
+					</div>
+					<div class="row no-print text-center">
+						<div class="col-xs-12">
+							<a href="@Url.Action("Ad","Package",new { id =  User.Identity.GetUserId() })" type="button" class="btn btn-danger">
+								<i class="fa fa-dollar"></i> Mua quảng cáo
+							</a>
+							<a href="@Url.Action("AdList","Package", new { id = User.Identity.GetUserId() })" type="button" class="btn btn-primary " style="margin-right: 5px;">
+								<i class="fa fa-list"></i> Quảng cáo đang hoạt động
+							</a>
+						</div>
+					</div>
+				}
+				<hr />
+			</div>
+		</div>
+	</section>
+	<!-- /.content -->
+</div>

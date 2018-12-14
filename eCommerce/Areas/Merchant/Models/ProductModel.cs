@@ -80,7 +80,7 @@ namespace eCommerce.Areas.Merchant.Models
 
 		[Required]
 		[DisplayName("Trọng lượng")]
-		public float Size { get; set; }
+		public double Size { get; set; }
 
 		[DisplayName("Ngày đăng")]
 		public DateTime updateDate { get; set; }

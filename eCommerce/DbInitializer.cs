@@ -152,8 +152,61 @@ namespace eCommerce
             context.AdPackages.AddRange(defaultAdPackages);
             context.SaveChanges();
 
-            //Seed for Merchant Stores
-            IList<MerchantStore> defaultStores = new List<MerchantStore>();
+			// Seed for AdInvoice
+			IList<AdInvoice> defaultAdInvoice = new List<AdInvoice>();
+			defaultAdInvoice.Add(new AdInvoice()
+			{
+				User = context.Users.FirstOrDefault(x=>x.Id == id),
+				AdPackage = context.AdPackages.FirstOrDefault(x => x.Id == 1),
+				Price = 200000,
+				createdDate = DateTime.Now,
+				ExpiredDate = DateTime.Now.AddDays((from c in context.AdPackages.Where(c => c.Id == 1) select c.Period).FirstOrDefault()),
+				Status = false
+			});
+			defaultAdInvoice.Add(new AdInvoice()
+			{
+				User = context.Users.FirstOrDefault(x => x.Id == id),
+				AdPackage = context.AdPackages.FirstOrDefault(x => x.Id == 2),
+				Price = 200000,
+				createdDate = DateTime.Now,
+				ExpiredDate = DateTime.Now.AddDays((from c in context.AdPackages.Where(c => c.Id ==2) select c.Period).FirstOrDefault()),
+				Status = false
+			});
+			defaultAdInvoice.Add(new AdInvoice()
+			{
+				User = context.Users.FirstOrDefault(x => x.Id == id ),
+				AdPackage = context.AdPackages.FirstOrDefault(x => x.Id == 3),
+				Price = 350000,
+				createdDate = DateTime.Now,
+				ExpiredDate = DateTime.Now.AddDays((from c in context.AdPackages.Where(c => c.Id == 3) select c.Period).FirstOrDefault()),
+				Status = false
+			});
+			defaultAdInvoice.Add(new AdInvoice()
+			{
+				User = context.Users.FirstOrDefault(x => x.Id == id),
+				AdPackage = context.AdPackages.FirstOrDefault(x => x.Id == 4),
+				Price = 350000,
+				createdDate = DateTime.Now,
+				ExpiredDate = DateTime.Now.AddDays((from c in context.AdPackages.Where(c => c.Id == 4) select c.Period).FirstOrDefault()),
+				Status = false
+			});
+			defaultAdInvoice.Add(new AdInvoice()
+			{
+				User = context.Users.FirstOrDefault(x => x.Id == id),
+				AdPackage = context.AdPackages.FirstOrDefault(x => x.Id == 5),
+				Price = 599000,
+				createdDate = DateTime.Now,
+				ExpiredDate = DateTime.Now.AddDays((from c in context.AdPackages.Where(c => c.Id == 5) select c.Period).FirstOrDefault()),
+				Status = false
+			});
+
+
+
+			context.AdInvoices.AddRange(defaultAdInvoice);
+			context.SaveChanges();
+
+			//Seed for Merchant Stores
+			IList<MerchantStore> defaultStores = new List<MerchantStore>();
 			defaultStores.Add(new MerchantStore() { User = context.Users.FirstOrDefault(x => x.Id == id), Name = "Cửa hàng Infinity",
 				Address = "362 Nguyễn Chí Thanh P16 Q11 TPHCM", BusinessRegistrationCode = "0310941649",
 				TaxRegistrationCode = "0102859048", CardTradeNumber = "9704-0509-0070-8986",
@@ -220,8 +273,8 @@ namespace eCommerce
                 Image1 = "/Assets/img/product2-01.jpg",
                 Image2 = "/Assets/img/product2-01.jpg",
                 Image3 = "/Assets/img/product2-02.jpg",
-               
-                isDisabled = false
+				AdType = AdType.No,
+				isDisabled = false
             });
 
             context.Products.AddRange(defaultProducts);

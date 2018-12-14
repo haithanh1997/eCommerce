@@ -252,7 +252,7 @@ namespace eCommerce.Areas.Merchant.Controllers
 				product.DesignType = model.DesignType;
 				product.Size = model.Size;
 				product.updateDate = DateTime.Now;
-                product.AdType = EntityFramework.AdType.Default;
+                product.AdType = EntityFramework.AdType.No;
                 product.isDisabled = false;
 
                 bool exists = System.IO.Directory.Exists(Server.MapPath("~/MerchantProduct/"+ViewBag.UserID));
@@ -511,15 +511,7 @@ namespace eCommerce.Areas.Merchant.Controllers
 		{
 			return PartialView("BankAccount");
 		}
-        public ActionResult BuyAd(string id)
-        {
-            var model = db.AdPackages.Where(x => x.isDisabled == false).ToList();
-            foreach (var item in model)
-            {
-                item.Price /= 1000;
-            }
-            return View(model);
-        }
+       
 
       
 	}
