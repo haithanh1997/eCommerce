@@ -1,4 +1,5 @@
-﻿using eCommerce.Models;
+﻿using eCommerce.EntityFramework;
+using eCommerce.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,8 +54,14 @@ namespace eCommerce.Controllers
                     query = query.Where(x => x.screenType.Contains(size));
                 }
             }
+            // Get Default Products without searching for price because we must display defaultMax and defaultMin on Max-Min slide bar
+            var defaultProducts = query.ToList();
 
-            var products = query.ToList();
+            // Final Products display client-side
+            var products = defaultProducts;
+            if (param.min != 0 || param.max != 0)
+                products = defaultProducts.Where(x => x.Price >= param.min && x.Price <= param.max).ToList();
+
             return View(new ProductIndexModel()
             {
                 Categories = db.Categories.Where(x => !x.isDisabled).ToList(),
@@ -65,6 +72,8 @@ namespace eCommerce.Controllers
                 Sizes = new List<Size> { new Size { Id = "1", Name = "14"}, new Size { Id = "2", Name = "15.6" }, new Size { Id = "3", Name = "17" } },
                 Products = products,
                 Filter = param,
+                defaultMax = defaultProducts.Count > 0 ? defaultProducts.Max(x => x.Price) : 9999999,
+                defaultMin = defaultProducts.Count > 0 ? (defaultProducts.Min(x => x.Price) == defaultProducts.Max(x => x.Price) ? 0 : defaultProducts.Min(x => x.Price)) : 0,
             });
         }
         public ActionResult Types()

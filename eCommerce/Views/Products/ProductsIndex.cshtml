@@ -71,13 +71,13 @@
                     <div class="price-filter">
                         <div id="price-slider"></div>
                         <div class="input-number price-min">
-                            <input id="price-min" type="number">
+                            <input id="price-min" type="number" value="@Model.Filter.min" data-defaultval="@Model.defaultMin">
                             <span class="qty-up">+</span>
                             <span class="qty-down">-</span>
                         </div>
                         <span>-</span>
                         <div class="input-number price-max">
-                            <input id="price-max" type="number">
+                            <input id="price-max" type="number" value="@(Model.Filter.max == 0 ? Model.defaultMax : Model.Filter.max)" data-defaultval="@Model.defaultMax">
                             <span class="qty-up">+</span>
                             <span class="qty-down">-</span>
                         </div>
@@ -368,7 +368,6 @@
         var filterUrl = "/Products/ProductsIndex?name=@Model.Filter.name";
         // Filter Type
         $(".filter-type input:checked").each(function () {
-            console.log($(this).attr("data-id"));
             filterUrl += "&type=" + $(this).attr("data-id");
         })
 
@@ -382,13 +381,18 @@
             filterUrl += "&cpu=" + $(this).attr("data-id");
         })
 
+        //Filter ram
         $(".filter-ram input:checked").each(function () {
             filterUrl += "&ram=" + $(this).attr("data-id");
         })
 
+        //Filter size
         $(".filter-size input:checked").each(function () {
             filterUrl += "&size=" + $(this).attr("data-id");
         })
+
+        if ($("#price-min").val() != @Model.defaultMin) filterUrl += "&min=" + $("#price-min").val();
+        if ($("#price-min").val() != @Model.defaultMax) filterUrl += "&max=" + $("#price-max").val();
         
         return filterUrl;
     }
