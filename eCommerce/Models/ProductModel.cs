@@ -16,15 +16,19 @@ namespace eCommerce.Models
         public List<RAM> Rams { get; set; }
         public List<Size> Sizes { get; set; }
         public ProductFilterParam Filter { get; set; }
+
+        public int defaultMin { get; set; }
+
+        public int defaultMax { get; set; }
     }
 
     public class ProductFilterParam
     {
         public string name { get; set; }
         public List<long> type { get; set; }
-        public int min { get; set; }
+        public decimal min { get; set; }
 
-        public int max { get; set; }
+        public decimal max { get; set; }
         public List<string> drive { get; set; }
         public List<string> cpu { get; set; }
         public List<string> ram { get;set; }
