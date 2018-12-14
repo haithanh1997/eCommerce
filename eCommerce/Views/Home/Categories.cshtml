@@ -1,0 +1,5 @@
+﻿@model IEnumerable<eCommerce.EntityFramework.Category>
+@foreach (var item in Model)
+{
+    <li><a href="@Url.Action("ProductsIndex", "Products", new { name = item.Name })">@Html.DisplayFor(modelItem => item.Name)</a></li>
+}
