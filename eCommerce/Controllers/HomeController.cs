@@ -67,5 +67,12 @@ namespace eCommerce.Controllers
 
             return View();
         }
+
+        [ChildActionOnly]
+        public ActionResult Categories()
+        {
+            var model = db.Categories.ToList();
+            return PartialView(model);
+        }
     }
 }

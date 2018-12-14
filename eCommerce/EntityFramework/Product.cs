@@ -78,7 +78,7 @@ namespace eCommerce.EntityFramework
 
         [Required(ErrorMessage = "Trường {0} bắt buộc nhập.")]
         [DisplayName("Trọng lượng")]
-        public float Size { get; set; }
+        public double Size { get; set; }
       
         [DisplayName("Ngày đăng")]
         public DateTime updateDate { get; set; }

@@ -36,43 +36,36 @@
                 <!-- aside Widget -->
                 <div class="aside">
                     <h3 class="aside-title">Loại</h3>
-                    <div class="checkbox-filter">
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="brand-1">
-                            <label for="brand-1">
-                                <span></span>
-                                GAMING
-                                <small>(578)</small>
-                            </label>
-                        </div>
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="brand-2">
-                            <label for="brand-2">
-                                <span></span>
-                                VĂN PHÒNG
-                                <small>(125)</small>
-                            </label>
-                        </div>
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="brand-3">
-                            <label for="brand-3">
-                                <span></span>
-                                XOAY 360
-                                <small>(755)</small>
-                            </label>
-                        </div>
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="brand-3">
-                            <label for="brand-3">
-                                <span></span>
-                                WORKSTATION
-                                <small>(755)</small>
-                            </label>
-                        </div>
+                    <div class="checkbox-filter filter-type">
+                        @if (Model.Filter.type != null)
+                        {
+                            foreach (var item in Model.Types)
+                            {
+                                <div class="input-checkbox">
+                                    <input type="checkbox" data-id="@item.Id" id="brand-@item.Id" @(Model.Filter.type.Contains(item.Id) ? "checked" : "")>
+                                    <label for="brand-@item.Id">
+                                        <span></span>
+                                        @item.Name
+                                    </label>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            foreach (var item in Model.Types)
+                            {
+                                <div class="input-checkbox">
+                                    <input type="checkbox" data-id="@item.Id" id="brand-@item.Id">
+                                    <label for="brand-@item.Id">
+                                        <span></span>
+                                        @item.Name
+                                    </label>
+                                </div>
+                            }
+                        }
                     </div>
                 </div>
                 <!-- /aside Widget -->
-                <!-- aside Widget -->
                 <div class="aside">
                     <h3 class="aside-title">Giá</h3>
                     <div class="price-filter">
@@ -90,129 +83,138 @@
                         </div>
                     </div>
                 </div>
-                <!-- /aside Widget -->
                 <!-- aside Widget -->
                 <div class="aside">
                     <h3 class="aside-title">Ổ Cứng</h3>
-                    <div class="checkbox-filter">
+                    <div class="checkbox-filter filter-drive">
 
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="hard-1">
-                            <label for="hard-1">
-                                <span></span>
-                                SSD
-                                <small>(578)</small>
-                            </label>
-                        </div>
+                        @if (Model.Filter.drive != null)
+                        {
+                            foreach (var item in Model.Drives)
+                            {
+                                <div class="input-checkbox">
+                                    <input type="checkbox" data-id="@item.Name" id="hard-@item.Id" @(Model.Filter.drive.Contains(item.Name) ? "checked" : "" )>
+                                    <label for="hard-@item.Id">
+                                        <span></span>
+                                        @item.Name
+                                    </label>
+                                </div>
+                            }
 
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="hard-2">
-                            <label for="hard-2">
-                                <span></span>
-                                500GB
-                                <small>(578)</small>
-                            </label>
-                        </div>
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="hard-3">
-                            <label for="hard-3">
-                                <span></span>
-                                1TB
-                                <small>(578)</small>
-                            </label>
-                        </div>
-
+                        }
+                        else
+                        {
+                            foreach (var item in Model.Drives)
+                            {
+                                <div class="input-checkbox">
+                                    <input type="checkbox" data-id="@item.Name" id="hard-@item.Id">
+                                    <label for="hard-@item.Id">
+                                        <span></span>
+                                        @item.Name
+                                    </label>
+                                </div>
+                            }
+                        }
                     </div>
                 </div>
                 <!-- /aside Widget -->
                 <div class="aside">
                     <h3 class="aside-title">CPU</h3>
-                    <div class="checkbox-filter">
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="cpu-1">
-                            <label for="cpu-1">
-                                <span></span>
-                                Intel Core i3
-                                <small>(578)</small>
-                            </label>
-                        </div>
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="cpu-2">
-                            <label for="cpu-2">
-                                <span></span>
-                                Intel Core i5
-                                <small>(578)</small>
-                            </label>
-                        </div>
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="cpu-3">
-                            <label for="cpu-3">
-                                <span></span>
-                                Intel Core i7
-                                <small>(578)</small>
-                            </label>
-                        </div>
+                    <div class="checkbox-filter filter-cpu">
+                        @if (Model.Filter.cpu != null)
+                        {
+                            foreach (var item in Model.CPUs)
+                            {
+                                <div class="input-checkbox">
+                                    <input type="checkbox" data-id="@item.Name" id="cpu-@item.Id" @(Model.Filter.cpu.Contains(item.Name) ? "checked" : "" )>
+                                    <label for="cpu-@item.Id">
+                                        <span></span>
+                                        Intel Core @item.Name
+                                    </label>
+                                </div>
+                            }
+
+                        }
+                        else
+                        {
+                            foreach (var item in Model.CPUs)
+                            {
+                                <div class="input-checkbox">
+                                    <input type="checkbox" data-id="@item.Name" id="cpu-@item.Id">
+                                    <label for="cpu-@item.Id">
+                                        <span></span>
+                                        Intel Core @item.Name
+                                    </label>
+                                </div>
+                            }
+                        }
                     </div>
                 </div>
                 <!-- aside Widget -->
                 <!-- /aside Widget -->
                 <div class="aside">
                     <h3 class="aside-title">RAM</h3>
-                    <div class="checkbox-filter">
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="ram-1">
-                            <label for="ram-1">
-                                <span></span>
-                                4GB
-                                <small>(578)</small>
-                            </label>
-                        </div>
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="ram-2">
-                            <label for="ram-2">
-                                <span></span>
-                                8GB
-                                <small>(578)</small>
-                            </label>
-                        </div>
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="ram-3">
-                            <label for="ram-3">
-                                <span></span>
-                                16GB
-                                <small>(578)</small>
-                            </label>
-                        </div>
+                    <div class="checkbox-filter filter-ram">
+                        @if (Model.Filter.ram != null)
+                        {
+                            foreach (var item in Model.Rams)
+                            {
+                                <div class="input-checkbox">
+                                    <input type="checkbox" data-id="@item.Name" id="ram-@item.Id" @(Model.Filter.ram.Contains(item.Name) ? "checked" : "" )>
+                                    <label for="ram-@item.Id">
+                                        <span></span>
+                                        @item.Name
+                                    </label>
+                                </div>
+                            }
+
+                        }
+                        else
+                        {
+                            foreach (var item in Model.Rams)
+                            {
+                                <div class="input-checkbox">
+                                    <input type="checkbox" data-id="@item.Name" id="ram-@item.Id">
+                                    <label for="ram-@item.Id">
+                                        <span></span>
+                                        @item.Name
+                                    </label>
+                                </div>
+                            }
+                        }
                     </div>
                 </div>
                 <!-- aside Widget -->
                 <div class="aside">
                     <h3 class="aside-title">Kích Thước</h3>
-                    <div class="checkbox-filter">
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="size-1">
-                            <label for="size-1">
-                                <span></span>
-                                14 inch
-                                <small>(578)</small>
-                            </label>
-                        </div>
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="size-2">
-                            <label for="size-2">
-                                <span></span>
-                                15.6 inch
-                                <small>(125)</small>
-                            </label>
-                        </div>
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="size-3">
-                            <label for="size-3">
-                                <span></span>
-                                17 inch
-                                <small>(755)</small>
-                            </label>
-                        </div>
+                    <div class="checkbox-filter filter-size">
+                        @if (Model.Filter.size != null)
+                        {
+                            foreach (var item in Model.Sizes)
+                            {
+                                <div class="input-checkbox">
+                                    <input type="checkbox" data-id="@item.Name" id="size-@item.Id" @(Model.Filter.size.Contains(item.Name) ? "checked" : "" )>
+                                    <label for="size-@item.Id">
+                                        <span></span>
+                                        @item.Name inches
+                                    </label>
+                                </div>
+                            }
+
+                        }
+                        else
+                        {
+                            foreach (var item in Model.Sizes)
+                            {
+                                <div class="input-checkbox">
+                                    <input type="checkbox" data-id="@item.Name" id="size-@item.Id">
+                                    <label for="size-@item.Id">
+                                        <span></span>
+                                        @item.Name inches
+                                    </label>
+                                </div>
+                            }
+                        }
                     </div>
                 </div>
                 <!-- /aside Widget -->
@@ -277,7 +279,7 @@
                 </div>
                 <!-- /store top filter -->
                 <!-- store products -->
-                <div class="row">
+                <div class="row product-row">
                     @foreach (var item in Model.Products)
                     {
                         <!-- product -->
@@ -312,7 +314,7 @@
                                 </div>
                             </div>
                         </div>
-					    <!-- /product -->
+                        <!-- /product -->
                         <div class="clearfix visible-sm visible-xs"></div>
                     }
                 </div>
@@ -337,3 +339,58 @@
     <!-- /container -->
 </div>
 <!-- /SECTION -->
+
+@section scripts{
+<script>
+        $(document).ready(function () {
+            $(".filter-type input").click(function () {
+                window.location.href = Search();
+            })
+
+            $(".filter-drive input").click(function () {
+                window.location.href = Search();
+            })
+
+            $(".filter-cpu input").click(function () {
+                window.location.href = Search();
+            })
+
+            $(".filter-ram input").click(function () {
+                window.location.href = Search();
+            })
+
+            $(".filter-size input").click(function () {
+                window.location.href = Search();
+            })
+    })
+
+    function Search() {
+        var filterUrl = "/Products/ProductsIndex?name=@Model.Filter.name";
+        // Filter Type
+        $(".filter-type input:checked").each(function () {
+            console.log($(this).attr("data-id"));
+            filterUrl += "&type=" + $(this).attr("data-id");
+        })
+
+        //Filter drive
+        $(".filter-drive input:checked").each(function () {
+            filterUrl += "&drive=" + $(this).attr("data-id");
+        })
+
+        //Filter cpu
+        $(".filter-cpu input:checked").each(function () {
+            filterUrl += "&cpu=" + $(this).attr("data-id");
+        })
+
+        $(".filter-ram input:checked").each(function () {
+            filterUrl += "&ram=" + $(this).attr("data-id");
+        })
+
+        $(".filter-size input:checked").each(function () {
+            filterUrl += "&size=" + $(this).attr("data-id");
+        })
+        
+        return filterUrl;
+    }
+</script>
+ }
