@@ -344,7 +344,7 @@
 <script>
         $(document).ready(function () {
             $(".filter-type input").click(function () {
-                window.location.href = Search();
+                window.location.href = Search(); // Href đến giá trị trên thanh Url do hàm Search() trả về 
             })
 
             $(".filter-drive input").click(function () {
@@ -363,7 +363,7 @@
                 window.location.href = Search();
             })
     })
-
+	// Thay đổi link Search================================>
     function Search() {
         var filterUrl = "/Products/ProductsIndex?name=@Model.Filter.name";
         // Filter Type
@@ -390,7 +390,7 @@
             filterUrl += "&size=" + $(this).attr("data-id");
         })
         
-        return filterUrl;
+        return filterUrl;  // giá trị URL trả về 
     }
 </script>
  }

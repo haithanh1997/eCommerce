@@ -9203,7 +9203,6 @@
     <Content Include="Areas\Merchant\Views\Package\Index.cshtml" />
     <Content Include="Areas\Merchant\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Merchant\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Merchant\Views\MerchantHome\BuyAd.cshtml" />
     <Content Include="Areas\Merchant\Views\MerchantHome\Follow.cshtml" />
     <Content Include="Areas\Admin\Views\Statistic\DailyPackage.cshtml" />
     <Content Include="Areas\Admin\Views\Statistic\MonthlyPackage.cshtml" />
