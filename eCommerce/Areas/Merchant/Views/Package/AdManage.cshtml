@@ -44,7 +44,7 @@
 							<div class="col-lg-4">
 								<div class="plan">
 									<h3>@Html.DisplayFor(modelItem => item.AdPackage.Name)<span>@Html.DisplayFor(modelItem => item.Price).000</span></h3>
-									<a class="btn btn-lg btn-primary" href="@Url.Action("BuyAd","Package",new { id = item.Id })">Tạo quảng cáo</a>
+									<a class="btn btn-lg btn-primary" href="@Url.Action("AdCreate","Package",new { id = item.Id })">Tạo quảng cáo</a>
 									<ul>
 										<li>Vị trí hiển thị <b>@Html.DisplayFor(modelItem => item.AdPackage.AdType)</b></li>
 										<li>Hết hạn <b>@Html.DisplayFor(modelItem => item.ExpiredDate) </b></li>

@@ -25,7 +25,7 @@
 						<div class="col-lg-4">
 							<div class="plan">
 								<h3>@Html.DisplayFor(modelItem => item.Name)<span>@Html.DisplayFor(modelItem => item.Price).000</span></h3>
-								<a class="btn btn-lg btn-primary" href="@Url.Action("CreateInvoice","Package",new { ad = item.Id , id = User.Identity.GetUserId() })">Mua</a>
+								<a class="btn btn-lg btn-primary" href="@Url.Action("PurchaseAd","Package",new { id = item.Id })">Mua</a>
 								<ul>
 									<li>Vị trí hiển thị <b>@Html.DisplayFor(modelItem => item.AdType)</b></li>
 									<li>Thời hạn quảng cáo sản phẩm <b>@Html.DisplayFor(modelItem => item.Period) ngày</b></li>

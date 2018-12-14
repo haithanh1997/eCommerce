@@ -1,4 +1,7 @@
 ﻿using eCommerce.EntityFramework;
+using eCommerce.Models;
+using eCommerce.Static;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +14,12 @@ namespace eCommerce.Areas.Merchant.Controllers
     public class PackageController : Controller
     {
         MainDbContext db = new MainDbContext();
+
+        private IdentityUser CurrentUser
+        {
+            get { return db.Users.FirstOrDefault(x => x.UserName.Equals(User.Identity.Name)); }
+        }
+
         // GET: Merchant/Package
         public ActionResult Index()
         {
@@ -23,11 +32,24 @@ namespace eCommerce.Areas.Merchant.Controllers
         }
         public ActionResult PurchasePackage(long id)
         {
-            return View();
+            var adPackage = db.Packages.FirstOrDefault(x => x.Id == id);
+            var transactionId = "PACKAGE" + (new Random()).Next(100000) + "ID" + adPackage.Id;
+            while (db.Invoices.Any(x => x.TransactionId.Equals(transactionId)))
+                transactionId = "PACKAGE" + (new Random()).Next(100000) + "ID" + adPackage.Id;
+            return Redirect(Payment.MerchantPaymentApi(transactionId, adPackage.Price));
         }
-	    
-		//  Trang mua  quảng cáo
-		public ActionResult Ad()
+
+        public ActionResult PurchaseAd(long id)
+        {
+            var ad = db.AdPackages.FirstOrDefault(x => x.Id == id);
+            var transactionId = "ADVERTISE" + (new Random()).Next(100000) + "ID" + ad.Id;
+            while (db.Invoices.Any(x => x.TransactionId.Equals(transactionId)))
+                transactionId = "ADVERTISE" + (new Random()).Next(100000) + "ID" + ad.Id;
+            return Redirect(Payment.MerchantPaymentApi(transactionId, ad.Price));
+        }
+
+        //  Trang mua  quảng cáo
+        public ActionResult Ad()
 		{
 
 			var model = db.AdPackages.Where(x => x.isDisabled == false).ToList();
@@ -39,24 +61,61 @@ namespace eCommerce.Areas.Merchant.Controllers
 		}
 
 		// Trang Thêm hóa đơn quảng cáo (được gọi khi thanh toán Online xong)
-		public ActionResult CreateInvoice(long ad, string Id)
+		public ActionResult CreateInvoice(OnlinePaymentModel model)
 		{
-			AdInvoice invoice = new AdInvoice();
-			invoice.AdPackage = db.AdPackages.FirstOrDefault(x => x.Id == ad);
-			invoice.User = db.Users.FirstOrDefault(x => x.Id == Id);
-			invoice.Price = (from c in db.AdPackages.Where(c => c.Id == ad) select c.Price).FirstOrDefault();
-			invoice.createdDate = DateTime.Now;
-			invoice.ExpiredDate = invoice.createdDate.AddDays((from c in db.AdPackages.Where(c => c.Id == ad) select c.Period).FirstOrDefault());
-			invoice.Status = false;
-			//invoice.transactionId = ;
-			//invoice.hashCode = ;
-			db.AdInvoices.Add(invoice);
-			db.SaveChanges();
-			return RedirectToAction("AdManage",new { id = Id});
-		}
+            if (CurrentUser != null)
+            {
+                if(model.status == 0)
+                {
+                    if(model.transactionID.Contains("PACKAGE"))
+                    {
+                        var adPackageId = long.Parse(model.transactionID.Substring(model.transactionID.IndexOf("ID") + 2));
+                        PackageInvoice invoice = new PackageInvoice()
+                        {
+                            Package = db.Packages.FirstOrDefault(x => x.Id == adPackageId),
+                            User = CurrentUser,
+                            Price = (from c in db.AdPackages.Where(c => c.Id == adPackageId) select c.Price).FirstOrDefault(),
+                            createdDate = DateTime.Now,
+                            transactionId = model.transactionID,
+                            hashCode = model.ticket,
+                        };
+                        db.PackageInvoices.Add(invoice);
+                        db.SaveChanges();
+
+                        return RedirectToAction("PaymentComplete", "Package");
+                    }
+                    else
+                    {
+                        var adId = long.Parse(model.transactionID.Substring(model.transactionID.IndexOf("ID") + 2));
+                        var createdDate = DateTime.Now;
+                        AdInvoice invoice = new AdInvoice()
+                        {
+                            AdPackage = db.AdPackages.FirstOrDefault(x => x.Id == adId),
+                            User = CurrentUser,
+                            Price = (from c in db.AdPackages.Where(c => c.Id == adId) select c.Price).FirstOrDefault(),
+                            createdDate = createdDate,
+                            ExpiredDate = createdDate.AddDays((from c in db.AdPackages.Where(c => c.Id == adId) select c.Period).FirstOrDefault()),
+                            Status = false,
+                            transactionId = model.transactionID,
+                            hashCode = model.ticket,
+                        };
+                        db.AdInvoices.Add(invoice);
+                        db.SaveChanges();
+                        
+                        return RedirectToAction("AdManage", new { id = adId });
+                    }
+                }
+            }
+            return RedirectToAction("Index", "Package");
+        }
+
+        public ActionResult PaymentComplete()
+        {
+            return View();
+        }
 
 		// Trang hiển thị danh sách hiện có
-		public ActionResult AdManage( string id)
+		public ActionResult AdManage(string id)
 		{
 			
 			var model = db.AdInvoices.Where(x => x.User.Id == id && x.Status == false).ToList();
