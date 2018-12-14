@@ -25,7 +25,7 @@ namespace eCommerce.Controllers
             {
                 foreach (var typeId in param.type)
                 {
-                    var model = db.Products.Where(x => x.Type.Id == typeId && x.Category.Name == param.name);
+                    var model = defaultProducts.Where(x => x.Type.Id == typeId && x.Category.Name == param.name);
                     foreach(var item in model)
                     {
                         if(!defaultProducts.Contains(item))
@@ -40,7 +40,7 @@ namespace eCommerce.Controllers
             {
                 foreach(var drive in param.drive)
                 {
-                    var model = db.Products.Where(x => x.hardDrive.Contains(drive) && x.Category.Name == param.name);
+                    var model = defaultProducts.Where(x => x.hardDrive.Contains(drive) && x.Category.Name == param.name);
                     foreach (var item in model)
                     {
                         if (!defaultProducts.Contains(item))
@@ -55,7 +55,7 @@ namespace eCommerce.Controllers
             {
                 foreach (var cpu in param.cpu)
                 {
-                    var model = db.Products.Where(x => x.CPU.Contains(cpu) && x.Category.Name == param.name);
+                    var model = defaultProducts.Where(x => x.CPU.Contains(cpu) && x.Category.Name == param.name);
                     foreach (var item in model)
                     {
                         if (!defaultProducts.Contains(item))
@@ -70,7 +70,7 @@ namespace eCommerce.Controllers
             {
                 foreach (var ram in param.ram)
                 {
-                    var model = db.Products.Where(x => x.RAM.Contains(ram) && x.Category.Name == param.name);
+                    var model = defaultProducts.Where(x => x.RAM.Contains(ram) && x.Category.Name == param.name);
                     foreach (var item in model)
                     {
                         if (!defaultProducts.Contains(item))
@@ -85,7 +85,7 @@ namespace eCommerce.Controllers
             {
                 foreach (var size in param.size)
                 {
-                    var model = db.Products.Where(x => x.screenType.Contains(size) && x.Category.Name == param.name);
+                    var model = defaultProducts.Where(x => x.screenType.Contains(size) && x.Category.Name == param.name);
                     foreach (var item in model)
                     {
                         if (!defaultProducts.Contains(item))

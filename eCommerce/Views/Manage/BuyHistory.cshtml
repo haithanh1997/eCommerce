@@ -1,0 +1,106 @@
+﻿@model IEnumerable<eCommerce.Controllers.ClientInvoiceModel>
+<style>
+    .nav-pills > li.active > a, .nav-pills > li.active > a:focus {
+        color: #fff;
+        background-color: #d10024;
+    }
+
+        .nav-pills > li.active > a:hover {
+            background-color: #808080;
+            color: #d10024;
+        }
+</style>
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb" class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="breadcrumb-header">Checkout</h3>
+                <ul class="breadcrumb-tree">
+                    <li><a href="#">Home</a></li>
+                    <li class="active">Checkout</li>
+                </ul>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /BREADCRUMB -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div id="content">
+
+                <div class="row bar">
+
+                    <div class="col-lg-3 mt-4 mt-lg-0">
+                        <!-- CUSTOMER MENU -->
+                        <div class="panel panel-default sidebar-menu">
+                            <div class="panel-body">
+                                <ul class="nav nav-pills  nav-stacked">
+                                    <li class="nav-item"><a href="@Url.Action("UserInfo","Manage")" class="nav-link"><i class="fa fa-user"></i> Thông tin tài khoản</a></li>
+                                    <li class="nav-item active"><a href="@Url.Action("BuyHistory","Manage")" class="nav-link"><i class="fa fa-list"></i> Lịch sử mua hàng</a></li>
+                                    <li class="nav-item"><a href="#customer-wishlist" data-toggle="tab" class="nav-link"><i class="fa fa-heart"></i> Danh sách ưa thích</a></li>
+                                    <li class="nav-item"><a href="#customer-remove" data-toggle="tab" class="nav-link"><i class="fa fa-user"></i> Đơn hàng hủy</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content">
+                            <!-- container -->
+                            <div class="container ">
+                                <!-- row -->
+                                <div class="row ">
+
+                                    <div class="col-md-8 panel panel-default">
+                                        <div class="order-summary clearfix">
+                                            <div class="section-title text-center">
+                                                <h3 class="title">Đơn hàng</h3>
+                                            </div>
+                                            <table class="shopping-cart-table table">
+
+                                                <tbody>
+                                                    @foreach (var item in Model)
+                                                    {
+                                                        <tr>
+                                                            <td class="thumb"><img src="~/Assets/img/new_1.jpg" alt=""></td>
+                                                            <td class="details">
+                                                                <a href="#">@Html.DisplayFor(modelItem => item.ProductName)</a>
+                                                                <ul>
+                                                                    <li><span>Ngày mua : @Html.DisplayFor(modelItem => item.BoughtDate)</span></li>
+                                                                    <li><span>Loại SP : @Html.DisplayFor(modelItem => item.TypeName)</span></li>
+                                                                </ul>
+                                                            </td>
+                                                            <td class="price text-center">Giá<br /><strong>@Html.DisplayFor(modelItem => item.Price)VNĐ</strong></td>
+                                                            <td class="qty text-center">SL<br /><strong>@Html.DisplayFor(modelItem => item.Quantity)</strong></td>
+                                                            <td class="total text-center">Tổng tiền<br /><strong class="primary-color">@Html.DisplayFor(modelItem => item.Total)VNĐ</strong></td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+
+                                            </table>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <!-- /row -->
+                            </div>
+
+                            <!-- /container -->
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

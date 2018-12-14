@@ -9281,6 +9281,8 @@
     <Content Include="Views\Cart\Alert.cshtml" />
     <Content Include="Views\Shared\SlideShow.cshtml" />
     <Content Include="Views\Home\Categories.cshtml" />
+    <Content Include="Views\Manage\UserInfo.cshtml" />
+    <Content Include="Views\Manage\BuyHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
