@@ -161,16 +161,7 @@
                     <a href="@Url.Action("Edit","MerchantHome",new { id = Model.Id })" type="button" class="btn btn-danger pull-right">
                         <i class="fa fa-credit-card"></i> Sửa thông tin
                     </a>
-                    @if (Model.AdType != eCommerce.EntityFramework.AdType.Default)
-                    {
-
-                    }
-                    else
-                    {
-                        <a href="@Url.Action("BuyAd","MerchantHome",new { id = Model.Id })" type="button" class="btn btn-warning pull-right" style="margin-right: 5px;">
-                            <i class="fa fa-credit-card"></i> Đăng ký quảng cáo
-                        </a>
-                    }
+                
                     <a href="@Url.Action("ManageProduct","MerchantHome", new { id = Model.Store.User.Id })" type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
                         <i class="fa fa-download"></i> Trở lại
                     </a>

@@ -8,9 +8,9 @@ namespace eCommerce.EntityFramework
 {
     public enum AdType
     {
-        [Description("Khuyến khích")]
-        Encourage = 0,
-        [Description("Sản phẩm mới")]
+		[Description("Không quảng cáo")]
+		No = 0,
+		[Description("Sản phẩm mới")]
         New = 1,
         [Description("Sản phẩm hot")]
         Hot = 2,
@@ -18,5 +18,7 @@ namespace eCommerce.EntityFramework
 		SlideShow = 3,
 		[Description("Flash Sale")]
 		FlashSale = 4,
+		[Description("Khuyến khích")]
+		Encourage = 5,
 	}
 }

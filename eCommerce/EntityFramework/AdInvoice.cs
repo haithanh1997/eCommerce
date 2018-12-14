@@ -24,11 +24,17 @@ namespace eCommerce.EntityFramework
         [Required]
         [DisplayName("Ngày lập hóa đơn")]
         public DateTime createdDate { get; set; }
-        [Required]
+
+		[DisplayName("Ngày hét hạn")]
+		public DateTime ExpiredDate { get; set; }
+
+		[Required]
         [DisplayName("Trạng thái")]
-        public ProductStatus Status { get; set; }
+        public bool Status { get; set; }
+
         [DisplayName("Mã giao dịch")]
         public string transactionId { get; set; }
+
         [DisplayName("Code")]
         public string hashCode { get; set; }
     }

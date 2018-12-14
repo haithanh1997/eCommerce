@@ -24,9 +24,9 @@
                                 <h3>@Html.DisplayFor(modelItem => item.Name)<span>@Html.DisplayFor(modelItem => item.Price).000</span></h3>
                                 <a class="btn btn-lg btn-primary" href="@Url.Action("BuyAd","Package",new { id = item.Id })">Mua</a>
                                 <ul>
-                                    <li>Sản phẩm được nâng lên mức <b>@Html.DisplayFor(modelItem => item.Level)</b></li>
+                                    <li>Sản phẩm được nâng lên mức <b>@Html.DisplayFor(modelItem => item.AdType)</b></li>
                                     <li>Thời hạn quảng cáo sản phẩm <b>@Html.DisplayFor(modelItem => item.Period) ngày</b></li>
-                                    <li>Sản phẩm được ưu tiên xếp theo mức <b>@Html.DisplayFor(modelItem => item.Level)</b></li>
+                                    <li>Sản phẩm được ưu tiên xếp theo mức <b>@Html.DisplayFor(modelItem => item.AdType)</b></li>
                                     <li><b>Không</b>tự động gia hạn lại khi đến hạn</li>
                                 </ul>
                             </div>
