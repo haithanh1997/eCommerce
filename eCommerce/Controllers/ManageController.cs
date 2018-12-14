@@ -7,6 +7,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using eCommerce.Models;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace eCommerce.Controllers
 {
@@ -75,6 +77,18 @@ namespace eCommerce.Controllers
             return View(model);
         }
 
+        //GET: /Manage/User
+        public async Task<ActionResult> UserInfo()
+        {
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            UserViewModel model = new UserViewModel();
+            model.Id = user.Id;
+            model.Email = user.Email;
+            model.PhoneNumber = user.PhoneNumber;
+            model.TwoFactorEnabled = user.TwoFactorEnabled;
+            model.SecurityStamp = user.SecurityStamp;
+            return View(model);
+        }
         //
         // POST: /Manage/RemoveLogin
         [HttpPost]
@@ -215,9 +229,10 @@ namespace eCommerce.Controllers
 
         //
         // GET: /Manage/ChangePassword
+        [ChildActionOnly]
         public ActionResult ChangePassword()
         {
-            return View();
+            return PartialView();
         }
 
         //
@@ -238,7 +253,7 @@ namespace eCommerce.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                 }
-                return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
+                return RedirectToAction("UserInfo", new { Message = ManageMessageId.ChangePasswordSuccess });
             }
             AddErrors(result);
             return View(model);
@@ -322,6 +337,31 @@ namespace eCommerce.Controllers
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
 
+        public ActionResult BuyHistory()
+        {
+            string id = User.Identity.GetUserId();
+            MainDbContext db = new MainDbContext();
+            List<ClientInvoiceModel> invoices = new List<ClientInvoiceModel>();
+            var model = db.Invoices.Where(x => x.User.Id == id && x.Status == EntityFramework.ProductStatus.Delivered);
+            foreach(var item in model)
+            {
+                var model1 = db.InvoiceDetails.Where(x => x.Invoice.Id == item.Id);
+                foreach(var subItem in model1)
+                {
+                    ClientInvoiceModel invoice = new ClientInvoiceModel();
+                    invoice.ProductName = subItem.Product.Name;
+                    invoice.Price = subItem.Price;
+                    invoice.Image = subItem.Product.Image1;
+                    invoice.Quantity = subItem.Quantity;
+                    invoice.Total = subItem.Price * subItem.Quantity;
+                    invoice.BoughtDate = item.createdDate;
+                    invoice.TypeName = subItem.Product.Type.Name;
+                    invoices.Add(invoice);
+                }
+            }
+            return View(invoices);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && _userManager != null)
@@ -385,5 +425,24 @@ namespace eCommerce.Controllers
         }
 
 #endregion
+    }
+    public class UserViewModel
+    {
+        public string Id { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
+        public bool TwoFactorEnabled { get; set; }
+        public string SecurityStamp { get; set; }
+    }
+
+    public class ClientInvoiceModel
+    {
+        public string ProductName { get; set; }
+        public int Price { get; set; }
+        public int Quantity { get; set; }
+        public int Total { get; set; }
+        public DateTime BoughtDate { get; set; }
+        public string Image { get; set; }
+        public string TypeName { get; set; }
     }
 }
