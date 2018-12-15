@@ -232,8 +232,8 @@
     <Compile Include="Areas\Merchant\Controllers\MerchantHomeController.cs" />
     <Compile Include="Areas\Merchant\Controllers\PackageController.cs" />
     <Compile Include="Areas\Merchant\MerchantAreaRegistration.cs" />
+    <Compile Include="Areas\Merchant\Models\MerchantStoreModel.cs" />
     <Compile Include="Areas\Merchant\Models\ProductModel.cs" />
-    <Compile Include="Areas\Merchant\Models\Services.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
@@ -9197,7 +9197,7 @@
     <Content Include="Areas\Merchant\Views\MerchantHome\LowQuantity.cshtml" />
     <Content Include="Areas\Merchant\Views\MerchantHome\Details.cshtml" />
     <Content Include="Areas\Merchant\Views\MerchantHome\Edit.cshtml" />
-    <Content Include="Areas\Merchant\Views\MerchantHome\ChangePassWord.cshtml" />
+    <Content Include="Areas\Merchant\Views\MerchantHome\ChangePassword.cshtml" />
     <Content Include="Areas\Merchant\Views\Package\Index.cshtml" />
     <Content Include="Areas\Merchant\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Merchant\Views\Shared\_Layout.cshtml" />
@@ -9273,7 +9273,6 @@
     <Content Include="Views\Customers\Cart.cshtml" />
     <Content Include="Views\Customers\UserInfo.cshtml" />
     <Content Include="Views\Customers\Favorites.cshtml" />
-    <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Shops\Register.cshtml" />
     <Content Include="Views\Cart\Cart.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />

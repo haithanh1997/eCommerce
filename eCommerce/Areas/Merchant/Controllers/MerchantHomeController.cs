@@ -1,5 +1,8 @@
 ﻿using eCommerce.Areas.Merchant.Models;
 using eCommerce.EntityFramework;
+using eCommerce.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,8 +10,10 @@ using System.Data.Entity.Core.Objects;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using static eCommerce.Controllers.ManageController;
 
 namespace eCommerce.Areas.Merchant.Controllers
 {
@@ -514,24 +519,76 @@ namespace eCommerce.Areas.Merchant.Controllers
 		// THông tin tài khoản 
 		public ActionResult Account(string id)
 		{
-			var model = db.MerchantStores.Where(x => x.User.Id == id).FirstOrDefault();
+			var StoreId = db.MerchantStores.Where(x => x.User.Id == id).FirstOrDefault();
+			var user = db.Users.Find(id);
+			MerchantStore store = db.MerchantStores.Find(StoreId.Id);
+			MerchantStoreModel model = new MerchantStoreModel();
+
+			model.MaCuaHang = store.Id;
+			model.Address = store.Address;
+			model.BusinessRegistrationCode = store.BusinessRegistrationCode;
+			model.TaxRegistrationCode = store.TaxRegistrationCode;
+			model.CardTradeNumber = store.CardTradeNumber;
+			model.CreditCardNumber = store.CreditCardNumber;
+			model.BankName = store.BankName;
+			model.createdDate = store.createdDate;
+			model.DeliveryMethod = store.DeliveryMethod;
+			model.Name = store.Name;
+			model.Package = store.Package;
+			model.PhoneNumber = store.PhoneNumber;
+			model.Image1 = store.Image1;
+			model.Image2 = store.Image2;
+			model.Image3 = store.Image3;
+			model.Image4 = store.Image4;
+			model.Image5 = store.Image5;
+			model.isDisabled = store.isDisabled;
+			model.User = user;
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+
+			if (model == null)
+			{
+				return HttpNotFound();
+			}
 			return View(model);
+	
 		}
-
-		[ChildActionOnly]
-		public ActionResult ChangePassWord()
-		{
-			
-			return PartialView("ChangePassWord");
-		}
-
+		//=============================================================================================================
 		
-
-		public ActionResult EditInfo(MerchantStore model , string id)
+	
+		
+        //===========================================================================================================================
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult Account(MerchantStoreModel model )
 		{
-			ViewBag.UserID = db.MerchantStores.FirstOrDefault(x => x.User.Id == id);
+			MerchantStore store = db.MerchantStores.Find(model.MaCuaHang);
+			model.User = db.Users.Find(model.User.Id);
 			if (ModelState.IsValid)
 			{
+				store.Id = model.MaCuaHang;
+				store.Address = model.Address;
+				store.BusinessRegistrationCode = model.BusinessRegistrationCode;
+				store.TaxRegistrationCode = model.TaxRegistrationCode;
+				store.CardTradeNumber = model.CardTradeNumber;
+				store.CreditCardNumber = model.CreditCardNumber;
+				store.BankName = model.BankName;
+				store.createdDate = model.createdDate;
+				store.DeliveryMethod = model.DeliveryMethod;
+				store.Name = model.Name;
+				store.Package = model.Package;
+				store.PhoneNumber = model.PhoneNumber;
+				store.Image1 = model.Image1;
+				store.Image2 = model.Image2;
+				store.Image3 = model.Image3;
+				store.Image4 = model.Image4;
+				store.Image5 = model.Image5;
+				store.isDisabled = model.isDisabled;
+				store.User = model.User;
+
+				ViewBag.UserID = db.MerchantStores.FirstOrDefault(x => x.User.Id == store.User.Id);
 				bool exists = System.IO.Directory.Exists(Server.MapPath("~/MerchantImages/" + ViewBag.UserID));
 
 				if (!exists)
@@ -552,7 +609,7 @@ namespace eCommerce.Areas.Merchant.Controllers
 					}
 					var path = Server.MapPath("~/MerchantImages/" + ViewBag.UserID + "/" + f1.FileName);
 					f1.SaveAs(path);
-					model.Image1 = "/MerchantImages/" + ViewBag.UserID + "/" + f1.FileName;
+					store.Image1 = "/MerchantImages/" + ViewBag.UserID + "/" + f1.FileName;
 				}
 				if (f2 != null && f2.ContentLength > 0)
 				{
@@ -563,7 +620,7 @@ namespace eCommerce.Areas.Merchant.Controllers
 					}
 					var path = Server.MapPath("~/MerchantImages/" + ViewBag.UserID + "/" + f2.FileName);
 					f2.SaveAs(path);
-					model.Image2 = "/MerchantImages/" + ViewBag.UserID + "/" + f2.FileName;
+					store.Image2 = "/MerchantImages/" + ViewBag.UserID + "/" + f2.FileName;
 				}
 				if (f3 != null && f3.ContentLength > 0)
 				{
@@ -574,7 +631,7 @@ namespace eCommerce.Areas.Merchant.Controllers
 					}
 					var path = Server.MapPath("~/MerchantImages/" + ViewBag.UserID + "/" + f3.FileName);
 					f3.SaveAs(path);
-					model.Image3 = "/MerchantImages/" + ViewBag.UserID + "/" + f3.FileName;
+					store.Image3 = "/MerchantImages/" + ViewBag.UserID + "/" + f3.FileName;
 				}
 				if (f4 != null && f4.ContentLength > 0)
 				{
@@ -585,7 +642,7 @@ namespace eCommerce.Areas.Merchant.Controllers
 					}
 					var path = Server.MapPath("~/MerchantImages/" + ViewBag.UserID + "/" + f4.FileName);
 					f4.SaveAs(path);
-					model.Image4 = "/MerchantImages/" + ViewBag.UserID + "/" + f4.FileName;
+					store.Image4 = "/MerchantImages/" + ViewBag.UserID + "/" + f4.FileName;
 				}
 				if (f5 != null && f5.ContentLength > 0)
 				{
@@ -596,15 +653,16 @@ namespace eCommerce.Areas.Merchant.Controllers
 					}
 					var path = Server.MapPath("~/MerchantImages/" + ViewBag.UserID + "/" + f5.FileName);
 					f5.SaveAs(path);
-					model.Image5 = "/MerchantImages/" + ViewBag.UserID + "/" + f5.FileName;
+					store.Image5 = "/MerchantImages/" + ViewBag.UserID + "/" + f5.FileName;
 				}
 
-				db.Entry(model).State = EntityState.Modified;
+				db.Entry(store).State = EntityState.Modified;
 				db.SaveChanges();
-				return RedirectToAction("Account",new {id = ViewBag.UserID });
+
+				return RedirectToAction("Account",new {id = model.User.Id });
 			}
 			
-			return View();
+			return View(model);
 		}
 		[ChildActionOnly]
 		public ActionResult BankAccount()

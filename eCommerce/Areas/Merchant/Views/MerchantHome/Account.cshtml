@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
-@model eCommerce.EntityFramework.MerchantStore
+@model eCommerce.Areas.Merchant.Models.MerchantStoreModel
 @{
 	ViewBag.Title = "Account";
 	Layout = "~/Areas/Merchant/Views/Shared/_Layout-Merchants.cshtml";
@@ -23,233 +23,173 @@
 		</div>
 	</div><!--/.row-->
 	<div class="row">
-		<div class="col-md-6">
-			@{ Html.RenderAction("ChangePassWord"); }
-			@*<div class="panel panel-primary">
+		
+
+			<div class="col-md-12">
+				<div class="panel panel-success">
 					<div class="panel-heading">
-						Thông Tin Ví
-						<ul class="pull-right panel-settings panel-button-tab-right">
-							<li class="dropdown">
-								<a class="pull-right dropdown-toggle" data-toggle="dropdown" href="#">
-									<em class="fa fa-cogs"></em>
-								</a>
-								<ul class="dropdown-menu dropdown-menu-right">
-									<li>
-										<ul class="dropdown-settings">
-											<li>
-												<a href="#">
-													<em class="fa fa-cog"></em> Settings 1
-												</a>
-											</li>
-											<li class="divider"></li>
-											<li>
-												<a href="#">
-													<em class="fa fa-cog"></em> Settings 2
-												</a>
-											</li>
-											<li class="divider"></li>
-											<li>
-												<a href="#">
-													<em class="fa fa-cog"></em> Settings 3
-												</a>
-											</li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-						</ul>
+						Thông Tin Cửa Hàng
+
 						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
 					</div>
 					<div class="panel-body">
-						<form class="form-horizontal" action="" method="post">
+						<div class="form-horizontal">
 							<fieldset>
+								@using (Html.BeginForm("Account", "MerchantHome", new { enctype = "multipart/form-data" }, FormMethod.Post))
+								{
+									@Html.AntiForgeryToken()
+									@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-								<div class="form-group">
-									<label class="col-md-3 control-label" for="numbercard">Số Thẻ</label>
-									<div class="col-md-9">
-										<input id="numbercard" name="numbercard" type="text" placeholder="Số thẻ ngân hàng" class="form-control">
+									@Html.HiddenFor(model => model.MaCuaHang)
+									@Html.HiddenFor(model => model.Package)
+									@Html.HiddenFor(model => model.isDisabled)
+
+									<div class="form-group ">
+										@Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-1" })
+										<div class="col-md-8">
+											@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control " } })
+											@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+										</div>
+
 									</div>
-								</div>
+									<div class="form-group hidden ">
+										@Html.LabelFor(model => model.User, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-1" })
+										<div class="col-md-8">
+											@Html.EditorFor(model => model.User, new { htmlAttributes = new { @class = "form-control " } })
+											@Html.ValidationMessageFor(model => model.User, "", new { @class = "text-danger" })
+										</div>
 
-
-								<div class="form-group">
-									<label class="col-md-3 control-label" for="numberaccount">Số Tài Khoản</label>
-									<div class="col-md-9">
-										<input id="numberaccount" name="numberaccount" type="text" placeholder="Số tài khoản" class="form-control">
 									</div>
-								</div>
 
-
-								<!-- Form actions -->
-								<div class="form-group">
-									<div class="col-md-12 widget-right">
-										<button type="submit" class="btn btn-default btn-md pull-right">Xác Nhận</button>
+									<div class="form-group">
+										@Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-1" })
+										<div class="col-md-8">
+											@Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+											@Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+										</div>
 									</div>
-								</div>
+
+									<div class="form-group">
+										@Html.LabelFor(model => model.BusinessRegistrationCode, htmlAttributes: new { @class = "control-label col-md-3 " })
+										<div class="col-md-8">
+											@Html.EditorFor(model => model.BusinessRegistrationCode, new { htmlAttributes = new { @class = "form-control"} })
+											@Html.ValidationMessageFor(model => model.BusinessRegistrationCode, "", new { @class = "text-danger" })
+										</div>
+
+									</div>
+
+									<div class="form-group hidden">
+										@Html.LabelFor(model => model.createdDate, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-1" })
+										<div class="col-md-8">
+											@Html.EditorFor(model => model.createdDate, new { htmlAttributes = new { @class = "form-control" } })
+											@Html.ValidationMessageFor(model => model.createdDate, "", new { @class = "text-danger" })
+										</div>
+									</div>
+
+									<div class="form-group">
+										@Html.LabelFor(model => model.CreditCardNumber, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-1" })
+										<div class="col-md-8">
+											@Html.EditorFor(model => model.CreditCardNumber, new { htmlAttributes = new { @class = "form-control" } })
+											@Html.ValidationMessageFor(model => model.CreditCardNumber, "", new { @class = "text-danger" })
+										</div>
+									</div>
+
+									<div class="form-group">
+										@Html.LabelFor(model => model.CardTradeNumber, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-1" })
+										<div class="col-md-8">
+											@Html.EditorFor(model => model.CardTradeNumber, new { htmlAttributes = new { @class = "form-control" } })
+											@Html.ValidationMessageFor(model => model.CardTradeNumber, "", new { @class = "text-danger" })
+										</div>
+									</div>
+
+
+									<div class="form-group ">
+										@Html.LabelFor(model => model.TaxRegistrationCode, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-1" })
+										<div class="col-md-8">
+											@Html.EditorFor(model => model.TaxRegistrationCode, new { htmlAttributes = new { @class = "form-control" } })
+											@Html.ValidationMessageFor(model => model.TaxRegistrationCode, "", new { @class = "text-danger" })
+										</div>
+									</div>
+
+
+									<div class="form-group">
+										@Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-1" })
+										<div class="col-md-8">
+											@Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+											@Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+										</div>
+									</div>
+
+									<div class="form-group">
+										@Html.LabelFor(model => model.DeliveryMethod, htmlAttributes: new { @class = "control-label col-md-3" })
+										<div class="col-md-8">
+											@Html.EnumDropDownListFor(model => model.DeliveryMethod, htmlAttributes: new { @class = "form-control" })
+											@Html.ValidationMessageFor(model => model.DeliveryMethod, "", new { @class = "text-danger" })
+										</div>
+									</div>
+
+									<div class="form-group">
+										@Html.LabelFor(model => model.BankName, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-1" })
+										<div class="col-md-8">
+											@Html.EditorFor(model => model.BankName, new { htmlAttributes = new { @class = "form-control" } })
+											@Html.ValidationMessageFor(model => model.BankName, "", new { @class = "text-danger" })
+										</div>
+									</div>
+
+
+									<div class="form-group">
+										@Html.LabelFor(model => model.Image1, htmlAttributes: new { @class = "col-md-2 control-label col-md-offset-1" })
+										<div class="col-md-4">
+											@Html.EditorFor(model => model.Image1, new { htmlAttributes = new { @class = "form-control hidden" } })
+											<input class="form-control" id="Image1" name="Image1" type="file" placeholder="Ảnh Cửa Hàng">
+										</div>
+									</div>
+
+									<div class="form-group ">
+										@Html.LabelFor(model => model.Image2, htmlAttributes: new { @class = "col-md-2 control-label col-md-offset-1" })
+										<div class="col-md-4">
+											@Html.EditorFor(model => model.Image2, new { htmlAttributes = new { @class = "form-control hidden" } })
+											<input id="Image2" name="Image2" type="file" placeholder="Ảnh Chứng Minh Nhân Dân Mặt Trước" class="form-control">
+										</div>
+									</div>
+
+									<div class="form-group ">
+										@Html.LabelFor(model => model.Image3, htmlAttributes: new { @class = "col-md-2 control-label col-md-offset-1" })
+										<div class="col-md-4">
+											@Html.EditorFor(model => model.Image3, new { htmlAttributes = new { @class = "form-control hidden" } })
+											<input id="Image3" name="Image3" type="file" placeholder="Ảnh Chứng Minh Nhân Dân Mặt Sau" class="form-control">
+										</div>
+									</div>
+
+									<div class="form-group ">
+										@Html.LabelFor(model => model.Image4, htmlAttributes: new { @class = "col-md-2 control-label col-md-offset-1" })
+										<div class="col-md-4">
+											@Html.EditorFor(model => model.Image4, new { htmlAttributes = new { @class = "form-control hidden" } })
+											<input id="Image4" name="Image4" type="file" placeholder="Ảnh Giấy Phép Kinh Doanh Mặt Trước" class="form-control" disabled>
+										</div>
+									</div>
+
+									<div class="form-group ">
+										@Html.LabelFor(model => model.Image5, htmlAttributes: new { @class = "col-md-2 control-label col-md-offset-1" })
+										<div class="col-md-4">
+											@Html.EditorFor(model => model.Image5, new { htmlAttributes = new { @class = "form-control hidden" } })
+											<input id="Image5" name="Image5" type="file" placeholder="Ảnh Giấy Phép Kinh Doanh Mặt Sau" class="form-control" disabled>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div class="col-md-12 widget-right text-center">
+											<button type="submit" class="btn btn-success btn-md ">XÁC NHẬN</button>
+										</div>
+									</div>
+
+								}
 							</fieldset>
-						</form>
-					</div>
-				</div> @{ Html.RenderAction("BankAccount"); }*@
-		</div><!--/.col-->
-
-		<div class="col-md-12">
-			<div class="panel panel-success">
-				<div class="panel-heading">
-					Thông Tin Cửa Hàng
-
-					<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
-				</div>
-				<div class="panel-body">
-					<div class="form-horizontal">
-						<fieldset>
-							@using (Html.BeginForm("EditInfo", "MerchantHome", new { id = User.Identity.GetUserId() }))
-							{
-								@Html.AntiForgeryToken()
-								@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-								@Html.HiddenFor(model => model.Id)
-								@Html.HiddenFor(model => model.User)
-								@Html.HiddenFor(model => model.Package)
-								@Html.HiddenFor(model => model.isDisabled)
-
-								<div class="form-group ">
-									@Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-1" })
-									<div class="col-md-8">
-										@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control ", @disabled = "disabled" } })
-										@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-									</div>
-
-								</div>
-
-								<div class="form-group">
-									@Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-1" })
-									<div class="col-md-8">
-										@Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
-										@Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
-									</div>
-								</div>
-
-								<div class="form-group">
-									@Html.LabelFor(model => model.BusinessRegistrationCode, htmlAttributes: new { @class = "control-label col-md-3 " })
-									<div class="col-md-8">
-										@Html.EditorFor(model => model.BusinessRegistrationCode, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
-										@Html.ValidationMessageFor(model => model.BusinessRegistrationCode, "", new { @class = "text-danger" })
-									</div>
-
-								</div>
-
-								<div class="form-group hidden">
-									@Html.LabelFor(model => model.createdDate, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-1" })
-									<div class="col-md-8">
-										@Html.EditorFor(model => model.createdDate, new { htmlAttributes = new { @class = "form-control" } })
-										@Html.ValidationMessageFor(model => model.createdDate, "", new { @class = "text-danger" })
-									</div>
-								</div>
-
-								<div class="form-group">
-									@Html.LabelFor(model => model.CreditCardNumber, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-1" })
-									<div class="col-md-8">
-										@Html.EditorFor(model => model.CreditCardNumber, new { htmlAttributes = new { @class = "form-control" } })
-										@Html.ValidationMessageFor(model => model.CreditCardNumber, "", new { @class = "text-danger" })
-									</div>
-								</div>
-
-								<div class="form-group">
-									@Html.LabelFor(model => model.CardTradeNumber, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-1" })
-									<div class="col-md-8">
-										@Html.EditorFor(model => model.CardTradeNumber, new { htmlAttributes = new { @class = "form-control" } })
-										@Html.ValidationMessageFor(model => model.CardTradeNumber, "", new { @class = "text-danger" })
-									</div>
-								</div>
-
-
-								<div class="form-group ">
-									@Html.LabelFor(model => model.TaxRegistrationCode, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-1" })
-									<div class="col-md-8">
-										@Html.EditorFor(model => model.TaxRegistrationCode, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
-										@Html.ValidationMessageFor(model => model.TaxRegistrationCode, "", new { @class = "text-danger" })
-									</div>
-								</div>
-
-
-								<div class="form-group">
-									@Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-1" })
-									<div class="col-md-8">
-										@Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
-										@Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
-									</div>
-								</div>
-
-								<div class="form-group">
-									@Html.LabelFor(model => model.DeliveryMethod, htmlAttributes: new { @class = "control-label col-md-3" })
-									<div class="col-md-8">
-										@Html.EnumDropDownListFor(model => model.DeliveryMethod, htmlAttributes: new { @class = "form-control" })
-										@Html.ValidationMessageFor(model => model.DeliveryMethod, "", new { @class = "text-danger" })
-									</div>
-								</div>
-
-								<div class="form-group">
-									@Html.LabelFor(model => model.BankName, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-1" })
-									<div class="col-md-8">
-										@Html.EditorFor(model => model.BankName, new { htmlAttributes = new { @class = "form-control" } })
-										@Html.ValidationMessageFor(model => model.BankName, "", new { @class = "text-danger" })
-									</div>
-								</div>
-
-
-								<div class="form-group">
-									@Html.LabelFor(model => model.Image1, htmlAttributes: new { @class = "col-md-2 control-label col-md-offset-1" })
-									<div class="col-md-4">
-										@Html.EditorFor(model => model.Image1, new { htmlAttributes = new { @class = "form-control hidden" } })
-										<input class="form-control" id="Image1" name="Image1" type="file" placeholder="Ảnh Cửa Hàng">
-									</div>
-								</div>
-
-								<div class="form-group ">
-									@Html.LabelFor(model => model.Image2, htmlAttributes: new { @class = "col-md-2 control-label col-md-offset-1" })
-									<div class="col-md-4">
-										@Html.EditorFor(model => model.Image2, new { htmlAttributes = new { @class = "form-control hidden" } })
-										<input id="Image2" name="Image2" type="file" placeholder="Ảnh Chứng Minh Nhân Dân Mặt Trước" class="form-control">
-									</div>
-								</div>
-
-								<div class="form-group ">
-									@Html.LabelFor(model => model.Image3, htmlAttributes: new { @class = "col-md-2 control-label col-md-offset-1" })
-									<div class="col-md-4">
-										@Html.EditorFor(model => model.Image3, new { htmlAttributes = new { @class = "form-control hidden" } })
-										<input id="Image3" name="Image3" type="file" placeholder="Ảnh Chứng Minh Nhân Dân Mặt Sau" class="form-control">
-									</div>
-								</div>
-
-								<div class="form-group ">
-									@Html.LabelFor(model => model.Image4, htmlAttributes: new { @class = "col-md-2 control-label col-md-offset-1" })
-									<div class="col-md-4">
-										@Html.EditorFor(model => model.Image4, new { htmlAttributes = new { @class = "form-control hidden" } })
-										<input id="Image4" name="Image4" type="file" placeholder="Ảnh Giấy Phép Kinh Doanh Mặt Trước" class="form-control" disabled>
-									</div>
-								</div>
-
-								<div class="form-group ">
-									@Html.LabelFor(model => model.Image5, htmlAttributes: new { @class = "col-md-2 control-label col-md-offset-1" })
-									<div class="col-md-4">
-										@Html.EditorFor(model => model.Image5, new { htmlAttributes = new { @class = "form-control hidden" } })
-										<input id="Image5" name="Image5" type="file" placeholder="Ảnh Giấy Phép Kinh Doanh Mặt Sau" class="form-control" disabled>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<div class="col-md-12 widget-right text-center">
-										<button type="submit" class="btn btn-success btn-md ">XÁC NHẬN</button>
-									</div>
-								</div>
-
-							}
-						</fieldset>
+						</div>
 					</div>
 				</div>
-			</div>
 
-		</div><!--/.col-->
+			</div><!--/.col-->
 
-	</div><!--/.row-->
+		</div><!--/.row-->
 </div>	<!--/.main-->

@@ -44,7 +44,7 @@
                         <div class="panel panel-default sidebar-menu">
                             <div class="panel-body">
                                 <ul class="nav nav-pills  nav-stacked">
-                                    <li class="nav-item active"><a href="@Url.Action("UserInfo","Manage")" class="nav-link"><i class="fa fa-user"></i> Thông tin tài khoản</a></li>
+                                    <li class="nav-item active"><a href="@Url.Action("UserInfo","Manage")" class="nav-link"><i class="fa fa-user"></i> Đổi mật khẩu</a></li>
                                     <li class="nav-item"><a href="@Url.Action("BuyHistory","Manage")" class="nav-link"><i class="fa fa-list"></i> Lịch sử mua hàng</a></li>
                                     <li class="nav-item"><a href="#customer-wishlist" data-toggle="tab" class="nav-link"><i class="fa fa-heart"></i> Danh sách ưa thích</a></li>
                                     <li class="nav-item"><a href="#customer-remove" data-toggle="tab" class="nav-link"><i class="fa fa-user"></i> Đơn hàng hủy</a></li>
@@ -60,44 +60,19 @@
                                     <div id="customer-account" class="col-lg-9 clearfix">
 
                                         <div class="box mt-5">
-                                            <div class="col-md-7 order-details">
-                                                <div class="section-title text-center">
-                                                    <h3 class="title">Thông tin</h3>
-                                                </div>
-                                                <div class="order-summary">
-                                                    <div>
-                                                        <div>ID tài khoản: <strong>@Html.DisplayFor(model => model.Id)</strong></div></br>
-                                                    </div>
-                                                    <div>
-                                                        <div>Email: <strong>@Html.DisplayFor(model => model.Email)</strong></div></br>
-                                                    </div>
-                                                    <div>
-                                                        <div>
-                                                            Số điện thoại: @if (Model.PhoneNumber == null)
-                                                            {<strong>Chưa có</strong> }
-                                                            else
-                                                            { <strong>@Html.DisplayFor(model => model.PhoneNumber)</strong>}
-                                                        </div></br>
-                                                    </div>
-                                                    <div>
-                                                        <div>
-                                                            Bảo mật hai lớp: @if (Model.TwoFactorEnabled == false)
-                                                            {<strong>Chưa có</strong> }
-                                                            else
-                                                            { <strong>Đã có</strong>}
-                                                        </div></br>
-                                                    </div>
-                                                    <div>
-                                                        <div>Mã bảo mật: <strong>@Html.DisplayFor(model => model.SecurityStamp)</strong></div></br>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-5 order-details">
-                                                <div class="section-title text-center">
-                                                    <h3 class="title">Đổi mật khẩu</h3>
-                                                </div>
-                                                @{ Html.RenderAction("ChangePassword", "Manage"); }
-                                            </div>
+                                            
+											<div class="col-md-12 order-details">
+												<div class="section-title text-center">
+													<h3 class="title">Đổi mật khẩu</h3>
+												</div>
+												<div>
+													<div>ID tài khoản: <strong>@Html.DisplayFor(model => model.Id)</strong></div></br>
+												</div>
+												<div>
+													<div>Email: <strong>@Html.DisplayFor(model => model.Email)</strong></div></br>
+												</div>
+												@{ Html.RenderAction("ChangePassword", "Manage"); }
+											</div>
                                         </div>
 
                                     </div>
