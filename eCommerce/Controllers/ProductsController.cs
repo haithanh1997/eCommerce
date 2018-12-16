@@ -130,5 +130,18 @@ namespace eCommerce.Controllers
             ViewBag.NewPrice = model.Price - (model.Price * model.discountValue / 100);
 			return View(model);
 		}
+
+        public ActionResult Search()
+        {
+            int count = 0;
+            string search = Request.Form["search"];
+            var model = db.Products.Where(x => x.Name.Contains(search)).ToList();
+            foreach(var item in model)
+            {
+                count++;
+            }
+            ViewBag.Count = count;
+            return View(model);
+        }
 	}
 }

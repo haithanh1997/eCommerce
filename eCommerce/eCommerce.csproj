@@ -9282,6 +9282,7 @@
     <Content Include="Views\Home\Categories.cshtml" />
     <Content Include="Views\Manage\UserInfo.cshtml" />
     <Content Include="Views\Manage\BuyHistory.cshtml" />
+    <Content Include="Views\Products\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

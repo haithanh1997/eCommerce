@@ -33,6 +33,7 @@ namespace eCommerce.Models
         public List<string> cpu { get; set; }
         public List<string> ram { get;set; }
         public List<string> size { get; set; }
+        public string searchValue { get; set; }
     }
 
     public class Drive
