@@ -17,15 +17,19 @@ namespace eCommerce.Controllers
             var query = db.Products.Where(x => x.Category.Name == param.name);
             // Get Default Products without searching for price because we must display defaultMax and defaultMin on Max-Min slide bar
             var defaultProducts = new List<Product>();
-            foreach(var item in query)
+            if(param.type == null && param.drive == null && param.cpu == null && param.ram == null && param.size == null)
             {
-                defaultProducts.Add(item);
+                foreach (var item in query)
+                {
+                    defaultProducts.Add(item);
+                }
             }
             if (param.type != null)
             {
+                
                 foreach (var typeId in param.type)
                 {
-                    var model = defaultProducts.Where(x => x.Type.Id == typeId && x.Category.Name == param.name);
+                    var model = query.Where(x => x.Type.Id == typeId);
                     foreach(var item in model)
                     {
                         if(!defaultProducts.Contains(item))
@@ -40,7 +44,7 @@ namespace eCommerce.Controllers
             {
                 foreach(var drive in param.drive)
                 {
-                    var model = defaultProducts.Where(x => x.hardDrive.Contains(drive) && x.Category.Name == param.name);
+                    var model = query.Where(x => x.hardDrive.Contains(drive));
                     foreach (var item in model)
                     {
                         if (!defaultProducts.Contains(item))
@@ -55,7 +59,7 @@ namespace eCommerce.Controllers
             {
                 foreach (var cpu in param.cpu)
                 {
-                    var model = defaultProducts.Where(x => x.CPU.Contains(cpu) && x.Category.Name == param.name);
+                    var model = query.Where(x => x.CPU.Contains(cpu));
                     foreach (var item in model)
                     {
                         if (!defaultProducts.Contains(item))
@@ -70,7 +74,7 @@ namespace eCommerce.Controllers
             {
                 foreach (var ram in param.ram)
                 {
-                    var model = defaultProducts.Where(x => x.RAM.Contains(ram) && x.Category.Name == param.name);
+                    var model = query.Where(x => x.RAM.Contains(ram));
                     foreach (var item in model)
                     {
                         if (!defaultProducts.Contains(item))
@@ -85,7 +89,7 @@ namespace eCommerce.Controllers
             {
                 foreach (var size in param.size)
                 {
-                    var model = defaultProducts.Where(x => x.screenType.Contains(size) && x.Category.Name == param.name);
+                    var model = query.Where(x => x.screenType.Contains(size));
                     foreach (var item in model)
                     {
                         if (!defaultProducts.Contains(item))
@@ -120,9 +124,11 @@ namespace eCommerce.Controllers
 		{
 			return View();
 		}
-		public ActionResult Detail()
+		public ActionResult Detail(long id)
 		{
-			return View();
+            var model = db.Products.FirstOrDefault(x => x.Id == id);
+            ViewBag.NewPrice = model.Price - (model.Price * model.discountValue / 100);
+			return View(model);
 		}
 	}
 }

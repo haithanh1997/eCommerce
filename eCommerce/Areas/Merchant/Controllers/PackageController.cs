@@ -66,7 +66,7 @@ namespace eCommerce.Areas.Merchant.Controllers
 		{
             if (CurrentUser != null)
             {
-                if(model.status == 0)
+                if(model.status == 1)
                 {
                     if(model.transactionID.Contains("PACKAGE"))
                     {
