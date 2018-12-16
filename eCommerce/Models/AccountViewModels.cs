@@ -33,7 +33,7 @@ namespace eCommerce.Models
         public string Code { get; set; }
         public string ReturnUrl { get; set; }
 
-        [Display(Name = "Remember this browser?")]
+        [Display(Name = "Nhớ mật khẩu?")]
         public bool RememberBrowser { get; set; }
 
         public bool RememberMe { get; set; }

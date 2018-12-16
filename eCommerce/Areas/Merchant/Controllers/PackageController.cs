@@ -155,7 +155,7 @@ namespace eCommerce.Areas.Merchant.Controllers
 		//Trang danh sách các quảng cáo đang chạy
 		public ActionResult AdList(string id)
 		{
-			var model = db.Products.Where(x => x.Store.User.Id == id && x.AdType == AdType.Hot || x.AdType == AdType.New || x.AdType == AdType.Encourage || x.AdType == AdType.FlashSale ).ToList();
+			var model = db.Products.Where(x => x.Store.User.Id == id && x.AdType == AdType.Hot || x.AdType == AdType.New || x.AdType == AdType.Encourage ).ToList();
 			return View(model);
 		}
 		//Trang danh sách các SlideShow đang chạy

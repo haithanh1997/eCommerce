@@ -158,13 +158,13 @@
 		<div class="row no-print">
 			<div class="col-xs-12">
 				<a href="@Url.Action("Block","AdminProducts",new { id = Model.Id })" type="button" class="btn btn-danger pull-right">
-					<i class="fa fa-credit-card"></i> Gỡ sản phẩm
+					<i class="fa fa-remove"></i> Gỡ sản phẩm
                 </a>
 				<a href="@Url.Action("Sale","AdminProducts",new { id = Model.Id })" type="button" class="btn btn-success pull-right" style="margin-right: 5px;">
-					<i class="fa fa-credit-card"></i> Cho phép bán lại
+					<i class="fa fa-refresh"></i> Cho phép bán lại
                 </a>
 				<a href="@Url.Action("Index","AdminProducts")" type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
-					<i class="fa fa-download"></i> Trở lại
+					<i class="fa fa-reply"></i> Trở lại
                 </a>
 			</div>
 		</div>
@@ -175,11 +175,11 @@
 <!-- /.content-wrapper -->
 <!-- Modal4 -->
 <div class="modal fade" id="myModal1" role="dialog">
-	<div class="modal-dialog modal-primary">
+	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Ảnh cửa hàng</h4>
+				<h4 class="modal-title"><b>THÔNG SỐ KĨ THUẬT</b></h4>
 			</div>
 			<div class="modal-body">
 				<dl class="dl-horizontal">
@@ -254,19 +254,14 @@
 		</div>
 	</div>
 </div>
-<div class="modal fade" id="myModal2" role="dialog">
-	<div class="modal-dialog modal-primary">
+<div class="modal fade " id="myModal2" role="dialog">
+	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Giấy chứng minh mặt trước</h4>
-			</div>
+			
 			<div class="modal-body">
-				<img src="@Model.Image1" />
+				<img src="@Model.Image1" width="100%" height="100%"/>
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-			</div>
+			
 		</div>
 	</div>
 </div>

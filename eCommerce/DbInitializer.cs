@@ -143,7 +143,6 @@ namespace eCommerce
             //Seed for advertise package
             IList<AdPackage> defaultAdPackages = new List<AdPackage>();
             defaultAdPackages.Add(new AdPackage() { Name = "Promote 1", Price = 200000, AdType = AdType.Encourage, Period = 7, isDisabled = false });
-            defaultAdPackages.Add(new AdPackage() { Name = "Promote 2", Price = 200000, AdType = AdType.FlashSale, Period = 1, isDisabled = false });
             defaultAdPackages.Add(new AdPackage() { Name = "Promote 3", Price = 350000, AdType = AdType.Hot, Period = 7, isDisabled = false });
             defaultAdPackages.Add(new AdPackage() { Name = "Promote 4", Price = 350000, AdType = AdType.New, Period = 7, isDisabled = false });
             defaultAdPackages.Add(new AdPackage() { Name = "Event", Price = 599000, AdType = AdType.SlideShow, Period = 30, isDisabled = false });
