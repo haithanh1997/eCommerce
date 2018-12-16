@@ -67,6 +67,7 @@ namespace eCommerce.Controllers
 		[ChildActionOnly]
 		public ActionResult SlideShow()
 		{
+
 			var model = db.SlideShows.ToList();
 			return PartialView(model);
 		}

@@ -234,8 +234,9 @@ namespace eCommerce
                 DesignType = "HP Notebook",
                 Size = 2.13,
                 updateDate = new DateTime(2018, 12, 1),
-
-                Image1 = "/Assets/img/product1-01.jpg",
+				AdExpriedDate = DateTime.Now,
+				PackeageExpiredDate = new DateTime(2018, 12, 17),
+				Image1 = "/Assets/img/product1-01.jpg",
                 Image2 = "/Assets/img/product1-01.jpg",
                 Image3 = "/Assets/img/product1-01.jpg",
                 AdType = AdType.Hot,
