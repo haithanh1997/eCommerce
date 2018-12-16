@@ -38,8 +38,20 @@
                             {
                                 <h4 class="product-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</h4>
                             }
-                            <div class="product-rating">
-                            </div>
+                                <div class="product-rating">
+                                    @{
+                                        int j = 0;
+                                        for (j = 0; j < item.Rating; j++)
+                                        {
+                                            <i class="fa fa-star"></i>
+                                        }
+                                        while (j < 5)
+                                        {
+                                            <i class="fa fa-star-o"></i>
+                                            j++;
+                                        }
+                                    }
+                                </div>
                             <div class="product-btns">
                                 <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">YẾU THÍCH</span></button>
                                 <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">SO SANH</span></button>

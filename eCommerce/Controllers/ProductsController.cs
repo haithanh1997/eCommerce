@@ -15,6 +15,7 @@ namespace eCommerce.Controllers
         public ActionResult ProductsIndex(ProductFilterParam param)
         {
             var query = db.Products.Where(x => x.Category.Name == param.name);
+            ViewBag.CategoryName = param.name;
             // Get Default Products without searching for price because we must display defaultMax and defaultMin on Max-Min slide bar
             var defaultProducts = new List<Product>();
             if(param.type == null && param.drive == null && param.cpu == null && param.ram == null && param.size == null)
