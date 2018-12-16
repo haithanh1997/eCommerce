@@ -98,7 +98,7 @@ namespace eCommerce.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Sai tài khoản hoặc mật khẩu.");
                     return View(model);
             }
         }
@@ -141,7 +141,7 @@ namespace eCommerce.Controllers
                     return View("Lockout");
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid code.");
+                    ModelState.AddModelError("", "Code không hợp lệ.");
                     return View(model);
             }
         }

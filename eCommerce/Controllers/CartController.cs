@@ -102,30 +102,35 @@ namespace eCommerce.Controllers
         {
             if (CurrentUser != null)
             {
-                var cart = db.Carts.FirstOrDefault(x => x.User.Id == CurrentUser.Id);
-                var product = db.Products.FirstOrDefault(x => x.Id == model.Id);
-
-                if (product != null && cart != null)
+                if(model.Quantity > 0 && model.Quantity < 6)
                 {
-                    var cartItem = db.CartItems.FirstOrDefault(x => x.Cart.Id == cart.Id && x.Product.Id == model.Id);
-                    cartItem.Quantity += model.Quantity;
+                    var cart = db.Carts.FirstOrDefault(x => x.User.Id == CurrentUser.Id);
+                    var product = db.Products.FirstOrDefault(x => x.Id == model.Id);
 
-                    var cartItems = db.CartItems.Where(x => x.Cart.Id == cart.Id).ToList();
-                    return Json(new CartResponseModel<UpdateCartModel>()
+                    if (product != null && cart != null)
                     {
-                        Result = true,
-                        Message = "Thêm giỏ hàng thành công!",
-                        Data = new UpdateCartModel()
+                        var cartItem = db.CartItems.FirstOrDefault(x => x.Cart.Id == cart.Id && x.Product.Id == model.Id);
+                        cartItem.Quantity = model.Quantity;
+                        db.SaveChanges();
+
+                        var cartItems = db.CartItems.Where(x => x.Cart.Id == cart.Id).ToList();
+                        return Json(new CartResponseModel<UpdateCartModel>()
                         {
-                            Id = product.Id,
-                            Image = product.Image1,
-                            Price = string.Format("{0:0,0}", product.Price),
-                            Quantity = cartItem.Quantity,
-                            Url = "",
-                            TotalQuantity = cartItems.Sum(x => x.Quantity),
-                            TotalAmount = string.Format("{0:0,0}", cartItems.Sum(x => x.ItemAmount))
-                        }
-                    }, JsonRequestBehavior.AllowGet);
+                            Result = true,
+                            Message = "Cập nhật giỏ hàng thành công!",
+                            Data = new UpdateCartModel()
+                            {
+                                Id = product.Id,
+                                Image = product.Image1,
+                                Price = string.Format("{0:0,0}", product.Price),
+                                Quantity = cartItem.Quantity,
+                                Name = product.Name,
+                                Url = "",
+                                TotalQuantity = cartItems.Sum(x => x.Quantity),
+                                TotalAmount = string.Format("{0:0,0}", cartItems.Sum(x => x.ItemAmount))
+                            }
+                        }, JsonRequestBehavior.AllowGet);
+                    }
                 }
 
                 return Json(new CartResponseModel() { Result = false, Message = "Có lỗi xảy ra!" }, JsonRequestBehavior.AllowGet);

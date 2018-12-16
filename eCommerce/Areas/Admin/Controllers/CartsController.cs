@@ -128,7 +128,7 @@ namespace eCommerce.Areas.Admin.Controllers
 
         public ActionResult Alert()
         {
-            var invoices = db.Invoices.Where(x => x.Status == ProductStatus.NotValidated).ToList();
+            var invoices = db.Invoices.Where(x => x.Status == ProductStatus.Validated).ToList();
             return View(new AlertModel() {
                 Quantity = invoices.Count,
                 Invoices = invoices

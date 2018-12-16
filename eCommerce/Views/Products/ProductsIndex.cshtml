@@ -13,10 +13,8 @@
             <div class="col-md-12">
                 <!--Sửa đường dẫn-->
                 <ul class="breadcrumb-tree">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">All Categories</a></li>
-                    <li><a href="#">Accessories</a></li>
-                    <li class="active">Headphones (227,490 Results)</li>
+                    <li>Sản phẩm</li>
+                    <li>Sản phẩm @ViewBag.CategoryName</li>
                 </ul>
             </div>
         </div>
@@ -257,27 +255,6 @@
             <!-- /ASIDE -->
             <!-- STORE -->
             <div id="store" class="col-md-9">
-                <!-- store top filter -->
-                <div class="store-filter clearfix">
-                    <div class="store-sort">
-                        <label>
-                            Sắp Xếp:
-                            <select class="input-select">
-                                <option value="0">Giá Cao</option>
-                                <option value="1">Giá Thấp</option>
-                                <option value="1">Đánh Giá</option>
-                            </select>
-                        </label>
-                        <label>
-                            Hiện:
-                            <select class="input-select">
-                                <option value="0">9</option>
-                                <option value="1">Tất Cả</option>
-                            </select>
-                        </label>
-                    </div>
-                </div>
-                <!-- /store top filter -->
                 <!-- store products -->
                 <div class="row product-row">
                     @foreach (var item in Model.Products)
@@ -286,33 +263,45 @@
                         <div class="col-md-4 col-xs-6">
                             <div class="product">
                                 <div class="product-img">
-                                    <img src="~/Assets/img/product01.png" alt="">
+                                    <img src="@item.Image1" alt="" width="300" height="200">
                                     <div class="product-label">
-                                        <span class="sale">-30%</span>
-                                        <span class="new">NEW</span>
+                                        @if (item.discountValue != 0)
+                                        {
+                                            <span class="sale">-@item.discountValue%</span>
+                                        }
+                                        @if (item.AdType == eCommerce.EntityFramework.AdType.New)
+                                        {
+                                            <span class="new">NEW</span>
+                                        }
                                     </div>
                                 </div>
                                 <div class="product-body">
-                                    <p class="product-category">Category</p>
+                                    <p class="product-category">@item.Category.Name</p>
                                     <h3 class="product-name"><a href="/Products/Detail/@item.Id">@item.Name</a></h3>
-                                    <h4 class="product-price">@("$" + item.Price)</h4>
+                                    <h4 class="product-price">@item.Price VNĐ</h4>
                                     <div class="product-rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
+                                        @{
+                                            int j = 0;
+                                            for (j = 0; j < item.Rating; j++)
+                                            {
+                                                <i class="fa fa-star"></i>
+                                            }
+                                            while (j < 5)
+                                            {
+                                                <i class="fa fa-star-o"></i>
+                                                j++;
+                                            }
+                                        }
                                     </div>
                                     <div class="product-btns">
-                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                                        <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                                        <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+
+                                        <button class="quick-view"><a href="@Url.Action("Detail","Products",new { id = item.Id })"><i class="fa fa-eye"></i><span class="tooltipp">Xem sản phẩm</span></a></button>
                                     </div>
                                 </div>
                                 <div class="add-to-cart">
-                                    <button class="add-to-cart-btn" data-id="@item.Id" data-qty="1"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                    <button class="add-to-cart-btn" data-id="@item.Id" data-qty="1"><i class="fa fa-shopping-cart"></i> THÊM VÀO GIỎ</button>                                      
+                                    </div>
                                 </div>
-                            </div>
                         </div>
                         <!-- /product -->
                         <div class="clearfix visible-sm visible-xs"></div>
@@ -344,7 +333,7 @@
 <script>
         $(document).ready(function () {
             $(".filter-type input").click(function () {
-                window.location.href = Search(); // Href đến giá trị trên thanh Url do hàm Search() trả về 
+                window.location.href = Search(); // Href đến giá trị trên thanh Url do hàm Search() trả về
             })
 
             $(".filter-drive input").click(function () {
@@ -393,8 +382,8 @@
 
         if ($("#price-min").val() != @Model.defaultMin) filterUrl += "&min=" + $("#price-min").val();
         if ($("#price-min").val() != @Model.defaultMax) filterUrl += "&max=" + $("#price-max").val();
-        
-        return filterUrl;  // giá trị URL trả về 
+
+        return filterUrl;  // giá trị URL trả về
     }
 </script>
  }

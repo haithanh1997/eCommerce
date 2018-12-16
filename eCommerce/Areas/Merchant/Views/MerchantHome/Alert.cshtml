@@ -1,0 +1,24 @@
+﻿
+@{
+    Layout = null;
+}
+@model eCommerce.Areas.Admin.Models.AlertModel
+<li class="dropdown notifications-menu" data-id="@Model.MerchantId">
+    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+        <em class="fa fa-bell"></em><span class="label label-info">@(Model != null ? Model.Quantity.ToString() : "")</span>
+    </a>
+    <ul class="dropdown-menu dropdown-alerts">
+        @foreach (var item in Model.Invoices)
+        {
+            <li>
+                <a href="/Merchant/MerchantHome/NewInvoices/@Model.MerchantId">
+                    <div>
+                        <em class="fa fa-envelope"></em> @item.User.Email đã đặt hàng
+                        @*<span class="pull-right text-muted small">3 mins ago</span>*@
+                    </div>
+                </a>
+            </li>
+            <li class="divider"></li>
+        }
+    </ul>
+</li>

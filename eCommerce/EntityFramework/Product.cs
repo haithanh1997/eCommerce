@@ -105,6 +105,9 @@ namespace eCommerce.EntityFramework
         [DisplayName("Quảng cáo")]
         public AdType AdType { get; set; }
 
+        [DisplayName("Đánh giá")]
+        public int Rating { get; set; }
+
         [Required(ErrorMessage = "Trường {0} bắt buộc nhập.")]
         [DisplayName("Trạng thái")]
         public bool isDisabled { get; set; }

@@ -6,6 +6,8 @@ CartController = {
         // jquery call event
         $(".add-to-cart-btn").off("click").on("click", CartController.events.addToCart);
         $(".cart-list").on("click", ".delete", CartController.events.removeFromCart);
+        $(".input-group").on("click", ".btn-plus", CartController.events.addOneMore);
+        $(".input-group").on("click", ".btn-minus", CartController.events.minusOneMore);
         $("#modalremove").off("click").on("click", ".pull-right", CartController.events.removeFromCart);
     },
     events: {
@@ -76,7 +78,7 @@ CartController = {
                 url: "/Cart/UpdateToCart",
                 type: "POST",
                 contentType: "application/json",
-                data: JSON.stringify({ Id: "", Quantity: "" }),
+                data: JSON.stringify({ Id: (Number($(this).parents().find("input[name=quantity]").attr("data-id"))) , Quantity: (Number($(this).parents().find("input[name=quantity]").val()) + 1) }),
                 cache: false,
                 success: function (result) {
                     // Change element of header Cart
@@ -97,6 +99,11 @@ CartController = {
                             $(".cart-summary small").html(result.Data.TotalQuantity + " Item(s) selected");
                             $(".cart-summary h5").html("SUBTOTAL: $" + result.Data.TotalAmount);
                             $(".dropdown-toggle .qty").html(result.Data.TotalQuantity);
+                            $(".cart-product-" + result.Data.Id).find("input[name=quantity]").val(result.Data.Quantity);
+                            if ($(".order-details").length > 0) {
+                                $(".right-product-" + result.Data.Id).html("<div>" + result.Data.Name + " x " + result.Data.Quantity + "</div><div>" + result.Data.Price + " VNĐ</div>");
+                                $(".order-total").html(result.Data.TotalAmount + " VNĐ");
+                            }
                         }
                         else {
                             alert("Có lỗi xảy ra!");
@@ -118,7 +125,7 @@ CartController = {
                 url: "/Cart/UpdateToCart",
                 type: "POST",
                 contentType: "application/json",
-                data: JSON.stringify({ Id: "", Quantity: "" }),
+                data: JSON.stringify({ Id: (Number($(this).parents().find("input[name=quantity]").attr("data-id"))), Quantity: (Number($(this).parents().find("input[name=quantity]").val()) - 1) }),
                 cache: false,
                 success: function (result) {
                     // Change element of header Cart
@@ -139,6 +146,11 @@ CartController = {
                             $(".cart-summary small").html(result.Data.TotalQuantity + " Item(s) selected");
                             $(".cart-summary h5").html("SUBTOTAL: $" + result.Data.TotalAmount);
                             $(".dropdown-toggle .qty").html(result.Data.TotalQuantity);
+                            $(".cart-product-" + result.Data.Id).find("input[name=quantity]").val(result.Data.Quantity);
+                            if ($(".order-details").length > 0) {
+                                $(".right-product-" + result.Data.Id).html("<div>" + result.Data.Name + " x " + result.Data.Quantity + "</div><div>" + result.Data.Price + " VNĐ</div>");
+                                $(".order-total").html(result.Data.TotalAmount + " VNĐ");
+                            }
                         }
                         else {
                             alert("Có lỗi xảy ra!");
@@ -174,6 +186,10 @@ CartController = {
                             if ($(".cart-product-" + result.Data.Id).length > 0)
                             {
                                 $(".cart-product-" + result.Data.Id).remove();
+                            }
+                            if ($(".order-details").length > 0) {
+                                $(".right-product-" + result.Data.Id).html("<div>" + result.Data.Name + " x " + result.Data.Quantity + "</div><div>" + result.Data.Price + " VNĐ</div>");
+                                $(".order-total").html(result.Data.TotalAmount + " VNĐ");
                             }
                         }
                         else {

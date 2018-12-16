@@ -21,9 +21,7 @@ namespace eCommerce.Controllers
 			//create a object to hold the message
 			//MailMessage newMessage = new MailMessage();
 
-			//Create addresses
-			//MailAddress senderAddress = new MailAddress("rendoleo317@gmail.com");
-			//MailAddress recipentAddress = new MailAddress("nguyenthientam317@gmail.com");
+
 
 			//Now create the full message
 			//newMessage.To.Add(recipentAddress);
@@ -63,7 +61,7 @@ namespace eCommerce.Controllers
         [ChildActionOnly]
         public ActionResult Categories()
         {
-            var model = db.Categories.ToList();
+            var model = db.Categories.Where(x => x.isDisabled == false).ToList();
             return PartialView(model);
         }
 		[ChildActionOnly]

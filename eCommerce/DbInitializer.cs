@@ -143,7 +143,6 @@ namespace eCommerce
             //Seed for advertise package
             IList<AdPackage> defaultAdPackages = new List<AdPackage>();
             defaultAdPackages.Add(new AdPackage() { Name = "Promote 1", Price = 200000, AdType = AdType.Encourage, Period = 7, isDisabled = false });
-            defaultAdPackages.Add(new AdPackage() { Name = "Promote 2", Price = 200000, AdType = AdType.FlashSale, Period = 1, isDisabled = false });
             defaultAdPackages.Add(new AdPackage() { Name = "Promote 3", Price = 350000, AdType = AdType.Hot, Period = 7, isDisabled = false });
             defaultAdPackages.Add(new AdPackage() { Name = "Promote 4", Price = 350000, AdType = AdType.New, Period = 7, isDisabled = false });
             defaultAdPackages.Add(new AdPackage() { Name = "Event", Price = 599000, AdType = AdType.SlideShow, Period = 30, isDisabled = false });
@@ -190,15 +189,6 @@ namespace eCommerce
 				ExpiredDate = DateTime.Now.AddDays((from c in context.AdPackages.Where(c => c.Id == 4) select c.Period).FirstOrDefault()),
 				Status = false
 			});
-			defaultAdInvoice.Add(new AdInvoice()
-			{
-				User = context.Users.FirstOrDefault(x => x.Id == id),
-				AdPackage = context.AdPackages.FirstOrDefault(x => x.Id == 5),
-				Price = 599000,
-				createdDate = DateTime.Now,
-				ExpiredDate = DateTime.Now.AddDays((from c in context.AdPackages.Where(c => c.Id == 5) select c.Period).FirstOrDefault()),
-				Status = false
-			});
 
 
 
@@ -223,32 +213,33 @@ namespace eCommerce
             //Seed for Product
             IList<Product> defaultProducts = new List<Product>();
 
-			defaultProducts.Add(new Product()
-			{
-				Store = context.MerchantStores.FirstOrDefault(x => x.Id == 1),
-				Name = "LAPTOP HP PROBOOK 4540s",
-				Price = 5600000,
-				Quantity = 25,
-				Category = context.Categories.FirstOrDefault(x => x.Id == 5),
-				Type = context.ProductTypes.FirstOrDefault(x => x.Id == 2),
-				discountValue = 0,
-				Description = "hàng xách tay nước ngoài,máy nguyên zin 100 % có window bản quyền,chưa qua sửa chữa hay thay đổi gì",
-				CPU = "Core i5-3320m 2.6GHz TurboBoost 3.0GHz",
-				RAM = "4GB",
-				hardDrive = "HDD 320GB",
-				screenType = "15.6' HD chống chói",
-				GPU = "Intel HD4000",
-				IOPort = "2 cổng USB,cổng tai nghe,cổng VGA,LAN",
-				OS = "Windows 7",
-				DesignType = "HP Notebook",
-				Size = 2.13F,
-				updateDate = new DateTime(2018, 12, 1),
-			    AdExpriedDate = new DateTime(2018, 12, 8),
-				PackeageExpiredDate = new DateTime(2018, 12, 8),
+
+            defaultProducts.Add(new Product()
+            {
+                Store = context.MerchantStores.FirstOrDefault(x => x.Id == 1),
+                Name = "LAPTOP HP PROBOOK 4540s",
+                Price = 5600000,
+                Quantity = 25,
+                Category = context.Categories.FirstOrDefault(x => x.Id == 5),
+                Type = context.ProductTypes.FirstOrDefault(x => x.Id == 2),
+                discountValue = 0,
+                Description = "hàng xách tay nước ngoài,máy nguyên zin 100 % có window bản quyền,chưa qua sửa chữa hay thay đổi gì",
+                CPU = "Core i5-3320m 2.6GHz TurboBoost 3.0GHz",
+                RAM = "4GB",
+                hardDrive = "HDD 320GB",
+                screenType = "15.6' HD chống chói",
+                GPU = "Intel HD4000",
+                IOPort = "2 cổng USB,cổng tai nghe,cổng VGA,LAN",
+                OS = "Windows 7",
+                DesignType = "HP Notebook",
+                Size = 2.13,
+                updateDate = new DateTime(2018, 12, 1),
+
                 Image1 = "/Assets/img/product1-01.jpg",
                 Image2 = "/Assets/img/product1-01.jpg",
                 Image3 = "/Assets/img/product1-01.jpg",
                 AdType = AdType.Hot,
+                Rating = 4,
                 isDisabled = false
             });
 
@@ -270,7 +261,7 @@ namespace eCommerce
                 IOPort = "2 cổng USB 3.0 bla bla",
                 OS = "Windows 7",
                 DesignType = "2 cổng USB,cổng tai nghe,cổng HDMI,LAN",
-                Size = 2.1F,
+                Size = 2.1,
                 updateDate = new DateTime(2018,12,10),
 				AdExpriedDate = DateTime.Now,
 				PackeageExpiredDate = new DateTime(2018, 12, 17),
@@ -278,6 +269,7 @@ namespace eCommerce
                 Image2 = "/Assets/img/product2-01.jpg",
                 Image3 = "/Assets/img/product2-02.jpg",
 				AdType = AdType.No,
+                Rating = 3,
 				isDisabled = false
             });
 

@@ -81,12 +81,12 @@
                                     <td style="width: 120px;">
                                         <div class="input-group form-group">
                                             <span class="input-group-btn">
-                                                <button type="button" class="btn btn-default btn-number btn-minus" disabled="disabled" data-type="minus" data-field="quant[1]">
+                                                <button type="button" class="btn btn-default btn-number btn-minus" data-type="minus" data-field="quant[1]">
                                                     <span class="glyphicon glyphicon-minus">
                                                     </span>
                                                 </button>
                                             </span>
-                                            <input type="text" name="quant[1]" class="form-control input-number" value="@item.Quantity" min="1" max="5">
+                                            <input type="text" name="quantity" class="form-control input-number" disabled value="@item.Quantity" min="1" max="5" data-id="@item.Product.Id">
                                             <span class="input-group-btn">
                                                 <button type="button" class="btn btn-default btn-number btn-plus" data-type="plus" data-field="quant[1]">
                                                     <span class="glyphicon glyphicon-plus">
@@ -149,7 +149,7 @@
                         <div class="order-products">
                             @foreach (var item in Model.CartItems)
                             {
-                                <div class="order-col">
+                                <div class="order-col right-product-@item.Product.Id">
                                     <div>@item.Product.Name x @item.Quantity</div>
                                     <div>@string.Format("{0:0,0}", item.Price) VNĐ</div>
                                 </div>

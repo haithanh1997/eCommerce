@@ -60,5 +60,7 @@ namespace eCommerce.Models
         public int TotalQuantity { get; set; }
 
         public string TotalAmount { get; set; }
+
+        public string Name { get; set; }
     }
 }

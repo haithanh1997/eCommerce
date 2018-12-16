@@ -57,16 +57,17 @@ namespace eCommerce.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Create(Product product)
+        public ActionResult Create(ProductType product)
         {
             if (ModelState.IsValid)
             {
+                product.isDisabled = false;
                 //var entity = new ProductType()
                 //{
                     //Name = productType.Name,
                     //isDisabled = productType.isDisabled,
                 //};
-                db.Products.Add(product);
+                db.ProductTypes.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -101,19 +102,16 @@ namespace eCommerce.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ProductTypeModel productType)
+        public ActionResult Edit(ProductType type)
         {
             if (ModelState.IsValid)
             {
-                var entity = db.ProductTypes.FirstOrDefault(x => x.Id == productType.Id);
-                entity.Name = productType.Name;
-                entity.isDisabled = productType.isDisabled;  
-                db.Entry(entity).State = EntityState.Modified;
+                db.Entry(type).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
          
-            return View(productType);
+            return View(type);
         }
 
         [Authorize(Roles = "Admin")]
@@ -129,7 +127,9 @@ namespace eCommerce.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            return View(productType);
+            db.ProductTypes.Remove(productType);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         [Authorize(Roles = "Admin")]

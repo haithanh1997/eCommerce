@@ -134,7 +134,7 @@ namespace eCommerce.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if (model.status == 0)
+                    if (model.status == 1)
                     {
                         var cart = db.Carts.FirstOrDefault(x => x.User.Id == CurrentUser.Id);
                         if (cart == null)

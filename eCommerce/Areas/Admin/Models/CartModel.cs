@@ -8,5 +8,7 @@ namespace eCommerce.Areas.Admin.Models
         public int Quantity { get; set; }
 
         public List<Invoice> Invoices { get; set; }
+
+        public string MerchantId { get; set; }
     }
 }
