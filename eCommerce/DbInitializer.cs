@@ -189,15 +189,6 @@ namespace eCommerce
 				ExpiredDate = DateTime.Now.AddDays((from c in context.AdPackages.Where(c => c.Id == 4) select c.Period).FirstOrDefault()),
 				Status = false
 			});
-			defaultAdInvoice.Add(new AdInvoice()
-			{
-				User = context.Users.FirstOrDefault(x => x.Id == id),
-				AdPackage = context.AdPackages.FirstOrDefault(x => x.Id == 5),
-				Price = 599000,
-				createdDate = DateTime.Now,
-				ExpiredDate = DateTime.Now.AddDays((from c in context.AdPackages.Where(c => c.Id == 5) select c.Period).FirstOrDefault()),
-				Status = false
-			});
 
 
 
