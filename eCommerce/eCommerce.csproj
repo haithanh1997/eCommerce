@@ -251,6 +251,7 @@
     <Compile Include="EntityFramework\PackageInvoice.cs" />
     <Compile Include="EntityFramework\SlideShow.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
+    <Compile Include="Models\Pager.cs" />
     <Compile Include="SignalRHub.cs" />
     <Compile Include="DbInitializer.cs" />
     <Compile Include="EntityFramework\AdPackage.cs" />
@@ -9326,6 +9327,8 @@
     <Content Include="Views\Home\SlideShow.cshtml" />
     <Content Include="Views\Products\Search.cshtml" />
     <Content Include="Views\Products\RelatedProducts.cshtml" />
+    <Content Include="Views\Shared\_PagingPartial.cshtml" />
+    <Content Include="Views\Shared\_ShopPagingPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

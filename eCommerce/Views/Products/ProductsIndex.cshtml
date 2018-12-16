@@ -1,9 +1,8 @@
-﻿
+﻿@model eCommerce.Models.ProductIndexModel
 @{
     ViewBag.Title = "ProductsIndex";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model eCommerce.Models.ProductIndexModel
 <!-- BREADCRUMB -->
 <div id="breadcrumb" class="section">
     <!-- container -->
@@ -299,9 +298,9 @@
                                     </div>
                                 </div>
                                 <div class="add-to-cart">
-                                    <button class="add-to-cart-btn" data-id="@item.Id" data-qty="1"><i class="fa fa-shopping-cart"></i> THÊM VÀO GIỎ</button>                                      
-                                    </div>
+                                    <button class="add-to-cart-btn" data-id="@item.Id" data-qty="1"><i class="fa fa-shopping-cart"></i> THÊM VÀO GIỎ</button>
                                 </div>
+                            </div>
                         </div>
                         <!-- /product -->
                         <div class="clearfix visible-sm visible-xs"></div>
@@ -310,14 +309,7 @@
                 <!-- /store products -->
                 <!-- store bottom filter -->
                 <div class="store-filter clearfix">
-                    <span class="store-qty">Showing 20-100 products</span>
-                    <ul class="store-pagination">
-                        <li class="active">1</li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                    </ul>
+                        @Html.Partial("_PagingPartial", Model.Products)
                 </div>
                 <!-- /store bottom filter -->
             </div>
@@ -330,7 +322,7 @@
 <!-- /SECTION -->
 
 @section scripts{
-<script>
+    <script>
         $(document).ready(function () {
             $(".filter-type input").click(function () {
                 window.location.href = Search(); // Href đến giá trị trên thanh Url do hàm Search() trả về
@@ -385,5 +377,5 @@
 
         return filterUrl;  // giá trị URL trả về
     }
-</script>
- }
+    </script>
+}
