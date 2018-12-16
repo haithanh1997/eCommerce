@@ -16,9 +16,7 @@ namespace eCommerce.EntityFramework
         Hot = 2,
 		[Description("Promotion")]
 		SlideShow = 3,
-		[Description("Flash Sale")]
-		FlashSale = 4,
 		[Description("Khuyến khích")]
-		Encourage = 5,
+		Encourage = 4,
 	}
 }

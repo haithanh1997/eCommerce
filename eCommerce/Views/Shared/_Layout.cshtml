@@ -66,7 +66,7 @@
                     </div>
                     <!-- /LOGO -->
                     <!-- SEARCH BAR -->
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                         <div class="header-search">
                             @using (Html.BeginForm("Search","Products",FormMethod.Post))
                             {
@@ -77,16 +77,9 @@
                     </div>
                     <!-- /SEARCH BAR -->
                     <!-- ACCOUNT -->
-                    <div class="col-md-3 clearfix">
+                    <div class="col-md-1 clearfix">
                         <div class="header-ctn">
                             <!-- Wishlist -->
-                            <div>
-                                <a href="#">
-                                    <i class="fa fa-heart-o"></i>
-                                    <span>Yêu thích</span>
-                                    <div class="qty">2</div>
-                                </a>
-                            </div>
                             <!-- /Wishlist -->
                             @Html.Action("Cart", "Cart")
                             <!-- Menu Toogle -->
@@ -132,22 +125,6 @@
 	<!-- NEWSLETTER -->
 	<div id="newsletter" class="section">
 		<!-- container -->
-		<div class="container">
-			<!-- row -->
-			<div class="row">
-				<div class="col-md-12">
-					<div class="newsletter">
-						<p>Đăng ký để nhận <strong> Tin tức mới nhất</strong></p>
-						<form>
-							<input class="input" type="email" placeholder="Nhập Email của bạn">
-							<button class="newsletter-btn"><i class="fa fa-envelope"></i> Đăng ký</button>
-						</form>
-						
-					</div>
-				</div>
-			</div>
-			<!-- /row -->
-		</div>
 		<!-- /container -->
 	</div>
 	<!-- /NEWSLETTER -->
@@ -176,10 +153,6 @@
 							<h3 class="footer-title">THƯƠNG HIỆU</h3>
                             <ul class="footer-links">
                                 <li><a href="#">Hot deals</a></li>
-                                @*@foreach (var brand in Model.CategoryView)
-                                {
-                                    <li><a href="@Url.Action("CategoryProducts", "Products", new { brand.Name })">@brand.Name</a></li>
-                                }*@
                             </ul>
 						</div>
 					</div>

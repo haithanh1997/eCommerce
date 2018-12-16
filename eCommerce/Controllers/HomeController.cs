@@ -71,7 +71,7 @@ namespace eCommerce.Controllers
         [ChildActionOnly]
         public ActionResult Categories()
         {
-            var model = db.Categories.ToList();
+            var model = db.Categories.Where(x => x.isDisabled == false).ToList();
             return PartialView(model);
         }
     }
