@@ -97,7 +97,7 @@
                     <p>@Html.DisplayFor(model => model.Description)</p>
 
                     <div class="add-to-cart">
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> thêm giỏ hàng</button>
+                        <button class="add-to-cart-btn" data-id="@Model.Id" data-qty="1"><i class="fa fa-shopping-cart"></i> thêm giỏ hàng</button>
                     </div>
 
                     <ul class="product-links">
@@ -243,13 +243,6 @@
                                                     </div>                                                
                                                 </div>
                                             </li>
-                                        </ul>
-                                        <ul class="reviews-pagination">
-                                            <li class="active">1</li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#">3</a></li>
-                                            <li><a href="#">4</a></li>
-                                            <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>

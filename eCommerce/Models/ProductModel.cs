@@ -5,7 +5,7 @@ namespace eCommerce.Models
 {
     public class ProductIndexModel
     {
-        public List<Product> Products { get; set; }
+        public Pager<Product> Products { get; set; }
 
         public List<Category> Categories { get; set; }
 
@@ -25,6 +25,7 @@ namespace eCommerce.Models
     public class ProductFilterParam
     {
         public string name { get; set; }
+        public int? page { get; set; }
         public List<long> type { get; set; }
         public decimal min { get; set; }
 
