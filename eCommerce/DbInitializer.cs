@@ -241,12 +241,13 @@ namespace eCommerce
                 IOPort = "2 cổng USB,cổng tai nghe,cổng VGA,LAN",
                 OS = "Windows 7",
                 DesignType = "HP Notebook",
-                Size = 2.13F,
-                updateDate = new DateTime(2018,12,1),
+                Size = 2.13,
+                updateDate = new DateTime(2018, 12, 1),
                 Image1 = "/Assets/img/product1-01.jpg",
                 Image2 = "/Assets/img/product1-01.jpg",
                 Image3 = "/Assets/img/product1-01.jpg",
                 AdType = AdType.Hot,
+                Rating = 4,
                 isDisabled = false
             });
 
@@ -268,12 +269,13 @@ namespace eCommerce
                 IOPort = "2 cổng USB 3.0 bla bla",
                 OS = "Windows 7",
                 DesignType = "2 cổng USB,cổng tai nghe,cổng HDMI,LAN",
-                Size = 2.1F,
+                Size = 2.1,
                 updateDate = new DateTime(2018,12,10),
                 Image1 = "/Assets/img/product2-01.jpg",
                 Image2 = "/Assets/img/product2-01.jpg",
                 Image3 = "/Assets/img/product2-02.jpg",
 				AdType = AdType.No,
+                Rating = 3,
 				isDisabled = false
             });
 
