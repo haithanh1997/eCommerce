@@ -122,7 +122,7 @@ namespace eCommerce.Controllers
 
             // Final Products display client-side
             var products = defaultProducts;
-
+            
             return View(new ProductIndexModel()
             {
                 Categories = db.Categories.Where(x => !x.isDisabled).ToList(),

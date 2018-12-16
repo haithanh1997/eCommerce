@@ -50,11 +50,8 @@ namespace eCommerce.Areas.Admin.Controllers
             var total = invoiceDetails.Sum(x => x.Price);
             while(total > 50000000)
             {
-                if(invoiceDetails != null)
-                {
-                    invoiceDetails.RemoveAt(0);
-                    invoiceDetails.Sum(x => x.Price);
-                }
+                invoiceDetails.RemoveAt(0);
+                total = invoiceDetails.Sum(x => x.Price);
             }
 
             var transactionId = "MERCHANTREPAID" + (new Random()).Next(100000);
@@ -71,12 +68,11 @@ namespace eCommerce.Areas.Admin.Controllers
             };
             db.MerchantRepaidHistorys.Add(mcHistory);
             foreach (var item in invoiceDetails)
-                if(item!=null)
-                    db.MerchantRepaidDetails.Add(new EntityFramework.MerchantRepaidDetail()
-                    {
-                        History = mcHistory,
-                        InvoiceDetail = item,
-                    });
+                db.MerchantRepaidDetails.Add(new EntityFramework.MerchantRepaidDetail()
+                {
+                    History = mcHistory,
+                    InvoiceDetail = item,
+                });
             db.SaveChanges();
             return Redirect(Payment.RepaidPaymentApi(transactionId, total));
         }
@@ -84,7 +80,7 @@ namespace eCommerce.Areas.Admin.Controllers
         public ActionResult CreateRePaid(OnlinePaymentModel model)
         {
             
-            if (model.status == 0)
+            if (model.status == 1)
             {
                 var merchantRepaid = db.MerchantRepaidHistorys.FirstOrDefault(x => x.TransactionId.Equals(model.transactionID));
                 merchantRepaid.IsTemporary = false;
@@ -98,7 +94,7 @@ namespace eCommerce.Areas.Admin.Controllers
 
                  return RedirectToAction("Daily", "Statistic");
             }
-            return RedirectToAction("Index", "Package");
+            return RedirectToAction("Daily", "Statistic");
         }
 
         public ActionResult Monthly()
