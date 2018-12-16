@@ -85,6 +85,14 @@ namespace eCommerce.Areas.Merchant.Models
 		[DisplayName("Ngày đăng")]
 		public DateTime updateDate { get; set; }
 		//public Nullable<DateTime> deletedDate { get; set; }
+
+		[DisplayName("Ngày đăng")]
+		public DateTime AdExpriedDate { get; set; }
+
+		[DisplayName("Ngày Hết hạng quảng cáo")]
+		public DateTime PackeageExpiredDate { get; set; }
+
+
 		[Required]
 		[DisplayName("Ảnh 1")]
 		public string Image1 { get; set; }

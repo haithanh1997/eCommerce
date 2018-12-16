@@ -82,8 +82,15 @@ namespace eCommerce.EntityFramework
       
         [DisplayName("Ngày đăng")]
         public DateTime updateDate { get; set; }
-        //public Nullable<DateTime> deletedDate { get; set; }
-        [Required(ErrorMessage = "Trường {0} bắt buộc nhập.")]
+
+		[DisplayName("Ngày đăng")]
+		public DateTime AdExpriedDate { get; set; }
+
+		[DisplayName("Ngày Hết hạng quảng cáo")]
+		public DateTime PackeageExpiredDate { get; set; }
+
+		//public Nullable<DateTime> deletedDate { get; set; }
+		[Required(ErrorMessage = "Trường {0} bắt buộc nhập.")]
         [DisplayName("Ảnh 1")]
         public string Image1 { get; set; }
 

@@ -9,6 +9,6 @@ namespace eCommerce.Models
     public class HomeViewModel
     {
         public List<Product> ProductView { get; set; }
-        public List<Category> CategoryView { get; set; }
+        public List<ProductType> TypeView { get; set; }
     }
 }

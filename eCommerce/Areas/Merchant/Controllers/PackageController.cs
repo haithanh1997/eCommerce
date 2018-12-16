@@ -84,9 +84,9 @@ namespace eCommerce.Areas.Merchant.Controllers
                         db.PackageInvoices.Add(invoice);
 
 						// Thêm số lần đăng cho Store
-						//var store = db.MerchantStores.Where(x => x.User.Id == CurrentUser.Id).FirstOrDefault();
-						//store.Package = invoice.Package.Times;
-						//db.Entry(store).State = EntityState.Modified;
+						var store = db.MerchantStores.Where(x => x.User.Id == CurrentUser.Id).FirstOrDefault();
+						store.Package = store.Package + invoice.Package.Times;
+						db.Entry(store).State = EntityState.Modified;
 
 						db.SaveChanges();
 
@@ -189,6 +189,7 @@ namespace eCommerce.Areas.Merchant.Controllers
 			var model = db.Products.Find(id);
 			var model1 = db.AdInvoices.Where(x => x.User.Id == user && x.AdPackage.Id == ad && x.Status == false).FirstOrDefault();
 			model.AdType = model1.AdPackage.AdType;
+			model.AdExpriedDate = model1.ExpiredDate;
 			model1.Status = true;
 			db.Entry(model).State = EntityState.Modified;
 			db.Entry(model1).State = EntityState.Modified;
@@ -199,6 +200,25 @@ namespace eCommerce.Areas.Merchant.Controllers
 		public ActionResult CreateSlideShow(SlideShow model,string id)
 		{
 			var userid = id;
+			ViewBag.UserID = id;
+			bool exists = System.IO.Directory.Exists(Server.MapPath("~/MerchantSlide/" + ViewBag.UserID));
+
+			if (!exists)
+				System.IO.Directory.CreateDirectory(Server.MapPath("~/MerchantSlide/" + ViewBag.UserID));
+
+			var f1 = Request.Files["Image1"];
+			if (f1 != null && f1.ContentLength > 0)
+			{
+				string fullPath = Request.MapPath(model.Image);
+				if (System.IO.File.Exists(fullPath))
+				{
+					System.IO.File.Delete(fullPath);
+				}
+				var path = Server.MapPath("~/MerchantSlide/" + ViewBag.UserID + "/" + f1.FileName);
+				f1.SaveAs(path);
+				model.Image = "/MerchantSlide/" + ViewBag.UserID + "/" + f1.FileName;
+			}
+
 			model.User = db.Users.Where(x => x.Id == id).FirstOrDefault();
 			model.isDisable = false;
 			db.SlideShows.Add(model);

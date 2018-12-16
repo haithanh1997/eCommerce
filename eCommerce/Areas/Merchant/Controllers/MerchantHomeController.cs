@@ -239,7 +239,7 @@ namespace eCommerce.Areas.Merchant.Controllers
                         Value = x.Id.ToString()
                     }).ToList(),
                     Store = model
-                });
+				});
 			}
         }
         [HttpPost]
@@ -275,7 +275,9 @@ namespace eCommerce.Areas.Merchant.Controllers
 				product.DesignType = model.DesignType;
 				product.Size = model.Size;
 				product.updateDate = DateTime.Now;
-                product.AdType = EntityFramework.AdType.No;
+				product.AdExpriedDate = DateTime.Now;
+				product.PackeageExpiredDate = product.updateDate.AddDays((from c in db.PackageInvoices.Where(c => c.User.Id == id) select c.Package.Days).FirstOrDefault());
+				product.AdType = EntityFramework.AdType.No;
                 product.isDisabled = false;
 
                 bool exists = System.IO.Directory.Exists(Server.MapPath("~/MerchantProduct/"+ViewBag.UserID));
@@ -366,6 +368,8 @@ namespace eCommerce.Areas.Merchant.Controllers
 				DesignType = model.DesignType,
 				Size = model.Size,
 				updateDate = model.updateDate,
+				AdExpriedDate = model.AdExpriedDate,
+				PackeageExpiredDate = model.PackeageExpiredDate,
 				Image1 = model.Image1,
 				Image2 = model.Image2,
 				Image3 = model.Image3,
@@ -404,6 +408,8 @@ namespace eCommerce.Areas.Merchant.Controllers
 				product.DesignType = model.DesignType;
 				product.Size = model.Size;
 				product.updateDate = DateTime.Now;
+				product.AdExpriedDate = model.AdExpriedDate;
+				product.PackeageExpiredDate = model.PackeageExpiredDate;
                 product.Image1 = model.Image1;
                 product.Image2 = model.Image2;
                 product.Image3 = model.Image3;
@@ -453,7 +459,7 @@ namespace eCommerce.Areas.Merchant.Controllers
                 }
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ManageProduct",new { id = product.Store.User.Id });
             }
 
 			// Hàng trả về khi thay đổi thất bại :))
