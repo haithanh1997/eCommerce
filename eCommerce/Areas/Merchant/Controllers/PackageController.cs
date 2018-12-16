@@ -146,6 +146,7 @@ namespace eCommerce.Areas.Merchant.Controllers
 		{ 
 			var model1 = db.AdInvoices.Where(x => x.User.Id == id && x.AdPackage.Id == ad && x.Status == false).FirstOrDefault();
 			ViewBag.adtype = model1.AdPackage.AdType;
+			ViewBag.InvoiceId = model1.Id;
 			model1.Status = true;
 			db.Entry(model1).State = EntityState.Modified;
 			db.SaveChanges();
@@ -161,7 +162,7 @@ namespace eCommerce.Areas.Merchant.Controllers
 		//Trang danh sách các SlideShow đang chạy
 		public ActionResult SlideShowList(string id)
 		{
-			var model = db.SlideShows.Where(x => x.User.Id == id ).ToList();
+			var model = db.SlideShows.Where(x => x.AdInvoice.User.Id == id ).ToList();
 			return View(model);
 		}
 		//Gỡ SlideShow
@@ -197,7 +198,7 @@ namespace eCommerce.Areas.Merchant.Controllers
 			return RedirectToAction("AdManage", new { id = model.Store.User.Id });
 		}
 		[HttpPost]
-		public ActionResult CreateSlideShow(SlideShow model,string id)
+		public ActionResult CreateSlideShow(SlideShow model,string id, long invoice)
 		{
 			var userid = id;
 			ViewBag.UserID = id;
@@ -220,6 +221,7 @@ namespace eCommerce.Areas.Merchant.Controllers
 			}
 
 			model.User = db.Users.Where(x => x.Id == id).FirstOrDefault();
+			model.AdInvoice = db.AdInvoices.Where(x => x.User.Id == id && x.Status == true && x.Id == invoice ).FirstOrDefault();
 			model.isDisable = false;
 			db.SlideShows.Add(model);
 			db.SaveChanges();

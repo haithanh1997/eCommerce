@@ -38,7 +38,7 @@
 
 						<!-- /.box-header -->
 						<div class="box-body">
-							@using (Html.BeginForm("CreateSlideShow", "Package", FormMethod.Post, new { id = User.Identity.GetUserId(), enctype = "multipart/form-data" }))
+							@using (Html.BeginForm("CreateSlideShow", "Package",new { invoice = @ViewBag.InvoiceId }, FormMethod.Post, new { id = User.Identity.GetUserId(), enctype = "multipart/form-data" }))
 							{
 								@Html.AntiForgeryToken()
 
