@@ -31,7 +31,7 @@ namespace eCommerce.Areas.Admin.Controllers
                             Name = x.FirstOrDefault().Product.Store.Name,
                             Id = x.FirstOrDefault().Product.Store.User.Id,
                             Email = x.FirstOrDefault().Product.Store.User.Email,
-                            Total = x.Sum(y => y.Price)
+                            Total = x.Sum(y => (y.Price * y.Quantity))
                         }).ToList();
             foreach(var item in model)
             {
@@ -47,11 +47,11 @@ namespace eCommerce.Areas.Admin.Controllers
                        x.isPaymented == false &&
                        x.Product.Store.User.Id == id &&
                        x.Invoice.Status == EntityFramework.ProductStatus.Delivered).ToList();
-            var total = invoiceDetails.Sum(x => x.Price);
+            var total = invoiceDetails.Sum(x => (x.Price * x.Quantity));
             while(total > 50000000)
             {
                 invoiceDetails.RemoveAt(0);
-                total = invoiceDetails.Sum(x => x.Price);
+                total = invoiceDetails.Sum(x => (x.Price * x.Quantity));
             }
 
             var transactionId = "MERCHANTREPAID" + (new Random()).Next(100000);

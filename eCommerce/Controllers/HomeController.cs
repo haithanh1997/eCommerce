@@ -21,7 +21,7 @@ namespace eCommerce.Controllers
             //create a object to hold the message
             //MailMessage newMessage = new MailMessage();
 
-            //Create addresses
+            ////Create addresses
             //MailAddress senderAddress = new MailAddress("rendoleo317@gmail.com");
             //MailAddress recipentAddress = new MailAddress("nguyenthientam317@gmail.com");
 
