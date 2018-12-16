@@ -305,6 +305,18 @@
 
                     <li class="treeview">
                         <a href="#">
+                            <i class="fa fa-line-chart"></i> <span>Thanh toán cho bên bán hàng</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("Daily","Statistic")"><i class="fa fa-circle-o"></i> Danh sách doanh thu</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="#">
                             <i class="fa fa-line-chart"></i> <span>Doanh thu từ gói QC</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
@@ -562,11 +574,12 @@
             // Reference the auto-generated proxy for the hub.
             var alert = $.connection.SignalRHub;
             // Create a function that the hub can call back to display messages.
-            alert.client.addNewMessageToPage = function (quantity, email, invoiceId) {
+            alert.client.addNewMessageToAdmin = function (email, invoiceId) {
                 // Add the message to the page.
+                var quantity = Number($(".notifications-menu .label-warning").text()) + 1;
                 $(".notifications-menu .label-warning").html(quantity);
                 $(".notifications-menu .header").html(quantity + " thông báo mới");
-                $(".notifications-menu .menu").append("<li> <a href='" + invoiceId + "'><i class=\"fa fa-users text-aqua\"></i> " + email + " đã đặt hàng</a></li>");
+                $(".notifications-menu .menu").append("<li> <a href='" + invoiceId + "'><i class=\"fa fa-users text-aqua\"></i> " + email + " đã xác nhận đặt hàng</a></li>");
             };
 
             $.connection.hub.start().done(function () {

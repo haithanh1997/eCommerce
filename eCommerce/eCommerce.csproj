@@ -229,6 +229,7 @@
     <Compile Include="Areas\Admin\Controllers\StoresController.cs" />
     <Compile Include="Areas\Admin\Models\CartModel.cs" />
     <Compile Include="Areas\Admin\Models\ProductTypeModel.cs" />
+    <Compile Include="Areas\Admin\Models\StatisticDailyModel.cs" />
     <Compile Include="Areas\Merchant\Controllers\MerchantHomeController.cs" />
     <Compile Include="Areas\Merchant\Controllers\PackageController.cs" />
     <Compile Include="Areas\Merchant\MerchantAreaRegistration.cs" />
@@ -244,6 +245,8 @@
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\ShopsController.cs" />
     <Compile Include="EntityFramework\AdInvoice.cs" />
+    <Compile Include="EntityFramework\MerchantRepaidDetail.cs" />
+    <Compile Include="EntityFramework\MerchantRepaidHistory.cs" />
     <Compile Include="EntityFramework\PackageInvoice.cs" />
     <Compile Include="EntityFramework\SlideShow.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
@@ -9216,6 +9219,8 @@
     <Content Include="Areas\Merchant\Views\Package\AdCreatSlideShow.cshtml" />
     <Content Include="Areas\Merchant\Views\Package\SlideShowList.cshtml" />
     <Content Include="Areas\Merchant\Views\MerchantHome\Account.cshtml" />
+    <Content Include="Areas\Merchant\Views\MerchantHome\Alert.cshtml" />
+    <Content Include="Areas\Admin\Views\Carts\Alert.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

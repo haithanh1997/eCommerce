@@ -1,8 +1,12 @@
-﻿using eCommerce.Areas.Merchant.Models;
+﻿using eCommerce.Areas.Admin.Models;
+using eCommerce.Areas.Merchant.Models;
+using eCommerce.Controllers;
 using eCommerce.EntityFramework;
 using eCommerce.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -17,13 +21,17 @@ using static eCommerce.Controllers.ManageController;
 
 namespace eCommerce.Areas.Merchant.Controllers
 {
-    [Authorize(Roles = "Merchant")]
+    [System.Web.Mvc.Authorize(Roles = "Merchant")]
     public class MerchantHomeController : Controller
     {
 		private MainDbContext db = new MainDbContext();
+        private IdentityUser CurrentUser
+        {
+            get { return db.Users.FirstOrDefault(x => x.UserName.Equals(User.Identity.Name)); }
+        }
 
-		// Dashboard
-		public ActionResult Index(string id)
+        // Dashboard
+        public ActionResult Index(string id)
         {
             ProfitCalculation(id);
             Increasement(id);
@@ -148,7 +156,11 @@ namespace eCommerce.Areas.Merchant.Controllers
 		
 			db.Entry(model).State = EntityState.Modified;
 			db.SaveChanges();
-           return RedirectToAction("NewInvoices",new { id = model.Product.Store.User.Id });
+            
+            var email = CurrentUser.Email;
+            var invoiceId = invoice;
+            var hubContext = GlobalHost.ConnectionManager.GetHubContext<SignalRHub>().Clients.All.addNewMessageToAdmin(email, invoiceId);
+            return RedirectToAction("NewInvoices",new { id = model.Product.Store.User.Id });
 			//return View();
 		}
 
@@ -670,7 +682,16 @@ namespace eCommerce.Areas.Merchant.Controllers
 			return PartialView("BankAccount");
 		}
        
-
+        public ActionResult Alert()
+        {
+            var invoices = db.InvoiceDetails.Where(x => x.Invoice.Status == ProductStatus.NotValidated && x.Product.Store.User.Id == CurrentUser.Id && !x.Product.isDisabled).Select(x => x.Invoice).Distinct().ToList();
+            return View(new AlertModel()
+            {
+                Quantity = invoices.Count,
+                Invoices = invoices,
+                MerchantId = CurrentUser.Id
+            });
+        }
       
 	}
 	

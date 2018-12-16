@@ -12,9 +12,11 @@ namespace eCommerce.EntityFramework
         [Key]
         public long Id { get; set; }
         [Required(ErrorMessage = "Trường {0} bắt buộc nhập.")]
+
         [DisplayName("Mã hóa đơn")]
         public virtual Invoice Invoice { get; set; }
         [Required(ErrorMessage = "Trường {0} bắt buộc nhập.")]
+
         [DisplayName("Mã sản phẩm")]
         public virtual Product Product { get; set; }
         //[Required]
@@ -27,7 +29,11 @@ namespace eCommerce.EntityFramework
        [Required(ErrorMessage = "Trường {0} bắt buộc nhập.")]
        [DisplayName("Đơn giá")]
         public int Price { get; set; }
+
         [DisplayName("Xác nhận")]
-       public bool isDisabled { get; set; }
+        public bool isDisabled { get; set; }
+
+        [DisplayName("Đã Thanh Toán")]
+        public bool isPaymented { get; set; }
     }
 }

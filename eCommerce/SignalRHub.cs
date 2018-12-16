@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.SignalR;
+﻿using eCommerce.EntityFramework;
+using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 using System.Linq;
 
@@ -10,10 +11,10 @@ namespace eCommerce.Controllers
         MainDbContext db = new MainDbContext();
         public void Alert(long invoiceId)
         {
-            var quantity = db.Invoices.Where(x => x.Status == EntityFramework.ProductStatus.NotValidated).Count();
             var invoice = db.Invoices.FirstOrDefault(x => x.Id == invoiceId);
             var email = invoice.User.Email;
-            Clients.All.addNewMessageToPage(quantity, email, invoiceId);
+            var listMerchant = db.InvoiceDetails.Where(x => x.Invoice.Id == invoiceId).Select(x => x.Product.Store.User.Id).Distinct().ToList();
+            Clients.All.addNewMessageToMerchant(email, invoiceId, listMerchant);
         }
     }
 }
