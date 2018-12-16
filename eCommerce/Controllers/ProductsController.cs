@@ -143,5 +143,19 @@ namespace eCommerce.Controllers
             ViewBag.Count = count;
             return View(model);
         }
+        [ChildActionOnly]
+        public ActionResult RelatedProducts(long id)
+        {
+            var model = db.Products.Where(x => x.Type.Id == id).ToList();
+            foreach(var item in model)
+            {
+                if(item.discountValue != 0)
+                {
+                    int newPrice = item.Price - (item.Price * item.discountValue / 100);
+                    ViewBag.Price = newPrice;
+                }
+            }
+            return PartialView(model);
+        }
 	}
 }

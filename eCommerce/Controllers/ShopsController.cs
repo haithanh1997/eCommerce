@@ -19,9 +19,121 @@ namespace eCommerce.Controllers
 		
         MainDbContext db = new MainDbContext();
         // GET: Shops
-        public ActionResult ShopsIndex()
+        public ActionResult ShopsIndex(long id,ProductFilterParam param)
         {
-            return View();
+            ViewBag.GetId = id;
+            var shop = db.MerchantStores.FirstOrDefault(x => x.Id == id);
+            ViewBag.ShopName = shop.Name;
+            var query = db.Products.Where(x => x.Store.Id == id);
+            foreach(var item in query)
+            {
+                if(item.discountValue != 0)
+                {
+                    int newPrice = item.Price - (item.Price * item.discountValue / 100);
+                    ViewBag.NewPrice = newPrice;
+                }
+            }
+
+            // Get Default Products without searching for price because we must display defaultMax and defaultMin on Max-Min slide bar
+            var defaultProducts = new List<Product>();
+            if (param.name == null && param.type == null && param.drive == null && param.cpu == null && param.ram == null && param.size == null)
+            {
+                foreach (var item in query)
+                {
+                    defaultProducts.Add(item);
+                }
+            }
+            if (param.type != null)
+            {
+
+                foreach (var typeId in param.type)
+                {
+                    var model = query.Where(x => x.Type.Id == typeId);
+                    foreach (var item in model)
+                    {
+                        if (!defaultProducts.Contains(item))
+                        {
+                            defaultProducts.Add(item);
+                        }
+                    }
+                }
+            }
+
+            if (param.drive != null)
+            {
+                foreach (var drive in param.drive)
+                {
+                    var model = query.Where(x => x.hardDrive.Contains(drive));
+                    foreach (var item in model)
+                    {
+                        if (!defaultProducts.Contains(item))
+                        {
+                            defaultProducts.Add(item);
+                        }
+                    }
+                }
+            }
+
+            if (param.cpu != null)
+            {
+                foreach (var cpu in param.cpu)
+                {
+                    var model = query.Where(x => x.CPU.Contains(cpu));
+                    foreach (var item in model)
+                    {
+                        if (!defaultProducts.Contains(item))
+                        {
+                            defaultProducts.Add(item);
+                        }
+                    }
+                }
+            }
+
+            if (param.ram != null)
+            {
+                foreach (var ram in param.ram)
+                {
+                    var model = query.Where(x => x.RAM.Contains(ram));
+                    foreach (var item in model)
+                    {
+                        if (!defaultProducts.Contains(item))
+                        {
+                            defaultProducts.Add(item);
+                        }
+                    }
+                }
+            }
+
+            if (param.size != null)
+            {
+                foreach (var size in param.size)
+                {
+                    var model = query.Where(x => x.screenType.Contains(size));
+                    foreach (var item in model)
+                    {
+                        if (!defaultProducts.Contains(item))
+                        {
+                            defaultProducts.Add(item);
+                        }
+                    }
+                }
+            }
+
+
+            // Final Products display client-side
+            var products = defaultProducts;
+
+            return View(new ProductIndexModel()
+            {
+                Categories = db.Categories.Where(x => !x.isDisabled).ToList(),
+                Types = db.ProductTypes.Where(x => x.isDisabled == false).ToList(),
+                Drives = new List<Drive> { new Drive { Id = "1", Name = "SSD" }, new Drive { Id = "2", Name = "HDD" } },
+                CPUs = new List<CPU> { new CPU { Id = "1", Name = "i3" }, new CPU { Id = "2", Name = "i5" }, new CPU { Id = "3", Name = "i7" } },
+                Rams = new List<RAM> { new RAM { Id = "1", Name = "4GB" }, new RAM { Id = "2", Name = "8GB" }, new RAM { Id = "3", Name = "16GB" } },
+                Sizes = new List<Size> { new Size { Id = "1", Name = "14" }, new Size { Id = "2", Name = "15.6" }, new Size { Id = "3", Name = "17" } },
+                Products = defaultProducts,
+                Filter = param
+            });
         }
 		
         // GET: /Account/Register

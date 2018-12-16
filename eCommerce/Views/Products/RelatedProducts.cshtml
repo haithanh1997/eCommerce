@@ -1,0 +1,61 @@
+﻿@model IEnumerable<eCommerce.EntityFramework.Product>
+
+<!-- Section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="section-title text-center">
+                    <h3 class="title">Sản phẩm liên quan</h3>
+                </div>
+            </div>
+            @foreach (var item in Model)
+            {
+                <!-- product -->
+                <div class="col-md-3 col-xs-6">
+
+                    <div class="product">
+                        <div class="product-img">
+                            <img src="@Html.DisplayFor(modelItem => item.Image1)" alt="" width="300" height="200">
+                            <div class="product-label">
+                                @if (item.discountValue != 0)
+                                {
+                                    <span class="sale">-@Html.DisplayFor(modelItem => item.discountValue)%</span>
+                                }
+                            </div>
+                        </div>
+                        <div class="product-body">
+                            <p class="product-category">@Html.DisplayFor(modelItem => item.Category.Name)</p>
+                            <h3 class="product-name"><a href="@Url.Action("Detail","Products",new { id = item.Id })">@Html.DisplayFor(modelItem => item.Name)</a></h3>
+                            @if (item.discountValue != 0)
+                            {
+                                <h4 class="product-price">@ViewBag.Price VNĐ<del class="product-old-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</del></h4>
+                            }
+                            else
+                            {
+                                <h4 class="product-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</h4>
+                            }
+                            <div class="product-rating">
+                            </div>
+                            <div class="product-btns">
+                                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">YẾU THÍCH</span></button>
+                                <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">SO SANH</span></button>
+                                <button class="quick-view"><a href="@Url.Action("Detail","Products", new { id = item.Id })"><i class="fa fa-eye"></i><span class="tooltipp">CHI TIẾT</span></a></button>
+                            </div>
+                        </div>
+                        <div class="add-to-cart">
+                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
+                        </div>
+                    </div>
+                </div>
+            }
+            <!-- /product -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /Section -->
