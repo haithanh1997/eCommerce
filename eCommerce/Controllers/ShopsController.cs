@@ -21,6 +21,8 @@ namespace eCommerce.Controllers
         // GET: Shops
         public ActionResult ShopsIndex(long id,ProductFilterParam param)
         {
+            int pageNo = 0;
+            pageNo = param.page == null ? 1 : int.Parse(param.page.ToString());
             ViewBag.GetId = id;
             var shop = db.MerchantStores.FirstOrDefault(x => x.Id == id);
             ViewBag.ShopName = shop.Name;
@@ -122,7 +124,13 @@ namespace eCommerce.Controllers
 
             // Final Products display client-side
             var products = defaultProducts;
-            
+            int totalProducts = products.Count();
+            int itemPerPage = 5;
+            int pageEnd = pageNo * itemPerPage;
+            int skip = pageEnd - itemPerPage;
+            var items = products.Skip(skip).Take(itemPerPage);
+            Pager<Product> pager = new Pager<Product>(items.AsQueryable(), pageNo, itemPerPage, totalProducts, param.name);
+
             return View(new ProductIndexModel()
             {
                 Categories = db.Categories.Where(x => !x.isDisabled).ToList(),
@@ -131,7 +139,7 @@ namespace eCommerce.Controllers
                 CPUs = new List<CPU> { new CPU { Id = "1", Name = "i3" }, new CPU { Id = "2", Name = "i5" }, new CPU { Id = "3", Name = "i7" } },
                 Rams = new List<RAM> { new RAM { Id = "1", Name = "4GB" }, new RAM { Id = "2", Name = "8GB" }, new RAM { Id = "3", Name = "16GB" } },
                 Sizes = new List<Size> { new Size { Id = "1", Name = "14" }, new Size { Id = "2", Name = "15.6" }, new Size { Id = "3", Name = "17" } },
-                Products = defaultProducts,
+                Products = pager,
                 Filter = param
             });
         }

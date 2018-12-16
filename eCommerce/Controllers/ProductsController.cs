@@ -1,9 +1,7 @@
 ﻿using eCommerce.EntityFramework;
 using eCommerce.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace eCommerce.Controllers
@@ -14,6 +12,9 @@ namespace eCommerce.Controllers
         // GET: Products
         public ActionResult ProductsIndex(ProductFilterParam param)
         {
+            int pageNo = 0;
+            pageNo = param.page == null ? 1 : int.Parse(param.page.ToString());
+
             var query = db.Products.Where(x => x.Category.Name == param.name);
             ViewBag.CategoryName = param.name;
             // Get Default Products without searching for price because we must display defaultMax and defaultMin on Max-Min slide bar
@@ -107,6 +108,13 @@ namespace eCommerce.Controllers
             if (param.min != 0 || param.max != 0)
                 products = defaultProducts.Where(x => x.Price >= param.min && x.Price <= param.max).ToList();
 
+            int totalProducts = products.Count();
+            int itemPerPage = 5;
+            int pageEnd = pageNo * itemPerPage;
+            int skip = pageEnd - itemPerPage;
+            var items = products.Skip(skip).Take(itemPerPage);
+            Pager<Product> pager = new Pager<Product>(items.AsQueryable(), pageNo, itemPerPage, totalProducts, param.name);
+
             return View(new ProductIndexModel()
             {
                 Categories = db.Categories.Where(x => !x.isDisabled).ToList(),
@@ -115,7 +123,7 @@ namespace eCommerce.Controllers
                 CPUs = new List<CPU> { new CPU { Id = "1", Name = "i3" }, new CPU { Id = "2", Name = "i5" }, new CPU { Id = "3", Name = "i7" } },
                 Rams = new List<RAM> { new RAM { Id = "1", Name = "4GB" }, new RAM { Id = "2", Name = "8GB" }, new RAM { Id = "3", Name = "16GB" } },
                 Sizes = new List<Size> { new Size { Id = "1", Name = "14"}, new Size { Id = "2", Name = "15.6" }, new Size { Id = "3", Name = "17" } },
-                Products = products,
+                Products = pager,
                 Filter = param,
                 defaultMax = defaultProducts.Count > 0 ? defaultProducts.Max(x => x.Price) : 9999999,
                 defaultMin = defaultProducts.Count > 0 ? (defaultProducts.Min(x => x.Price) == defaultProducts.Max(x => x.Price) ? 0 : defaultProducts.Min(x => x.Price)) : 0,
