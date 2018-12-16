@@ -9,9 +9,10 @@ namespace eCommerce.Areas.Admin.Controllers
     public class ChatboxController : Controller
     {
         // GET: Admin/Chatbox
+        [ChildActionOnly]
         public ActionResult Index()
         {
-            return View();
+            return PartialView();
         }
     }
 }
