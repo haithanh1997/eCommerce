@@ -27,35 +27,37 @@
                                 }
                             </div>
                         </div>
-                        <div class="product-body">
-                            <p class="product-category">@Html.DisplayFor(modelItem => item.Category.Name)</p>
-                            <h3 class="product-name"><a href="@Url.Action("Detail","Products",new { id = item.Id })">@Html.DisplayFor(modelItem => item.Name)</a></h3>
-                            @if (item.discountValue != 0)
-                            {
-                                <h4 class="product-price">@ViewBag.Price VNĐ<del class="product-old-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</del></h4>
-                            }
-                            else
-                            {
-                                <h4 class="product-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</h4>
-                            }
-                                <div class="product-rating">
-                                    @{
-                                        int j = 0;
-                                        for (j = 0; j < item.Rating; j++)
-                                        {
-                                            <i class="fa fa-star"></i>
-                                        }
-                                        while (j < 5)
-                                        {
-                                            <i class="fa fa-star-o"></i>
-                                            j++;
-                                        }
-                                    }
-                                </div>
-                            <div class="product-btns">
-                                <button class="quick-view"><a href="@Url.Action("Detail","Products", new { id = item.Id })"><i class="fa fa-eye"></i><span class="tooltipp">CHI TIẾT</span></a></button>
-                            </div>
-                        </div>
+						<div class="product-body">
+							<p class="product-category">@Html.DisplayFor(modelItem => item.Category.Name)</p>
+							<h3 class="product-name"><a href="@Url.Action("Detail","Products",new { id = item.Id })">@Html.DisplayFor(modelItem => item.Name)</a></h3>
+							@if (item.discountValue != 0)
+							{
+								<h4 class="product-price">@ViewBag.Price VNĐ</h4>
+								<del class="product-old-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</del>
+							}
+							else
+							{
+								<h4 class="product-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</h4>
+							
+							}
+							<div class="product-rating">
+								@{
+									int j = 0;
+									for (j = 0; j < item.Rating; j++)
+									{
+										<i class="fa fa-star"></i>
+									}
+									while (j < 5)
+									{
+										<i class="fa fa-star-o"></i>
+										j++;
+									}
+								}
+							</div>
+							<div class="product-btns">
+								<button class="quick-view"><a href="@Url.Action("Detail","Products", new { id = item.Id })"><i class="fa fa-eye"></i><span class="tooltipp">CHI TIẾT</span></a></button>
+							</div>
+						</div>
                         <div class="add-to-cart">
                             <button class="add-to-cart-btn" data-id="@item.Id" data-qty="1"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
                         </div>

@@ -7,6 +7,17 @@
 
 
 @{Html.RenderAction("SlideShow");}
+<div class="container">
+	<!-- row -->
+	<div class="row">
+		<div class="col-md-12">
+			<div class="newsletter">
+				<p>Các dòng sản phẩm chính<strong> Bán trên Website </strong></p>
+			</div>
+		</div>
+	</div>
+	<!-- /row -->
+</div>
 <!-- SECTION -->
 <div class="section">
 	<!-- container -->
@@ -46,12 +57,13 @@
 						<img src="~/Assets/img/shop01.png" alt="">
 					</div>
 					<div class="shop-body">
-						<h3>Workstation</h3>
+						<h3>Dòng<br>Workstation</h3>
 						
 					</div>
 				</div>
 			</div>
 			<!-- /shop -->
+
 		</div>
 		<!-- /row -->
 	</div>
@@ -96,30 +108,52 @@
 										{
 											<div class="product">
 												<div class="product-img">
-													<img src="@Html.DisplayFor(modelItem => item.Image1)" alt="@Html.DisplayFor(modelItem => item.Name)" width="200" height="250">
+													<img src="@item.Image1" alt="" width="300" height="200">
 													<div class="product-label">
-														<span class="new">NEW</span>
+														@if (item.discountValue != 0)
+														{
+															<span class="sale">-@item.discountValue%</span>
+														}
+
+														<span class="new">@item.AdType</span>
+
 													</div>
 												</div>
 												<div class="product-body">
-													<p class="product-category">Loại</p>
-													<h3 class="product-name"><a href="#">@Html.DisplayFor(modelItem => item.Name)</a></h3>
-													<h4 class="product-price">@Html.DisplayFor(modelItem => item.Price)VNĐ</h4>
+													<p class="product-category">@item.Category.Name</p>
+													<h3 class="product-name"><a href="/Products/Detail/@item.Id">@item.Name</a></h3>
+													@if (item.discountValue != 0)
+													{
+														long a = (item.Price * item.discountValue) / 100;
+														long b = item.Price - a;
+														<h4 class="product-price">@b VNĐ</h4>
+														<del class="product-old-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</del>
+													}
+													else
+													{
+														<h4 class="product-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</h4>
+													}
 													<div class="product-rating">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
+														@{
+															int j = 0;
+															for (j = 0; j < item.Rating; j++)
+															{
+																<i class="fa fa-star"></i>
+															}
+															while (j < 5)
+															{
+																<i class="fa fa-star-o"></i>
+																j++;
+															}
+														}
 													</div>
 													<div class="product-btns">
-														<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp"> Yêu thích</span></button>
-														<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">So sánh</span></button>
-														<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Chi tiết</span></button>
+
+														<button class="quick-view"><a href="@Url.Action("Detail","Products",new { id = item.Id })"><i class="fa fa-eye"></i><span class="tooltipp">Xem sản phẩm</span></a></button>
 													</div>
 												</div>
 												<div class="add-to-cart">
-													<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
+													<button class="add-to-cart-btn" data-id="@item.Id" data-qty="1"><i class="fa fa-shopping-cart"></i> THÊM VÀO GIỎ</button>
 												</div>
 											</div>
 										}
@@ -145,30 +179,52 @@
 										{
 											<div class="product">
 												<div class="product-img">
-													<img src="@Html.DisplayFor(modelItem => item.Image1)" alt="@Html.DisplayFor(modelItem => item.Name)" width="200" height="250">
+													<img src="@item.Image1" alt="" width="300" height="200">
 													<div class="product-label">
-														<span class="new">NEW</span>
+														@if (item.discountValue != 0)
+														{
+															<span class="sale">-@item.discountValue%</span>
+														}
+
+														<span class="new">@item.AdType</span>
+
 													</div>
 												</div>
 												<div class="product-body">
-													<p class="product-category">Loại</p>
-													<h3 class="product-name"><a href="#">@Html.DisplayFor(modelItem => item.Name)</a></h3>
-													<h4 class="product-price">@Html.DisplayFor(modelItem => item.Price)VNĐ</h4>
+													<p class="product-category">@item.Category.Name</p>
+													<h3 class="product-name"><a href="/Products/Detail/@item.Id">@item.Name</a></h3>
+													@if (item.discountValue != 0)
+													{
+														long a = (item.Price * item.discountValue) / 100;
+														long b = item.Price - a;
+														<h4 class="product-price">@b VNĐ</h4>
+														<del class="product-old-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</del>
+													}
+													else
+													{
+														<h4 class="product-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</h4>
+													}
 													<div class="product-rating">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
+														@{
+															int j = 0;
+															for (j = 0; j < item.Rating; j++)
+															{
+																<i class="fa fa-star"></i>
+															}
+															while (j < 5)
+															{
+																<i class="fa fa-star-o"></i>
+																j++;
+															}
+														}
 													</div>
 													<div class="product-btns">
-														<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp"> Yêu thích</span></button>
-														<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">So sánh</span></button>
-														<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Chi tiết</span></button>
+
+														<button class="quick-view"><a href="@Url.Action("Detail","Products",new { id = item.Id })"><i class="fa fa-eye"></i><span class="tooltipp">Xem sản phẩm</span></a></button>
 													</div>
 												</div>
 												<div class="add-to-cart">
-													<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
+													<button class="add-to-cart-btn" data-id="@item.Id" data-qty="1"><i class="fa fa-shopping-cart"></i> THÊM VÀO GIỎ</button>
 												</div>
 											</div>
 										}
@@ -193,30 +249,52 @@
 										{
 											<div class="product">
 												<div class="product-img">
-													<img src="@Html.DisplayFor(modelItem => item.Image1)" alt="@Html.DisplayFor(modelItem => item.Name)" width="200" height="250">
+													<img src="@item.Image1" alt="" width="300" height="200">
 													<div class="product-label">
-														<span class="new">NEW</span>
+														@if (item.discountValue != 0)
+														{
+															<span class="sale">-@item.discountValue%</span>
+														}
+
+														<span class="new">@item.AdType</span>
+
 													</div>
 												</div>
 												<div class="product-body">
-													<p class="product-category">Loại</p>
-													<h3 class="product-name"><a href="#">@Html.DisplayFor(modelItem => item.Name)</a></h3>
-													<h4 class="product-price">@Html.DisplayFor(modelItem => item.Price)VNĐ</h4>
+													<p class="product-category">@item.Category.Name</p>
+													<h3 class="product-name"><a href="/Products/Detail/@item.Id">@item.Name</a></h3>
+													@if (item.discountValue != 0)
+													{
+														long a = (item.Price * item.discountValue) / 100;
+														long b = item.Price - a;
+														<h4 class="product-price">@b VNĐ</h4>
+														<del class="product-old-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</del>
+													}
+													else
+													{
+														<h4 class="product-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</h4>
+													}
 													<div class="product-rating">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
+														@{
+															int j = 0;
+															for (j = 0; j < item.Rating; j++)
+															{
+																<i class="fa fa-star"></i>
+															}
+															while (j < 5)
+															{
+																<i class="fa fa-star-o"></i>
+																j++;
+															}
+														}
 													</div>
 													<div class="product-btns">
-														<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp"> Yêu thích</span></button>
-														<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">So sánh</span></button>
-														<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Chi tiết</span></button>
+
+														<button class="quick-view"><a href="@Url.Action("Detail","Products",new { id = item.Id })"><i class="fa fa-eye"></i><span class="tooltipp">Xem sản phẩm</span></a></button>
 													</div>
 												</div>
 												<div class="add-to-cart">
-													<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
+													<button class="add-to-cart-btn" data-id="@item.Id" data-qty="1"><i class="fa fa-shopping-cart"></i> THÊM VÀO GIỎ</button>
 												</div>
 											</div>
 										}
@@ -241,30 +319,52 @@
 										{
 											<div class="product">
 												<div class="product-img">
-													<img src="@Html.DisplayFor(modelItem => item.Image1)" alt="@Html.DisplayFor(modelItem => item.Name)" width="200" height="250">
+													<img src="@item.Image1" alt="" width="300" height="200">
 													<div class="product-label">
-														<span class="new">NEW</span>
+														@if (item.discountValue != 0)
+														{
+															<span class="sale">-@item.discountValue%</span>
+														}
+
+														<span class="new">@item.AdType</span>
+
 													</div>
 												</div>
 												<div class="product-body">
-													<p class="product-category">Loại</p>
-													<h3 class="product-name"><a href="#">@Html.DisplayFor(modelItem => item.Name)</a></h3>
-													<h4 class="product-price">@Html.DisplayFor(modelItem => item.Price)VNĐ</h4>
+													<p class="product-category">@item.Category.Name</p>
+													<h3 class="product-name"><a href="/Products/Detail/@item.Id">@item.Name</a></h3>
+													@if (item.discountValue != 0)
+													{
+														long a = (item.Price * item.discountValue) / 100;
+														long b = item.Price - a;
+														<h4 class="product-price">@b VNĐ</h4>
+														<del class="product-old-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</del>
+													}
+													else
+													{
+														<h4 class="product-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</h4>
+													}
 													<div class="product-rating">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
+														@{
+															int j = 0;
+															for (j = 0; j < item.Rating; j++)
+															{
+																<i class="fa fa-star"></i>
+															}
+															while (j < 5)
+															{
+																<i class="fa fa-star-o"></i>
+																j++;
+															}
+														}
 													</div>
 													<div class="product-btns">
-														<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp"> Yêu thích</span></button>
-														<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">So sánh</span></button>
-														<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Chi tiết</span></button>
+
+														<button class="quick-view"><a href="@Url.Action("Detail","Products",new { id = item.Id })"><i class="fa fa-eye"></i><span class="tooltipp">Xem sản phẩm</span></a></button>
 													</div>
 												</div>
 												<div class="add-to-cart">
-													<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
+													<button class="add-to-cart-btn" data-id="@item.Id" data-qty="1"><i class="fa fa-shopping-cart"></i> THÊM VÀO GIỎ</button>
 												</div>
 											</div>
 										}
@@ -324,30 +424,52 @@
 										{
 											<div class="product">
 												<div class="product-img">
-													<img src="@Html.DisplayFor(modelItem => item.Image1)" alt="@Html.DisplayFor(modelItem => item.Name)" width="200" height="250">
+													<img src="@item.Image1" alt="" width="300" height="200">
 													<div class="product-label">
-														<span class="new">NEW</span>
+														@if (item.discountValue != 0)
+														{
+															<span class="sale">-@item.discountValue%</span>
+														}
+
+														<span class="new">@item.AdType</span>
+
 													</div>
 												</div>
 												<div class="product-body">
-													<p class="product-category">Loại</p>
-													<h3 class="product-name"><a href="#">@Html.DisplayFor(modelItem => item.Name)</a></h3>
-													<h4 class="product-price">@Html.DisplayFor(modelItem => item.Price)VNĐ</h4>
+													<p class="product-category">@item.Category.Name</p>
+													<h3 class="product-name"><a href="/Products/Detail/@item.Id">@item.Name</a></h3>
+													@if (item.discountValue != 0)
+													{
+														long a = (item.Price * item.discountValue) / 100;
+														long b = item.Price - a;
+														<h4 class="product-price">@b VNĐ</h4>
+														<del class="product-old-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</del>
+													}
+													else
+													{
+														<h4 class="product-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</h4>
+													}
 													<div class="product-rating">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
+														@{
+															int j = 0;
+															for (j = 0; j < item.Rating; j++)
+															{
+																<i class="fa fa-star"></i>
+															}
+															while (j < 5)
+															{
+																<i class="fa fa-star-o"></i>
+																j++;
+															}
+														}
 													</div>
 													<div class="product-btns">
-														<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp"> Yêu thích</span></button>
-														<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">So sánh</span></button>
-														<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Chi tiết</span></button>
+
+														<button class="quick-view"><a href="@Url.Action("Detail","Products",new { id = item.Id })"><i class="fa fa-eye"></i><span class="tooltipp">Xem sản phẩm</span></a></button>
 													</div>
 												</div>
 												<div class="add-to-cart">
-													<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
+													<button class="add-to-cart-btn" data-id="@item.Id" data-qty="1"><i class="fa fa-shopping-cart"></i> THÊM VÀO GIỎ</button>
 												</div>
 											</div>
 										}
@@ -373,30 +495,52 @@
 										{
 											<div class="product">
 												<div class="product-img">
-													<img src="@Html.DisplayFor(modelItem => item.Image1)" alt="@Html.DisplayFor(modelItem => item.Name)" width="200" height="250">
+													<img src="@item.Image1" alt="" width="300" height="200">
 													<div class="product-label">
-														<span class="new">NEW</span>
+														@if (item.discountValue != 0)
+														{
+															<span class="sale">-@item.discountValue%</span>
+														}
+
+														<span class="new">@item.AdType</span>
+
 													</div>
 												</div>
 												<div class="product-body">
-													<p class="product-category">Loại</p>
-													<h3 class="product-name"><a href="#">@Html.DisplayFor(modelItem => item.Name)</a></h3>
-													<h4 class="product-price">@Html.DisplayFor(modelItem => item.Price)VNĐ</h4>
+													<p class="product-category">@item.Category.Name</p>
+													<h3 class="product-name"><a href="/Products/Detail/@item.Id">@item.Name</a></h3>
+													@if (item.discountValue != 0)
+													{
+														long a = (item.Price * item.discountValue) / 100;
+														long b = item.Price - a;
+														<h4 class="product-price">@b VNĐ</h4>
+														<del class="product-old-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</del>
+													}
+													else
+													{
+														<h4 class="product-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</h4>
+													}
 													<div class="product-rating">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
+														@{
+															int j = 0;
+															for (j = 0; j < item.Rating; j++)
+															{
+																<i class="fa fa-star"></i>
+															}
+															while (j < 5)
+															{
+																<i class="fa fa-star-o"></i>
+																j++;
+															}
+														}
 													</div>
 													<div class="product-btns">
-														<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp"> Yêu thích</span></button>
-														<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">So sánh</span></button>
-														<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Chi tiết</span></button>
+
+														<button class="quick-view"><a href="@Url.Action("Detail","Products",new { id = item.Id })"><i class="fa fa-eye"></i><span class="tooltipp">Xem sản phẩm</span></a></button>
 													</div>
 												</div>
 												<div class="add-to-cart">
-													<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
+													<button class="add-to-cart-btn" data-id="@item.Id" data-qty="1"><i class="fa fa-shopping-cart"></i> THÊM VÀO GIỎ</button>
 												</div>
 											</div>
 										}
@@ -421,30 +565,52 @@
 										{
 											<div class="product">
 												<div class="product-img">
-													<img src="@Html.DisplayFor(modelItem => item.Image1)" alt="@Html.DisplayFor(modelItem => item.Name)" width="200" height="250">
+													<img src="@item.Image1" alt="" width="300" height="200">
 													<div class="product-label">
-														<span class="new">NEW</span>
+														@if (item.discountValue != 0)
+														{
+															<span class="sale">-@item.discountValue%</span>
+														}
+
+														<span class="new">@item.AdType</span>
+
 													</div>
 												</div>
 												<div class="product-body">
-													<p class="product-category">Loại</p>
-													<h3 class="product-name"><a href="#">@Html.DisplayFor(modelItem => item.Name)</a></h3>
-													<h4 class="product-price">@Html.DisplayFor(modelItem => item.Price)VNĐ</h4>
+													<p class="product-category">@item.Category.Name</p>
+													<h3 class="product-name"><a href="/Products/Detail/@item.Id">@item.Name</a></h3>
+													@if (item.discountValue != 0)
+													{
+														long a = (item.Price * item.discountValue) / 100;
+														long b = item.Price - a;
+														<h4 class="product-price">@b VNĐ</h4>
+														<del class="product-old-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</del>
+													}
+													else
+													{
+														<h4 class="product-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</h4>
+													}
 													<div class="product-rating">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
+														@{
+															int j = 0;
+															for (j = 0; j < item.Rating; j++)
+															{
+																<i class="fa fa-star"></i>
+															}
+															while (j < 5)
+															{
+																<i class="fa fa-star-o"></i>
+																j++;
+															}
+														}
 													</div>
 													<div class="product-btns">
-														<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp"> Yêu thích</span></button>
-														<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">So sánh</span></button>
-														<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Chi tiết</span></button>
+
+														<button class="quick-view"><a href="@Url.Action("Detail","Products",new { id = item.Id })"><i class="fa fa-eye"></i><span class="tooltipp">Xem sản phẩm</span></a></button>
 													</div>
 												</div>
 												<div class="add-to-cart">
-													<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
+													<button class="add-to-cart-btn" data-id="@item.Id" data-qty="1"><i class="fa fa-shopping-cart"></i> THÊM VÀO GIỎ</button>
 												</div>
 											</div>
 										}
@@ -469,30 +635,52 @@
 										{
 											<div class="product">
 												<div class="product-img">
-													<img src="@Html.DisplayFor(modelItem => item.Image1)" alt="@Html.DisplayFor(modelItem => item.Name)" width="200" height="250">
+													<img src="@item.Image1" alt="" width="300" height="200">
 													<div class="product-label">
-														<span class="new">NEW</span>
+														@if (item.discountValue != 0)
+														{
+															<span class="sale">-@item.discountValue%</span>
+														}
+
+														<span class="new">@item.AdType</span>
+
 													</div>
 												</div>
 												<div class="product-body">
-													<p class="product-category">Loại</p>
-													<h3 class="product-name"><a href="#">@Html.DisplayFor(modelItem => item.Name)</a></h3>
-													<h4 class="product-price">@Html.DisplayFor(modelItem => item.Price)VNĐ</h4>
+													<p class="product-category">@item.Category.Name</p>
+													<h3 class="product-name"><a href="/Products/Detail/@item.Id">@item.Name</a></h3>
+													@if (item.discountValue != 0)
+													{
+														long a = (item.Price * item.discountValue) / 100;
+														long b = item.Price - a;
+														<h4 class="product-price">@b VNĐ</h4>
+														<del class="product-old-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</del>
+													}
+													else
+													{
+														<h4 class="product-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</h4>
+													}
 													<div class="product-rating">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
+														@{
+															int j = 0;
+															for (j = 0; j < item.Rating; j++)
+															{
+																<i class="fa fa-star"></i>
+															}
+															while (j < 5)
+															{
+																<i class="fa fa-star-o"></i>
+																j++;
+															}
+														}
 													</div>
 													<div class="product-btns">
-														<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp"> Yêu thích</span></button>
-														<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">So sánh</span></button>
-														<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Chi tiết</span></button>
+
+														<button class="quick-view"><a href="@Url.Action("Detail","Products",new { id = item.Id })"><i class="fa fa-eye"></i><span class="tooltipp">Xem sản phẩm</span></a></button>
 													</div>
 												</div>
 												<div class="add-to-cart">
-													<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
+													<button class="add-to-cart-btn" data-id="@item.Id" data-qty="1"><i class="fa fa-shopping-cart"></i> THÊM VÀO GIỎ</button>
 												</div>
 											</div>
 										}
@@ -552,30 +740,52 @@
 										{
 											<div class="product">
 												<div class="product-img">
-													<img src="@Html.DisplayFor(modelItem => item.Image1)" alt="@Html.DisplayFor(modelItem => item.Name)" width="200" height="250">
+													<img src="@item.Image1" alt="" width="300" height="200">
 													<div class="product-label">
-														<span class="new">NEW</span>
+														@if (item.discountValue != 0)
+														{
+															<span class="sale">-@item.discountValue%</span>
+														}
+
+														<span class="new">@item.AdType</span>
+
 													</div>
 												</div>
 												<div class="product-body">
-													<p class="product-category">Loại</p>
-													<h3 class="product-name"><a href="#">@Html.DisplayFor(modelItem => item.Name)</a></h3>
-													<h4 class="product-price">@Html.DisplayFor(modelItem => item.Price)VNĐ</h4>
+													<p class="product-category">@item.Category.Name</p>
+													<h3 class="product-name"><a href="/Products/Detail/@item.Id">@item.Name</a></h3>
+													@if (item.discountValue != 0)
+													{
+														long a = (item.Price * item.discountValue) / 100;
+														long b = item.Price - a;
+														<h4 class="product-price">@b VNĐ</h4>
+														<del class="product-old-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</del>
+													}
+													else
+													{
+														<h4 class="product-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</h4>
+													}
 													<div class="product-rating">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
+														@{
+															int j = 0;
+															for (j = 0; j < item.Rating; j++)
+															{
+																<i class="fa fa-star"></i>
+															}
+															while (j < 5)
+															{
+																<i class="fa fa-star-o"></i>
+																j++;
+															}
+														}
 													</div>
 													<div class="product-btns">
-														<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp"> Yêu thích</span></button>
-														<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">So sánh</span></button>
-														<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Chi tiết</span></button>
+
+														<button class="quick-view"><a href="@Url.Action("Detail","Products",new { id = item.Id })"><i class="fa fa-eye"></i><span class="tooltipp">Xem sản phẩm</span></a></button>
 													</div>
 												</div>
 												<div class="add-to-cart">
-													<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
+													<button class="add-to-cart-btn" data-id="@item.Id" data-qty="1"><i class="fa fa-shopping-cart"></i> THÊM VÀO GIỎ</button>
 												</div>
 											</div>
 										}
@@ -601,30 +811,52 @@
 										{
 											<div class="product">
 												<div class="product-img">
-													<img src="@Html.DisplayFor(modelItem => item.Image1)" alt="@Html.DisplayFor(modelItem => item.Name)" width="200" height="250">
+													<img src="@item.Image1" alt="" width="300" height="200">
 													<div class="product-label">
-														<span class="new">NEW</span>
+														@if (item.discountValue != 0)
+														{
+															<span class="sale">-@item.discountValue%</span>
+														}
+
+														<span class="new">@item.AdType</span>
+
 													</div>
 												</div>
 												<div class="product-body">
-													<p class="product-category">Loại</p>
-													<h3 class="product-name"><a href="#">@Html.DisplayFor(modelItem => item.Name)</a></h3>
-													<h4 class="product-price">@Html.DisplayFor(modelItem => item.Price)VNĐ</h4>
+													<p class="product-category">@item.Category.Name</p>
+													<h3 class="product-name"><a href="/Products/Detail/@item.Id">@item.Name</a></h3>
+													@if (item.discountValue != 0)
+													{
+														long a = (item.Price * item.discountValue) / 100;
+														long b = item.Price - a;
+														<h4 class="product-price">@b VNĐ</h4>
+														<del class="product-old-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</del>
+													}
+													else
+													{
+														<h4 class="product-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</h4>
+													}
 													<div class="product-rating">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
+														@{
+															int j = 0;
+															for (j = 0; j < item.Rating; j++)
+															{
+																<i class="fa fa-star"></i>
+															}
+															while (j < 5)
+															{
+																<i class="fa fa-star-o"></i>
+																j++;
+															}
+														}
 													</div>
 													<div class="product-btns">
-														<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp"> Yêu thích</span></button>
-														<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">So sánh</span></button>
-														<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Chi tiết</span></button>
+
+														<button class="quick-view"><a href="@Url.Action("Detail","Products",new { id = item.Id })"><i class="fa fa-eye"></i><span class="tooltipp">Xem sản phẩm</span></a></button>
 													</div>
 												</div>
 												<div class="add-to-cart">
-													<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
+													<button class="add-to-cart-btn" data-id="@item.Id" data-qty="1"><i class="fa fa-shopping-cart"></i> THÊM VÀO GIỎ</button>
 												</div>
 											</div>
 										}
@@ -649,30 +881,52 @@
 										{
 											<div class="product">
 												<div class="product-img">
-													<img src="@Html.DisplayFor(modelItem => item.Image1)" alt="@Html.DisplayFor(modelItem => item.Name)" width="200" height="250">
+													<img src="@item.Image1" alt="" width="300" height="200">
 													<div class="product-label">
-														<span class="new">NEW</span>
+														@if (item.discountValue != 0)
+														{
+															<span class="sale">-@item.discountValue%</span>
+														}
+
+														<span class="new">@item.AdType</span>
+
 													</div>
 												</div>
 												<div class="product-body">
-													<p class="product-category">Loại</p>
-													<h3 class="product-name"><a href="#">@Html.DisplayFor(modelItem => item.Name)</a></h3>
-													<h4 class="product-price">@Html.DisplayFor(modelItem => item.Price)VNĐ</h4>
+													<p class="product-category">@item.Category.Name</p>
+													<h3 class="product-name"><a href="/Products/Detail/@item.Id">@item.Name</a></h3>
+													@if (item.discountValue != 0)
+													{
+														long a = (item.Price * item.discountValue) / 100;
+														long b = item.Price - a;
+														<h4 class="product-price">@b VNĐ</h4>
+														<del class="product-old-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</del>
+													}
+													else
+													{
+														<h4 class="product-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</h4>
+													}
 													<div class="product-rating">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
+														@{
+															int j = 0;
+															for (j = 0; j < item.Rating; j++)
+															{
+																<i class="fa fa-star"></i>
+															}
+															while (j < 5)
+															{
+																<i class="fa fa-star-o"></i>
+																j++;
+															}
+														}
 													</div>
 													<div class="product-btns">
-														<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp"> Yêu thích</span></button>
-														<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">So sánh</span></button>
-														<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Chi tiết</span></button>
+
+														<button class="quick-view"><a href="@Url.Action("Detail","Products",new { id = item.Id })"><i class="fa fa-eye"></i><span class="tooltipp">Xem sản phẩm</span></a></button>
 													</div>
 												</div>
 												<div class="add-to-cart">
-													<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
+													<button class="add-to-cart-btn" data-id="@item.Id" data-qty="1"><i class="fa fa-shopping-cart"></i> THÊM VÀO GIỎ</button>
 												</div>
 											</div>
 										}
@@ -695,34 +949,58 @@
 
 										if (DateTime.Compare(DateTime.Now, item.AdExpriedDate) < 0)
 										{
+											
 											<div class="product">
-												<div class="product-img">
-													<img src="@Html.DisplayFor(modelItem => item.Image1)" alt="@Html.DisplayFor(modelItem => item.Name)" width="200" height="250">
-													<div class="product-label">
-														<span class="new">NEW</span>
+													<div class="product-img">
+														<img src="@item.Image1" alt="" width="300" height="200">
+														<div class="product-label">
+															@if (item.discountValue != 0)
+															{
+																<span class="sale">-@item.discountValue%</span>
+															}
+
+															<span class="new">@item.AdType</span>
+
+														</div>
+													</div>
+													<div class="product-body">
+														<p class="product-category">@item.Category.Name</p>
+														<h3 class="product-name"><a href="/Products/Detail/@item.Id">@item.Name</a></h3>
+														@if (item.discountValue != 0)
+														{
+															long a = (item.Price * item.discountValue) / 100;
+															long b = item.Price - a;
+															<h4 class="product-price">@b VNĐ</h4>
+															<del class="product-old-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</del>
+														}
+														else
+														{
+															<h4 class="product-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</h4>
+														}
+														<div class="product-rating">
+															@{
+																int j = 0;
+																for (j = 0; j < item.Rating; j++)
+																{
+																	<i class="fa fa-star"></i>
+																}
+																while (j < 5)
+																{
+																	<i class="fa fa-star-o"></i>
+																	j++;
+																}
+															}
+														</div>
+														<div class="product-btns">
+
+															<button class="quick-view"><a href="@Url.Action("Detail","Products",new { id = item.Id })"><i class="fa fa-eye"></i><span class="tooltipp">Xem sản phẩm</span></a></button>
+														</div>
+													</div>
+													<div class="add-to-cart">
+														<button class="add-to-cart-btn" data-id="@item.Id" data-qty="1"><i class="fa fa-shopping-cart"></i> THÊM VÀO GIỎ</button>
 													</div>
 												</div>
-												<div class="product-body">
-													<p class="product-category">Loại</p>
-													<h3 class="product-name"><a href="#">@Html.DisplayFor(modelItem => item.Name)</a></h3>
-													<h4 class="product-price">@Html.DisplayFor(modelItem => item.Price)VNĐ</h4>
-													<div class="product-rating">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-													</div>
-													<div class="product-btns">
-														<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp"> Yêu thích</span></button>
-														<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">So sánh</span></button>
-														<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Chi tiết</span></button>
-													</div>
-												</div>
-												<div class="add-to-cart">
-													<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> THÊM GIỎ HÀNG</button>
-												</div>
-											</div>
+											
 										}
 									}
 

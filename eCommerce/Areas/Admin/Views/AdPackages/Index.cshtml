@@ -86,10 +86,11 @@
                                     }
                                 </td>
                                 <td>
-                                    <div class="btn-group">
-                                        @Html.ActionLink("Sửa", "Edit", new { id = item.Id }) |
-                                        @Html.ActionLink("Xóa", "Delete", new { id = item.Id })
-                                    </div>
+									<div class="btn-group">
+										@Html.ActionLink("Ngừng bán", "Disabled", new { id = item.Id }) |
+										@Html.ActionLink("Sửa", "Edit", new { id = item.Id }) |
+										@Html.ActionLink("Xóa", "Delete", new { id = item.Id })
+									</div>
                                 </td>
                             </tr>
                         }

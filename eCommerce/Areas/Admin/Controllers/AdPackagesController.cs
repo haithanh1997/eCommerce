@@ -36,6 +36,23 @@ namespace eCommerce.Areas.Admin.Controllers
             }
             return View(adPackage);
         }
+		[Authorize(Roles = "Admin")]
+		public ActionResult Disabled (long? id)
+		{
+			var model = db.AdPackages.Find(id);
+			if(model.isDisabled == false)
+			{
+				model.isDisabled = true;
+			}
+			else
+			{
+				model.isDisabled = false;
+			}
+			
+			db.Entry(model).State = EntityState.Modified;
+			db.SaveChanges();
+			return RedirectToAction("Index");
+		}
 
         // GET: Admin/AdPackages/Create
         [Authorize(Roles = "Admin")]

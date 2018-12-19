@@ -155,7 +155,7 @@ namespace eCommerce.Controllers
         [ChildActionOnly]
         public ActionResult RelatedProducts(long id)
         {
-            var model = db.Products.Where(x => x.Type.Id == id).ToList();
+            var model = db.Products.Where(x => x.Type.Id == id).Take(4).ToList();
             foreach(var item in model)
             {
                 if(item.discountValue != 0)

@@ -181,37 +181,55 @@ namespace eCommerce.Areas.Merchant.Controllers
 		//Lợi nhuận thu đươc cưa thanh toán Merchant
         public ActionResult Profit(string id)
         {
-			ProfitCalculation(id);
-
-            //Tiền Doanh thu trong tháng
-            //int month = DateTime.Now.Month;
-            //int year = DateTime.Now.Year;
-            long profit = 0;
-			var model = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id && x.Invoice.Status == ProductStatus.Delivered).ToList();
-			foreach(var i in model)
+			var userid = id;
+			try
 			{
-				profit += (i.Price * i.Quantity);
-			}
+				ProfitCalculation(id);
 
-            // Tiền được chuyển trong tháng.
-            long profit1 = db.MerchantRepaidDetails.Where(x => x.History.Merchant.Id == id).Sum(x => x.InvoiceDetail.Price);
-            
-            // Tiền chưa được chuyển.
-            long profit2 = 0;
-			var model2 = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id && x.Invoice.Status == ProductStatus.Delivered && x.isPaymented == false).ToList();
-			foreach (var i in model2)
+				//Tiền Doanh thu trong tháng
+				//int month = DateTime.Now.Month;
+				//int year = DateTime.Now.Year;
+				long profit = 0;
+				var model = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id && x.Invoice.Status == ProductStatus.Delivered).ToList();
+				foreach (var i in model)
+				{
+					profit += (i.Price * i.Quantity);
+				}
+
+				// Tiền được chuyển trong tháng.
+
+				var check = db.MerchantRepaidDetails.Where(x => x.History.Merchant.Id == id).FirstOrDefault();
+				long profit1 = 0;
+				if (check != null)
+				{
+					 profit1 = db.MerchantRepaidDetails.Where(x => x.History.Merchant.Id == id).Sum(x => x.InvoiceDetail.Price);
+				}
+				
+				
+
+				// Tiền chưa được chuyển.
+				long profit2 = 0;
+				var model2 = db.InvoiceDetails.Where(x => x.Product.Store.User.Id == id && x.Invoice.Status == ProductStatus.Delivered && x.isPaymented == false).ToList();
+				foreach (var i in model2)
+				{
+					profit2 += (i.Price * i.Quantity);
+				}
+				ViewBag.Profit_Now = Math.Round(((double)profit / 1000000), 1);
+				ViewBag.Profit_Trade = Math.Round(((double)profit1 / 1000000), 1);
+				ViewBag.Profit_NotTrade = Math.Round(((double)profit2 / 1000000), 1);
+
+				return View(db.MerchantRepaidHistorys.Where(x => x.Merchant.Id == CurrentUser.Id).Select(x => new RepaidHistory()
+				{
+					createDate = x.CreatedDate,
+					Total = x.Total,
+					TransactionId = x.TransactionId
+				}).ToList());
+			}
+			catch 
 			{
-				profit2 += (i.Price * i.Quantity);
+				return RedirectToAction("Index",new { id = userid });
 			}
-			ViewBag.Profit_Now = Math.Round(((double)profit / 1000000), 1);
-            ViewBag.Profit_Trade = Math.Round(((double)profit1 / 1000000), 1);
-            ViewBag.Profit_NotTrade = Math.Round(((double)profit2 / 1000000), 1);
-
-            return View(db.MerchantRepaidHistorys.Where(x => x.Merchant.Id == CurrentUser.Id).Select(x => new RepaidHistory() {
-                createDate = x.CreatedDate,
-                Total = x.Total,
-                TransactionId = x.TransactionId
-            }).ToList());
+			
         }
 		//Hiển thị sản phẩm đăng bán của Merchant
         public ActionResult ManageProduct(string id)
