@@ -1,0 +1,143 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+</head>
+<body>
+	<table align="center" border="0" cellpadding="0" cellspacing="0" bgcolor="#dcf0f8" style="margin:0;padding:0;background-color:#f2f2f2;width:100%!important;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#444;line-height:18px">
+		<tbody>
+			<tr>
+				<td align="center" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#444;line-height:18px;font-weight:normal">
+
+					<table border="0" cellpadding="0" cellspacing="0" width="600" style="margin-top:15px">
+						<tbody>
+							<tr>
+								<td>
+									<table border="0" cellpadding="0" cellspacing="0" style="line-height:0">
+										<tbody></tbody>
+									</table>
+								</td>
+							</tr>
+
+							<tr style="background:#fff">
+								<td align="left" width="600" height="auto" style="padding:15px">
+									<table>
+										<tbody>
+
+											<tr>{{State}}</tr>
+											<tr>
+												<td style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#444;line-height:18px">
+													<table cellspacing="0" cellpadding="0" border="0" width="100%">
+														<thead>
+															<tr>
+																<th align="left" width="50%" style="padding:6px 9px 0px 9px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#444;font-weight:bold">Thông tin thanh toán</th>
+																<th align="left" width="50%" style="padding:6px 9px 0px 9px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#444;font-weight:bold">Địa chỉ giao hàng</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td valign="top" style="padding:3px 9px 9px 9px;border-top:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#444;line-height:18px;font-weight:normal">
+
+																	<span style="text-transform:capitalize">{{UserName}}</span>
+																	<br>  <a href="mailto:lmht534@gmail.com" target="_blank">{{Email}}</a>
+																	<br>  {{PhoneNumber}}
+
+																</td>
+																<td valign="top" style="padding:3px 9px 9px 9px;border-top:0;border-left:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#444;line-height:18px;font-weight:normal">
+																	{{UserName}}<br>  {{Address}}, <br> Việt Nam<br> T: {{PhoneNumber}}
+																</td>
+															</tr>
+															<tr>
+																<td valign="top" style="padding:7px 9px 0px 9px;border-top:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#444" colspan="2">
+																	<p style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#444;font-weight:normal">
+																		<br>
+																		<strong>Phí vận chuyển: </strong>0đ (Miễn phí)
+																		<br>
+																		<strong>Phương thức thanh toán: </strong>
+																		{{PaymentMethod}}
+																		<br>
+																		<strong>Xuất hóa đơn đỏ: </strong>{{UserName}}
+																		<br> -------
+																		<br>{{Address}}
+																	</p>
+																</td>
+															</tr>
+														</tbody>
+													</table> <!--Thông tin đơn hàng-->
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<h2 style="text-align:left;margin:10px 0;border-bottom:1px solid #ddd;padding-bottom:5px;font-size:13px;color:#02acea">CHI TIẾT ĐƠN HÀNG</h2>
+													<table cellspacing="0" cellpadding="0" border="0" width="100%" style="background:#f5f5f5">
+														<thead>
+															<tr>
+																<th align="left" bgcolor="#02acea" style="padding:6px 9px;color:#fff;text-transform:uppercase;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:14px">Sản phẩm</th>
+																<th align="left" bgcolor="#02acea" style="padding:6px 9px;color:#fff;text-transform:uppercase;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:14px"> Đơn giá</th>
+																<th align="left" bgcolor="#02acea" style="padding:6px 9px;color:#fff;text-transform:uppercase;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:14px">Số lượng</th>
+																<th align="left" bgcolor="#02acea" style="padding:6px 9px;color:#fff;text-transform:uppercase;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:14px">Giảm giá</th>
+																<th align="right" bgcolor="#02acea" style="padding:6px 9px;color:#fff;text-transform:uppercase;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:14px">Tổng tạm</th>
+															</tr>
+														</thead>
+
+														<tbody bgcolor="#eee" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#444;line-height:18px">
+															{{Table}}
+														</tbody>
+
+														<tfoot style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#444;line-height:18px">
+															<tr>
+																<td colspan="4" align="right" style="padding:5px 9px">Tổng giá trị sản phẩm chưa giảm</td>
+																<td align="right" style="padding:5px 9px"><span class="m_-700752907899685154price">{{Price}}&nbsp;₫</span></td>
+															</tr>
+
+															<tr>
+																<td colspan="4" align="right" style="padding:5px 9px">Giảm giá </td>
+																<td align="right" style="padding:5px 9px"><span class="m_-700752907899685154price">{{DiscountValue}}&nbsp;₫</span></td>
+															</tr>
+
+															<tr>
+																<td colspan="4" align="right" style="padding:5px 9px">Chi phí vận chuyển</td>
+																<td align="right" style="padding:5px 9px"><span class="m_-700752907899685154price">0,00&nbsp;₫</span></td>
+															</tr>
+
+															<tr bgcolor="#eee">
+																<td colspan="4" align="right" style="padding:7px 9px"><strong><big>Tổng giá trị đơn hàng</big></strong></td>
+																<td align="right" style="padding:7px 9px"><strong><big><span class="m_-700752907899685154price">{{Total}}&nbsp;₫</span></big></strong></td>
+															</tr>
+														</tfoot>
+
+													</table> <!--CHi tiết đơn hàng-->
+
+													<br>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													Các câu hỏi cân giải đạp vui lòng liên hệ trên Website thông qua khung Chat
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<br>
+													<p style="font-family:Arial,Helvetica,sans-serif;font-size:12px;margin:0;padding:0;line-height:18px;color:#444;font-weight:bold">
+														TechLap cảm ơn quý khách,
+														<br>
+													</p>
+
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+
+		</tbody>
+	</table>
+</body>
+</html>

@@ -124,7 +124,7 @@
 						</tr>
 						<tr>
 							<th>Phí ship:</th>
-							<td>30000 VND</td>
+							<td>0 VND</td>
 						</tr>
 						<tr>
 							<th>Tổng tiền:</th>
@@ -138,16 +138,21 @@
 		<!-- /.row -->
 		<!-- this row will not appear when printing -->
 		<div class="row no-print">
-            <div class="col-xs-12">
-                <a href="@Url.Action("ChangeStatus","Invoices",new { id = ViewBag.madonhang })" type="button" class="btn btn-success pull-right">
-                    <i class="fa fa-credit-card"></i> Chuyển giao bộ phận giao hàng
-                </a>
-                <a href="@Url.Action("Index","Invoices")" type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
-                    <i class="fa fa-download"></i> Trở lại
-                </a>
-            </div>
+			<div class="col-xs-12">
+				<a  href="@Url.Action("SendEmail","Invoices",new { id = ViewBag.madonhang })" type="button" class="btn btn-warning pull-right">
+					<i class="fa fa-credit-card"></i> Gửi mail trước khi chuyển cho bộ phận giao
+				</a>
+				<a href="@Url.Action("ChangeStatus","Invoices",new { id = ViewBag.madonhang })" type="button" class="btn btn-success pull-right">
+					<i class="fa fa-credit-card"></i> Chuyển giao bộ phận giao hàng
+				</a>
+				<a href="@Url.Action("Index","Invoices")" type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
+					<i class="fa fa-download"></i> Trở lại
+				</a>
+			</div>
 		</div>
 	</section>
 	<!-- /.content -->
 	<div class="clearfix"></div>
 </div>
+
+

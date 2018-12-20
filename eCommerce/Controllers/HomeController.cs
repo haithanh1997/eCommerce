@@ -16,28 +16,7 @@ namespace eCommerce.Controllers
         public ActionResult Index()
         {
 
-			//Test SMTP
-
-			//create a object to hold the message
-			//MailMessage newMessage = new MailMessage();
-
-
-
-			//Now create the full message
-			//newMessage.To.Add(recipentAddress);
-			//newMessage.From = senderAddress;
-			//newMessage.Subject = "Tieu de";
-			//newMessage.Body = "Noi dung";
-
-			//Create the SMTP Client object, which do the actual sending
-			//SmtpClient client = new SmtpClient("smtp.gmail.com", 587)
-			//{
-			//    Credentials = new NetworkCredential("rendoleo317@gmail.com", "tfvzcxzscphvqeki"),
-			//    EnableSsl = true
-			//};
-
-			//now send the message
-			//client.Send(newMessage);
+			
 
 	
 			var model = db.Products.ToList();

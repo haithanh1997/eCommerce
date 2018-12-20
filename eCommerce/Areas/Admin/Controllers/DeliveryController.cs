@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 
@@ -77,6 +78,81 @@ namespace eCommerce.Areas.Admin.Controllers
 				return HttpNotFound();
 			}
 			return View(invoice_detail);
+		}
+		public ActionResult SendEmail(long id)
+		{
+
+			try
+			{
+
+
+				var invoice_detail = db.InvoiceDetails.Where(x => x.Invoice.Id == id).ToList();
+				string table = null;
+				foreach (var i in invoice_detail)
+				{
+					int giam = ((i.Price * i.Product.discountValue) / 100) * i.Quantity;
+					int thanhtien = (i.Price - (i.Price * i.Product.discountValue) / 100) * i.Quantity;
+					table +=
+
+								"<tr>" +
+									   "<td>" +
+
+											  "<strong>" + " " + i.Product.Name + "</strong>" +
+
+									   "</ td >" +
+
+									  "<td align='left'>" + "<span>" + " " + i.Price + "&nbsp;₫</span></td>" +
+									  "<td>" + "<span>" + " " + i.Quantity + "&nbsp;₫</span></td>" +
+									  "<td>" + "<span>" + " " + giam + "&nbsp;₫</span></td>" +
+									  "<td>" + "<span>" + " " + thanhtien + "&nbsp;₫</span></td>" +
+							  "</tr>";
+
+
+				}
+
+				string content = System.IO.File.ReadAllText(Server.MapPath("~/Areas/Admin/Assets/MailTemplate.html"));
+				var model = db.Invoices.Find(id);
+				content = content.Replace("{{UserName}}", model.Name);
+				content = content.Replace("{{Email}}", model.Email);
+				content = content.Replace("{{Address}}", model.Address);
+				content = content.Replace("{{PhoneNumber}}", model.Phone);
+				content = content.Replace("{{PaymentMethod}}", model.PaymentMethod.ToString());
+				content = content.Replace("{{Table}}", table);
+				content = content.Replace("{{Price}}", invoice_detail.Sum(x => x.Price).ToString());
+				content = content.Replace("{{DiscountValue}}", ((invoice_detail.Sum(x => x.Price) * invoice_detail.Sum(x => x.Product.discountValue)) / 100).ToString());
+				content = content.Replace("{{Total}}", (invoice_detail.Sum(x => x.Price) - ((invoice_detail.Sum(x => x.Price) * invoice_detail.Sum(x => x.Product.discountValue)) / 100)).ToString());
+				content = content.Replace("{State}", "Đơn hàng đang được vận chuyển");
+				//Test SMTP
+
+				//create a object to hold the message
+				MailMessage newMessage = new MailMessage();
+
+				//Now create the full message
+				newMessage.To.Add("nguyenthientam317@gmail.com");
+				newMessage.From = new MailAddress("rendoleo317@gmail.com");
+				newMessage.Subject = "Trạng thái đơn hàng";
+				newMessage.IsBodyHtml = true;
+				newMessage.Body = content;
+
+
+				//Create the SMTP Client object, which do the actual sending
+				SmtpClient client = new SmtpClient("smtp.gmail.com", 587)
+				{
+					Credentials = new NetworkCredential("rendoleo317@gmail.com", "tfvzcxzscphvqeki"),
+					EnableSsl = true
+				};
+
+				//now send the message
+				client.Send(newMessage);
+
+				return RedirectToAction("Details", "Delivery", new { id = model.Id });
+
+			}
+			catch (Exception ex)
+			{
+				return HttpNotFound();
+			}
+
 		}
 	}
 }

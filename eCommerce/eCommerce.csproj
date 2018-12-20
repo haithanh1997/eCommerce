@@ -219,7 +219,6 @@
     <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
     <Compile Include="Areas\Admin\Controllers\DeliveryController.cs" />
     <Compile Include="Areas\Admin\Controllers\InvoicesController.cs" />
-    <Compile Include="Areas\Admin\Controllers\MailboxsController.cs" />
     <Compile Include="Areas\Admin\Controllers\MerchantsAccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PackagesController.cs" />
@@ -6776,6 +6775,7 @@
     <Content Include="Areas\Admin\Assets\plugins\timepicker\bootstrap-timepicker.js" />
     <Content Include="Areas\Admin\Assets\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="Areas\Admin\Assets\plugins\timepicker\bootstrap-timepicker.min.js" />
+    <Content Include="Areas\Admin\Assets\MailTemplate.html" />
     <Content Include="Areas\Merchant\Assets\css\bootstrap-table.css" />
     <Content Include="Areas\Merchant\Assets\css\bootstrap-theme.css" />
     <Content Include="Areas\Merchant\Assets\css\bootstrap-theme.min.css" />
@@ -9190,7 +9190,6 @@
     <Content Include="Areas\Admin\Views\Chatbox\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Invoices\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Mailboxs\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Statistic\Daily.cshtml" />
     <Content Include="Areas\Admin\Views\Packages\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Packages\Delete.cshtml" />
